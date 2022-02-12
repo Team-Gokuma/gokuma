@@ -87,3 +87,71 @@
 ## 7. FAQ
 
 - 자주 받는 질문 정리
+
+## 8. 로컬에서 프로젝트 실행 방법
+
+### 리엑트 서드파티모듈 설치
+
+`cd front && npm install && cd ..`
+
+### docker-compose 실행
+
+`docker-compose up -d`
+
+- -d 옵션: 백그라운드 실행
+
+### back서버에 접속하기(초기 데이터베이스 설정 목적)
+
+`docker exec -it gokuma-back-1 /bin/bash` 또는 `docker exec -it gokuma-back-1 //bin//bash`
+
+### 초기 데이터베이스에 값 넣기
+
+`flask db upgrade`
+
+- 위 명령어가 오류나면 아직 DB의 실행이 덜 끝나서 그러니, 잠시 뒤 한번 더 입력해주시면 됩니다.
+- 위 명령어는 최초 1회만 실행해주시고, 이후에는 자동으로 db/data 폴더 내 자료가 저장됩니다.
+
+### 웹페이지 접속해서 확인하기(80번 포트)
+
+- localhost:80 에 접속해서 gokuma가 뜨는지 확인
+- localhost:5000 에 접속해서 gokuma is the best! 가 뜨는지 확인
+
+### 서버 종료 하기
+
+`docker-compose down`
+
+### 서버 삭제 하기
+
+`docker rmi gokuma_front gokuma_back gokuma_db`
+
+- 서버를 종료해야 삭제가 가능합니다.
+
+<br/><br/>
+
+## 기타 명령어
+
+### back(flask) 서버 cmd창 들어가기
+
+`docker exec -it gokuma-back-1 /bin/bash` 또는 `docker exec -it gokuma-back-1 //bin//bash`
+
+- #### 초기 데이터베이스에 값 넣기
+
+  `flask db upgrade`
+
+- #### 데이터베이스에 값 삭제하기
+  `flask db downgrade`  
+  위 명령어 한번 실행에 바로 직전 migration 하나가 취소됩니다.
+
+### db 서버 cmd창 들어가기
+
+`docker exec -it gokuma-db-1 /bin/bash` 또는 `docker exec -it gokuma-db-1 //bin//bash`
+
+- #### mysql로 들어가기
+  `mysql -u root -p`  
+  password 입력(back > config에서 확인)
+
+### 배포 하기
+
+`docker-compose -f docker-compose.prod.yml up -d`
+
+- 개발 서버 도커 이미지가 있다면 상단 서버 삭제하기 명령어를 통해 삭제 후 실행

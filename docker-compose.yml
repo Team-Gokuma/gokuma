@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  db:
+    build:
+      context: ./db
+      dockerfile: ./Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: Gokuma
+    command:
+      - --character-set-server=utf8 
+      - --collation-server=utf8_unicode_ci
+    restart: always
+  back:
+    depends_on:
+      - db
+    build: ./back
+    ports: 
+      - "5000:5000"
+    volumes:
+      - ./back:/app
+    environment:
+      FLASK_ENV: development
+  front:
+    build: ./front
+    ports:
+      - "80:80"
+    volumes:
+      - ./front:/usr/src/app
+    depends_on:
+      - back
