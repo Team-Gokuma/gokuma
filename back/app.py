@@ -2,7 +2,8 @@ from flask import Flask, request
 from flask_migrate import Migrate
 from models import User
 from db_connect import db
-from api.user import user, user_api
+from api.user import user_api
+from api.shoppingList import shopping_api
 from flask_restx import Api, Resource, reqparse
 
 
@@ -21,15 +22,9 @@ migrate = Migrate(app, db)
 api = Api(app, version='1.0', title='API 문서',
           description='Swagger 문서', doc="/api-docs")
 
-test_api = api.namespace('test', description='조회 API')
+test_api = api.namespace('Home', description='Home', path="/home")
 api.add_namespace(user_api)
-
-
-# @app.route('/')
-# def welcome():
-#     if request.method == 'GET':
-#         message = "Gokuma is the best!"
-#         return message
+api.add_namespace(shopping_api)
 
 
 @test_api.route('/')
