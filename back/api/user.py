@@ -8,7 +8,7 @@ from models import User
 from db_connect import db
 
 user = Blueprint("user", __name__, url_prefix="/api/user")
-user_api = Namespace("user_api", path="/api/user")
+user_api = Namespace("User", description='유저 auth API', path="/api/user")
 
 
 # @user.route('/temp')
