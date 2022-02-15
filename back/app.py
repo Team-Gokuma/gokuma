@@ -4,6 +4,8 @@ from models import User
 from db_connect import db
 from api.user import user_api
 from api.shoppingList import shopping_api
+from api.recipe import recipe_api
+from api.refrigerator import refrigerator_api
 from flask_restx import Api, Resource, reqparse
 
 
@@ -25,6 +27,8 @@ api = Api(app, version='1.0', title='API 문서',
 test_api = api.namespace('Home', description='Home', path="/home")
 api.add_namespace(user_api)
 api.add_namespace(shopping_api)
+api.add_namespace(recipe_api)
+api.add_namespace(refrigerator_api)
 
 
 @test_api.route('/')
