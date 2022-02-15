@@ -31,7 +31,7 @@ api.add_namespace(recipe_api)
 api.add_namespace(refrigerator_api)
 
 
-@test_api.route('/')
+@test_api.route('/', doc=False)
 class welcomeApi(Resource):
     # @test_api.response(200, 'Successfully created')
     # @test_api.response(400, 'Bad Request')

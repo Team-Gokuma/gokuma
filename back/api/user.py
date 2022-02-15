@@ -18,11 +18,12 @@ user_api = Namespace("User", description='유저 auth API', path="/api/user")
 #         return str(gokuma.name)
 
 
-@user_api.route('/temp')
+@user_api.route('/temp', doc=False)
 class testUserApi(Resource):
     def get(self):
         gokuma = User.query.filter(User.name == 'gokuma').first()
         return str(gokuma.name)
+
 
 @user_api.route('/singup')
 class UserSignup(Resource):
@@ -68,6 +69,7 @@ class UserSignup(Resource):
         else:
             value = {"status": 404, "result": "fail", "msg": message}
         return jsonify(value)
+
 
 @user_api.route('/login')
 class UserLogin(Resource):
