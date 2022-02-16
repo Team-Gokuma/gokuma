@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_restx import Resource, Namespace
-from models import User, shoppingList
+from models import User, ShoppingList
 from db_connect import db
 import json
 
@@ -15,7 +15,7 @@ class shoppingLists(Resource):
         # user_email = session['email']
         # user_id = User.query.filter(User.email == user_email).first().id
         user_id = 1
-        list = shoppingList.query.filter(shoppingList.user_id == user_id).all()
+        list = ShoppingList.query.filter(ShoppingList.user_id == user_id).all()
         return list
 
     # 데이터 조회
@@ -54,7 +54,7 @@ class shoppingLists(Resource):
 
             print("exist:", exist)
             if exist == False:
-                new_item = shoppingList(
+                new_item = ShoppingList(
                     data['user_id'], data['content'], data['checked'])
                 db.session.add(new_item)
                 db.session.commit()
@@ -107,8 +107,8 @@ class shoppingItem(Resource):
 
     def get(self, id):
         user_id = 1
-        item = shoppingList.query.filter(
-            (shoppingList.user_id == user_id) & (shoppingList.id == id)).first()
+        item = ShoppingList.query.filter(
+            (ShoppingList.user_id == user_id) & (ShoppingList.id == id)).first()
         result = {
             'user_id': item.user_id,
             'content': item.content,
