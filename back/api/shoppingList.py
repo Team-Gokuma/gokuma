@@ -5,10 +5,10 @@ from db_connect import db
 import json
 
 shopping_api = Namespace(
-    "Shopping List", description='장보기 리스트 API', path="/api")
+    "Shopping List", description='장보기 리스트 API', path="/api/shoppingList")
 
 
-@shopping_api.route('/shoppingList')
+@shopping_api.route('/')
 class shoppingLists(Resource):
 
     def _get_list(self):
@@ -102,8 +102,8 @@ class shoppingLists(Resource):
         return result
 
 
-@shopping_api.route('/shoppingList/<id>')
-class shoppingLists(Resource):
+@shopping_api.route('/<id>')
+class shoppingItem(Resource):
 
     def get(self, id):
         user_id = 1
