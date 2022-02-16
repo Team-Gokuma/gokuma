@@ -24,9 +24,9 @@ class testUserApi(Resource):
         gokuma = User.query.filter(User.name == 'gokuma').first()
         return str(gokuma.name)
 
-@user_api.route('/singup')
+@user_api.route('/signup')
 class UserSignup(Resource):
-    def post():
+    def post(self):
         params = request.get_json()
         name = params['name']
         email = params['email']
@@ -71,8 +71,9 @@ class UserSignup(Resource):
 
 @user_api.route('/login')
 class UserLogin(Resource):
-    def post():
+    def post(self):
         params = request.get_json()
+        print(params)
         email = params['email']
         password = params['password']
         message = None
@@ -86,7 +87,6 @@ class UserLogin(Resource):
             message = '비밀번호가 8자리 이상이어야 합니다.'
 
         if message is None:
-            # session.clear()
             session['email'] = user.email
             message = '로그인에 성공하였습니다.'
             value = {"status": 200, "result": "success",
@@ -99,10 +99,46 @@ class UserLogin(Resource):
 
 @user_api.route('/logout')
 class UserLogin(Resource):
-    def get():
+    def get(self):
         if session.get('email'):
             session.pop('email')
             value = {"status": 200, "result": "success"}
         else:
             value = {"status": 404, "result": "fail"}
         return jsonify(value)
+
+@user_api.route('/delete')
+class UserDelete(Resource):
+    def post(self):
+        params = request.get_json()
+        email=params['email']
+
+        User.query.filter(User.email == email).delete()
+        db.session.commit()
+
+        value = {"status": 200, "result": "success"}
+        return jsonify(value)
+
+@user_api.route('/passupdate')
+class UserPassUpdate(Resource):
+    def post(self):
+        params = request.get_json()
+        email = params['email']
+        password = params['password']
+        newpassword = params['newpassword']
+        user = User.query.filter(User.email == email).first()
+        if check_password_hash(user.password, password):
+            user.password=generate_password_hash(newpassword)
+        value = {"status": 200,  "result": "success"}
+        return jsonify(value)
+
+@user_api.route('/nameupdate')
+class UserNameUpdate(Resource):
+    def post(self):
+        params=request.get_json()
+        newname = params['newname']
+        email = params['email']
+        user = User.query.filter(User.email==email).first()
+        user.name = newname
+        value = {"status": 200, "result": "success"}
+        return value
