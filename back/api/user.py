@@ -75,7 +75,6 @@ class UserSignup(Resource):
 class UserLogin(Resource):
     def post(self):
         params = request.get_json()
-        print(params)
         email = params['email']
         password = params['password']
         message = None
@@ -87,7 +86,7 @@ class UserLogin(Resource):
             message = '비밀번호가 틀렸습니다.'
         elif len(password) < 8:
             message = '비밀번호가 8자리 이상이어야 합니다.'
-
+#세션은 서버에서 쿠키역할 -> 주기를 정할수있지만 지금은 무한, 
         if message is None:
             session['email'] = user.email
             message = '로그인에 성공하였습니다.'
@@ -114,24 +113,29 @@ class UserDelete(Resource):
     def post(self):
         params = request.get_json()
         email=params['email']
-
-        User.query.filter(User.email == email).delete()
-        db.session.commit()
-
-        value = {"status": 200, "result": "success"}
+        user = User.query.filter(User.email == email).first()
+        if user!=None:
+            User.query.filter(User.email == email).delete()
+            db.session.commit()
+            value = {"status": 200, "result": "success"}
+        else:
+            value = {"status": 400, "result": "fail"}
         return jsonify(value)
 
 @user_api.route('/passupdate')
 class UserPassUpdate(Resource):
     def post(self):
         params = request.get_json()
-        email = params['email']
         password = params['password']
         newpassword = params['newpassword']
-        user = User.query.filter(User.email == email).first()
-        if check_password_hash(user.password, password):
-            user.password=generate_password_hash(newpassword)
-        value = {"status": 200,  "result": "success"}
+        if session['email']==None:
+            value = {"status": 400,  "result": "fail"}
+        else:
+            user = User.query.filter(User.email == session['email']).first()
+            if check_password_hash(user.password, password):
+                user.password=generate_password_hash(newpassword)
+            value = {"status": 200,  "result": "success"}
+        db.session.commit()
         return jsonify(value)
 
 @user_api.route('/nameupdate')
@@ -139,8 +143,11 @@ class UserNameUpdate(Resource):
     def post(self):
         params=request.get_json()
         newname = params['newname']
-        email = params['email']
-        user = User.query.filter(User.email==email).first()
-        user.name = newname
-        value = {"status": 200, "result": "success"}
+        if session['email']==None:
+            value = {"status": 400,  "result": "fail"}
+        else:
+            user = User.query.filter(User.email==session['email']).first()
+            user.name = newname
+            value = {"status": 200,  "result": "success"}
+        db.session.commit()
         return value
