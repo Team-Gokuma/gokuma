@@ -20,12 +20,16 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
   }
-  body{
-    font-family: 'MinSans-Regular';
+  html{
+    font-family: 'MinSans-Regular', 'sans-serif';
     font-size: 16px;
     font-style: normal;
     font-weight: normal;
     line-height: 1.2;
+  }
+  img{
+    width: 100%;
+    height:100%;
   }
 `;
 
