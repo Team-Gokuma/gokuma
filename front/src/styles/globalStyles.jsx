@@ -32,7 +32,11 @@ const GlobalStyle = createGlobalStyle`
     height:100%;
   }
   button{
+    font-family: 'MinSans-Regular';
     font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    cursor: pointer;
   }
 `;
 
