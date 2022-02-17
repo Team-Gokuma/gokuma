@@ -31,6 +31,9 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     height:100%;
   }
+  button{
+    font-size: 16px;
+  }
 `;
 
 export default GlobalStyle;
