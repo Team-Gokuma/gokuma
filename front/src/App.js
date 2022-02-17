@@ -4,9 +4,9 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './styles/globalStyles';
 import theme from './styles/theme';
 import axios from 'axios';
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot} from 'recoil';
 import { Home, Recommend } from './pages';
-
+import { Header } from './components'
 function App() {
   const [msg, setMsg] = useState('이 글자가 보인다면 api서버와 연결이 안된 겁니다.');
   useEffect(() => {
@@ -20,15 +20,16 @@ function App() {
         <GlobalStyle />
         <p>{msg}</p>
         <RecoilRoot>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/recommend" element={<Recommend />} />
-            <Route path="/refrige" element={<div>냉장고</div>} />
-            <Route path="/teamIntro" element={<div>팀소개</div>} />
-            <Route path="/login" element={<div>로그인</div>} />
-            <Route path="/signup" element={<div>회원가입</div>} />
-            <Route path="/mypage" element={<div>마이페이지</div>} />
-          </Routes>
+          <Header/>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/recommend" element={<Recommend />} />
+              <Route path="/refrige" element={<div>냉장고</div>} />
+              <Route path="/teamIntro" element={<div>팀소개</div>} />
+              <Route path="/login" element={<div>로그인</div>} />
+              <Route path="/signup" element={<div>회원가입</div>} />
+              <Route path="/mypage" element={<div>마이페이지</div>} />
+            </Routes>
         </RecoilRoot>
       </ThemeProvider>
     </BrowserRouter>
