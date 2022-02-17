@@ -19,9 +19,12 @@ const font = {
   font-size: ${calcRem(18)}
   `,
   large: `
-  font-size: ${calcRem(24)}
+  font-size: ${calcRem(20)}
   `,
   xlarge: `
+  font-size: ${calcRem(24)}
+  `,
+  xxlarge: `
   font-size: ${calcRem(28)}
   `,
   // weight
