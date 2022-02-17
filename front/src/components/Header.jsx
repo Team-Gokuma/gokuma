@@ -40,7 +40,7 @@ const Header = () => {
       <StWrapper>
         <LogoWrapper onClick={() => navigate('/')}>
           <Img src={`${process.env.PUBLIC_URL}/img/icon/header/logo.svg`} alt="Logo" />
-          <div>고쿠마 냉장고</div>
+          <div>고쿠마 레시피</div>
         </LogoWrapper>
         {isLogin === true ? <CommonNav navList={LOGINNAVS} /> : <CommonNav navList={LOGOUTNAVS} />}
       </StWrapper>
