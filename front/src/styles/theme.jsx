@@ -1,5 +1,5 @@
 const calcRem = (size) => `${size / 16}rem`;
-const colors = {
+const color = {
   black: '#3a3a3a',
   yellow: '#FFC750',
   orange: '#F7941E',
@@ -30,7 +30,7 @@ const font = {
 };
 
 const theme = {
-  colors,
+  color,
   font,
 };
 
