@@ -5,6 +5,10 @@ const colors = {
   orange: '#F7941E',
   purple: '#7E83D2',
   green: '#5AB66A',
+  lightgray: '#f5f5f5',
+  gray: '#f8f8f8',
+  darkgray: '#bdbdbd',
+  lightblack: '#757575',
   background: '#FDFDFE',
 };
 
