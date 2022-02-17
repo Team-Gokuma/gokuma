@@ -27,6 +27,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     line-height: 1.2;
   }
+  img{
+    width: 100%;
+    height:100%;
+  }
 `;
 
 export default GlobalStyle;
