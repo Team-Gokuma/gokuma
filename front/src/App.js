@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './styles/globalStyles';
 import theme from './styles/theme';
 import axios from 'axios';
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot} from 'recoil';
 import { Home, Recommend } from './pages';
 import { Header } from './components'
 function App() {
