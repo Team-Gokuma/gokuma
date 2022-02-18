@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 // 필수 props: text, bgcolor, txtcolor
 // 선택 props: width('원하는크기'), round(boolean), txtstyle('bold')
@@ -11,7 +11,7 @@ export const Button = ({ width, text, round, bgcolor, txtcolor, txtstyle }) => {
 };
 
 const StyledButton = styled.button`
-  width: ${(props) => (props.width ? props.width : 'auto')};
+  width: ${(props) => (props.width ? props.width : "auto")};
   height: 44px;
   padding: 20px;
   display: inline-flex;
