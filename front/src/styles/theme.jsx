@@ -36,6 +36,7 @@ const font = {
 const theme = {
   color,
   font,
+  calcRem,
 };
 
 export default theme;
