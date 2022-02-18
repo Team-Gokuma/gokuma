@@ -25,7 +25,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/recommend" element={<Recommend />} />
-            <Route path="result" element={<Result />} />
+            <Route path="/result" element={<Result />} />
             <Route path="/refrige" element={<div>냉장고</div>} />
             <Route path="/teamIntro" element={<div>팀소개</div>} />
             <Route path="/login" element={<div>로그인</div>} />
