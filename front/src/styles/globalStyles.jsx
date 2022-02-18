@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
     word-wrap: break-word;
+    font-size: 16px;
   }
   @font-face {
     font-family: 'MinSans-Bold';
@@ -38,6 +39,13 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     font-weight: normal;
     cursor: pointer;
+  }
+  textarea:focus,
+  button:focus,
+  input:focus,
+  select:focus,
+  svg:focus {
+    outline: none;
   }
 `;
 
