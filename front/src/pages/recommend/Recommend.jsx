@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ImageFileUpload } from "../../components/common/ImageFileUpload";
 import { Button } from "../../components/common/Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
@@ -10,7 +10,6 @@ const Recommend = () => {
   const [inputValue, setInputValue] = useState("");
   const [tags, setTags] = useState([]);
 
-  const navigate = useNavigate();
   console.log(tags, inputValue);
 
   const handleToggle = () => {
@@ -61,9 +60,9 @@ const Recommend = () => {
         <div className="btnContainer">
           <div className="btnGroup">
             {AddToggle ? (
-              <div onClick={handleToggle} className="addtag">
+              <span onClick={handleToggle} className="addtag">
                 <Button text={"추가하기"} bgcolor={"orange"} txtcolor={"white"} round={true} />
-              </div>
+              </span>
             ) : (
               <>
                 <div className="tags">{tagList}</div>
@@ -80,12 +79,9 @@ const Recommend = () => {
               </>
             )}
           </div>
-          <div
-            onClick={() => {
-              navigate("/result");
-            }}>
+          <Link to="/result" style={{ textDecoration: "none" }}>
             <Button className={""} text={"레시피 찾기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
-          </div>
+          </Link>
         </div>
       </RecommendContainer>
     </section>
@@ -113,6 +109,7 @@ const RecommendContainer = styled.div`
   }
   & .btnGroup {
     & .addtag {
+      display: inline-block;
       margin-bottom: 32px;
     }
     & .tags {
