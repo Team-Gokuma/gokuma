@@ -26,6 +26,7 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     font-weight: normal;
     line-height: 1.2;
+    background-color: ${({ theme }) => theme.color.background};
   }
   img{
     width: 100%;
