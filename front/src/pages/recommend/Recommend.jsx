@@ -108,19 +108,25 @@ const RecommendContainer = styled.div`
     margin-top: 12px;
   }
   & .btnGroup {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     & .addtag {
       display: inline-block;
       margin-bottom: 32px;
     }
     & .tags {
-      width: 100%;
+      width: 80%;
       margin-bottom: 20px;
       display: flex;
-      justify-content: center;
+      /* justify-content: center; */
+      flex-wrap: wrap;
+      justify-content: flex-start;
     }
     & .tag {
       margin-right: 8px;
       position: relative;
+      margin-bottom: 8px;
       & .closeIcon {
         fill: ${({ theme }) => theme.color.white};
         position: absolute;
