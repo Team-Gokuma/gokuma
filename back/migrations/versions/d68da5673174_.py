@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 2d3db6c1a387
+Revision ID: d68da5673174
 Revises: 104efac049e8
-Create Date: 2022-02-16 16:18:29.323698
+Create Date: 2022-02-18 04:36:08.341966
 
 """
 from alembic import op
@@ -11,7 +11,7 @@ from sqlalchemy.sql import table, column
 from data.seed_data_read import get_recipe, get_recipe_ingrd, get_recipe_process
 
 # revision identifiers, used by Alembic.
-revision = '2d3db6c1a387'
+revision = 'd68da5673174'
 down_revision = '104efac049e8'
 branch_labels = None
 depends_on = None
@@ -32,6 +32,8 @@ def upgrade():
                     sa.Column('level', sa.Integer(), nullable=True),
                     sa.Column('calorie', sa.Integer(), nullable=True),
                     sa.Column('img', sa.VARCHAR(length=255), nullable=True),
+                    sa.Column('like', sa.Integer(),
+                              server_default='0', nullable=False),
                     sa.PrimaryKeyConstraint('id'),
                     sa.UniqueConstraint('recipe_id')
                     )
@@ -40,8 +42,7 @@ def upgrade():
                               autoincrement=True, nullable=False),
                     sa.Column('recipe_id', sa.Integer(), nullable=False),
                     sa.Column('name', sa.VARCHAR(length=255), nullable=False),
-                    sa.Column('capacity', sa.VARCHAR(
-                        length=255), nullable=True),
+                    sa.Column('capacity', sa.Text(), nullable=True),
                     sa.Column('typ', sa.VARCHAR(length=255), nullable=True),
                     sa.ForeignKeyConstraint(
                         ['recipe_id'], ['Recipe.recipe_id'], ),
@@ -57,6 +58,7 @@ def upgrade():
                         ['recipe_id'], ['Recipe.recipe_id'], ),
                     sa.PrimaryKeyConstraint('id')
                     )
+
     # ### end Alembic commands ###
     recipes = get_recipe()
     ingrds = get_recipe_ingrd()

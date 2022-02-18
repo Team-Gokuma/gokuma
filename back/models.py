@@ -52,6 +52,7 @@ class Recipe(db.Model):
     level = db.Column(db.Integer, nullable=True)
     calorie = db.Column(db.Integer, nullable=True)
     img = db.Column(db.VARCHAR(255), nullable=True)
+    like = db.Column(db.Integer, nullable=False, server_default='0')
 
     def __init__(self, data):
         if type(data) is dict:
