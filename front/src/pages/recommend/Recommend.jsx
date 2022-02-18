@@ -1,19 +1,22 @@
 import styled from "styled-components";
 import { useMemo, useState } from "react";
-import { ImageFileUpload } from "../components/common/ImageFileUpload";
-import { Button } from "../components/common/Button";
-import { ReactComponent as IconClose } from "../asset/icon/close.svg";
+import { useNavigate } from "react-router-dom";
+import { ImageFileUpload } from "../../components/common/ImageFileUpload";
+import { Button } from "../../components/common/Button";
+import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 
 const Recommend = () => {
   const [AddToggle, setAddToggle] = useState(true);
   const [inputValue, setInputValue] = useState("");
   const [tags, setTags] = useState([]);
 
+  const navigate = useNavigate();
   console.log(tags, inputValue);
 
   const handleToggle = () => {
     setAddToggle(false);
   };
+
   const saveTags = (e) => {
     e.preventDefault();
     setTags((cur) => {
@@ -22,7 +25,9 @@ const Recommend = () => {
     });
     setInputValue("");
   };
+
   const tagList = useMemo(() => {
+    if (!tags.length) setAddToggle(true);
     if (tags.length > 0) {
       return tags.map((item, idx) => {
         const removeTag = () => {
@@ -75,7 +80,12 @@ const Recommend = () => {
               </>
             )}
           </div>
-          <Button className={""} text={"레시피 찾기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
+          <div
+            onClick={() => {
+              navigate("/result");
+            }}>
+            <Button className={""} text={"레시피 찾기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
+          </div>
         </div>
       </RecommendContainer>
     </section>
