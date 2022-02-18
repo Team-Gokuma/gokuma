@@ -1,10 +1,11 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from 'styled-tools';
 import { CommonNav } from './';
 import { useRecoilState } from 'recoil';
 import { logout } from '../api/user';
 import { loginState } from '../store/atom';
+import { ReactComponent as Logo } from '../asset/icon/header/logo.svg';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -39,10 +40,10 @@ const Header = () => {
     <>
       <StWrapper>
         <LogoWrapper onClick={() => navigate('/')}>
-          <Img src={`${process.env.PUBLIC_URL}/img/icon/header/logo.svg`} alt="Logo" />
+          <Img />
           <div>고쿠마 레시피</div>
         </LogoWrapper>
-        {isLogin === true ? <CommonNav navList={LOGINNAVS} /> : <CommonNav navList={LOGOUTNAVS} />}
+        {isLogin ? <CommonNav navList={LOGINNAVS} /> : <CommonNav navList={LOGOUTNAVS} />}
       </StWrapper>
     </>
   );
@@ -73,7 +74,7 @@ const StWrapper = styled.header`
   }
 `;
 
-const Img = styled.img`
+const Img = styled(Logo)`
   width: ${36 / 16}rem;
   height: ${36 / 16}rem;
   margin-right: 1rem;
