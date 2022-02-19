@@ -31,6 +31,9 @@ const font = {
   bold: `
   font-family: 'MinSans-Bold';
   `,
+  normal: `
+  font-family: 'MinSans-Regular';
+  `,
 };
 
 const theme = {
