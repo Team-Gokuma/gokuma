@@ -1,3 +1,4 @@
+import React, { Suspense } from "react";
 import styled from "styled-components";
 import { Recipe } from "../../components/common/Recipe";
 
@@ -19,6 +20,7 @@ const dummydata = [
 ];
 
 const Result = () => {
+  const LoadingPage = React.lazy(() => import("./FindRecipe")); // 지연 로딩
   const maxIngredientRecipe = dummydata.slice(0, 3).map((item, idx) => {
     return (
       <Recipe
@@ -46,16 +48,18 @@ const Result = () => {
   });
 
   return (
-    <ResultContainer>
-      <h3>재료를 최대한 많이 사용하는 레시피 입니다!</h3>
-      <div className="recipeList">{maxIngredientRecipe}</div>
-      <h3>좋아요를 많이 받은 레시피 입니다!</h3>
-      <div className="recipeList">{maxIngredientRecipe}</div>
-      <h3>조리시간이 짧은 레시피 입니다!</h3>
-      <div className="recipeList">{maxIngredientRecipe}</div>
-      <h3 className="relative">관련 레시피 결과</h3>
-      <div className="recipeList">{relativeRecipe}</div>
-    </ResultContainer>
+    <Suspense fallback={<LoadingPage />}>
+      <ResultContainer>
+        <h3>재료를 최대한 많이 사용하는 레시피 입니다!</h3>
+        <div className="recipeList">{maxIngredientRecipe}</div>
+        <h3>좋아요를 많이 받은 레시피 입니다!</h3>
+        <div className="recipeList">{maxIngredientRecipe}</div>
+        <h3>조리시간이 짧은 레시피 입니다!</h3>
+        <div className="recipeList">{maxIngredientRecipe}</div>
+        <h3 className="relative">관련 레시피 결과</h3>
+        <div className="recipeList">{relativeRecipe}</div>
+      </ResultContainer>
+    </Suspense>
   );
 };
 
