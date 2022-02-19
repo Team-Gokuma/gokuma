@@ -4,10 +4,15 @@ import { Link } from "react-router-dom";
 import { ImageFileUpload } from "../../components/common/ImageFileUpload";
 import { Button } from "../../components/common/Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
+import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
+
+const regTag = /^[가-힣]+$/;
 
 const Recommend = () => {
   const [AddToggle, setAddToggle] = useState(true);
   const [inputValue, setInputValue] = useState("");
+  const [msg, setMsg] = useState("");
+  const [onIcon, setOnIcon] = useState(false);
   const [tags, setTags] = useState([]);
 
   console.log(tags, inputValue);
@@ -18,11 +23,19 @@ const Recommend = () => {
 
   const saveTags = (e) => {
     e.preventDefault();
-    setTags((cur) => {
-      const newTags = [...cur, inputValue];
-      return newTags;
-    });
-    setInputValue("");
+    if (regTag.test(inputValue)) {
+      setTags((cur) => {
+        const newTags = [...cur, inputValue];
+        return newTags;
+      });
+      setInputValue("");
+      setMsg("");
+      setOnIcon(false);
+    }
+    if (inputValue !== "" && !regTag.test(inputValue)) {
+      setOnIcon(true);
+      setMsg("오타 혹은 한글 외에 다른 글자가 포함되어 있습니다!");
+    }
   };
 
   const tagList = useMemo(() => {
@@ -70,17 +83,21 @@ const Recommend = () => {
                   <input
                     type={"text"}
                     value={inputValue}
-                    placeholder="재료명을 입력해주세요."
+                    placeholder="한글로 재료명을 입력해주세요."
                     onChange={(e) => {
                       setInputValue(e.target.value);
                     }}
                   />
                 </form>
+                <p>
+                  {onIcon && <IconInfo className="infoIcon" />}
+                  {msg}
+                </p>
               </>
             )}
           </div>
           <Link to="/result" style={{ textDecoration: "none" }}>
-            <Button className={""} text={"레시피 찾기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
+            <Button text={"레시피 찾기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
           </Link>
         </div>
       </RecommendContainer>
@@ -91,14 +108,18 @@ const Recommend = () => {
 export default Recommend;
 
 const RecommendContainer = styled.div`
-  width: ${768 / 16}rem;
+  width: ${740 / 16}rem;
+  border: 1px solid ${({ theme }) => theme.color.white};
+  padding: 60px;
   margin: 0 auto;
+  margin-top: 52px;
   text-align: center;
+  border-radius: 16px;
+  background-color: ${({ theme }) => theme.color.white};
 
   & h2 {
     ${({ theme }) => theme.font.large};
     ${({ theme }) => theme.font.bold};
-    margin-top: 60px;
     margin-bottom: 12px;
   }
   & p {
@@ -137,14 +158,28 @@ const RecommendContainer = styled.div`
     }
     & form {
       width: 100%;
-      margin-bottom: 32px;
       & input {
         width: 320px;
         height: 44px;
         padding-left: 24px;
         border-radius: 9999px;
         border: 1px solid ${({ theme }) => theme.color.orange};
+        margin-bottom: 20px;
       }
+    }
+    & .infoIcon {
+      width: ${18 / 16}rem;
+      height: ${18 / 16}rem;
+      position: absolute;
+      top: 2px;
+      left: -24px;
+      fill: #d23236;
+    }
+    & p {
+      margin-bottom: 32px;
+      font-size: ${15 / 16}rem;
+      position: relative;
+      color: #d23236;
     }
   }
 `;

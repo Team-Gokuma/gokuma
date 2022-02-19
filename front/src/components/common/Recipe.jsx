@@ -39,6 +39,7 @@ const RecipeDiv = styled.div`
 export const Recipe = ({ width, height, text, extraText, image, isFavorite }) => {
   const [favorite, setFavorite] = useState(true);
 
+  //TO DO : 즐겨찾기 기능
   useEffect(() => {
     setFavorite(isFavorite);
   }, []);
