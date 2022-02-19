@@ -16,7 +16,7 @@ export default function CommonNav({ navList }) {
   );
 }
 const Wrapdiv = styled.div`
-  justify-content: flex-end;
+  justify-content: flex-start;
 `;
 const StWrapper = styled(StListWrapper)`
   display: flex;
