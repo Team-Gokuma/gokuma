@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { loginState, modalState } from "../../store/atom";
 import { ImageFileUpload } from "../../components/common/ImageFileUpload";
 import { Button } from "../../components/common/Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
+import { AlertLoginModal } from "../../components/common/AlertLoginModal";
 
 const regTag = /^[가-힣]+$/;
 
@@ -15,7 +18,12 @@ const Recommend = () => {
   const [onIcon, setOnIcon] = useState(false);
   const [tags, setTags] = useState([]);
 
-  console.log(tags, inputValue);
+  const onModal = useRecoilValue(modalState);
+  const setOnModal = useSetRecoilState(modalState);
+  // const login = useRecoilValue(loginState);
+  const login = false;
+
+  // console.log(tags, inputValue);
 
   const handleToggle = () => {
     setAddToggle(false);
@@ -60,6 +68,10 @@ const Recommend = () => {
     }
   }, [tags]);
 
+  const handleClick = () => {
+    !login && setOnModal(true);
+  };
+
   return (
     <section>
       <RecommendContainer>
@@ -96,11 +108,14 @@ const Recommend = () => {
               </>
             )}
           </div>
-          <Link to="/result" style={{ textDecoration: "none" }}>
+          <Link to={login && "/result"} style={{ textDecoration: "none" }} onClick={handleClick}>
             <Button text={"레시피 찾기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
           </Link>
         </div>
       </RecommendContainer>
+      {onModal && (
+        <AlertLoginModal page={"/result"} text={"로그인하고 냉장고에 추가 하시겠습니까?"} btnText={"바로 추천받기"} />
+      )}
     </section>
   );
 };
