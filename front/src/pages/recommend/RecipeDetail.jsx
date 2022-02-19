@@ -16,7 +16,6 @@ const dummydata = {
     { name: "소금", amount: "1/2 숟가락", inRefrige: false },
     { name: "후추", amount: "적당량", inRefrige: true },
   ],
-  inRefrige: ["달걀", "참기름", "소금"],
   recipe: [
     {
       step: 1,
