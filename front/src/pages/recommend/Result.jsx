@@ -49,6 +49,10 @@ const Result = () => {
     <ResultContainer>
       <h3>재료를 최대한 많이 사용하는 레시피 입니다!</h3>
       <div className="recipeList">{maxIngredientRecipe}</div>
+      <h3>좋아요를 많이 받은 레시피 입니다!</h3>
+      <div className="recipeList">{maxIngredientRecipe}</div>
+      <h3>조리시간이 짧은 레시피 입니다!</h3>
+      <div className="recipeList">{maxIngredientRecipe}</div>
       <h3 className="relative">관련 레시피 결과</h3>
       <div className="recipeList">{relativeRecipe}</div>
     </ResultContainer>
@@ -64,6 +68,7 @@ const ResultContainer = styled.section`
   & h3 {
     ${({ theme }) => theme.font.large};
     ${({ theme }) => theme.font.bold};
+    margin-top: 40px;
   }
   & .recipeList {
     display: flex;
