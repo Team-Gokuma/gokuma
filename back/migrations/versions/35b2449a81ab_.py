@@ -1,17 +1,18 @@
 """empty message
 
-Revision ID: 0cd7f1d85946
-Revises: d68da5673174
-Create Date: 2022-02-18 04:45:02.322588
+Revision ID: 35b2449a81ab
+Revises: 10f60713d026
+Create Date: 2022-02-19 14:39:00.878616
 
 """
 from alembic import op
 import sqlalchemy as sa
 from sqlalchemy.sql import table, column
+from data.seed_data_read import get_ingrds
 
 # revision identifiers, used by Alembic.
-revision = '0cd7f1d85946'
-down_revision = 'd68da5673174'
+revision = '35b2449a81ab'
+down_revision = '10f60713d026'
 branch_labels = None
 depends_on = None
 
@@ -52,15 +53,7 @@ def upgrade():
                         column('name', sa.VARCHAR),
                         column('category', sa.Integer),
                         )
-    ingrds = [
-        {'name': '딸기', 'category': 1},
-        {'name': '당근', 'category': 2},
-        {'name': '닭가슴살', 'category': 3},
-        {'name': '와인', 'category': 4},
-        {'name': '우유', 'category': 5},
-        {'name': '고추장', 'category': 6},
-        {'name': '누텔라', 'category': 7}
-    ]
+    ingrds = get_ingrds()
     op.bulk_insert(seed_ingrds, ingrds)
 
 

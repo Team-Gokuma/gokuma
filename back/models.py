@@ -1,3 +1,5 @@
+from sqlalchemy.sql import func
+from datetime import datetime
 from db_connect import db
 
 # User
@@ -42,7 +44,6 @@ class Recipe(db.Model):
     __tablename__ = "Recipe"
     id = db.Column(db.Integer, nullable=False,
                    primary_key=True, autoincrement=True)
-    recipe_id = db.Column(db.Integer, nullable=False, unique=True)
     name = db.Column(db.VARCHAR(255), nullable=False)
     summary = db.Column(db.Text, nullable=True)
     nation = db.Column(db.VARCHAR(255), nullable=True)
@@ -56,7 +57,6 @@ class Recipe(db.Model):
 
     def __init__(self, data):
         if type(data) is dict:
-            self.recipe_id = data['recipe_id']
             self.name = data['name']
             self.summary = data['summary']
             self.nation = data['nation']
@@ -76,7 +76,7 @@ class RecipeIngrd(db.Model):
     id = db.Column(db.Integer, nullable=False,
                    primary_key=True, autoincrement=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey(
-        'Recipe.recipe_id'), nullable=False)
+        'Recipe.id'), nullable=False)
     name = db.Column(db.VARCHAR(255), nullable=False)
     capacity = db.Column(db.Text, nullable=True)
     typ = db.Column(db.VARCHAR(255), nullable=True)
@@ -97,7 +97,7 @@ class RecipeProcess(db.Model):
     id = db.Column(db.Integer, nullable=False,
                    primary_key=True, autoincrement=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey(
-        'Recipe.recipe_id'), nullable=False)
+        'Recipe.id'), nullable=False)
     cooking_no = db.Column(db.Integer, nullable=True)
     content = db.Column(db.Text, nullable=True)
 
@@ -137,21 +137,21 @@ class Ingredients(db.Model):
             self.name = data['name']
             self.category = data['category']
 
+
 # Refrigerator
 
+class Refrigerator(db.Model):
+    __tablename__ = 'Refrigerator'
+    id = db.Column(db.Integer, nullable=False,
+                   primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
+    content = db.Column(db.VARCHAR(255), nullable=False)
+    category = db.Column(db.Integer,  db.ForeignKey(
+        'IngrdCategory.category'), nullable=True)
+    time = db.Column(db.DateTime, nullable=False)
 
-# class Refrigerator(db.Model):
-#     __tablename__ = 'Refrigerator'
-#     id = db.Column(db.Integer, nullable=False,
-#                    primary_key=True, autoincrement=True)
-#     user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
-#     content = db.Column(db.VARCHAR(255), nullable=False)
-#     category = db.Column(db.Integer,  db.ForeignKey(
-#         'IngrdCategory.category'), nullable=True)
-#     time = db.Column(db.DateTime, nullable=False)
-
-#     def __init__(self, user_id, content, category, time):
-#         self.user_id = user_id
-#         self.content = content
-#         self.category = category
-#         self.time = time
+    def __init__(self, user_id, content, category, time):
+        self.user_id = user_id
+        self.content = content
+        self.category = category
+        self.time = time
