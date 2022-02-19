@@ -31,6 +31,7 @@ const Result = () => {
         text={item.title}
         extraText={`재료를 ${item.ingredientNum}개 사용하는 레시피 입니다!`}
         isFavorite={item.favorite}
+        recipeId={idx} // TO DO: API 연결할때 변경
       />
     );
   });
@@ -43,6 +44,7 @@ const Result = () => {
         height={`${240 / 16}rem`}
         text={item.title}
         favorite={item.favorite}
+        recipeId={idx} // TO DO: API 연결할때 변경
       />
     );
   });

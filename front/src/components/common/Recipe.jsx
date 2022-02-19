@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { ReactComponent as IconOutlineFavorite } from "../../asset/icon/favoriteEmpty.svg";
 import { ReactComponent as IconFilledFavorite } from "../../asset/icon/favoriteBlack.svg";
 
-const RecipeDiv = styled.div`
+const RecipeDiv = styled(Link)`
   position: relative;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  color: ${({ theme }) => theme.color.black};
   margin: 1% 2%;
   background: ${({ theme }) => theme.color.lightgray} url("${process.env.PUBLIC_URL}/img/recipeExample.jpeg") no-repeat;
   background-size: cover;
@@ -36,7 +38,7 @@ const RecipeDiv = styled.div`
   }
 `;
 
-export const Recipe = ({ width, height, text, extraText, image, isFavorite }) => {
+export const Recipe = ({ width, height, text, extraText, image, isFavorite, recipeId }) => {
   const [favorite, setFavorite] = useState(true);
 
   //TO DO : 즐겨찾기 기능
@@ -46,7 +48,13 @@ export const Recipe = ({ width, height, text, extraText, image, isFavorite }) =>
 
   return (
     <>
-      <RecipeDiv width={width} height={height} text={text} extraText={extraText} image={image}>
+      <RecipeDiv
+        to={`/detail/${recipeId}`}
+        width={width}
+        height={height}
+        text={text}
+        extraText={extraText}
+        image={image}>
         {favorite ? (
           <IconOutlineFavorite
             className="favoriteIcon"
