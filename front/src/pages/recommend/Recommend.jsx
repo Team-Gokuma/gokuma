@@ -112,7 +112,6 @@ const RecommendContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.color.white};
   padding: 60px;
   margin: 0 auto;
-  margin-top: 52px;
   text-align: center;
   border-radius: 16px;
   background-color: ${({ theme }) => theme.color.white};
@@ -126,7 +125,6 @@ const RecommendContainer = styled.div`
     line-height: 1.5;
   }
   & .btnContainer {
-    margin-top: 12px;
   }
   & .btnGroup {
     display: flex;

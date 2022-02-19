@@ -70,7 +70,7 @@ export default Result;
 const ResultContainer = styled.section`
   width: ${1200 / 16}rem;
   margin: 0 auto;
-  margin-top: 60px;
+  margin-top: ${80 / 16}rem;
   & h3 {
     ${({ theme }) => theme.font.large};
     ${({ theme }) => theme.font.bold};
