@@ -11,10 +11,20 @@ export const isLogin = async () => {
   
   export const logout = async () => {
     try {
-      const { data } = await axios.get("api/user/signout")
+      const { data } = await axios.get("api/user/logout")
       return data
     } catch (error) {
       console.log(error)
     }
   }
+
+  export const login = async (inputs) => {
+    try {
+      const { data } = await axios.post("api/user/login", inputs)
+      return data
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
   

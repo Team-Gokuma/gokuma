@@ -29,3 +29,5 @@ const StyledButton = styled.button`
   color: ${(props) => props.theme.color[props.txtcolor]};
   ${(props) => props.txtstyle && props.theme.font[props.txtstyle]}
 `;
+
+export default Button;
