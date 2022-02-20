@@ -1,7 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { loginState } from "../store/atom";
 import { useSetRecoilState } from "recoil";
+import { login } from "../api/user";
 
 import styled from "styled-components";
 import Tabs from "@mui/material/Tabs";
@@ -9,7 +10,7 @@ import Tab from "@mui/material/Tab";
 import LoginInput from "../components/common/LoginInput";
 import Button from "../components/common/Button";
 import { makeStyles } from "@material-ui/styles";
-import { login } from "../api/user";
+
 
 const useStyles = makeStyles(() => ({
   customStyleOnTab: {
@@ -17,16 +18,27 @@ const useStyles = makeStyles(() => ({
     color: "black",
     fontWeight: "bold",
   },
+  activeTab: {
+    fontSize: "16px",
+    color: "black",
+    fontWeight: "bold",
+    color: "orange"
+  },
 }));
 const Login = () => {
   const setIsLogin = useSetRecoilState(loginState);
   const classes = useStyles();
   const navigate = useNavigate();
+  const [value, setValue] = useState(0);
 
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
   });
+
+  const handleChangeTab = (event, newValue) => {
+    setValue(newValue);
+  };
 
   const { email, password } = inputs;
 
@@ -47,29 +59,54 @@ const Login = () => {
       }
     });
   };
+  
   const onSubmit = (e) => {
     e.preventDefault();
     let body = {
       email: email,
       password: password,
-    };
-    requestLogin(body);
+    }; 
+    if (!email || !password) {
+      alert("필수 항목을 작성하세요");
+    } else {
+      requestLogin(body);
+    }
+
   };
 
   return (
     <Stbody>
       <StWrapper>
         <StAppBar
-          value="form"
-          onChange={handleChange}
+          onChange={handleChangeTab}
           aria-label="disabled tabs example"
           centered
           style={{ backgroundColor: "white" }}
           TabIndicatorProps={{ style: { background: "orange" } }}
-          classes={{ indicator: classes.customStyleOnTab }}>
-          <Tab label={<span className={classes.customStyleOnTab}>Login</span>} value="login" />
+          classes={{ indicator: classes.customStyleOnTab }}
+          value={value}>
+          <Tab label= {
+          <span
+            className={value === 0 ? classes.activeTab : classes.customStyleOnTab}
+          >
+            {" "}
+            Login
+            </span>
+            }
+            to='/login' component={Link}
+          />
           <Tab label="" disabled value="disabled" />
-          <Tab label={<span className={classes.customStyleOnTab}>Sign up</span>} value="signup" />
+          <Tab label={
+          <span
+            className={value === 2 ? classes.activeTab : classes.customStyleOnTab}
+          >
+            {" "}
+            Sign up
+            </span>
+            }
+
+            to='/signup' component={Link}
+          />
         </StAppBar>
         <StInput>
           <form onSubmit={onSubmit} style={{ textAlign: "center" }}>
