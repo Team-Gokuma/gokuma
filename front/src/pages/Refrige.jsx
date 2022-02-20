@@ -1,13 +1,22 @@
 import styled from "styled-components";
+import { useState } from "react";
 import { Button } from "../components/common/Button";
 import { ReactComponent as IconClose } from "../asset/icon/close.svg";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { loginState, modalState } from "../store/atom";
 
 const category = ["전체 식재료", "과일", "채소", "육류", "어류", "유제품", "소스류", "기타"];
-const ingredient = ["과일", "채소", "육류", "어류", "유제품", "소스류", "기타"];
 
 const Refrige = () => {
+  const [ingredient, setIngredient] = useState(["과일", "채소", "육류", "어류", "유제품", "소스류", "기타"]);
+  function removeIngredient(item) {
+    setIngredient((cur) => {
+      const newArr = [...cur];
+      newArr.splice(newArr.indexOf(item), 1);
+      return newArr;
+    });
+  }
+
   return (
     <RefrigeContainer>
       <RefrigeTitle>
@@ -37,7 +46,12 @@ const Refrige = () => {
               <div className="refrigeIngredientBox" key={item + idx}>
                 <span className="refrigeIngredient">
                   {item}
-                  <IconClose className="refrigeIngredientCloseBtn" />
+                  <IconClose
+                    className="refrigeIngredientCloseBtn"
+                    onClick={() => {
+                      removeIngredient(item);
+                    }}
+                  />
                 </span>
               </div>
             );
