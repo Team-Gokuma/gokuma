@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 // 필수 props: text, bgcolor, txtcolor
 // 선택 props: width('원하는크기'), round(boolean), txtstyle('bold'), padding('원하는크기')
+// <Button text={} bgcolor={} txtcolor={} width={} round={} txtstyle={} padding={} />
 export const Button = ({ width, text, round, bgcolor, txtcolor, txtstyle, padding }) => {
   return (
     <StyledButton
