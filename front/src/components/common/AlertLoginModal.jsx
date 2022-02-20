@@ -20,8 +20,8 @@ const ModalContainer = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  min-width: ${400 / 16}rem;
-  height: ${400 / 16}rem;
+  min-width: ${440 / 16}rem;
+  height: ${380 / 16}rem;
   background-color: #fff;
   border-radius: 5%;
   text-align: center;
