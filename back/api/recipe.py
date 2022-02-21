@@ -12,10 +12,13 @@ recipe_api = Namespace(
 class Recoginition(Resource):
 
     def get(self):
+        """사진에서 재료를 인식합니다."""
+
         # data = request.get_json()
         # img = data['img']
 
         # 재료인식 알고리즘 input = img, output = 재료
+        # Model
 
         # img -> model -> ingrds?
 
@@ -34,6 +37,7 @@ class Recoginition(Resource):
 class Recommend(Resource):
 
     def get(self):
+        """인식된 재료와 냉장고 재료를 합해 가장 많은 재료를 사용하는 순서대로 레시피를 추천합니다"""
         # data = request.get_json()
         # ingrds = data['ingredients']
 
@@ -51,6 +55,7 @@ class Recommend(Resource):
 class Related(Resource):
 
     def get(self):
+        """관련 레시피를 보여줍니다"""
         # data = request.get_json()
         # ingrds = data['recipes']
 
@@ -64,10 +69,12 @@ class Related(Resource):
         return result
 
 
-@recipe_api.route('/<id>')
+@recipe_api.route('/<int:id>')
 class Detail(Resource):
 
+    @recipe_api.doc(params={'id': '레시피 ID'})
     def get(self, id):
+        """레시피 디테일 정보를 알려줍니다"""
 
         user = None
         if session.get('email'):
