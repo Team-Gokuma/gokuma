@@ -1,7 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-// import { useSetRecoilState } from "recoil";
-// import { login } from "../api/user";
+import { signup } from "../api/user";
 
 import styled from "styled-components";
 import LoginInput from "../components/common/LoginInput";
@@ -9,27 +8,32 @@ import Button from "../components/common/Button";
 import CommonTab from "../components/common/CommonTab"
 
 
-const Signup = () => {
+const SignupNick = () => {
+  const location = useLocation();
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [nickname, setNickname] = useState("");
+
   const handleChange = (e) => {
     const value = e.target.value;
-    setEmail(value);
+    setNickname(value);
   };
-  function isEmail(asValue) {
-    var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-    return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
-  
-    }
+  const email = location.state.email;
+  const password =location.state.pass.password;
+  const body = {email:email, password:password, nickname:nickname }
+  console.log(email, password);
+
+  const requestSignup = async body => {
+    await signup(body).then(res => {
+      if (res.status === 200) {
+        navigate("/login");
+      } else {
+        alert(res.status);
+      }
+    });
+  };
+
   const handleClick = (e) =>{
-    e.preventDefault();
-    if (isEmail(email)){
-      navigate("/SignupPass", {state:{email:email}});
-    }
-    else{
-      alert("잘못된 이메일 형식입니다!");
-      setEmail("");
-    }
+    requestSignup(body);
   };
 
   return (
@@ -37,13 +41,13 @@ const Signup = () => {
       <StWrapper>
         <CommonTab></CommonTab>
         <StInput>
-            <span>로그인에 사용할 이메일을 작성해주세요.</span>
+            <span>닉네임을 입력해주세요.</span>
             <form onSubmit={handleClick} style={{ textAlign: "center" }}>
-            <LoginInput type="text" name="email" placeholder="이메일" onChange={handleChange} value={email} />
+            <LoginInput type="text" name="nickname" placeholder="닉네임" onChange={handleChange} value={nickname} />
             <Button
               width="300px"
               height="60px"
-              text="다음"
+              text="가입하기"
               bgcolor="orange"
               txtcolor="white"
               round="round"
@@ -55,7 +59,7 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignupNick;
 
 const Stbody = styled.div`
   position: absolute;
@@ -84,7 +88,7 @@ const StInput = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: row wrap;
-  margin-bottom: 8.5rem;
+  margin-bottom: 10rem;
   & span{
       margin-top: 8.5rem;
   }

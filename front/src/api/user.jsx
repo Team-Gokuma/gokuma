@@ -26,5 +26,15 @@ export const isLogin = async () => {
       console.log(error)
     }
   }
+
+  export const signup = async (body) => {
+    try {
+      const { data } = await axios.post("/api/user/signup", body);
+      return data;
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
   
   
