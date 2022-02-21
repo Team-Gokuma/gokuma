@@ -27,7 +27,7 @@ const RecipeDiv = styled(Link)`
     left: 0;
     background-color: ${({ theme }) => theme.color.white};
     & :nth-child(2) {
-      ${({ theme }) => theme.font.bold}
+      ${({ theme }) => theme.font.bold};
       padding-top: 8px;
     }
   }

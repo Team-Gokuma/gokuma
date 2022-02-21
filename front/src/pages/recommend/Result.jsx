@@ -44,7 +44,7 @@ const Result = () => {
         width={`${240 / 16}rem`}
         height={`${240 / 16}rem`}
         text={item.title}
-        margin={"0 3.7rem 0 0"}
+        margin={"1.2rem 3.7rem 1.2rem 0"}
         favorite={item.favorite}
         recipeId={idx} // TO DO: API 연결할때 변경
       />

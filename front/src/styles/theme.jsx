@@ -29,10 +29,10 @@ const font = {
   `,
   // weight
   bold: `
-  font-family: 'MinSans-Bold';
+  font-family: 'MinSans-Bold'
   `,
   normal: `
-  font-family: 'MinSans-Regular';
+  font-family: 'MinSans-Regular'
   `,
 };
 

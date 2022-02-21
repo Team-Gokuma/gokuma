@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Button } from "../components/common/Button";
 import { ReactComponent as IconClose } from "../asset/icon/close.svg";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
@@ -9,25 +9,25 @@ import { loginState, modalState } from "../store/atom";
 const category = ["전체 식재료", "과일", "채소", "육류", "어류", "유제품", "소스류", "기타"];
 
 const Refrige = () => {
-  const [isClicked, setIsClicked] = useState("");
-  const [ingredient, setIngredient] = useState({
-    사과: "과일",
-    당근: "채소",
-    살치살: "육류",
-    연어: "어류",
-    우유: "유제품",
-    고추장: "소스류",
-    사탕: "기타",
-  });
+  const [isClicked, setIsClicked] = useState("전체 식재료");
+  const [ingredient, setIngredient] = useState([
+    { name: "사과", ingredient: 1 },
+    { name: "팽이버섯", ingredient: 2 },
+    { name: "살치살", ingredient: 3 },
+    { name: "연어", ingredient: 4 },
+    { name: "우유", ingredient: 5 },
+    { name: "고추장", ingredient: 6 },
+    { name: "와인", ingredient: 7 },
+  ]);
 
   function handleClickCategory(item) {
     setIsClicked(item);
   }
 
-  function removeIngredient(item) {
+  function removeIngredient(idx) {
     setIngredient((cur) => {
-      const newArr = { ...cur };
-      delete newArr[item];
+      const newArr = [...cur];
+      newArr.splice(idx, 1);
       return newArr;
     });
   }
@@ -35,7 +35,7 @@ const Refrige = () => {
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
   // const login = useRecoilValue(loginState);
-  const login = false;
+  const login = true;
 
   useEffect(() => {
     !login && setModal(true);
@@ -59,33 +59,34 @@ const Refrige = () => {
         <div className="refrigeboxes">
           {category.map((item, idx) => {
             return (
-              <div
+              <Category
                 className="category"
                 key={"category" + idx}
-                value={isClicked === item ? true : false}
+                value={isClicked === item}
                 onClick={() => {
                   handleClickCategory(item);
                 }}>
                 {item}
-              </div>
+              </Category>
             );
           })}
         </div>
         <div className="refrigeboxes">
-          {Object.keys(ingredient).map((item, idx) => {
-            return (
-              <div className="refrigeIngredientBox" key={item + idx}>
-                <span className="refrigeIngredient">
-                  {item}
-                  <IconClose
-                    className="refrigeIngredientCloseBtn"
-                    onClick={() => {
-                      removeIngredient(item);
-                    }}
-                  />
-                </span>
-              </div>
-            );
+          {ingredient.map((item, idx) => {
+            if (isClicked === category[item.ingredient] || isClicked === category[0])
+              return (
+                <div className="refrigeIngredientBox" key={item + idx}>
+                  <span className="refrigeIngredient">
+                    {item.name}
+                    <IconClose
+                      className="refrigeIngredientCloseBtn"
+                      onClick={() => {
+                        removeIngredient(idx);
+                      }}
+                    />
+                  </span>
+                </div>
+              );
           })}
         </div>
       </RefrigeBox>
@@ -105,7 +106,8 @@ const RefrigeTitle = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  ${({ theme }) => theme.font.bold}
+  ${({ theme }) => theme.font.bold};
+
   & h2 {
     ${({ theme }) => theme.font.xlarge}
   }
@@ -125,22 +127,13 @@ const RefrigeBox = styled.div`
 
   & .refrigeboxes {
     width: 50%;
-  }
-  & .category {
-    /* ${(props) => props.value && props.theme.font.bold}; */
-    ${({ theme }) => theme.font.medium};
-    color: ${({ theme }) => theme.color.lightblack};
-    width: 100%;
-    height: ${100 / category.length}%;
-    border-bottom: 0.5px solid ${({ theme }) => theme.color.darkgray};
-    border-right: 0.5px solid ${({ theme }) => theme.color.darkgray};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-  & .category:last-child {
-    border-bottom: none;
+    & :first-child {
+      border-top-left-radius: ${10 / 16}rem;
+    }
+    & :last-child {
+      border-bottom: none;
+      border-bottom-left-radius: ${10 / 16}rem;
+    }
   }
   & .refrigeIngredientBox {
     width: 100%;
@@ -164,4 +157,19 @@ const RefrigeBox = styled.div`
   & .refrigeIngredientBox:first-child {
     margin-top: ${40 / 16}rem;
   }
+`;
+
+const Category = styled.div`
+  ${({ theme }) => theme.font.medium};
+  ${(props) => props.value && props.theme.font.bold};
+  color: ${({ theme }) => theme.color.lightblack};
+  background-color: ${(props) => props.value && props.theme.color.white};
+  width: 100%;
+  height: ${100 / category.length}%;
+  border-bottom: 0.5px solid ${({ theme }) => theme.color.darkgray};
+  border-right: 0.5px solid ${({ theme }) => theme.color.darkgray};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 `;

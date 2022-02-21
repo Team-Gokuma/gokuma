@@ -36,7 +36,7 @@ const ModalContainer = styled.div`
   }
   & div.content {
     & h4 {
-      ${({ theme }) => theme.font.bold}
+      ${({ theme }) => theme.font.bold};
       font-size: 20px;
       margin-bottom: 1.5rem;
     }
