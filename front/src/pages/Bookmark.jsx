@@ -8,20 +8,20 @@ import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { Button } from "../components/common/Button";
 
 const dummydata = [
-  { title: "달걀볶음밥", favorite: true },
-  { title: "고쿠마덮밥", favorite: false },
-  { title: "치킨", favorite: false },
-  { title: "피자", favorite: true },
-  { title: "짜장면", favorite: true },
-  { title: "달걀후라이", favorite: true },
-  { title: "달걀후라이", favorite: false },
-  { title: "달걀후라이", favorite: false },
-  { title: "달걀후라이", favorite: false },
-  { title: "달걀후라이", favorite: false },
-  { title: "달걀후라이", favorite: false },
-  { title: "달걀후라이", favorite: false },
-  { title: "달걀후라이", favorite: false },
-  { title: "달걀후라이", favorite: false },
+  { name: "달걀볶음밥", favorite: true },
+  { name: "고쿠마덮밥", favorite: false },
+  { name: "치킨", favorite: false },
+  { name: "피자", favorite: true },
+  { name: "달걀후라이", favorite: true },
+  { name: "짜장면", favorite: true },
+  { name: "달걀후라이", favorite: false },
+  { name: "달걀후라이", favorite: false },
+  { name: "달걀후라이", favorite: false },
+  { name: "달걀후라이", favorite: false },
+  { name: "달걀후라이", favorite: false },
+  { name: "달걀후라이", favorite: false },
+  { name: "달걀후라이", favorite: false },
+  { name: "달걀후라이", favorite: false },
 ];
 
 const Bookmark = () => {
@@ -48,8 +48,8 @@ const Bookmark = () => {
                   className="recipe"
                   width={`${240 / 16}rem`}
                   height={`${240 / 16}rem`}
-                  text={item.title}
-                  margin={"0 1.8rem"}
+                  text={item.name}
+                  margin={"1rem 1.8rem"}
                   favorite={item.favorite}
                   recipeId={idx} // TO DO: API 연결할때 변경
                 />
