@@ -7,15 +7,16 @@ import {useState} from "react";
 
 const useStyles = makeStyles(() => ({
   customStyleOnTab: {
-    fontSize: "16px",
+    fontSize: "22px",
     color: "black",
     fontWeight: "bold",
+    textTransform: "none"
   },
   activeTab: {
-    fontSize: "16px",
-    color: "black",
+    fontSize: "22px",
     fontWeight: "bold",
-    color: "orange"
+    color: "orange",
+    textTransform: "none"
   },
 }));
 const CommonTab = () => {
@@ -68,10 +69,5 @@ const StAppBar = styled(Tabs)`
   height: 3rem;
   background-color: ${({ theme }) => theme.color.white};
   color: ${({ theme }) => theme.color.black};
-  && {
-    // background-color: rgba(0, 0, 0, 0.5);
-    color: #ff99a0;
-    font-size: 5rem;
-    font-weight: 800;
-  }
+
 `;

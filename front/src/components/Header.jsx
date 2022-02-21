@@ -40,7 +40,7 @@ const Header = () => {
         <CommonNav navList={LOGINNAVS} />
         {isLogin ? 
         <ProfileWrapper>
-          <Link to="/login">
+          <Link to="/login" style={{textDecoration: 'none'}}>
             <Button
             width="160px"
             height="100px"
@@ -79,6 +79,7 @@ export default Header;
 
 const LogoWrapper = styled.h1`
   margin-right: ${50 / 16}rem;
+  margin-left: ${25 / 16}rem;
   text-decoration: none;
   align-items: center;
   display: flex;

@@ -14,15 +14,16 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles(() => ({
   customStyleOnTab: {
-    fontSize: "16px",
+    fontSize: "22px",
     color: "black",
     fontWeight: "bold",
+    textTransform: "none"
   },
   activeTab: {
-    fontSize: "16px",
-    color: "black",
+    fontSize: "22px",
     fontWeight: "bold",
-    color: "orange"
+    color: "orange",
+    textTransform: "none"
   },
 }));
 const Login = () => {

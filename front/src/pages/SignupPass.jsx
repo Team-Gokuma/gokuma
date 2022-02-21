@@ -60,9 +60,8 @@ console.log(ckNum, ckEng, ckSpc, ckLen);
       <StWrapper>
       <CommonTab/>
         <StInput>
-            <span>비밀번호를 입력해주세요.</span>
+            <span style={{fontWeight: "bold"}}>비밀번호를 입력해주세요.</span>
             <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
-            
             <SignInput type="password" name="password" placeholder="비밀번호" onChange={handleChange} value={password} />
             <StCheck>
               <div  style={ckEng ? {fill:'#4FAAFF', color:'#4FAAFF'} : {fill:'black', color:'black'}}>
@@ -118,7 +117,7 @@ const Stbody = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${({ theme }) => theme.color.lightgray};
-  ${({ theme }) => theme.font.bold};
+  
 `;
 
 const StWrapper = styled.div`
@@ -150,6 +149,7 @@ outline: none;
 box-sizing: border-box;
 background-color: ${({ theme }) => theme.color.white};
 color: black;
+margin-bottom:1rem;
 /* 크기 */
 height: 44px;
 border: 1px solid #BDBDBD;
@@ -158,14 +158,18 @@ padding-left:24px;
 `;
 
 const StCheck = styled.div`
-  margin-bottom:15px;
-  // color:#4FAAFF;
-  & span{
+margin-bottom:15px;
+margin-left:4rem;
+width:20rem;
+
+ & span{
     font-size: 12px;
-  }
-  & div{
-    display:inline-block;
-    text-align: center;
-  }
-   
+}
+& div{
+  display:inline-block;
+  text-align: center;
+} 
+&& { font-weight:normal; //전역 스타일 무시 }
+
+
 `;
