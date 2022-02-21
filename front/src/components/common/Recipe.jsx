@@ -6,10 +6,11 @@ import { ReactComponent as IconFilledFavorite } from "../../asset/icon/favoriteB
 
 const RecipeDiv = styled(Link)`
   position: relative;
+  display: inline-block;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   color: ${({ theme }) => theme.color.black};
-  margin: 1% 2%;
+  margin: ${(props) => props.margin};
   background: ${({ theme }) => theme.color.lightgray} url("${process.env.PUBLIC_URL}/img/recipeExample.jpeg") no-repeat;
   background-size: cover;
   border: 1px solid ${({ theme }) => theme.color.lightgray};
@@ -38,7 +39,7 @@ const RecipeDiv = styled(Link)`
   }
 `;
 
-export const Recipe = ({ width, height, text, extraText, image, isFavorite, recipeId }) => {
+export const Recipe = ({ width, height, text, extratext, margin, image, isFavorite, recipeId }) => {
   const [favorite, setFavorite] = useState(true);
 
   //TO DO : 즐겨찾기 기능
@@ -53,7 +54,8 @@ export const Recipe = ({ width, height, text, extraText, image, isFavorite, reci
         width={width}
         height={height}
         text={text}
-        extraText={extraText}
+        margin={margin}
+        extratext={extratext}
         image={image}>
         {favorite ? (
           <IconOutlineFavorite
@@ -72,7 +74,7 @@ export const Recipe = ({ width, height, text, extraText, image, isFavorite, reci
           />
         )}
         <div>
-          <h4>{extraText}</h4>
+          <h4>{extratext}</h4>
           <h4>{text}</h4>
         </div>
       </RecipeDiv>

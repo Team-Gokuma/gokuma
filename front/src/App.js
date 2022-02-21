@@ -5,7 +5,7 @@ import GlobalStyle from "./styles/globalStyles";
 import theme from "./styles/theme";
 import axios from "axios";
 import { RecoilRoot } from "recoil";
-import { Home, Recommend, Result, RecipeDetail, Login, Signup, SignupPass, Refrige } from "./pages";
+import { Home, Recommend, Result, RecipeDetail, Login, Signup, SignupPass, Refrige, Bookmark } from "./pages";
 import { Header } from "./components";
 function App() {
   const [msg, setMsg] = useState("이 글자가 보인다면 api서버와 연결이 안된 겁니다.");
@@ -28,6 +28,7 @@ function App() {
             <Route path="/result" element={<Result />} />
             <Route path="/detail/:id" element={<RecipeDetail />} />
             <Route path="/refrige" element={<Refrige />} />
+            <Route path="/bookmark" element={<Bookmark />} />
             <Route path="/teamIntro" element={<div>팀소개</div>} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />

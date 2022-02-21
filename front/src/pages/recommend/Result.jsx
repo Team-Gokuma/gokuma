@@ -29,7 +29,8 @@ const Result = () => {
         width={`${328 / 16}rem`}
         height={`${286 / 16}rem`}
         text={item.title}
-        extraText={`재료를 ${item.ingredientNum}개 사용하는 레시피 입니다!`}
+        extratext={`재료를 ${item.ingredientNum}개 사용하는 레시피 입니다!`}
+        margin={"0 3rem 0 0"}
         isFavorite={item.favorite}
         recipeId={idx} // TO DO: API 연결할때 변경
       />
@@ -43,6 +44,7 @@ const Result = () => {
         width={`${240 / 16}rem`}
         height={`${240 / 16}rem`}
         text={item.title}
+        margin={"0 3.7rem 0 0"}
         favorite={item.favorite}
         recipeId={idx} // TO DO: API 연결할때 변경
       />
