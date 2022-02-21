@@ -8,27 +8,27 @@ import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { Button } from "../components/common/Button";
 
 const dummydata = [
-  { title: "달걀볶음밥", ingredientNum: 5, favorite: true },
-  { title: "고쿠마덮밥", ingredientNum: 3, favorite: false },
-  { title: "치킨", ingredientNum: 2, favorite: false },
-  { title: "피자", ingredientNum: 1, favorite: true },
-  { title: "짜장면", ingredientNum: 1, favorite: true },
-  { title: "달걀후라이", ingredientNum: 1, favorite: true },
-  { title: "달걀후라이", ingredientNum: 0, favorite: false },
-  { title: "달걀후라이", ingredientNum: 0, favorite: false },
-  { title: "달걀후라이", ingredientNum: 0, favorite: false },
-  { title: "달걀후라이", ingredientNum: 0, favorite: false },
-  { title: "달걀후라이", ingredientNum: 0, favorite: false },
-  { title: "달걀후라이", ingredientNum: 0, favorite: false },
-  { title: "달걀후라이", ingredientNum: 0, favorite: false },
-  { title: "달걀후라이", ingredientNum: 0, favorite: false },
+  { title: "달걀볶음밥", favorite: true },
+  { title: "고쿠마덮밥", favorite: false },
+  { title: "치킨", favorite: false },
+  { title: "피자", favorite: true },
+  { title: "짜장면", favorite: true },
+  { title: "달걀후라이", favorite: true },
+  { title: "달걀후라이", favorite: false },
+  { title: "달걀후라이", favorite: false },
+  { title: "달걀후라이", favorite: false },
+  { title: "달걀후라이", favorite: false },
+  { title: "달걀후라이", favorite: false },
+  { title: "달걀후라이", favorite: false },
+  { title: "달걀후라이", favorite: false },
+  { title: "달걀후라이", favorite: false },
 ];
 
 const Bookmark = () => {
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
   // const login = useRecoilValue(loginState);
-  const login = false;
+  const login = true;
 
   useEffect(() => {
     !login && setModal(true);
