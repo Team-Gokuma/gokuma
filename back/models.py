@@ -25,9 +25,9 @@ class ShoppingList(db.Model):
     __tablename__ = "ShoppingList"
     id = db.Column(db.Integer, nullable=False,
                    primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
-    content = db.Column(db.Text)
-    checked = db.Column(db.Boolean())
+    user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    checked = db.Column(db.Boolean(), nullable=False)
 
     def __init__(self, user_id, content, checked):
         self.user_id = user_id
@@ -155,3 +155,35 @@ class Refrigerator(db.Model):
         self.content = content
         self.category = category
         self.time = time
+
+
+# User Bookmark DB & User like DB
+
+class Bookmark(db.Model):
+    __tablename__ = 'Bookmark'
+    id = db.Column(db.Integer, nullable=False,
+                   primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
+    recipe_id = db.Column(db.Integer, db.ForeignKey(
+        'Recipe.id'), nullable=False)
+    checked = db.Column(db.Boolean())
+
+    def __init__(self, user_id, recipe_id, checked):
+        self.user_id = user_id
+        self.recipe_id = recipe_id
+        self.checked = checked
+
+
+class UserLike(db.Model):
+    __tablename__ = 'UserLike'
+    id = db.Column(db.Integer, nullable=False,
+                   primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
+    recipe_id = db.Column(db.Integer, db.ForeignKey(
+        'Recipe.id'), nullable=False)
+    checked = db.Column(db.Boolean())
+
+    def __init__(self, user_id, recipe_id, checked):
+        self.user_id = user_id
+        self.recipe_id = recipe_id
+        self.checked = checked
