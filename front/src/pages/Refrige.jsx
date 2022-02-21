@@ -1,24 +1,49 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../components/common/Button";
 import { ReactComponent as IconClose } from "../asset/icon/close.svg";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { loginState, modalState } from "../store/atom";
 
 const category = ["전체 식재료", "과일", "채소", "육류", "어류", "유제품", "소스류", "기타"];
 
 const Refrige = () => {
-  const [ingredient, setIngredient] = useState(["과일", "채소", "육류", "어류", "유제품", "소스류", "기타"]);
+  const [isClicked, setIsClicked] = useState("");
+  const [ingredient, setIngredient] = useState({
+    사과: "과일",
+    당근: "채소",
+    살치살: "육류",
+    연어: "어류",
+    우유: "유제품",
+    고추장: "소스류",
+    사탕: "기타",
+  });
+
+  function handleClickCategory(item) {
+    setIsClicked(item);
+  }
+
   function removeIngredient(item) {
     setIngredient((cur) => {
-      const newArr = [...cur];
-      newArr.splice(newArr.indexOf(item), 1);
+      const newArr = { ...cur };
+      delete newArr[item];
       return newArr;
     });
   }
 
+  const onModal = useRecoilValue(modalState);
+  const setModal = useSetRecoilState(modalState);
+  // const login = useRecoilValue(loginState);
+  const login = false;
+
+  useEffect(() => {
+    !login && setModal(true);
+  }, []);
+
   return (
     <RefrigeContainer>
+      {onModal && <AlertLoginModal page={"/refrige"} text={"로그인이 필요한 기능입니다!"} btnText={"확인"} />}
       <RefrigeTitle>
         <h2>고쿠마 냉장고</h2>
         <div>
@@ -34,14 +59,20 @@ const Refrige = () => {
         <div className="refrigeboxes">
           {category.map((item, idx) => {
             return (
-              <div className="category" key={"category" + idx}>
+              <div
+                className="category"
+                key={"category" + idx}
+                value={isClicked === item ? true : false}
+                onClick={() => {
+                  handleClickCategory(item);
+                }}>
                 {item}
               </div>
             );
           })}
         </div>
         <div className="refrigeboxes">
-          {ingredient.map((item, idx) => {
+          {Object.keys(ingredient).map((item, idx) => {
             return (
               <div className="refrigeIngredientBox" key={item + idx}>
                 <span className="refrigeIngredient">
@@ -96,6 +127,7 @@ const RefrigeBox = styled.div`
     width: 50%;
   }
   & .category {
+    /* ${(props) => props.value && props.theme.font.bold}; */
     ${({ theme }) => theme.font.medium};
     color: ${({ theme }) => theme.color.lightblack};
     width: 100%;
