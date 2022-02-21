@@ -15,15 +15,14 @@ def create_app(test_config=None):
     # app.register_blueprint(user)
 
     return app
-    
 
 
 app = create_app()
 db.init_app(app)
 migrate = Migrate(app, db)
 
-api = Api(app, version='1.0', title='API 문서',
-          description='Swagger 문서', doc="/api-docs")
+api = Api(app, version='1.0', title='고쿠마 냉장고 API 문서',
+          description='고쿠마 냉장고의 Back API 문서입니다', doc="/api-docs", contact="", license="elice team 06")
 
 test_api = api.namespace('Home', description='Home', path="/home")
 api.add_namespace(user_api)
