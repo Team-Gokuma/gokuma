@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_restx import Resource, Namespace
-from models import User, Recipe, RecipeIngrd, RecipeProcess, Ingredients, Refrigerator
+from models import User, Recipe, RecipeIngrd, RecipeProcess, Ingredients, Refrigerator, Bookmark, UserLike
 from db_connect import db
 import json
 
@@ -16,6 +16,9 @@ class Recoginition(Resource):
         # img = data['img']
 
         # 재료인식 알고리즘 input = img, output = 재료
+
+        # img -> model -> ingrds?
+
         ingrds = []
 
         ingrd = Ingredients.query.filter(Ingredients.id == 1).first()
@@ -87,9 +90,18 @@ class Detail(Resource):
             'recipe': []
         }
 
-        # 유저 찜하기 db에서 user 찾아와서 bookmark 설정하기
-        # 유저 좋아요 db에서 user 찾아와서 isLike 설정하기
-        # if user is not None:
+        if user is not None:
+            # 유저 찜하기 db에서 user 찾아와서 bookmark 설정하기
+            bookmark = Bookmark.query.filter(
+                (Bookmark.user_id == user.id) & (Bookmark.recipe_id == id)).first()
+            if bookmark is not None:
+                result['bookmark'] = bookmark
+
+            # 유저 좋아요 db에서 user 찾아와서 isLike 설정하기
+            like = UserLike.query.filter(
+                (UserLike.user_id == user.id) & (Bookmark.recipe_id == id)).first()
+            if like is not None:
+                result['like'] = like
 
         # 레시피 재료 정보
         ingrds = RecipeIngrd.query.filter(RecipeIngrd.recipe_id == id).all()
