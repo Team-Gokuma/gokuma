@@ -14,8 +14,11 @@ refrigerator_api = Namespace(
 @refrigerator_api.route('/')
 class Contents(Resource):
 
+    @refrigerator_api.doc(responses={200: 'Success'})
+    @refrigerator_api.doc(responses={400: 'No User'})
     def get(self):
-        """냉장고에 유저가 가지고 있는 재료 목록을 보여줍니다."""
+        """냉장고에 유저가 가지고 있는 재료 목록을 보여줍니다"""
+
         user = None
         result = []
 
@@ -41,7 +44,8 @@ class RecoginitionPhoto(Resource):
     @refrigerator_api.doc(responses={200: 'Success'})
     @refrigerator_api.doc(responses={400: 'No User'})
     def get(self):
-        """냉장고에서 사진으로 재료를 추가합니다."""
+        """냉장고에서 사진으로 재료를 추가합니다"""
+
         user = None
         result = []
 
@@ -72,6 +76,7 @@ class RecoginitionPhoto(Resource):
 @refrigerator_api.route('/recoginition/text')
 class RecoginitionText(Resource):
 
+    # formData
     # parser = reqparse.RequestParser()
     # parser.add_argument('content', type=str, required=True, location='body')
     # parser.add_argument('category', type=int, required=True, location='body')
@@ -79,7 +84,11 @@ class RecoginitionText(Resource):
     @refrigerator_api.doc(responses={200: 'Success'})
     @refrigerator_api.doc(responses={400: 'No User'})
     def get(self):
-        """냉장고에서 텍스트로 재료를 추가합니다."""
+        """냉장고에서 텍스트로 재료를 추가합니다
+
+        Returns:
+            _type_: _description_
+        """
 
         user = None
         result = {"result_msg": "success"}
@@ -100,5 +109,34 @@ class RecoginitionText(Resource):
             1, content, category, datetime.now(timezone('Asia/Seoul')))
         db.session.add(new_item)
         db.session.commit()
+
+        return result, 200
+
+
+@refrigerator_api.route('/time')
+class IngrdTime(Resource):
+
+    @refrigerator_api.doc(responses={200: 'Success'})
+    @refrigerator_api.doc(responses={400: 'No User'})
+    def get(self):
+        """5일 이상 지난 재료들의 목록"""
+
+        user = None
+        result = {"result_msg": "success", "data": []}
+
+        if session.get('email'):
+            email = session['email']
+            user = User.query.filter(User.email == email).first()
+        # else:
+        #     result = {"result_msg": "fail"}
+        #     return result, 400
+
+        items = Refrigerator.query.filter(
+            Refrigerator.user_id == 1).all()
+
+        for item in items:
+            if item.time.day - datetime.now().day >= 5:
+                result['data'].append({"content": item.content,
+                                       "category": item.category})
 
         return result, 200
