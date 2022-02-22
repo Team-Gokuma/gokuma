@@ -3,15 +3,15 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { loginState, modalState } from "../../store/atom";
-import { ImageFileUpload } from "../../components/common/ImageFileUpload";
-import { Button } from "../../components/common/Button";
+import { ImageFileUpload } from "../ImageFileUpload";
+import { Button } from "../Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
 import { AlertLoginModal } from "../../components/common/AlertLoginModal";
 
 const regTag = /^[가-힣]+$/;
 
-const Recommend = () => {
+export const Recommend = ({ page }) => {
   const [AddToggle, setAddToggle] = useState(true);
   const [inputValue, setInputValue] = useState("");
   const [msg, setMsg] = useState("");
@@ -75,12 +75,18 @@ const Recommend = () => {
   return (
     <section>
       <RecommendContainer>
-        <h2>재료 조합으로 레시피를 추천해드립니다!</h2>
-        <p>
-          이미지를 업로드 하거나, 원하는 재료를 입력하면
-          <br />
-          재료 조합으로 만들수 있는 레시피를 찾아드립니다!
-        </p>
+        {page ? (
+          <>
+            <h2>재료 조합으로 레시피를 추천해드립니다!</h2>
+            <p>
+              이미지를 업로드 하거나, 원하는 재료를 입력하면
+              <br />
+              재료 조합으로 만들수 있는 레시피를 찾아드립니다!
+            </p>
+          </>
+        ) : (
+          <h2>식재료 추가하기</h2>
+        )}
         <ImageFileUpload width={"600px"} height={"400PX"} />
         <div className="btnContainer">
           <div className="btnGroup">
@@ -108,9 +114,15 @@ const Recommend = () => {
               </>
             )}
           </div>
-          <Link to={login && "/result"} style={{ textDecoration: "none" }} onClick={handleClick}>
-            <Button text={"레시피 찾기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
-          </Link>
+          {page ? (
+            <Link to={login && "/result"} style={{ textDecoration: "none" }} onClick={handleClick}>
+              <Button text={"레시피 찾기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
+            </Link>
+          ) : (
+            <Link to={login && "/result"} style={{ textDecoration: "none" }} onClick={handleClick}>
+              <Button text={"추가하기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
+            </Link>
+          )}
         </div>
       </RecommendContainer>
       {onModal && (
@@ -119,8 +131,6 @@ const Recommend = () => {
     </section>
   );
 };
-
-export default Recommend;
 
 const RecommendContainer = styled.div`
   width: ${740 / 16}rem;

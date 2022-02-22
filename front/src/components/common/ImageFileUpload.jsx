@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import styled from 'styled-components';
+import { useState } from "react";
+import styled from "styled-components";
 
 export const ImageFileUpload = ({ width, height }) => {
   const [isFile, setIsFile] = useState(false);
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
 
   function readURL(fileBlob) {
     setIsFile(true);
@@ -19,7 +19,7 @@ export const ImageFileUpload = ({ width, height }) => {
 
   function removeFile() {
     setIsFile(false);
-    setImage('');
+    setImage("");
   }
 
   return (

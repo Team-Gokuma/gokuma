@@ -7,7 +7,7 @@ import axios from "axios";
 import { RecoilRoot } from "recoil";
 import {
   Home,
-  Recommend,
+  RecommendMain,
   Result,
   RecipeDetail,
   Login,
@@ -35,7 +35,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/recommend" element={<Recommend />} />
+            <Route path="/recommend" element={<RecommendMain />} />
             <Route path="/result" element={<Result />} />
             <Route path="/detail/:id" element={<RecipeDetail />} />
             <Route path="/refrige" element={<Refrige />} />

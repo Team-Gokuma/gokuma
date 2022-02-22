@@ -2,11 +2,17 @@ import styled from "styled-components";
 import { useEffect, useState, useMemo } from "react";
 import { Button } from "../components/common/Button";
 import { ReactComponent as IconClose } from "../asset/icon/close.svg";
+import { ReactComponent as IconCloseCircle } from "../asset/icon/closeCircle.svg";
+import { Recommend } from "../components/recommend/Recommend";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { loginState, modalState } from "../store/atom";
 
 const category = ["전체 식재료", "과일", "채소", "육류", "어류", "유제품", "소스류", "기타"];
+
+const AddByText = () => {
+  return <></>;
+};
 
 const Refrige = () => {
   const [isClicked, setIsClicked] = useState("전체 식재료");
@@ -19,6 +25,8 @@ const Refrige = () => {
     { name: "고추장", ingredient: 6 },
     { name: "와인", ingredient: 7 },
   ]);
+  const [addByImage, setAddByImage] = useState(false);
+  const [addByText, setAddByText] = useState(false);
 
   function handleClickCategory(item) {
     setIsClicked(item);
@@ -41,13 +49,73 @@ const Refrige = () => {
     !login && setModal(true);
   }, []);
 
+  const AddByImage = () => {
+    const Background = styled.div`
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    `;
+
+    const ModalContainer = styled.div`
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      height: ${800 / 16}rem;
+      background-color: #fff;
+      border-radius: 5%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      & .modalCloseIcon {
+        position: absolute;
+        top: 1.2rem;
+        right: 1.2rem;
+        cursor: pointer;
+      }
+      & div.content {
+        & h4 {
+          ${({ theme }) => theme.font.bold};
+          font-size: 20px;
+          margin-bottom: 1.5rem;
+        }
+      }
+    `;
+
+    return (
+      <div className="ModalContainer">
+        <Background>
+          <ModalContainer>
+            <IconCloseCircle
+              className="modalCloseIcon"
+              onClick={() => {
+                setAddByImage(false);
+              }}
+            />
+            <Recommend />
+          </ModalContainer>
+        </Background>
+      </div>
+    );
+  };
+
   return (
     <RefrigeContainer>
       {onModal && <AlertLoginModal page={"/refrige"} text={"로그인이 필요한 기능입니다!"} btnText={"확인"} />}
+      {addByImage && <AddByImage />}
+      {addByText && <AddByText />}
       <RefrigeTitle>
         <h2>고쿠마 냉장고</h2>
         <div>
-          <span>
+          <span
+            onClick={() => {
+              setAddByImage(true);
+            }}>
             <Button text={"사진으로 추가"} bgcolor={"orange"} txtcolor={"white"} />
           </span>
           <span>
