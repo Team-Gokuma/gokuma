@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../components/common/Button";
 import { ReactComponent as IconClose } from "../asset/icon/close.svg";

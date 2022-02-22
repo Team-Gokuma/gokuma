@@ -8,8 +8,6 @@ export const AddByText = ({ handleAddText, AddIngredientByText }) => {
   const [textValue, setTextValue] = useState("");
   const [selectValue, setSelectValue] = useState("");
 
-  console.log(textValue, selectValue);
-
   return (
     <div className="ModalContainer">
       <Background>
@@ -96,6 +94,7 @@ const ModalContainer = styled.div`
     margin-left: 1rem;
     width: ${240 / 16}rem;
     padding-left: 1rem;
+    margin-bottom: 1.8rem;
   }
   & input,
   select {
@@ -105,8 +104,5 @@ const ModalContainer = styled.div`
   }
   & form {
     margin-bottom: 2rem;
-  }
-  & .addbtn {
-    margin-top: 3rem;
   }
 `;
