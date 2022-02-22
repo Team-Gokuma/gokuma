@@ -11,14 +11,15 @@ import Button from "../components/common/Button";
 const Header = () => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useRecoilState(loginState);
-  setIsLogin(true);
-  // false = > 로그아웃된 상태
-  const navigateor = useNavigate();
   const handleLogout = async () => {
-    await logout().then((res) => {
+    await logout().then(res => {
       if (res.status === 200) {
         setIsLogin(false);
-        navigateor('/');
+        navigate("/");
+      }
+      else{
+        alert("error");
+        return res.msg;
       }
     });
   };
@@ -40,6 +41,7 @@ const Header = () => {
         <CommonNav navList={LOGINNAVS} />
         {isLogin ? 
         <ProfileWrapper>
+          <div onClick={handleLogout}>
           <Button
             width="104px"
             height="100px"
@@ -47,10 +49,8 @@ const Header = () => {
             bgcolor="yellow"
             txtcolor="black"
             round="round"
-            onClick={handleLogout}
-
-            style={{ backgroundColor:"black"}}
             />
+            </div>
           <Link to="/mypage" style={{textDecoration: "none", color: 'black'}}>
             <div style={{ float:"left", marginTop:"14px", marginRight:"10px"}}>엘리스님</div>
               <Profile/> 
