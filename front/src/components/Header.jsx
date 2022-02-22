@@ -8,16 +8,16 @@ import { ReactComponent as Logo } from '../asset/icon/header/logo.svg';
 import { ReactComponent as Profile } from '../asset/icon/profile.svg';
 import Button from "../components/common/Button";
 
-
 const Header = () => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useRecoilState(loginState);
   setIsLogin(true);
+  // false = > 로그아웃된 상태
   const navigateor = useNavigate();
   const handleLogout = async () => {
     await logout().then((res) => {
       if (res.status === 200) {
-        setIsLogin(true);
+        setIsLogin(false);
         navigateor('/');
       }
     });
@@ -40,7 +40,24 @@ const Header = () => {
         <CommonNav navList={LOGINNAVS} />
         {isLogin ? 
         <ProfileWrapper>
-          <Link to="/login" style={{textDecoration: 'none'}}>
+          <Button
+            width="104px"
+            height="100px"
+            text="Logout"
+            bgcolor="yellow"
+            txtcolor="black"
+            round="round"
+            onClick={handleLogout}
+
+            style={{ backgroundColor:"black"}}
+            />
+          <Link to="/mypage" style={{textDecoration: "none", color: 'black'}}>
+            <div style={{ float:"left", marginTop:"14px", marginRight:"10px"}}>엘리스님</div>
+              <Profile/> 
+          </Link>
+        </ProfileWrapper> :
+        <ProfileWrapper> 
+          <Link to="/login" style={{textDecoration: 'none', color: 'black'}}>
             <Button
             width="160px"
             height="100px"
@@ -52,22 +69,6 @@ const Header = () => {
           </Link>
           <Link to="/mypage">
             <Profile/>  
-          </Link>
-        </ProfileWrapper> :
-        <ProfileWrapper> 
-
-            <Button
-            width="160px"
-            height="100px"
-            text="Logout"
-            bgcolor="yellow"
-            txtcolor="black"
-            round="round"
-            onClick={handleLogout}
-            />
-          <Link to="/mypage">
-            <div>엘리스님</div>
-              <Profile/> 
           </Link>
         </ProfileWrapper>
         }      
@@ -91,7 +92,6 @@ const LogoWrapper = styled.h1`
 const StWrapper = styled.header`
   display: flex;
   align-items: center;
-  justify-content:;
   padding-right: ${36 / 16}rem;
   width: 100%;
   height: 5rem;
@@ -115,7 +115,6 @@ const ProfileWrapper = styled.div`
   display:flex;
   justify-content: flex-end;
 `;
-
 export const StListWrapper = styled.nav`
   display: flex;
 `;
