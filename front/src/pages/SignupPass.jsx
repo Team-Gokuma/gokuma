@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import styled from "styled-components";
 import Button from "../components/common/Button";
@@ -19,6 +19,7 @@ const SignupPass = () => {
   const [ckEng, setCkEng] = useState(false);
   const [ckSpc, setCkSpc] = useState(false);
   const [ckLen, setCkLen] = useState(false);
+  const [ckCorrect, setCkCorrect] = useState(false);
 
   const { password, ckpassword } = pass;
   const handleChange = (e) => {
@@ -27,10 +28,11 @@ const SignupPass = () => {
       ...pass,
       [name]: value,
     });
-    PassValid(password);
   };
   // 영어, 숫자, 특수문자, 8자리이상
-
+  useEffect(() => {
+    PassValid(password);
+  }, [pass]);
   function PassValid(password) {
     let checkNum = /[0-9]/;
     let checkEng = /[a-zA-Z]/;
@@ -40,12 +42,13 @@ const SignupPass = () => {
     setCkNum(checkNum.test(password) ? true : false);
     setCkSpc(checkSpc.test(password) ? true : false);
     setCkLen(password.length >= 8 ? true : false);
+    setCkCorrect(password.length !== 0 && password === ckpassword ? true : false);
   }
   console.log(ckNum, ckEng, ckSpc, ckLen);
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (password === ckpassword && ckEng && ckSpc && ckLen && ckNum) {
+    if (password === ckpassword && ckEng && ckSpc && ckLen && ckNum && ckCorrect) {
       navigate("/SignupNick", { state: { email: email, pass: pass } });
     } else {
       alert("비밀번호를 다시 확인해주세요!");
@@ -57,7 +60,7 @@ const SignupPass = () => {
       <StWrapper>
         <CommonTab />
         <StInput>
-          <span>비밀번호를 입력해주세요.</span>
+          <span style={{ fontWeight: "bold" }}>비밀번호를 입력해주세요.</span>
           <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
             <SignInput
               type="password"
@@ -89,6 +92,7 @@ const SignupPass = () => {
                 </span>
               </div>
             </StCheck>
+
             <SignInput
               type="password"
               name="ckpassword"
@@ -96,6 +100,13 @@ const SignupPass = () => {
               onChange={handleChange}
               value={ckpassword}
             />
+            <StCheckPass>
+              <div style={ckCorrect ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black" }}>
+                <span>비밀번호 확인</span>
+                <Ckeckicon />
+              </div>
+            </StCheckPass>
+            <Button width="300px" height="60px" text="다음" bgcolor="orange" txtcolor="white" round="round" />
             <Button width="300px" height="60px" text="다음" bgcolor="orange" txtcolor="white" round="round" />
           </form>
         </StInput>
@@ -113,7 +124,6 @@ const Stbody = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${({ theme }) => theme.color.lightgray};
-  ${({ theme }) => theme.font.bold};
 `;
 
 const StWrapper = styled.div`
@@ -145,6 +155,7 @@ const SignInput = styled.input`
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.color.white};
   color: black;
+  margin-bottom: 1rem;
   /* 크기 */
   height: 44px;
   border: 1px solid #bdbdbd;
@@ -154,12 +165,24 @@ const SignInput = styled.input`
 
 const StCheck = styled.div`
   margin-bottom: 15px;
-  // color:#4FAAFF;
+  margin-left: 0rem;
+  width: 20rem;
+
   & span {
     font-size: 12px;
   }
   & div {
     display: inline-block;
     text-align: center;
+  }
+`;
+
+const StCheckPass = styled.div`
+  margin-bottom: 15px;
+  margin-left: -6.5rem;
+  width: 20rem;
+
+  & span {
+    font-size: 12px;
   }
 `;

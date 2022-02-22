@@ -37,33 +37,19 @@ const Header = () => {
           <div>고쿠마 레시피</div>
         </LogoWrapper>
         <CommonNav navList={LOGINNAVS} />
-        {isLogin ? (
+        {isLogin && (
           <ProfileWrapper>
-            <Link to="/login">
+            <Link to="/login" style={{ textDecoration: "none" }}>
               <Button
                 width="160px"
                 height="100px"
-                text="Login / Sign up"
+                text="Logout"
                 bgcolor="yellow"
                 txtcolor="black"
                 round="round"
+                onClick={handleLogout}
               />
             </Link>
-            <Link to="/mypage">
-              <Profile />
-            </Link>
-          </ProfileWrapper>
-        ) : (
-          <ProfileWrapper>
-            <Button
-              width="160px"
-              height="100px"
-              text="Logout"
-              bgcolor="yellow"
-              txtcolor="black"
-              round="round"
-              onClick={handleLogout}
-            />
             <Link to="/mypage">
               <div>엘리스님</div>
               <Profile />
@@ -78,6 +64,7 @@ export default Header;
 
 const LogoWrapper = styled.h1`
   margin-right: ${50 / 16}rem;
+  margin-left: ${25 / 16}rem;
   text-decoration: none;
   align-items: center;
   display: flex;
