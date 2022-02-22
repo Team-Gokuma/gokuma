@@ -42,7 +42,9 @@ class Contents(Resource):
         """냉장고에 유저가 가지고 있는 재료 목록을 보여줍니다"""
 
         user = None
-        result = {"result_msg": "success"}
+        result = {"result_msg": "success", "data": []}
+
+        session['email'] = "admin@gokuma.com"
 
         if session.get('email'):
             email = session['email']
@@ -55,8 +57,8 @@ class Contents(Resource):
             (Refrigerator.user_id == user.id)).all()
 
         for item in items:
-            result.append({"content": item.content,
-                           "category": item.category})
+            result['data'].append({"content": item.content,
+                                   "category": item.category})
 
         return result, 200
 
@@ -73,6 +75,8 @@ class RecoginitionPhoto(Resource):
         user = None
         result = {"result_msg": "success"}
 
+        session['email'] = "admin@gokuma.com"
+
         if session.get('email'):
             email = session['email']
             user = User.query.filter(User.email == email).first()
@@ -80,31 +84,46 @@ class RecoginitionPhoto(Resource):
             result = {"result_msg": "No User"}
             return result, 400
 
-        # data = request.get_json()
-        # img = data['img']
+        data = request.get_json()
+        img = data['img']
 
         # 재료인식 알고리즘 input = img, output = 재료
+        # Model
 
         # img -> model -> ingrds?
 
-        ingrds = []
+        # ingrds에는 재료인식 model을 통과한 class명 들이 담겨져있다.
+        ingrds = ['딸기', '당근', '닭가슴살']
 
-        ingrd = Ingredients.query.filter(Ingredients.id == 1).first()
-        ingrds.append(ingrd)
+        result = {'result_msg': "success", "data": []}
+        for ingrd in ingrds:
+            item = Ingredients.query.filter(
+                Ingredients.name == ingrd).first()
+            if item is not None:
+                # ingrds를 여기서 냉장고 db에 저장
+                new_item = Refrigerator.query.filter(
+                    (Refrigerator.user_id == user.id) & (Refrigerator.content == item.name)).first()
+                if new_item is None:
+                    new = Refrigerator(
+                        user.id, item.name, item.category, datetime.now(timezone('Asia/Seoul')))
+                    db.session.add(new)
+                    db.session.commit()
+                else:
+                    # 냉장고 DB에 이미 존재한다.
+                    new_item.time = datetime.now(timezone('Asia/Seoul'))
+                    db.session.commit()
 
-        # ingrds를 여기서 냉장고 db에 저장
+                result['data'].append(
+                    {"content": item.name, "category": item.category})
+            # else:
+            # 재료DB에 없는 재료를 냉장고에 넣으려한다.
+            # 텍스트로 추가?
 
-        result = {'ingredients': ingrds}
         return result
 
 
 @refrigerator_api.route('/recoginition/text')
 class RecoginitionText(Resource):
-
-    # formData
-    # parser = reqparse.RequestParser()
-    # parser.add_argument('content', type=str, required=True, location='body')
-    # parser.add_argument('category', type=int, required=True, location='body')
 
     @refrigerator_api.expect(ingrd_fields)
     @refrigerator_api.response(200, 'Success', response_success_ingrds_model)
@@ -114,6 +133,8 @@ class RecoginitionText(Resource):
 
         user = None
         result = {"result_msg": "success"}
+
+        session['email'] = "admin@gokuma.com"
 
         if session.get('email'):
             email = session['email']
@@ -126,12 +147,12 @@ class RecoginitionText(Resource):
         content = data['content']
         category = data['category']
 
-        item = Refrigerator.query.filter(
-            Refrigerator.content == content).first()
+        item = Refrigerator.query.filter((Refrigerator.user_id == user.id) & (
+            Refrigerator.content == content)).first()
         if item is None:
             # ingrds를 여기서 냉장고 db에 저장
             new_item = Refrigerator(
-                1, content, category, datetime.now(timezone('Asia/Seoul')))
+                user.id, content, category, datetime.now(timezone('Asia/Seoul')))
             db.session.add(new_item)
             db.session.commit()
             result['data'] = {'content': content, 'category': category}
@@ -151,6 +172,8 @@ class IngrdTime(Resource):
         """5일 이상 지난 재료들의 목록"""
         user = None
         result = {"result_msg": "success", "data": []}
+
+        session['email'] = "admin@gokuma.com"
 
         if session.get('email'):
             email = session['email']
