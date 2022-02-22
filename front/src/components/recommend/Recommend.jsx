@@ -3,11 +3,11 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { loginState, modalState } from "../../store/atom";
-import { ImageFileUpload } from "../ImageFileUpload";
-import { Button } from "../Button";
+import { ImageFileUpload } from "../common/ImageFileUpload";
+import { Button } from "../common/Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
-import { AlertLoginModal } from "../../components/common/AlertLoginModal";
+import { AlertLoginModal } from "../common/AlertLoginModal";
 
 const regTag = /^[가-힣]+$/;
 
