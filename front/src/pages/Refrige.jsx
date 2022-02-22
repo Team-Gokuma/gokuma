@@ -13,6 +13,8 @@ import { AddByImage } from "../components/refrige/AddByImage";
 const category = ["전체 식재료", "과일", "채소", "육류", "어류", "유제품", "소스류", "기타"];
 
 const Refrige = () => {
+  const [addByImage, setAddByImage] = useState(false);
+  const [addByText, setAddByText] = useState(false);
   const [isClicked, setIsClicked] = useState("전체 식재료");
   const [ingredient, setIngredient] = useState([
     { name: "사과", ingredient: 1 },
@@ -23,8 +25,6 @@ const Refrige = () => {
     { name: "고추장", ingredient: 6 },
     { name: "와인", ingredient: 7 },
   ]);
-  const [addByImage, setAddByImage] = useState(false);
-  const [addByText, setAddByText] = useState(false);
 
   function handleClickCategory(item) {
     setIsClicked(item);
@@ -49,7 +49,7 @@ const Refrige = () => {
   function AddIngredientByText(textValue, category) {
     setIngredient((cur) => {
       const newArr = [...cur];
-      newArr.push({ namr: textValue, ingredient: Number(category) });
+      newArr.push({ name: textValue, ingredient: Number(category) });
       return newArr;
     });
   }

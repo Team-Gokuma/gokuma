@@ -3,6 +3,61 @@ import { useState } from "react";
 import { Button } from "../common/Button";
 import { ReactComponent as IconCloseCircle } from "../../asset/icon/closeCircle.svg";
 
+// 텍스트로 입력해서 재료 추가 모달창
+export const AddByText = ({ handleAddText, AddIngredientByText }) => {
+  const [textValue, setTextValue] = useState("");
+  const [selectValue, setSelectValue] = useState("");
+
+  console.log(textValue, selectValue);
+
+  return (
+    <div className="ModalContainer">
+      <Background>
+        <ModalContainer>
+          <IconCloseCircle className="modalCloseIcon" onClick={handleAddText} />
+          <div>
+            <h2>식재료 추가하기</h2>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                AddIngredientByText(textValue, selectValue);
+                setSelectValue("");
+                setTextValue("");
+              }}>
+              <select
+                name="refrigeCategory"
+                value={selectValue}
+                onChange={(e) => {
+                  setSelectValue(e.target.value);
+                }}>
+                <option value="">카테고리 선택</option>
+                <option value="1">과일</option>
+                <option value="2">채소</option>
+                <option value="3">육류</option>
+                <option value="4">어류</option>
+                <option value="5">유제품</option>
+                <option value="6">소스류</option>
+                <option value="7">기타</option>
+              </select>
+              <input
+                type={"text"}
+                value={textValue}
+                onChange={(e) => {
+                  setTextValue(e.target.value);
+                }}
+                placeholder="재료명을 한글로 입력해주세요."
+              />
+              <span type="submit">
+                <Button text={"추가하기"} bgcolor={"orange"} txtcolor={"white"} round={true} width={"23rem"} />
+              </span>
+            </form>
+          </div>
+        </ModalContainer>
+      </Background>
+    </div>
+  );
+};
+
 const Background = styled.div`
   position: fixed;
   top: 0;
@@ -55,60 +110,3 @@ const ModalContainer = styled.div`
     margin-top: 3rem;
   }
 `;
-
-// 텍스트로 입력해서 재료 추가 모달창
-export const AddByText = ({ handleAddText, AddIngredientByText }) => {
-  const [textValue, setTextValue] = useState("");
-  const [selectValue, setSelectValue] = useState("");
-
-  console.log(textValue, selectValue);
-
-  return (
-    <div className="ModalContainer">
-      <Background>
-        <ModalContainer>
-          <IconCloseCircle className="modalCloseIcon" onClick={handleAddText} />
-          <div>
-            <h2>식재료 추가하기</h2>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                AddIngredientByText(textValue, selectValue);
-                setSelectValue("");
-                setTextValue("");
-              }}>
-              <select
-                name="refrigeCategory"
-                value={selectValue}
-                onChange={(e) => {
-                  e.preventDefault();
-                  setSelectValue(e.target.value);
-                }}>
-                <option value="">카테고리 선택</option>
-                <option value="1">과일</option>
-                <option value="2">채소</option>
-                <option value="3">육류</option>
-                <option value="4">어류</option>
-                <option value="5">유제품</option>
-                <option value="6">소스류</option>
-                <option value="7">기타</option>
-              </select>
-              <input
-                type={"text"}
-                value={textValue}
-                onChange={(e) => {
-                  e.preventDefault();
-                  setTextValue(e.target.value);
-                }}
-                placeholder="재료명을 한글로 입력해주세요."
-              />
-              <span type="submit">
-                <Button text={"추가하기"} bgcolor={"orange"} txtcolor={"white"} round={true} width={"23rem"} />
-              </span>
-            </form>
-          </div>
-        </ModalContainer>
-      </Background>
-    </div>
-  );
-};
