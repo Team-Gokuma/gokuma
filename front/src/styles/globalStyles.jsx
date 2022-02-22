@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
-    word-wrap: break-word;
+    word-break: keep-all;
     font-size: 16px;
   }
   @font-face {

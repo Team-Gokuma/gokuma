@@ -1,18 +1,16 @@
 import styled from "styled-components";
 import { useEffect, useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "../components/common/Button";
 import { ReactComponent as IconClose } from "../asset/icon/close.svg";
-import { ReactComponent as IconCloseCircle } from "../asset/icon/closeCircle.svg";
-import { Recommend } from "../components/recommend/Recommend";
+import { ReactComponent as IconDelete } from "../asset/icon/delete.svg";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { loginState, modalState } from "../store/atom";
+import { AddByText } from "../components/refrige/AddByText";
+import { AddByImage } from "../components/refrige/AddByImage";
 
 const category = ["전체 식재료", "과일", "채소", "육류", "어류", "유제품", "소스류", "기타"];
-
-const AddByText = () => {
-  return <></>;
-};
 
 const Refrige = () => {
   const [isClicked, setIsClicked] = useState("전체 식재료");
@@ -40,6 +38,22 @@ const Refrige = () => {
     });
   }
 
+  function handleAddText() {
+    setAddByText(false);
+  }
+
+  function handleAddImage() {
+    setAddByImage(false);
+  }
+
+  function AddIngredientByText(textValue, category) {
+    setIngredient((cur) => {
+      const newArr = [...cur];
+      newArr.push({ namr: textValue, ingredient: Number(category) });
+      return newArr;
+    });
+  }
+
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
   // const login = useRecoilValue(loginState);
@@ -49,66 +63,11 @@ const Refrige = () => {
     !login && setModal(true);
   }, []);
 
-  const AddByImage = () => {
-    const Background = styled.div`
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 1;
-    `;
-
-    const ModalContainer = styled.div`
-      position: fixed;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      height: ${800 / 16}rem;
-      background-color: #fff;
-      border-radius: 5%;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      & .modalCloseIcon {
-        position: absolute;
-        top: 1.2rem;
-        right: 1.2rem;
-        cursor: pointer;
-      }
-      & div.content {
-        & h4 {
-          ${({ theme }) => theme.font.bold};
-          font-size: 20px;
-          margin-bottom: 1.5rem;
-        }
-      }
-    `;
-
-    return (
-      <div className="ModalContainer">
-        <Background>
-          <ModalContainer>
-            <IconCloseCircle
-              className="modalCloseIcon"
-              onClick={() => {
-                setAddByImage(false);
-              }}
-            />
-            <Recommend />
-          </ModalContainer>
-        </Background>
-      </div>
-    );
-  };
-
   return (
     <RefrigeContainer>
       {onModal && <AlertLoginModal page={"/refrige"} text={"로그인이 필요한 기능입니다!"} btnText={"확인"} />}
-      {addByImage && <AddByImage />}
-      {addByText && <AddByText />}
+      {addByImage && <AddByImage handleAddImage={handleAddImage} />}
+      {addByText && <AddByText handleAddText={handleAddText} AddIngredientByText={AddIngredientByText} />}
       <RefrigeTitle>
         <h2>고쿠마 냉장고</h2>
         <div>
@@ -118,7 +77,10 @@ const Refrige = () => {
             }}>
             <Button text={"사진으로 추가"} bgcolor={"orange"} txtcolor={"white"} />
           </span>
-          <span>
+          <span
+            onClick={() => {
+              setAddByText(true);
+            }}>
             <Button text={"직접 입력해서 추가"} bgcolor={"orange"} txtcolor={"white"} />
           </span>
         </div>
@@ -140,22 +102,39 @@ const Refrige = () => {
           })}
         </div>
         <div className="refrigeboxes">
-          {ingredient.map((item, idx) => {
-            if (isClicked === category[item.ingredient] || isClicked === category[0])
-              return (
-                <div className="refrigeIngredientBox" key={item + idx}>
-                  <span className="refrigeIngredient">
-                    {item.name}
-                    <IconClose
-                      className="refrigeIngredientCloseBtn"
-                      onClick={() => {
-                        removeIngredient(idx);
-                      }}
-                    />
-                  </span>
-                </div>
-              );
-          })}
+          <div className="deleteIconBox">
+            <IconDelete
+              className="deleteIcon"
+              onClick={() => {
+                setIngredient([]);
+              }}
+            />
+          </div>
+          {ingredient.length > 0 &&
+            ingredient.map((item, idx) => {
+              if (isClicked === category[item.ingredient] || isClicked === category[0])
+                return (
+                  <RefrigeIngredientBox key={item + idx}>
+                    <span className="refrigeIngredient">
+                      {item.name}
+                      <IconClose
+                        className="refrigeIngredientCloseBtn"
+                        onClick={() => {
+                          removeIngredient(idx);
+                        }}
+                      />
+                    </span>
+                  </RefrigeIngredientBox>
+                );
+            })}
+          {ingredient.length === 0 && (
+            <Link to="/recommend" className="noIngredient">
+              재료를 저장하고, 냉장고의 재료를 최대한 이용한 레시피를 추천받을 수 있습니다!
+              <br />
+              <br />
+              추천 받으러 가기 ->
+            </Link>
+          )}
         </div>
       </RefrigeBox>
     </RefrigeContainer>
@@ -192,9 +171,18 @@ const RefrigeBox = styled.div`
   margin: 0 auto;
   margin-top: ${28 / 16}rem;
   display: flex;
+  position: relative;
 
   & .refrigeboxes {
     width: 50%;
+
+    & .deleteIconBox {
+      text-align: end;
+      padding: 1rem 1rem 0 0;
+    }
+    & .deleteIcon {
+      cursor: pointer;
+    }
     & :first-child {
       border-top-left-radius: ${10 / 16}rem;
     }
@@ -203,27 +191,12 @@ const RefrigeBox = styled.div`
       border-bottom-left-radius: ${10 / 16}rem;
     }
   }
-  & .refrigeIngredientBox {
-    width: 100%;
-    text-align: center;
-  }
-  & .refrigeIngredient {
+  & .noIngredient {
+    color: ${({ theme }) => theme.color.black};
     display: inline-block;
-    text-decoration: underline;
-    position: relative;
-    margin-bottom: 1.2rem;
-
-    & .refrigeIngredientCloseBtn {
-      width: 1.2rem;
-      height: 1.2rem;
-      cursor: pointer;
-      position: absolute;
-      top: 0;
-      right: -1.4rem;
-    }
-  }
-  & .refrigeIngredientBox:first-child {
-    margin-top: ${40 / 16}rem;
+    margin: 3.5rem;
+    line-height: 1.5;
+    border-bottom-left-radius: 999rem;
   }
 `;
 
@@ -240,4 +213,25 @@ const Category = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+`;
+
+const RefrigeIngredientBox = styled.div`
+  width: 100%;
+  text-align: center;
+
+  & .refrigeIngredient {
+    display: inline-block;
+    text-decoration: underline;
+    position: relative;
+    margin-bottom: 1.2rem;
+
+    & .refrigeIngredientCloseBtn {
+      width: 1.2rem;
+      height: 1.2rem;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      right: -1.4rem;
+    }
+  }
 `;

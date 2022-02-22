@@ -69,7 +69,7 @@ export const Recommend = ({ page }) => {
   }, [tags]);
 
   const handleClick = () => {
-    !login && setOnModal(true);
+    page && !login && setOnModal(true);
   };
 
   return (
@@ -85,7 +85,7 @@ export const Recommend = ({ page }) => {
             </p>
           </>
         ) : (
-          <h2>식재료 추가하기</h2>
+          <h2>사진으로 추가하기</h2>
         )}
         <ImageFileUpload width={"600px"} height={"400PX"} />
         <div className="btnContainer">
@@ -119,9 +119,9 @@ export const Recommend = ({ page }) => {
               <Button text={"레시피 찾기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
             </Link>
           ) : (
-            <Link to={login && "/result"} style={{ textDecoration: "none" }} onClick={handleClick}>
-              <Button text={"추가하기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
-            </Link>
+            <span style={{ textDecoration: "none" }} onClick={handleClick}>
+              <Button text={"식재료 추가하기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
+            </span>
           )}
         </div>
       </RecommendContainer>
