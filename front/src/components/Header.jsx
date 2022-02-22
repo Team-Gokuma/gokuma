@@ -11,13 +11,14 @@ import Button from "../components/common/Button";
 const Header = () => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useRecoilState(loginState);
-  setIsLogin(true);
-  const navigateor = useNavigate();
   const handleLogout = async () => {
     await logout().then((res) => {
       if (res.status === 200) {
-        setIsLogin(true);
-        navigateor("/");
+        setIsLogin(false);
+        navigate("/");
+      } else {
+        alert("error");
+        return res.msg;
       }
     });
   };
@@ -37,21 +38,29 @@ const Header = () => {
           <div>고쿠마 레시피</div>
         </LogoWrapper>
         <CommonNav navList={LOGINNAVS} />
-        {isLogin && (
+        {isLogin ? (
           <ProfileWrapper>
-            <Link to="/login" style={{ textDecoration: "none" }}>
+            <div onClick={handleLogout}>
+              <Button width="104px" height="100px" text="Logout" bgcolor="yellow" txtcolor="black" round="round" />
+            </div>
+            <Link to="/mypage" style={{ textDecoration: "none", color: "black" }}>
+              <div style={{ float: "left", marginTop: "14px", marginRight: "10px" }}>엘리스님</div>
+              <Profile />
+            </Link>
+          </ProfileWrapper>
+        ) : (
+          <ProfileWrapper>
+            <Link to="/login" style={{ textDecoration: "none", color: "black" }}>
               <Button
                 width="160px"
                 height="100px"
-                text="Logout"
+                text="Login / Sign up"
                 bgcolor="yellow"
                 txtcolor="black"
                 round="round"
-                onClick={handleLogout}
               />
             </Link>
             <Link to="/mypage">
-              <div>엘리스님</div>
               <Profile />
             </Link>
           </ProfileWrapper>
@@ -76,7 +85,6 @@ const LogoWrapper = styled.h1`
 const StWrapper = styled.header`
   display: flex;
   align-items: center;
-  justify-content: ;
   padding-right: ${36 / 16}rem;
   width: 100%;
   height: 5rem;
@@ -100,7 +108,6 @@ const ProfileWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
-
 export const StListWrapper = styled.nav`
   display: flex;
 `;

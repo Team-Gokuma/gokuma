@@ -60,7 +60,6 @@ const Login = () => {
       }
     });
   };
-  
   const onSubmit = (e) => {
     e.preventDefault();
     let body = {
@@ -112,7 +111,7 @@ const Login = () => {
         <StInput>
           <form onSubmit={onSubmit} style={{ textAlign: "center" }}>
             <LoginInput type="text" name="email" placeholder="이메일" onChange={handleChange} value={email} />
-            <LoginInput type="text" name="password" placeholder="비밀번호" onChange={handleChange} value={password} />
+            <LoginInput type="password" name="password" placeholder="비밀번호" onChange={handleChange} value={password} />
             <Button
               width="300px"
               height="60px"

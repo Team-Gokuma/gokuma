@@ -2,6 +2,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { signup } from "../api/user";
 
+import { loginState } from "../store/atom";
+import { useSetRecoilState } from "recoil";
+
 import styled from "styled-components";
 import LoginInput from "../components/common/LoginInput";
 import Button from "../components/common/Button";
@@ -12,27 +15,30 @@ const SignupNick = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [nickname, setNickname] = useState("");
-
+  const setIsLogin = useSetRecoilState(loginState);
   const handleChange = (e) => {
     const value = e.target.value;
     setNickname(value);
   };
   const email = location.state.email;
   const password =location.state.pass.password;
-  const body = {email:email, password:password, nickname:nickname }
-  console.log(email, password);
+  
 
   const requestSignup = async body => {
     await signup(body).then(res => {
       if (res.status === 200) {
+        setIsLogin(true);
         navigate("/login");
       } else {
-        alert(res.status);
+        alert(res.msg);
       }
     });
   };
 
   const handleClick = (e) =>{
+    e.preventDefault();
+    const body = {email:email, password:password, nickname:nickname };
+    console.log(body);
     requestSignup(body);
   };
 
