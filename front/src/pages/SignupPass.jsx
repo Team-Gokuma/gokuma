@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import styled from "styled-components";
 import Button from "../components/common/Button";
@@ -20,6 +20,7 @@ const SignupPass = () => {
   const [ckEng, setCkEng] = useState(false);
   const [ckSpc, setCkSpc] = useState(false);
   const [ckLen, setCkLen] = useState(false);
+  const [ckCorrect, setCkCorrect] = useState(false);
 
   const { password, ckpassword } = pass;
   const handleChange = (e) => {
@@ -28,10 +29,12 @@ const SignupPass = () => {
       ...pass,
       [name]: value,
     });
-    PassValid(password);
+
   }
   // 영어, 숫자, 특수문자, 8자리이상
- 
+ useEffect(() => {
+  PassValid(password);
+ }, [pass])
   function PassValid(password){
     let checkNum = /[0-9]/;
     let checkEng = /[a-zA-Z]/;
@@ -41,13 +44,14 @@ const SignupPass = () => {
     setCkNum(checkNum.test(password) ? true : false);
     setCkSpc(checkSpc.test(password) ? true : false);
     setCkLen(password.length>=8 ? true : false);
+    setCkCorrect((password.length!==0&&password===ckpassword) ? true : false);
 
   };
 console.log(ckNum, ckEng, ckSpc, ckLen);
   const handleSubmit = (e) =>{
     e.preventDefault();
 
-    if(password === ckpassword && ckEng && ckSpc && ckLen && ckNum){
+    if(password === ckpassword && ckEng && ckSpc && ckLen && ckNum && ckCorrect){
       navigate("/SignupNick", {state:{email:email, pass:pass}});
     }
     else{
@@ -92,7 +96,16 @@ console.log(ckNum, ckEng, ckSpc, ckLen);
               </span>
               </div>
               </StCheck>
+
             <SignInput type="password" name="ckpassword" placeholder="비밀번호 확인" onChange={handleChange} value={ckpassword} />
+            <StCheckPass>
+            <div style={ckCorrect ? {fill:'#4FAAFF', color:'#4FAAFF'} : {fill:'black', color:'black'}}>
+              <span>
+              비밀번호 확인
+              </span>
+              <Ckeckicon/>
+              </div>
+              </StCheckPass>
             <Button
               width="300px"
               height="60px"
@@ -159,7 +172,7 @@ padding-left:24px;
 
 const StCheck = styled.div`
 margin-bottom:15px;
-margin-left:4rem;
+margin-left:0rem;
 width:20rem;
 
  & span{
@@ -169,7 +182,15 @@ width:20rem;
   display:inline-block;
   text-align: center;
 } 
-&& { font-weight:normal; //전역 스타일 무시 }
-
-
 `;
+
+const StCheckPass = styled.div`
+margin-bottom:15px;
+margin-left:-6.5rem;
+width:20rem;
+
+ & span{
+    font-size: 12px;
+}
+`;
+
