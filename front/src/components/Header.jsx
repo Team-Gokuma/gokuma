@@ -27,7 +27,7 @@ const Header = () => {
     { id: 0, navText: "레시피 추천받기", navigate: () => navigate("recommend") },
     { id: 1, navText: "고쿠마 냉장고", navigate: () => navigate("refrige") },
     { id: 2, navText: "즐겨찾는 레시피", navigate: () => navigate("bookmark") },
-    { id: 3, navText: "장보기 리스트", navigate: () => navigate("/") },
+    { id: 3, navText: "장보기 리스트", navigate: () => navigate("shoppinglist") },
   ];
 
   return (

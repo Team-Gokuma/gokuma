@@ -6,3 +6,4 @@ export { Result, FindRecipe, RecipeDetail, RecommendMain } from "./recommend";
 export { Login, Signup, SignupPass, SignupNick } from "./loginSignup";
 export { default as Refrige } from "./Refrige";
 export { default as Bookmark } from "./Bookmark";
+export { default as ShoppingList } from "./ShoppingList";
