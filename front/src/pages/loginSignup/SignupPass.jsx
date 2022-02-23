@@ -10,10 +10,9 @@ const SignupPass = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const email = location.state.email;
-  console.log(email);
   const [pass, setPass] = useState({
-    // password: "",
-    // ckpassword:""
+    password: "",
+    ckpassword:""
   });
   const [ckNum, setCkNum] = useState(false);
   const [ckEng, setCkEng] = useState(false);
@@ -106,7 +105,6 @@ const SignupPass = () => {
                 <Ckeckicon />
               </div>
             </StCheckPass>
-            <Button width="300px" height="60px" text="다음" bgcolor="orange" txtcolor="white" round="round" />
             <Button width="300px" height="60px" text="다음" bgcolor="orange" txtcolor="white" round="round" />
           </form>
         </StInput>
