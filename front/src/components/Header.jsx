@@ -51,14 +51,7 @@ const Header = () => {
         ) : (
           <ProfileWrapper>
             <Link to="/login" style={{ textDecoration: "none", color: "black" }}>
-              <Button
-                width="160px"
-                height="100px"
-                text="Login / Sign up"
-                bgcolor="yellow"
-                txtcolor="black"
-                round="round"
-              />
+              <Button text="Login / Sign up" bgcolor="yellow" txtcolor="black" round="round" />
             </Link>
             <Link to="/mypage">
               <Profile />
