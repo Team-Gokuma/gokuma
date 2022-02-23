@@ -32,3 +32,12 @@ services:
       - CHOKIDAR_USEPOLLING=true 
     depends_on:
       - back
+  ai:
+    build:
+      context: ./ai
+      dockerfile: ./Dockerfile
+    ports:
+      - "8888:8888"
+    runtime: nvidia
+    command: nvidia-smi
+    restart: always
