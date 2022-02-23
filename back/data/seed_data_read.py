@@ -10,7 +10,6 @@ def get_recipe():
     recipes = []
     for i in range(df_cnt):
         recipe = {}
-        recipe['recipe_id'] = df.loc[i]['RECIPE_ID']
         recipe['name'] = df.loc[i]['RECIPE_NM_KO']
         recipe['summary'] = df.loc[i]['SUMRY']
         recipe['nation'] = df.loc[i]['NATION_NM']
@@ -64,14 +63,17 @@ def get_recipe_process():
     return procs
 
 
-'''
-print("recipe")
-print(get_recipe())
-print("="*20)
-print("ingridients")
-print(get_recipe_ingrd())
-print("="*20)
-print("processes")
-print(get_recipe_process())
-'''
-get_recipe_ingrd()
+# 레시피 조리방법 DB
+df4 = pd.read_csv('./data/ingredients.csv')
+df4_cnt = df4['name'].count()
+
+
+def get_ingrds():
+    ingrds = []
+    for i in range(df4_cnt):
+        ingrd = {}
+        ingrd['name'] = df4.loc[i]['name']
+        ingrd['category'] = df4.loc[i]['category']
+        ingrds.append(ingrd)
+
+    return ingrds
