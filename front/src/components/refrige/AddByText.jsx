@@ -72,7 +72,7 @@ const ModalContainer = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   width: ${440 / 16}rem;
-  height: ${320 / 16}rem;
+  height: ${300 / 16}rem;
   background-color: #fff;
   border-radius: 1.5rem;
   text-align: center;
@@ -94,15 +94,12 @@ const ModalContainer = styled.div`
     margin-left: 1rem;
     width: ${240 / 16}rem;
     padding-left: 1rem;
-    margin-bottom: 1.8rem;
+    margin-bottom: 2rem;
   }
   & input,
   select {
     height: ${48 / 16}rem;
     color: #757575;
     padding: 0 0.8rem;
-  }
-  & form {
-    margin-bottom: 2rem;
   }
 `;
