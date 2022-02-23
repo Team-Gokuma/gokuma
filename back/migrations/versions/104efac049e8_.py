@@ -21,9 +21,9 @@ def upgrade():
     op.create_table('ShoppingList',
                     sa.Column('id', sa.Integer(),
                               autoincrement=True, nullable=False),
-                    sa.Column('user_id', sa.Integer(), nullable=True),
-                    sa.Column('content', sa.Text(), nullable=True),
-                    sa.Column('checked', sa.Boolean(), nullable=True),
+                    sa.Column('user_id', sa.Integer(), nullable=False),
+                    sa.Column('content', sa.Text(), nullable=False),
+                    sa.Column('checked', sa.Boolean(), nullable=False),
                     sa.ForeignKeyConstraint(['user_id'], ['User.id'], ),
                     sa.PrimaryKeyConstraint('id')
                     )
