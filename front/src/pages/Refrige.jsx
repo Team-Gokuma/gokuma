@@ -101,7 +101,7 @@ const Refrige = () => {
             );
           })}
         </div>
-        <div className="refrigeboxes">
+        <div className="refrigeboxes ingredientSide">
           <div className="deleteIconBox">
             <IconDelete
               className="deleteIcon"
@@ -175,6 +175,11 @@ const RefrigeBox = styled.div`
 
   & .refrigeboxes {
     width: 50%;
+    &.ingredientSide {
+      background-color: ${({ theme }) => theme.color.white};
+      border-top-right-radius: ${10 / 16}rem;
+      border-bottom-right-radius: ${10 / 16}rem;
+    }
 
     & .deleteIconBox {
       text-align: end;
