@@ -1,15 +1,14 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { signup } from "../api/user";
+import { signup } from "../../api/user";
 
-import { loginState } from "../store/atom";
+import { loginState } from "../../store/atom";
 import { useSetRecoilState } from "recoil";
 
 import styled from "styled-components";
-import LoginInput from "../components/common/LoginInput";
-import Button from "../components/common/Button";
-import CommonTab from "../components/common/CommonTab"
-
+import LoginInput from "../../components/common/LoginInput";
+import Button from "../../components/common/Button";
+import CommonTab from "../../components/common/CommonTab";
 
 const SignupNick = () => {
   const location = useLocation();
@@ -21,11 +20,10 @@ const SignupNick = () => {
     setNickname(value);
   };
   const email = location.state.email;
-  const password =location.state.pass.password;
-  
+  const password = location.state.pass.password;
 
-  const requestSignup = async body => {
-    await signup(body).then(res => {
+  const requestSignup = async (body) => {
+    await signup(body).then((res) => {
       if (res.status === 200) {
         setIsLogin(true);
         navigate("/login");
@@ -35,9 +33,9 @@ const SignupNick = () => {
     });
   };
 
-  const handleClick = (e) =>{
+  const handleClick = (e) => {
     e.preventDefault();
-    const body = {email:email, password:password, nickname:nickname };
+    const body = { email: email, password: password, nickname: nickname };
     console.log(body);
     requestSignup(body);
   };
@@ -47,18 +45,11 @@ const SignupNick = () => {
       <StWrapper>
         <CommonTab></CommonTab>
         <StInput>
-            <span>닉네임을 입력해주세요.</span>
-            <form onSubmit={handleClick} style={{ textAlign: "center" }}>
+          <span>닉네임을 입력해주세요.</span>
+          <form onSubmit={handleClick} style={{ textAlign: "center" }}>
             <LoginInput type="text" name="nickname" placeholder="닉네임" onChange={handleChange} value={nickname} />
-            <Button
-              width="300px"
-              height="60px"
-              text="가입하기"
-              bgcolor="orange"
-              txtcolor="white"
-              round="round"
-            />
-            </form>
+            <Button width="300px" height="60px" text="가입하기" bgcolor="orange" txtcolor="white" round="round" />
+          </form>
         </StInput>
       </StWrapper>
     </Stbody>
@@ -74,7 +65,7 @@ const Stbody = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${({ theme }) => theme.color.lightgray};
-  ${({ theme }) => theme.font.bold};  
+  ${({ theme }) => theme.font.bold};
 `;
 
 const StWrapper = styled.div`
@@ -95,7 +86,7 @@ const StInput = styled.div`
   align-items: center;
   flex-flow: row wrap;
   margin-bottom: 10rem;
-  & span{
-      margin-top: 8.5rem;
+  & span {
+    margin-top: 8.5rem;
   }
 `;

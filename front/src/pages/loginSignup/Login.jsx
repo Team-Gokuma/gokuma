@@ -1,29 +1,28 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { loginState } from "../store/atom";
+import { loginState } from "../../store/atom";
 import { useSetRecoilState } from "recoil";
-import { login } from "../api/user";
+import { login } from "../../api/user";
 
 import styled from "styled-components";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import LoginInput from "../components/common/LoginInput";
-import Button from "../components/common/Button";
+import LoginInput from "../../components/common/LoginInput";
+import Button from "../../components/common/Button";
 import { makeStyles } from "@material-ui/styles";
-
 
 const useStyles = makeStyles(() => ({
   customStyleOnTab: {
     fontSize: "22px",
     color: "black",
     fontWeight: "bold",
-    textTransform: "none"
+    textTransform: "none",
   },
   activeTab: {
     fontSize: "22px",
     fontWeight: "bold",
     color: "orange",
-    textTransform: "none"
+    textTransform: "none",
   },
 }));
 const Login = () => {
@@ -65,13 +64,12 @@ const Login = () => {
     let body = {
       email: email,
       password: password,
-    }; 
+    };
     if (!email || !password) {
       alert("필수 항목을 작성하세요");
     } else {
       requestLogin(body);
     }
-
   };
 
   return (
@@ -85,33 +83,28 @@ const Login = () => {
           TabIndicatorProps={{ style: { background: "orange" } }}
           classes={{ indicator: classes.customStyleOnTab }}
           value={value}>
-          <Tab label= {
-          <span
-            className={value === 0 ? classes.activeTab : classes.customStyleOnTab}
-          >
-            {" "}
-            Login
-            </span>
-            }
-            to='/login' component={Link}
+          <Tab
+            label={<span className={value === 0 ? classes.activeTab : classes.customStyleOnTab}> Login</span>}
+            to="/login"
+            component={Link}
           />
           <Tab label="" disabled value="disabled" />
-          <Tab label={
-          <span
-            className={value === 2 ? classes.activeTab : classes.customStyleOnTab}
-          >
-            {" "}
-            Sign up
-            </span>
-            }
-
-            to='/signup' component={Link}
+          <Tab
+            label={<span className={value === 2 ? classes.activeTab : classes.customStyleOnTab}> Sign up</span>}
+            to="/signup"
+            component={Link}
           />
         </StAppBar>
         <StInput>
           <form onSubmit={onSubmit} style={{ textAlign: "center" }}>
             <LoginInput type="text" name="email" placeholder="이메일" onChange={handleChange} value={email} />
-            <LoginInput type="password" name="password" placeholder="비밀번호" onChange={handleChange} value={password} />
+            <LoginInput
+              type="password"
+              name="password"
+              placeholder="비밀번호"
+              onChange={handleChange}
+              value={password}
+            />
             <Button
               width="300px"
               height="60px"

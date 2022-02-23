@@ -2,9 +2,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import styled from "styled-components";
-import Button from "../components/common/Button";
-import CommonTab from "../components/common/CommonTab";
-import { ReactComponent as Ckeckicon } from "../asset/icon/check.svg";
+import Button from "../../components/common/Button";
+import CommonTab from "../../components/common/CommonTab";
+import { ReactComponent as Ckeckicon } from "../../asset/icon/check.svg";
 
 const SignupPass = () => {
   const location = useLocation();
