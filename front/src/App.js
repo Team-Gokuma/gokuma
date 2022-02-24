@@ -17,6 +17,7 @@ import {
   Bookmark,
   ShoppingList,
   SignupNick,
+  Mypage,
 } from "./pages";
 import { Header } from "./components";
 
@@ -48,7 +49,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/signupPass" element={<SignupPass />} />
             <Route path="/signupNick" element={<SignupNick />} />
-            <Route path="/mypage" element={<div>마이페이지</div>} />
+            <Route path="/mypage" element={<Mypage />} />
           </Routes>
         </RecoilRoot>
       </ThemeProvider>
