@@ -11,7 +11,7 @@ const RecipeDiv = styled(Link)`
   height: ${(props) => props.height};
   color: ${({ theme }) => theme.color.black};
   margin: ${(props) => props.margin};
-  background: ${({ theme }) => theme.color.lightgray} url("${process.env.PUBLIC_URL}/img/recipeExample.jpeg") no-repeat;
+  background: ${({ theme }) => theme.color.lightgray} url(${(props) => props.image}) no-repeat;
   background-size: cover;
   border: 1px solid ${({ theme }) => theme.color.lightgray};
   transition-duration: 0.3s;
@@ -57,7 +57,7 @@ export const Recipe = ({ width, height, text, extratext, margin, image, isFavori
         margin={margin}
         extratext={extratext}
         image={image}>
-        {favorite ? (
+        {/* {favorite ? (
           <IconOutlineFavorite
             className="favoriteIcon"
             onClick={() => {
@@ -72,7 +72,7 @@ export const Recipe = ({ width, height, text, extratext, margin, image, isFavori
               setFavorite(true);
             }}
           />
-        )}
+        )} */}
         <div>
           <h4>{extratext}</h4>
           <h4>{text}</h4>

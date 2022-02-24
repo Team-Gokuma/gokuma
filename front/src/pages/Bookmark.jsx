@@ -27,8 +27,7 @@ const dummydata = [
 const Bookmark = () => {
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
-  // const login = useRecoilValue(loginState);
-  const login = true;
+  const login = useRecoilValue(loginState);
 
   useEffect(() => {
     !login && setModal(true);

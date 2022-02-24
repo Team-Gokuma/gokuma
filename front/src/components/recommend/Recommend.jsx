@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
-import { loginState, modalState, mainRecipesState } from "../../store/atom";
+import { loginState, modalState, mainRecipesState, relatedRecipesState } from "../../store/atom";
 import { ImageFileUpload } from "../common/ImageFileUpload";
 import { Button } from "../common/Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
 import { AlertLoginModal } from "../common/AlertLoginModal";
-import { recognition, recommendRecipe } from "../../api/receipe";
+import { recognition, recommendRecipe, relatedRecipe } from "../../api/receipe";
 
 const regTag = /^[가-힣]+$/;
 
@@ -19,9 +19,10 @@ export const Recommend = ({ page }) => {
   const [onIcon, setOnIcon] = useState(false);
   const [tags, setTags] = useState([]);
 
-  const [onModal, setOnModal] = useRecoilState(modalState);
   const login = useRecoilValue(loginState);
-  const setMainRecipe = useSetRecoilState(mainRecipesState);
+  const [onModal, setOnModal] = useRecoilState(modalState);
+  const [mainRecipe, setMainRecipe] = useRecoilState(mainRecipesState);
+  const setRelatedRecipe = useSetRecoilState(relatedRecipesState);
 
   const requestRecognition = async (img) => {
     const response = await recognition(img);
@@ -43,6 +44,14 @@ export const Recommend = ({ page }) => {
     const response = await recommendRecipe(ingredients);
     if (response.status === 200) {
       setMainRecipe(response.data.data);
+    }
+  };
+
+  const getRelatedRecipes = async (recipes) => {
+    const response = await relatedRecipe(recipes);
+    console.log(response);
+    if (response.status === 200) {
+      setRelatedRecipe(response.data.data);
     }
   };
 
@@ -92,6 +101,7 @@ export const Recommend = ({ page }) => {
   const handleClick = () => {
     page && !login && setOnModal(true);
     getRecommendation(tags);
+    mainRecipe.length > 0 && getRelatedRecipes([mainRecipe[0]]);
   };
 
   return (

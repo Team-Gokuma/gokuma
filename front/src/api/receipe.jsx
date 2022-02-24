@@ -19,3 +19,13 @@ export const recommendRecipe = async (ingredients) => {
     console.log(error);
   }
 };
+
+export const relatedRecipe = async (recipes) => {
+  try {
+    const data = { recipes: recipes };
+    const response = await axios.post("/api/recipe/related", data);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

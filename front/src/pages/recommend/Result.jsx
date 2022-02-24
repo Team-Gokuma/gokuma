@@ -2,15 +2,16 @@ import React, { Suspense } from "react";
 import styled from "styled-components";
 import { Recipe } from "../../components/common/Recipe";
 import { useRecoilValue } from "recoil";
-import { mainRecipesState } from "../../store/atom";
+import { mainRecipesState, relatedRecipesState } from "../../store/atom";
 
 const Result = () => {
   const LoadingPage = React.lazy(() => import("./FindRecipe")); // 지연 로딩
-  const ingredients = useRecoilValue(mainRecipesState);
+  const mainRecipes = useRecoilValue(mainRecipesState);
+  const relatedRecipes = useRecoilValue(relatedRecipesState);
 
   const maxIngredientRecipe =
-    ingredients &&
-    ingredients.slice(0, 3).map((item, idx) => {
+    mainRecipes &&
+    mainRecipes.map((item, idx) => {
       return (
         <Recipe
           key={"recipe" + idx}
@@ -18,26 +19,28 @@ const Result = () => {
           width={`${328 / 16}rem`}
           height={`${286 / 16}rem`}
           text={item.name}
+          image={item.img}
           // extratext={`재료를 ${item.ingredientNum}개 사용하는 레시피 입니다!`}
           margin={"0 3rem 0 0"}
           // isFavorite={item.favorite}
-          recipeId={item.id} // TO DO: API 연결할때 변경
+          recipeId={item.id}
         />
       );
     });
   const relativeRecipe =
-    ingredients &&
-    ingredients.slice(3).map((item, idx) => {
+    relatedRecipes &&
+    relatedRecipes.map((item, idx) => {
       return (
         <Recipe
           key={"recipe" + idx}
           className="recipe"
           width={`${240 / 16}rem`}
           height={`${240 / 16}rem`}
-          text={item.title}
+          text={item.name}
+          image={item.img}
           margin={"1.2rem 3.7rem 1.2rem 0"}
-          favorite={item.favorite}
-          recipeId={idx} // TO DO: API 연결할때 변경
+          // favorite={item.favorite}
+          recipeId={idx.id}
         />
       );
     });
