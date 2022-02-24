@@ -9,6 +9,7 @@ import { loginState, modalState } from "../store/atom";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { AddByText } from "../components/refrige/AddByText";
 import { AddByImage } from "../components/refrige/AddByImage";
+import { ingredientList } from "../api/refrige";
 
 const category = ["전체 식재료", "과일", "채소", "육류", "어류", "유제품", "소스류", "기타"];
 
@@ -16,15 +17,15 @@ const Refrige = () => {
   const [addByImage, setAddByImage] = useState(false);
   const [addByText, setAddByText] = useState(false);
   const [isClicked, setIsClicked] = useState("전체 식재료");
-  const [ingredient, setIngredient] = useState([
-    { name: "사과", ingredient: 1 },
-    { name: "팽이버섯", ingredient: 2 },
-    { name: "살치살", ingredient: 3 },
-    { name: "연어", ingredient: 4 },
-    { name: "우유", ingredient: 5 },
-    { name: "고추장", ingredient: 6 },
-    { name: "와인", ingredient: 7 },
-  ]);
+  const [ingredient, setIngredient] = useState([]);
+
+  useEffect(() => {
+    async function getIngredient() {
+      const response = await ingredientList();
+      setIngredient(response.data.data);
+    }
+    getIngredient();
+  }, []);
 
   function handleClickCategory(item) {
     setIsClicked(item);
@@ -111,11 +112,11 @@ const Refrige = () => {
           </div>
           {ingredient.length > 0 &&
             ingredient.map((item, idx) => {
-              if (isClicked === category[item.ingredient] || isClicked === category[0])
+              if (isClicked === category[item.category] || isClicked === category[0])
                 return (
                   <RefrigeIngredientBox key={item + idx}>
                     <span className="refrigeIngredient">
-                      {item.name}
+                      {item.content}
                       <IconClose
                         className="refrigeIngredientCloseBtn"
                         onClick={() => {
