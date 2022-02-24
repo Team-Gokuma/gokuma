@@ -36,7 +36,6 @@ const SignupNick = () => {
   const handleClick = (e) => {
     e.preventDefault();
     const body = { email: email, password: password, nickname: nickname };
-    console.log(body);
     requestSignup(body);
   };
 
