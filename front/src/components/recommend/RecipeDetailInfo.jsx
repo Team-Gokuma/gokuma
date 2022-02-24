@@ -14,7 +14,7 @@ export const RecipeDetailInfo = ({ dummydata }) => {
     setLevel(() => {
       const newLevel = [];
       for (let i = 0; i < dummydata.level; i++) {
-        newLevel.push(<IconStar fill={"#F7941E"} />);
+        newLevel.push(<IconStar key={"star" + i} fill={"#F7941E"} />);
       }
       return newLevel;
     });
@@ -44,7 +44,7 @@ export const RecipeDetailInfo = ({ dummydata }) => {
           <span>{dummydata.like}</span>
         </LikeBox>
         <p className="level">
-          난이도 <div className="stars">{level}</div>
+          난이도 <span className="stars">{level}</span>
         </p>
         <p className="servings">
           기준 <span className="servingsContent">{dummydata.servings}</span>
