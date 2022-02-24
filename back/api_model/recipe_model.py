@@ -34,7 +34,8 @@ recipe_proc_fields = recipe_api.model('RecipeProcess', {
 recipe_fields = recipe_api.model('Recipe', {
     'img': fields.String(description='이미지 url', required=True, example='image url'),
     'id': fields.Integer(description='레시피 ID', required=True, example=1),
-    'name': fields.String(description='레시피 이름', required=True, example='나물비빔밥')
+    'name': fields.String(description='레시피 이름', required=True, example='나물비빔밥'),
+    'ingredients': fields.Integer(description='냉장고 재료 사용 수', required=True, example=5),
 })
 
 recipes_fields = recipe_api.model('Recipes', {
