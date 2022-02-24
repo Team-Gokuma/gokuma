@@ -17,8 +17,6 @@ export const ShopingContent = () => {
     "장보기",
   ]);
 
-  console.log(add);
-
   function handleDetelelist(idx) {
     setShoppinglist((cur) => {
       const newArr = [...cur];

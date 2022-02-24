@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { loginState, modalState } from "../../store/atom";
+import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
+import { loginState, modalState, mainRecipesState } from "../../store/atom";
 import { ImageFileUpload } from "../common/ImageFileUpload";
 import { Button } from "../common/Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
 import { AlertLoginModal } from "../common/AlertLoginModal";
-import { recognition } from "../../api/receipe";
+import { recognition, recommendRecipe } from "../../api/receipe";
 
 const regTag = /^[가-힣]+$/;
 
@@ -19,21 +19,31 @@ export const Recommend = ({ page }) => {
   const [onIcon, setOnIcon] = useState(false);
   const [tags, setTags] = useState([]);
 
-  const onModal = useRecoilValue(modalState);
-  const setOnModal = useSetRecoilState(modalState);
+  const [onModal, setOnModal] = useRecoilState(modalState);
   const login = useRecoilValue(loginState);
+  const setMainRecipe = useSetRecoilState(mainRecipesState);
 
   const requestRecognition = async (img) => {
-    setAddToggle(false);
     const response = await recognition(img);
-    setTags((cur) => {
-      const newArr = [...cur];
-      response.data.data.forEach((item, idx) => {
-        newArr.push(item.content);
+    if (response.status === 200) {
+      setAddToggle(false);
+      setTags((cur) => {
+        const newArr = [...cur];
+        response.data.data.forEach((item) => {
+          newArr.push(item.content);
+        });
+        return newArr;
       });
-      return newArr;
-    });
-    return response;
+    } else {
+      alert("인식에 실패하였습니다.");
+    }
+  };
+
+  const getRecommendation = async (ingredients) => {
+    const response = await recommendRecipe(ingredients);
+    if (response.status === 200) {
+      setMainRecipe(response.data.data);
+    }
   };
 
   const handleToggle = () => {
@@ -81,6 +91,7 @@ export const Recommend = ({ page }) => {
 
   const handleClick = () => {
     page && !login && setOnModal(true);
+    getRecommendation(tags);
   };
 
   return (

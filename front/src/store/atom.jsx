@@ -8,3 +8,8 @@ export const modalState = atom({
   key: "modalState",
   default: false,
 });
+
+export const mainRecipesState = atom({
+  key: "mainRecipesState",
+  default: [],
+});

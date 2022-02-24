@@ -9,3 +9,13 @@ export const recognition = async (img) => {
     console.log(error);
   }
 };
+
+export const recommendRecipe = async (ingredients) => {
+  try {
+    const data = { ingredients: ingredients };
+    const response = await axios.post("/api/recipe/recommend", data);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
