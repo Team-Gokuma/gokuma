@@ -99,8 +99,11 @@ export const Recommend = ({ page }) => {
 
   const handleClick = () => {
     page && !login && setOnModal(true);
-    getRecommendation(tags);
-    mainRecipe.length > 0 && getRelatedRecipes([mainRecipe[0]]);
+    async function getData() {
+      await getRecommendation(tags);
+      await getRelatedRecipes([mainRecipe[0]]);
+    }
+    getData();
   };
 
   return (
