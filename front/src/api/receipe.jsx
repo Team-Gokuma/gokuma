@@ -29,3 +29,12 @@ export const relatedRecipe = async (recipes) => {
     console.log(error);
   }
 };
+
+export const detailRecipe = async (id) => {
+  try {
+    const response = await axios.get(`/api/recipe/${id}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

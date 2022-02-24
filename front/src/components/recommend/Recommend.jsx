@@ -49,7 +49,6 @@ export const Recommend = ({ page }) => {
 
   const getRelatedRecipes = async (recipes) => {
     const response = await relatedRecipe(recipes);
-    console.log(response);
     if (response.status === 200) {
       setRelatedRecipe(response.data.data);
     }

@@ -4,6 +4,49 @@ import { Link } from "react-router-dom";
 import { ReactComponent as IconOutlineFavorite } from "../../asset/icon/favoriteEmpty.svg";
 import { ReactComponent as IconFilledFavorite } from "../../asset/icon/favoriteBlack.svg";
 
+export const Recipe = ({ width, height, text, extratext, margin, image, isFavorite, recipeId }) => {
+  const [favorite, setFavorite] = useState(true);
+
+  //TO DO : 즐겨찾기 기능
+  useEffect(() => {
+    setFavorite(isFavorite);
+  }, []);
+
+  return (
+    <>
+      <RecipeDiv
+        to={`/detail/${recipeId}`}
+        width={width}
+        height={height}
+        text={text}
+        margin={margin}
+        extratext={extratext}
+        image={image}>
+        {/* {favorite ? (
+          <IconOutlineFavorite
+          className="favoriteIcon"
+          onClick={() => {
+            setFavorite(false);
+          }}
+          />
+          ) : (
+            <IconFilledFavorite
+            className="favoriteIcon"
+            fill="#EC6A60"
+            onClick={() => {
+              setFavorite(true);
+            }}
+            />
+          )} */}
+        <div>
+          <h4>{extratext}</h4>
+          <h4>{text}</h4>
+        </div>
+      </RecipeDiv>
+    </>
+  );
+};
+
 const RecipeDiv = styled(Link)`
   position: relative;
   display: inline-block;
@@ -38,46 +81,3 @@ const RecipeDiv = styled(Link)`
     cursor: pointer;
   }
 `;
-
-export const Recipe = ({ width, height, text, extratext, margin, image, isFavorite, recipeId }) => {
-  const [favorite, setFavorite] = useState(true);
-
-  //TO DO : 즐겨찾기 기능
-  useEffect(() => {
-    setFavorite(isFavorite);
-  }, []);
-
-  return (
-    <>
-      <RecipeDiv
-        to={`/detail/${recipeId}`}
-        width={width}
-        height={height}
-        text={text}
-        margin={margin}
-        extratext={extratext}
-        image={image}>
-        {/* {favorite ? (
-          <IconOutlineFavorite
-            className="favoriteIcon"
-            onClick={() => {
-              setFavorite(false);
-            }}
-          />
-        ) : (
-          <IconFilledFavorite
-            className="favoriteIcon"
-            fill="#EC6A60"
-            onClick={() => {
-              setFavorite(true);
-            }}
-          />
-        )} */}
-        <div>
-          <h4>{extratext}</h4>
-          <h4>{text}</h4>
-        </div>
-      </RecipeDiv>
-    </>
-  );
-};

@@ -40,7 +40,7 @@ const Result = () => {
           image={item.img}
           margin={"1.2rem 3.7rem 1.2rem 0"}
           // favorite={item.favorite}
-          recipeId={idx.id}
+          recipeId={item.id}
         />
       );
     });
