@@ -48,9 +48,11 @@ class UserLogin(Resource):
         params = request.get_json()
         email = params['email']
         password = params['password']
+        
         message = None
 
         user = User.query.filter(User.email == email).first()
+        name = user.name
         if user is None:
             message = '등록되지 않은 계정입니다.'
         elif not check_password_hash(user.password, password):
@@ -62,7 +64,7 @@ class UserLogin(Resource):
             session['email'] = user.email
             message = '로그인에 성공하였습니다.'
             value = {"status": 200, "result": "success",
-                     "msg": message}
+                     "msg": message, "email": email, "password": password, "name": name}
         else:
             value = {"status": 404, "result": "fail", "msg": message}
 

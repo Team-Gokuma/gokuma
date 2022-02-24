@@ -25,7 +25,6 @@ const SignupNick = () => {
   const requestSignup = async (body) => {
     await signup(body).then((res) => {
       if (res.status === 200) {
-        setIsLogin(true);
         navigate("/login");
       } else {
         alert(res.msg);
@@ -35,8 +34,13 @@ const SignupNick = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
+    if(nickname === ""){
+      alert("닉네임을 입력해주세요!");
+    }
+    else{
     const body = { email: email, password: password, nickname: nickname };
     requestSignup(body);
+    }
   };
 
   return (
