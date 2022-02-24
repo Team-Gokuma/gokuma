@@ -98,7 +98,7 @@ export const Recommend = ({ page }) => {
   }, [tags]);
 
   const handleClick = () => {
-    page && !login && setOnModal(true);
+    page && tags.length > 0 && !login && setOnModal(true);
     async function getData() {
       await getRecommendation(tags);
       await getRelatedRecipes([mainRecipe[0]]);
@@ -149,11 +149,11 @@ export const Recommend = ({ page }) => {
             )}
           </div>
           {page ? (
-            <Link to={login && "/result"} style={{ textDecoration: "none" }} onClick={handleClick}>
+            <Link to={tags.length > 0 && login && "/result"} style={{ textDecoration: "none" }} onClick={handleClick}>
               <Button text={"레시피 찾기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
             </Link>
           ) : (
-            <span style={{ textDecoration: "none" }} onClick={handleClick}>
+            <span style={{ textDecoration: "none" }}>
               <Button text={"식재료 추가하기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
             </span>
           )}
