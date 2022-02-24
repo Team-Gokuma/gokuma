@@ -43,10 +43,9 @@ const SignupPass = () => {
     setCkLen(password.length >= 8 ? true : false);
     setCkCorrect(password.length !== 0 && password === ckpassword ? true : false);
   }
-  console.log(ckNum, ckEng, ckSpc, ckLen);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (password === ckpassword && ckEng && ckSpc && ckLen && ckNum && ckCorrect) {
       navigate("/SignupNick", { state: { email: email, pass: pass } });
     } else {
