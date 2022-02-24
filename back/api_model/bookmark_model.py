@@ -4,7 +4,7 @@ from flask_restx import Resource, Namespace, fields
 bookmark_api = Namespace(
     "Bookmark", description='즐겨찾는 레시피 API', path="/api/bookmark")
 
-recipe_fields = bookmark_api.model('Recipe', {
+recipe_fields = bookmark_api.model('BookmarkRecipe', {
     'img': fields.String(description='이미지 url', required=True, example='image url'),
     'id': fields.Integer(description='레시피 ID', required=True, example=1),
     'name': fields.String(description='레시피 이름', required=True, example='나물비빔밥')
@@ -25,7 +25,7 @@ response_fail_model = bookmark_api.model('ResponseFail', {
 })
 
 response_success_recipe_model = bookmark_api.inherit(
-    'RecipeSuccess', response_success_model, {
+    'BookmarkRecipeSuccess', response_success_model, {
         'data': fields.List(fields.Nested(recipe_fields))
     })
 
