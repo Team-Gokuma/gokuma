@@ -40,8 +40,8 @@ const Header = () => {
         <CommonNav navList={LOGINNAVS} />
         {isLogin ? (
           <ProfileWrapper>
-            <div onClick={handleLogout}>
-              <Button width="104px" height="100px" text="Logout" bgcolor="yellow" txtcolor="black" round="round" />
+            <div onClick={handleLogout} style={{marginBottom:"15px"}}>
+              <Button width="104px" height="45px" text="Logout" bgcolor="yellow" txtcolor="black" round="round" />
             </div>
             <Link to="/mypage" style={{ textDecoration: "none", color: "black" }}>
               <div style={{ float: "left", marginTop: "14px", marginRight: "10px" }}>엘리스님</div>
@@ -52,9 +52,6 @@ const Header = () => {
           <ProfileWrapper>
             <Link to="/login" style={{ textDecoration: "none", color: "black" }}>
               <Button text="Login / Sign up" bgcolor="yellow" txtcolor="black" round="round" />
-            </Link>
-            <Link to="/mypage">
-              <Profile />
             </Link>
           </ProfileWrapper>
         )}
