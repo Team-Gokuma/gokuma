@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-export const ImageFileUpload = ({ width, height }) => {
+export const ImageFileUpload = ({ width, height, requestRecognition }) => {
   const [isFile, setIsFile] = useState(false);
   const [image, setImage] = useState("");
 
@@ -31,6 +31,7 @@ export const ImageFileUpload = ({ width, height }) => {
             type="file"
             onChange={(e) => {
               readURL(e.target.files[0]);
+              requestRecognition("image url");
             }}
             value={image}
             accept="image/*"

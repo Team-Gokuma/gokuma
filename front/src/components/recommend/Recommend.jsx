@@ -8,6 +8,7 @@ import { Button } from "../common/Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
 import { AlertLoginModal } from "../common/AlertLoginModal";
+import { recognition } from "../../api/receipe";
 
 const regTag = /^[가-힣]+$/;
 
@@ -20,10 +21,20 @@ export const Recommend = ({ page }) => {
 
   const onModal = useRecoilValue(modalState);
   const setOnModal = useSetRecoilState(modalState);
-  // const login = useRecoilValue(loginState);
-  const login = false;
+  const login = useRecoilValue(loginState);
 
-  // console.log(tags, inputValue);
+  const requestRecognition = async (img) => {
+    setAddToggle(false);
+    const response = await recognition(img);
+    setTags((cur) => {
+      const newArr = [...cur];
+      response.data.data.forEach((item, idx) => {
+        newArr.push(item.content);
+      });
+      return newArr;
+    });
+    return response;
+  };
 
   const handleToggle = () => {
     setAddToggle(false);
@@ -87,7 +98,7 @@ export const Recommend = ({ page }) => {
         ) : (
           <h2>사진으로 추가하기</h2>
         )}
-        <ImageFileUpload width={"600px"} height={"400PX"} />
+        <ImageFileUpload width={"600px"} height={"400PX"} requestRecognition={requestRecognition} />
         <div className="btnContainer">
           <div className="btnGroup">
             {AddToggle ? (
