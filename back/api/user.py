@@ -10,14 +10,6 @@ from db_connect import db
 user = Blueprint("user", __name__, url_prefix="/api/user")
 user_api = Namespace("User", description='유저 auth API', path="/api/user")
 
-
-# @user.route('/temp')
-# def testUser():
-#     if request.method == 'GET':
-#         gokuma = User.query.filter(User.name == 'gokuma').first()
-#         return str(gokuma.name)
-
-
 @user_api.route('/temp', doc=False)
 class testUserApi(Resource):
     def get(self):
@@ -29,41 +21,20 @@ class testUserApi(Resource):
 class UserSignup(Resource):
     def post(self):
         params = request.get_json()
-        name = params['name']
+        name = params['nickname']
         email = params['email']
         password = params['password']
-        password2 = params['password2']
 
         message = None
-
-        check_email = re.compile(
-            '^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
-        check_name = re.compile('^[가-힣a-zA-Z]+$')
-        check_pw1 = re.compile(
-            '^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[~!@#$%^&*+=-]).{8,100}$')
-        check_pw2 = re.compile('^[a-zA-Z\d]{10,100}$')
-        check_pw3 = re.compile('^[a-zA-Z~!@#$%^&*]{10,100}$')
-        check_pw4 = re.compile('^[\d~!@#$%^&*]{10,100}$')
-
-        if name is None or check_name.match(name) is None:
-            message = '이름이 유효하지 않습니다.'
-        elif email is None or check_email.match(email) is None:
-            message = '아이디가 유효하지 않습니다.'
-        elif password is None or (check_pw1.match(password) or check_pw2.match(password) or check_pw3.match(password) or check_pw4.match(password)) is None:
-            message = '비밀번호는 영문/숫자/특수문자(~!@#$%^&*) 3개 조합 8자리 혹은 2개 조합 10자리 이상으로 입력해주세요.'
-        elif password != password2:
-            message = '비밀번호를 다시 확인해주십시오.'
-        else:
-            user = User.query.filter(User.email == email).first()
-            if user is not None:
-                message = f'{user.name} 계정은 이미 등록된 계정입니다.'
+        user = User.query.filter(User.email == email).first()
+        if user is not None:
+             message = f'{user.name} 계정은 이미 등록된 계정입니다.'
 
         if message is None:
             # 유저 테이블에 추가
             user = User(name, email, generate_password_hash(password))
             db.session.add(user)
             db.session.commit()
-
             message = '회원가입이 완료되었습니다.'
             value = {"status": 200, "result": "success", "msg": message}
         else:
@@ -77,9 +48,11 @@ class UserLogin(Resource):
         params = request.get_json()
         email = params['email']
         password = params['password']
+        
         message = None
 
         user = User.query.filter(User.email == email).first()
+        name = user.name
         if user is None:
             message = '등록되지 않은 계정입니다.'
         elif not check_password_hash(user.password, password):
@@ -91,7 +64,7 @@ class UserLogin(Resource):
             session['email'] = user.email
             message = '로그인에 성공하였습니다.'
             value = {"status": 200, "result": "success",
-                     "msg": message}
+                     "msg": message, "email": email, "password": password, "name": name}
         else:
             value = {"status": 404, "result": "fail", "msg": message}
 
@@ -108,7 +81,7 @@ class UserLogin(Resource):
             value = {"status": 404, "result": "fail"}
         return jsonify(value)
 
-@user_api.route('/delete')
+@user_api.route('/delete')#회원탈퇴
 class UserDelete(Resource):
     def post(self):
         params = request.get_json()
@@ -122,7 +95,7 @@ class UserDelete(Resource):
             value = {"status": 400, "result": "fail"}
         return jsonify(value)
 
-@user_api.route('/passupdate')
+@user_api.route('/passupdate')#비밀번호 변경
 class UserPassUpdate(Resource):
     def post(self):
         params = request.get_json()
@@ -138,7 +111,7 @@ class UserPassUpdate(Resource):
         db.session.commit()
         return jsonify(value)
 
-@user_api.route('/nameupdate')
+@user_api.route('/nameupdate')#닉네임변경
 class UserNameUpdate(Resource):
     def post(self):
         params=request.get_json()
