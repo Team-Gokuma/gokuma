@@ -1,8 +1,7 @@
-from flask import Blueprint, jsonify, session, request
-from flask_restx import Resource, Namespace
+from flask import jsonify, session, request
+from flask_restx import Resource
 from models import User, ShoppingList
 from db_connect import db
-import json
 from api_model.shoppingList_model import shopping_api, response_success_shopping_item_model, response_fail_model, shopping_item_fields, shopping_item_id_fields
 
 
@@ -14,7 +13,7 @@ class shoppingLists(Resource):
     def get(self):
         '''장보기 리스트를 보여줍니다.'''
 
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
         # session['email'] = None
 
         if session.get('email'):
@@ -43,7 +42,7 @@ class shoppingLists(Resource):
 class shoppingLists(Resource):
 
     def _get_items(self):
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
         # session['email'] = None
 
         if session.get('email'):

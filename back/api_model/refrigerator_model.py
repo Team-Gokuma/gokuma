@@ -9,6 +9,7 @@ ingrd_fields = refrigerator_api.model('Ingredient', {
 })
 
 ingrd_time_fields = refrigerator_api.inherit('IngrgTime', ingrd_fields, {
+    'id': fields.Integer(description='냉장고 DB ID', required=True, example=1),
     'time': fields.String(description='재료가 냉장고에 등록된 시간', required=True, example='2022-02-23')
 })
 
