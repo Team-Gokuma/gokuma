@@ -1,9 +1,7 @@
-from flask import Blueprint, jsonify, session, request
-from flask_restx import Resource, Namespace
-from pyrsistent import CheckedKeyTypeError
+from flask import session
+from flask_restx import Resource
 from models import User, Bookmark, Recipe
 from db_connect import db
-import json
 from api_model.bookmark_model import bookmark_api, response_success_recipe_model, response_fail_model, response_success_bookmark_model
 
 
