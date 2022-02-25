@@ -30,3 +30,21 @@ export const addIngredientByText = async (content, category) => {
     console.log(error);
   }
 };
+
+export const deleteIngredient = async (id) => {
+  try {
+    const response = axios.delete(`/api/refrigerator/delete/${id}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteAllIngredient = async () => {
+  try {
+    const response = axios.delete("/api/refrigerator/delete/all");
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

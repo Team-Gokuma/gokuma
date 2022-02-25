@@ -13,7 +13,7 @@ import { addIngredientByImage } from "../../api/refrige";
 
 const regTag = /^[가-힣]+$/;
 
-export const Recommend = ({ page, handleAddImage }) => {
+export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [AddToggle, setAddToggle] = useState(true);
   const [inputValue, setInputValue] = useState("");
   const [msg, setMsg] = useState("");
@@ -83,6 +83,7 @@ export const Recommend = ({ page, handleAddImage }) => {
   const hanldeAddByImage = () => {
     const addIngredient = async () => {
       await handleAddByPhoto(img);
+      await getIngredient();
     };
     addIngredient();
     handleAddImage();

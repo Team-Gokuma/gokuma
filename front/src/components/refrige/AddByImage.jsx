@@ -3,13 +3,13 @@ import { ReactComponent as IconCloseCircle } from "../../asset/icon/closeCircle.
 import { Recommend } from "../recommend/Recommend";
 
 // 사진으로 입력해서 재료 추가 모달창
-export const AddByImage = ({ handleAddImage }) => {
+export const AddByImage = ({ handleAddImage, getIngredient }) => {
   return (
     <div className="ModalContainer">
       <Background>
         <ModalContainer>
           <IconCloseCircle className="modalCloseIcon" onClick={handleAddImage} />
-          <Recommend handleAddImage={handleAddImage} />
+          <Recommend handleAddImage={handleAddImage} getIngredient={getIngredient} />
         </ModalContainer>
       </Background>
     </div>
