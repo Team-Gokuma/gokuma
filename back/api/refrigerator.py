@@ -91,7 +91,7 @@ class RecoginitionPhoto(Resource):
                     db.session.commit()
 
                 result['data'].append(
-                    {"content": item.name, "category": item.category, "time": item.time.strftime("%Y-%m-%d")})
+                    {"content": item.name, "category": item.category, "time": datetime.now(timezone('Asia/Seoul')).strftime("%Y-%m-%d")})
             # else:
             # 재료DB에 없는 재료를 냉장고에 넣으려한다.
             # 텍스트로 추가?
@@ -133,7 +133,7 @@ class RecoginitionText(Resource):
             db.session.add(new_item)
             db.session.commit()
             result['data'] = {
-                'content': content, 'category': category, "time": item.time.strftime("%Y-%m-%d")}
+                'content': content, 'category': category, "time": datetime.now(timezone('Asia/Seoul')).strftime("%Y-%m-%d")}
         else:
             result = {"result_msg": "Already Exists"}
             return result, 400
@@ -141,11 +141,11 @@ class RecoginitionText(Resource):
         return result, 200
 
 
-@refrigerator_api.route('/time')
+@ refrigerator_api.route('/time')
 class IngrdTime(Resource):
 
-    @refrigerator_api.response(200, 'Success', response_success_ingrds_model)
-    @refrigerator_api.response(400, 'Fail', response_fail_model)
+    @ refrigerator_api.response(200, 'Success', response_success_ingrds_model)
+    @ refrigerator_api.response(400, 'Fail', response_fail_model)
     def get(self):
         """5일 이상 지난 재료들의 목록"""
         user = None
