@@ -51,11 +51,11 @@ const Login = () => {
   };
   const requestLogin = async (inputs) => {
     await login(inputs).then((res) => {
-      if (res.status === 200) {
+      if (res && res.status === 200) {
         setIsLogin(true);
         navigate("/");
-      } else {
-        alert("Login failed");
+      } else if (res && res.status !== 200) {
+        alert("로그인에 실패하였습니다!");
       }
     });
   };
