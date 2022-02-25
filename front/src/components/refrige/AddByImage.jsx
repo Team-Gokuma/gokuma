@@ -9,7 +9,7 @@ export const AddByImage = ({ handleAddImage }) => {
       <Background>
         <ModalContainer>
           <IconCloseCircle className="modalCloseIcon" onClick={handleAddImage} />
-          <Recommend />
+          <Recommend handleAddImage={handleAddImage} />
         </ModalContainer>
       </Background>
     </div>

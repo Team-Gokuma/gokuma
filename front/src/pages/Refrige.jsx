@@ -9,9 +9,9 @@ import { loginState, modalState } from "../store/atom";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { AddByText } from "../components/refrige/AddByText";
 import { AddByImage } from "../components/refrige/AddByImage";
-import { ingredientList } from "../api/refrige";
+import { ingredientList, addIngredientByText } from "../api/refrige";
 
-const category = ["전체 식재료", "과일", "채소", "육류", "어류", "유제품", "소스류", "기타"];
+const category = ["전체 식재료", "과일", "채소", "육류", "해산물", "유제품", "소스류", "기타"];
 
 const Refrige = () => {
   const [addByImage, setAddByImage] = useState(false);
@@ -19,12 +19,29 @@ const Refrige = () => {
   const [isClicked, setIsClicked] = useState("전체 식재료");
   const [ingredient, setIngredient] = useState([]);
 
-  useEffect(() => {
-    async function getIngredient() {
-      const response = await ingredientList();
+  const getIngredient = async () => {
+    const response = await ingredientList();
+    if (response.status === 200) {
       setIngredient(response.data.data);
+    } else {
+      alert("냉장고 리스트 불러오기를 실패했습니다.");
     }
-    getIngredient();
+  };
+
+  const addtInRefrigeByText = async (textValue, category) => {
+    const response = await addIngredientByText(textValue, Number(category));
+    if (response.status === 200) {
+      alert("재료를 냉장고에 추가했습니다!");
+    } else {
+      alert("텍스트로 재료 추가를 실패했습니다.");
+    }
+  };
+
+  useEffect(() => {
+    const getlist = async () => {
+      await getIngredient();
+    };
+    getlist();
   }, []);
 
   function handleClickCategory(item) {
@@ -47,13 +64,13 @@ const Refrige = () => {
     setAddByImage(false);
   }
 
-  function AddIngredientByText(textValue, category) {
-    setIngredient((cur) => {
-      const newArr = [...cur];
-      newArr.push({ name: textValue, ingredient: Number(category) });
-      return newArr;
-    });
-  }
+  const addIngredientText = (textValue, category) => {
+    const addAndGetList = async () => {
+      await addtInRefrigeByText(textValue, category);
+      await getIngredient();
+    };
+    addAndGetList();
+  };
 
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
@@ -67,9 +84,9 @@ const Refrige = () => {
     <RefrigeContainer>
       {onModal && <AlertLoginModal page={"/refrige"} text={"로그인이 필요한 기능입니다!"} btnText={"확인"} />}
       {addByImage && <AddByImage handleAddImage={handleAddImage} />}
-      {addByText && <AddByText handleAddText={handleAddText} AddIngredientByText={AddIngredientByText} />}
+      {addByText && <AddByText handleAddText={handleAddText} addIngredientByText={addIngredientText} />}
       <RefrigeTitle>
-        <h2>고쿠마 냉장고</h2>
+        <h2>나의 냉장고</h2>
         <div>
           <span
             onClick={() => {

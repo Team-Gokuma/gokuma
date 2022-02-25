@@ -9,24 +9,36 @@ import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
 import { AlertLoginModal } from "../common/AlertLoginModal";
 import { recognition, recommendRecipe, relatedRecipe } from "../../api/receipe";
+import { addIngredientByImage } from "../../api/refrige";
 
 const regTag = /^[가-힣]+$/;
 
-export const Recommend = ({ page }) => {
+export const Recommend = ({ page, handleAddImage }) => {
   const [AddToggle, setAddToggle] = useState(true);
   const [inputValue, setInputValue] = useState("");
   const [msg, setMsg] = useState("");
   const [onIcon, setOnIcon] = useState(false);
   const [tags, setTags] = useState([]);
+  const [img, setImg] = useState("");
 
   const login = useRecoilValue(loginState);
   const [onModal, setOnModal] = useRecoilState(modalState);
   const [mainRecipe, setMainRecipe] = useRecoilState(mainRecipesState);
   const setRelatedRecipe = useSetRecoilState(relatedRecipesState);
 
+  const handleAddByPhoto = async (img) => {
+    const response = await addIngredientByImage(img);
+    if (response.status === 200) {
+      alert("나의냉장고에 재료를 넣었습니다!");
+    } else {
+      alert("저장을 실패했습니다.");
+    }
+  };
+
   const requestRecognition = async (img) => {
     const response = await recognition(img);
     if (response.status === 200) {
+      setImg(img);
       setAddToggle(false);
       setTags((cur) => {
         const newArr = [...cur];
@@ -44,6 +56,8 @@ export const Recommend = ({ page }) => {
     const response = await recommendRecipe(ingredients);
     if (response.status === 200) {
       setMainRecipe(response.data.data);
+    } else {
+      alert("메뉴 추천에 실패하였습니다.");
     }
   };
 
@@ -51,7 +65,27 @@ export const Recommend = ({ page }) => {
     const response = await relatedRecipe(recipes);
     if (response.status === 200) {
       setRelatedRecipe(response.data.data);
+    } else {
+      alert("관련 메뉴 추천에 실패하였습니다.");
     }
+  };
+
+  const handleClick = () => {
+    page && tags.length > 0 && !login && setOnModal(true);
+    const getData = async () => {
+      await handleAddByPhoto(img);
+      await getRecommendation(tags);
+      await getRelatedRecipes([mainRecipe[0]]);
+    };
+    getData();
+  };
+
+  const hanldeAddByImage = () => {
+    const addIngredient = async () => {
+      await handleAddByPhoto(img);
+    };
+    addIngredient();
+    handleAddImage();
   };
 
   const handleToggle = () => {
@@ -96,15 +130,6 @@ export const Recommend = ({ page }) => {
       });
     }
   }, [tags]);
-
-  const handleClick = () => {
-    page && tags.length > 0 && !login && setOnModal(true);
-    async function getData() {
-      await getRecommendation(tags);
-      await getRelatedRecipes([mainRecipe[0]]);
-    }
-    getData();
-  };
 
   return (
     <section>
@@ -153,7 +178,7 @@ export const Recommend = ({ page }) => {
               <Button text={"레시피 찾기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
             </Link>
           ) : (
-            <span style={{ textDecoration: "none" }}>
+            <span style={{ textDecoration: "none" }} onClick={hanldeAddByImage}>
               <Button text={"식재료 추가하기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
             </span>
           )}
