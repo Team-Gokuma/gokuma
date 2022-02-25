@@ -25,7 +25,7 @@ const Header = () => {
 
   const LOGINNAVS = [
     { id: 0, navText: "레시피 추천받기", navigate: () => navigate("recommend") },
-    { id: 1, navText: "고쿠마 냉장고", navigate: () => navigate("refrige") },
+    { id: 1, navText: "냉장고 관리", navigate: () => navigate("refrige") },
     { id: 2, navText: "즐겨찾는 레시피", navigate: () => navigate("bookmark") },
     { id: 3, navText: "장보기 리스트", navigate: () => navigate("shoppinglist") },
   ];
@@ -35,12 +35,12 @@ const Header = () => {
       <StWrapper>
         <LogoWrapper onClick={() => navigate("/")}>
           <Img />
-          <div>고쿠마 레시피</div>
+          <div className="logo">어쩔냉장고</div>
         </LogoWrapper>
         <CommonNav navList={LOGINNAVS} />
         {isLogin ? (
           <ProfileWrapper>
-            <div onClick={handleLogout} style={{marginBottom:"15px"}}>
+            <div onClick={handleLogout} style={{ marginBottom: "15px" }}>
               <Button width="104px" height="45px" text="Logout" bgcolor="yellow" txtcolor="black" round="round" />
             </div>
             <Link to="/mypage" style={{ textDecoration: "none", color: "black" }}>
@@ -70,6 +70,11 @@ const LogoWrapper = styled.h1`
   cursor: pointer;
   ${({ theme }) => theme.font.xlarge};
   ${({ theme }) => theme.font.bold};
+  & .logo {
+    ${({ theme }) => theme.font.logo};
+    font-size: 26px;
+    letter-spacing: 3px;
+  }
 `;
 
 const StWrapper = styled.header`

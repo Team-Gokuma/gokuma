@@ -34,6 +34,9 @@ const font = {
   normal: `
   font-family: 'MinSans-Regular'
   `,
+  logo: `
+  font-family: 'BMHANNAPro'
+  `,
 };
 
 const theme = {
