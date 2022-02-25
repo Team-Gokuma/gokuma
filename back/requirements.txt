@@ -19,3 +19,4 @@ SQLAlchemy==1.4.31
 Werkzeug==2.0.3
 flask-restx==0.5.1
 pandas==1.4.1
+numpy==1.22.1

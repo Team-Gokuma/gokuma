@@ -1,49 +1,31 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import { RecipeDetailContent } from "../../components/recommend/RecipeDetailContent";
 import { RecipeDetailInfo } from "../../components/recommend/RecipeDetailInfo";
-
-const dummydata = {
-  name: "달걀볶음밥",
-  like: 27,
-  isLike: true,
-  level: "3",
-  servings: "2인분",
-  bookmark: true,
-  ingredient: [
-    { name: "달걀", amount: "2개", inRefrige: true },
-    { name: "참기름", amount: "적당량", inRefrige: false },
-    { name: "들기름", amount: "적당량", inRefrige: true },
-    { name: "소금", amount: "1/2 숟가락", inRefrige: false },
-    { name: "후추", amount: "적당량", inRefrige: true },
-  ],
-  recipe: [
-    {
-      step: 1,
-      content:
-        "기름을 둘러 파를 볶아 파기름을 내주세요. 파기름이 튀지 않게 조심해주세요. 파기름을 내면 한층 더 맛이 풍부해진답니다.",
-    },
-    {
-      step: 2,
-      content: "기름을 둘러 파를 볶아 파기름을 내주세요. ",
-    },
-    {
-      step: 3,
-      content:
-        "기름을 둘러 파를 볶아 파기름을 내주세요. 기름을 둘러 파를 볶아 파기름을 내주세요. 기름을 둘러 파를 볶아 파기름을 내주세요. 기름을 둘러 파를 볶아 파기름을 내주세요. 기름을 둘러 파를 볶아 파기름을 내주세요. 기름을 둘러 파를 볶아 파기름을 내주세요. ",
-    },
-    {
-      step: 4,
-      content: "기름을 둘러 파를 볶아 파기름을 내주세요. 기름을 둘러 파를 볶아 파기름을 내주세요.  ",
-    },
-  ],
-};
+import { detailRecipe } from "../../api/receipe";
 
 const RecipeDetail = () => {
+  const { id } = useParams();
+  const [detailData, setDetailData] = useState();
+
+  useEffect(() => {
+    const getDetailRecipe = async () => {
+      const response = await detailRecipe(id);
+      setDetailData(response.data);
+    };
+    getDetailRecipe();
+  }, []);
+
   return (
     <RecipeDetailSection>
       <RecipeDetailContainer>
-        <RecipeDetailInfo dummydata={dummydata} />
-        <RecipeDetailContent dummydata={dummydata} />
+        {detailData && (
+          <>
+            <RecipeDetailInfo data={detailData} />
+            <RecipeDetailContent data={detailData} />
+          </>
+        )}
       </RecipeDetailContainer>
     </RecipeDetailSection>
   );
@@ -84,7 +66,10 @@ const RecipeDetailContainer = styled.div`
     & h3 {
       ${({ theme }) => theme.font.bold};
       ${({ theme }) => theme.font.large};
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.2rem;
+    }
+    & .summary {
+      margin-bottom: 1.4rem;
     }
     & .level {
       position: relative;

@@ -45,8 +45,25 @@ class Recommend(Resource):
     @recipe_api.response(400, 'Fail', response_fail_model)
     def post(self):
         """인식된 재료와 냉장고 재료를 합해 가장 많은 재료를 사용하는 순서대로 레시피를 추천합니다"""
+
+        user = None
+        if session.get('email'):
+            email = session['email']
+            user = User.query.filter(User.email == email).first()
+
         data = request.get_json()
-        ingrds = data['ingredients']
+
+        ingrds = []
+        # user가 없을 경우 넘어온 재료로만 판별
+        if user is None:
+            ingrds = data['ingredients']
+        # user가 있을 경우 냉장고에 저장되었을 것이므로 냉장고에 있는 재료 전부로 판별
+        else:
+            items = Refrigerator.query.filter(
+                Refrigerator.user_id == user.id).all()
+            for item in items:
+                ingrds.append({"content": item.content,
+                              "category": item.category})
 
         # 레시피 추천 알고리즘 input = 인식된 재료들, output = 추천된 레시피들의 id or name
         recipes = [1, 2, 3]
@@ -55,8 +72,17 @@ class Recommend(Resource):
         for recipe in recipes:
             item = Recipe.query.filter(
                 Recipe.id == recipe).first()
+
+            ingrds_num = 0
+            recipe_ingrds = RecipeIngrd.query.filter(
+                RecipeIngrd.recipe_id == recipe).all()
+            for recipe_ingrd in recipe_ingrds:
+                for ingrd in ingrds:
+                    if recipe_ingrd.name == ingrd["content"]:
+                        ingrds_num += 1
+
             result['data'].append(
-                {"img": item.img, "id": item.id, "name": item.name})
+                {"img": item.img, "id": item.id, "name": item.name, "ingrdients": ingrds_num})
 
         return result
 

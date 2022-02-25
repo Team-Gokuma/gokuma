@@ -127,7 +127,7 @@ window > `$ docker exec -it gokuma-back-1 //bin//bash`
 
 ### 초기 데이터베이스에 값 넣기
 
-`# flask db upgrade`
+`# flask db upgrade`  
 `# exit`
 
 - 위 명령어가 오류나면 아직 DB의 실행이 덜 끝나서 그러니, 잠시 뒤 한번 더 입력해주시면 됩니다.
