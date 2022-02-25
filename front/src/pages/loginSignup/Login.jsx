@@ -52,7 +52,9 @@ const Login = () => {
   const requestLogin = async (inputs) => {
     await login(inputs).then((res) => {
       if (res && res.status === 200) {
-        setIsLogin(true);
+        window.sessionStorage.setItem("name", res.name);
+        window.sessionStorage.setItem("email", res.email);
+        window.sessionStorage.setItem("isLogin", true);
         navigate("/");
       } else if (res && res.status !== 200) {
         alert("로그인에 실패하였습니다!");

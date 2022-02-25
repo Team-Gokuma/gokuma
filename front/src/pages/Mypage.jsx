@@ -1,21 +1,22 @@
 import styled from "styled-components";
 import { Button } from "../components/common/Button";
 
-const dummydata = { name: "엘리스", email: "test@test.com" };
-
 const Mypage = () => {
+  const name = window.sessionStorage.getItem("name");
+  const email = window.sessionStorage.getItem("email");
+
   return (
     <MypageContainer>
       <MypageContent>
         <h2>
-          <span>{dummydata.name}</span> 님
+          <span>{name}</span> 님
         </h2>
         <div className="mypageContent">
           <div>
             <h3>회원정보</h3>
-            <p>이메일 : {dummydata.email}</p>
+            <p>이메일 : {email}</p>
             <p>
-              닉네임 : {dummydata.name}
+              닉네임 : {name}
               <span className="editNameBtn">
                 <Button text={"수정"} bgcolor={"white"} txtcolor={"orange"} border={"1px solid"} padding={"0 1rem"} />
               </span>

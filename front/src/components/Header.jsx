@@ -10,11 +10,13 @@ import Button from "../components/common/Button";
 
 const Header = () => {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useRecoilState(loginState);
+  // const [isLogin, setIsLogin] = useRecoilState(loginState);
+  const isLogin = window.sessionStorage.getItem("isLogin");
   const handleLogout = async () => {
     await logout().then((res) => {
       if (res.status === 200) {
-        setIsLogin(false);
+        window.sessionStorage.clear();
+        // setIsLogin(false);
         navigate("/");
       } else {
         alert("error");
@@ -22,6 +24,8 @@ const Header = () => {
       }
     });
   };
+
+  const name = window.sessionStorage.getItem("name");
 
   const LOGINNAVS = [
     { id: 0, navText: "레시피 추천받기", navigate: () => navigate("recommend") },
@@ -44,7 +48,7 @@ const Header = () => {
               <Button width="104px" height="45px" text="Logout" bgcolor="yellow" txtcolor="black" round="round" />
             </div>
             <Link to="/mypage" style={{ textDecoration: "none", color: "black" }}>
-              <div style={{ float: "left", marginTop: "14px", marginRight: "10px" }}>엘리스님</div>
+              <div style={{ float: "left", marginTop: "14px", marginRight: "10px" }}>{name}님</div>
               <Profile />
             </Link>
           </ProfileWrapper>

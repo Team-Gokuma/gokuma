@@ -19,7 +19,8 @@ const Refrige = () => {
   const [isClicked, setIsClicked] = useState("전체 식재료");
   const [ingredient, setIngredient] = useState([]);
 
-  const login = useRecoilValue(loginState);
+  // const login = useRecoilValue(loginState);
+  const login = window.sessionStorage.getItem("isLogin");
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
 

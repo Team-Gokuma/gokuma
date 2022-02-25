@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { withTheme } from "styled-components";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
@@ -21,7 +21,8 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [tags, setTags] = useState([]);
   const [img, setImg] = useState("");
 
-  const login = useRecoilValue(loginState);
+  // const login = useRecoilValue(loginState);
+  const login = window.sessionStorage.getItem("isLogin");
   const [onModal, setOnModal] = useRecoilState(modalState);
   const [mainRecipe, setMainRecipe] = useRecoilState(mainRecipesState);
   const setRelatedRecipe = useSetRecoilState(relatedRecipesState);
