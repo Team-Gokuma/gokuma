@@ -14,7 +14,7 @@ class shoppingLists(Resource):
     def get(self):
         '''장보기 리스트를 보여줍니다.'''
 
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
         # session['email'] = None
 
         if session.get('email'):
@@ -43,7 +43,7 @@ class shoppingLists(Resource):
 class shoppingLists(Resource):
 
     def _get_items(self):
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
         # session['email'] = None
 
         if session.get('email'):

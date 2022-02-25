@@ -20,7 +20,7 @@ class Contents(Resource):
         user = None
         result = {"result_msg": "success", "data": []}
 
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
 
         if session.get('email'):
             email = session['email']
@@ -55,7 +55,7 @@ class RecoginitionPhoto(Resource):
         user = None
         result = {"result_msg": "success"}
 
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
 
         if session.get('email'):
             email = session['email']
@@ -116,7 +116,7 @@ class RecoginitionText(Resource):
         user = None
         result = {"result_msg": "success", "data": []}
 
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
 
         if session.get('email'):
             email = session['email']
@@ -159,13 +159,13 @@ class IngrdTime(Resource):
         user = None
         result = {"result_msg": "success", "data": []}
 
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
 
         if session.get('email'):
             email = session['email']
             user = User.query.filter(User.email == email).first()
         else:
-            result = {"result_msg": "fail"}
+            result = {"result_msg": "No User"}
             return result, 400
 
         items = Refrigerator.query.filter(
@@ -193,7 +193,7 @@ class DeleteItem(Resource):
         user = None
         result = {"result_msg": "success", "data": []}
 
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
         # session['email'] = None
 
         if session.get('email'):
@@ -244,7 +244,7 @@ class DeleteAllItem(Resource):
         user = None
         result = {"result_msg": "success", "data": []}
 
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
         # session['email'] = None
 
         if session.get('email'):

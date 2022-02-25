@@ -32,8 +32,8 @@ services:
       - CHOKIDAR_USEPOLLING=true 
     depends_on:
       - back
-  ai:
-    build:
-      context: ./ai
-      dockerfile: ./Dockerfile
-    restart: always
+  # ai:
+  #   build:
+  #     context: ./ai
+  #     dockerfile: ./Dockerfile
+  #   restart: always

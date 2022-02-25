@@ -18,13 +18,13 @@ class BookmarkList(Resource):
         user = None
         result = {"result_msg": "success", "data": []}
 
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
 
         if session.get('email'):
             email = session['email']
             user = User.query.filter(User.email == email).first()
         else:
-            result = {"result_msg": "fail"}
+            result = {"result_msg": "No User"}
             return result, 400
 
         items = Bookmark.query.filter(
@@ -49,13 +49,13 @@ class BookmarkCheck(Resource):
         user = None
         result = {"result_msg": "success", "data": []}
 
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
 
         if session.get('email'):
             email = session['email']
             user = User.query.filter(User.email == email).first()
         else:
-            result = {"result_msg": "fail"}
+            result = {"result_msg": "No User"}
             return result, 400
 
         item = Bookmark.query.filter(
