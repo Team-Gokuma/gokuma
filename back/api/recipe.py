@@ -31,8 +31,10 @@ class Recoginition(Resource):
         for ingrd in ingrds:
             item = Ingredients.query.filter(
                 Ingredients.name == ingrd).first()
-            result['data'].append(
-                {"content": item.name, "category": item.category})
+            if item is not None:
+                result['data'].append(
+                    {"content": item.name, "category": item.category})
+            # 재료 DB에 항목이 없을 경우 아예 인식 불가?
 
         return result
 
