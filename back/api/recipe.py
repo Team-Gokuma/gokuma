@@ -126,6 +126,12 @@ class Detail(Resource):
             user = User.query.filter(User.email == email).first()
 
         item = Recipe.query.filter((Recipe.id == id)).first()
+
+        # 초기값 설정
+        if item.id == 1:
+            item.like = 1
+            db.session.commit()
+
         result = {
             'id': item.id,
             'name': item.name,
@@ -147,13 +153,13 @@ class Detail(Resource):
             bookmark = Bookmark.query.filter(
                 (Bookmark.user_id == user.id) & (Bookmark.recipe_id == id)).first()
             if bookmark is not None:
-                result['bookmark'] = bookmark
+                result['bookmark'] = bookmark.checked
 
             # 유저 좋아요 db에서 user 찾아와서 isLike 설정하기
             like = UserLike.query.filter(
                 (UserLike.user_id == user.id) & (Bookmark.recipe_id == id)).first()
             if like is not None:
-                result['like'] = like
+                result['isLike'] = like.checked
 
         # 레시피 재료 정보
         ingrds = RecipeIngrd.query.filter(RecipeIngrd.recipe_id == id).all()
