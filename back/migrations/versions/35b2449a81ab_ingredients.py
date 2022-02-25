@@ -40,11 +40,11 @@ def upgrade():
                             )
     categories = [
         {'name': '과일', 'category': 1},
-        {'name': '채소해조', 'category': 2},
-        {'name': '수조어육', 'category': 3},
-        {'name': '음료및차', 'category': 4},
-        {'name': '유제품빙과', 'category': 5},
-        {'name': '장류양념류', 'category': 6},
+        {'name': '채소', 'category': 2},
+        {'name': '육류', 'category': 3},
+        {'name': '해산물', 'category': 4},
+        {'name': '유제품', 'category': 5},
+        {'name': '소스류', 'category': 6},
         {'name': '기타', 'category': 7}
     ]
     op.bulk_insert(seed_categories, categories)
