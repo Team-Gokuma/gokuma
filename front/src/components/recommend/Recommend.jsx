@@ -20,6 +20,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [onIcon, setOnIcon] = useState(false);
   const [tags, setTags] = useState([]);
   const [img, setImg] = useState("");
+  const [data, setData] = useState({});
 
   // const login = useRecoilValue(loginState);
   const login = window.sessionStorage.getItem("isLogin");
@@ -30,16 +31,19 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const handleAddByPhoto = async (img) => {
     const response = await addIngredientByImage(img);
     if (response.status === 200) {
-      alert("나의냉장고에 재료를 넣었습니다!");
+      alert("냉장고에 재료를 넣었습니다!");
     } else {
       alert("저장을 실패했습니다.");
     }
   };
 
   const requestRecognition = async (img) => {
+    setMainRecipe([]);
+    setRelatedRecipe([]);
     const response = await recognition(img);
     if (response.status === 200) {
       setImg(img);
+      setData(response.data.data);
       setAddToggle(false);
       setTags((cur) => {
         const newArr = [...cur];
@@ -75,15 +79,14 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     page && tags.length > 0 && !login && setOnModal(true);
     const getData = async () => {
       await handleAddByPhoto(img);
-      await getRecommendation(tags);
+      await getRecommendation(data);
       await getRelatedRecipes([mainRecipe[0]]);
     };
     login && getData();
   };
-
   const handleClickNoLogin = () => {
     const getData = async () => {
-      await getRecommendation(tags);
+      await getRecommendation(data);
       await getRelatedRecipes([mainRecipe[0]]);
     };
     getData();
@@ -100,6 +103,8 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
 
   const handleToggle = () => {
     setAddToggle(false);
+    setMainRecipe([]);
+    setRelatedRecipe([]);
   };
 
   const saveTags = (e) => {

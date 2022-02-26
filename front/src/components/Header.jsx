@@ -1,21 +1,24 @@
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CommonNav } from "./";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { logout } from "../api/user";
-import { loginState } from "../store/atom";
+import { mainRecipesState, relatedRecipesState } from "../store/atom";
 import { ReactComponent as Logo } from "../asset/icon/header/logo.svg";
 import { ReactComponent as Profile } from "../asset/icon/profile.svg";
 import Button from "../components/common/Button";
 
 const Header = () => {
   const navigate = useNavigate();
-  // const [isLogin, setIsLogin] = useRecoilState(loginState);
   const isLogin = window.sessionStorage.getItem("isLogin");
+  const mainRecipes = useSetRecoilState(mainRecipesState);
+  const relatedRecipes = useSetRecoilState(relatedRecipesState);
   const handleLogout = async () => {
     await logout().then((res) => {
       if (res.status === 200) {
         window.sessionStorage.clear();
+        mainRecipes([]);
+        relatedRecipes([]);
         // setIsLogin(false);
         navigate("/");
       } else {

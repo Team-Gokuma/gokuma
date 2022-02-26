@@ -26,7 +26,6 @@ const Refrige = () => {
 
   const getIngredient = async () => {
     const response = await ingredientList();
-    console.log(response);
     if (response && response.status === 200) {
       setIngredient(response.data.data);
     } else {
@@ -66,7 +65,8 @@ const Refrige = () => {
       await getIngredient();
     };
     getlist();
-    setModal(true);
+
+    !login && setModal(true);
   }, []);
 
   const addIngredientText = (textValue, category) => {
@@ -78,6 +78,10 @@ const Refrige = () => {
   };
 
   const removeAllIngredient = () => {
+    if (!login) {
+      alert("로그인 후 이용이 가능합니다!");
+      return;
+    }
     const inputValue = window.confirm("재료를 전체 삭제 하시겠습니까?");
     const deleteall = async () => {
       await deleteAllIngredientInRefrige();
