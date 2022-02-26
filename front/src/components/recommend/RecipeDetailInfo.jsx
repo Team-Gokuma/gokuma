@@ -29,15 +29,29 @@ export const RecipeDetailInfo = ({ data }) => {
   return (
     <div className="recipeInfo">
       <div className="detailImgBox">
-        {bookmark ? (
-          <IconFilledFavorite className="bookmarkIcon" onClick={handleBookmark} />
-        ) : (
-          <IconOutlineFavorite className="bookmarkIcon" onClick={handleBookmark} />
-        )}
         <img src={data.img} alt="food" />
       </div>
       <div className="detailInfoBox">
-        <h3>{data.name}</h3>
+        <h3>
+          {data.name}
+          {bookmark ? (
+            <IconFilledFavorite
+              className="bookmarkIcon"
+              onClick={handleBookmark}
+              fill={"#5AB66A"}
+              width={"1.7rem"}
+              height={"1.7rem"}
+            />
+          ) : (
+            <IconOutlineFavorite
+              className="bookmarkIcon"
+              onClick={handleBookmark}
+              fill={"#3a3a3a"}
+              width={"1.7rem"}
+              height={"1.7rem"}
+            />
+          )}
+        </h3>
         <p className="summary">
           <span>{data.summary}</span>
         </p>
