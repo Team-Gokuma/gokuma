@@ -26,10 +26,10 @@ class BookmarkList(Resource):
             return result, 400
 
         items = Bookmark.query.filter(
-            Bookmark.user_id == user.id).all()
+            (Bookmark.user_id == user.id) & (Bookmark.checked == True)).all()
 
         for item in items:
-            recipe = Recipe.query.filter(Recipe.id == item.recipe_id).first()
+            recipe = Recipe.query.filter((Recipe.id == item.recipe_id)).first()
             result['data'].append(
                 {'id': recipe.id, 'name': recipe.name, 'img': recipe.img})
 
@@ -42,7 +42,7 @@ class BookmarkCheck(Resource):
     @bookmark_api.response(200, 'Success', response_success_bookmark_model)
     @bookmark_api.response(400, 'Fail', response_fail_model)
     def get(self, id):
-        """유저가 즐겨찾기한 레시피를 저장합니다"""
+        """유저가 즐겨찾기한 레시피를 저장/해제합니다"""
 
         user = None
         result = {"result_msg": "success", "data": []}
