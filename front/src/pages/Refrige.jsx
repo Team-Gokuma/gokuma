@@ -26,7 +26,8 @@ const Refrige = () => {
 
   const getIngredient = async () => {
     const response = await ingredientList();
-    if (response.status === 200) {
+    console.log(response);
+    if (response && response.status === 200) {
       setIngredient(response.data.data);
     } else {
       alert("냉장고 리스트 불러오기를 실패했습니다.");
@@ -65,7 +66,7 @@ const Refrige = () => {
       await getIngredient();
     };
     getlist();
-    !login && setModal(true);
+    setModal(true);
   }, []);
 
   const addIngredientText = (textValue, category) => {
@@ -107,7 +108,7 @@ const Refrige = () => {
 
   return (
     <RefrigeContainer>
-      {onModal && <AlertLoginModal page={"/refrige"} text={"로그인이 필요한 기능입니다!"} btnText={"확인"} />}
+      {onModal && <AlertLoginModal text={"로그인이 필요한 기능입니다!"} btnText={"확인"} />}
       {addByImage && <AddByImage handleAddImage={handleAddImage} getIngredient={getIngredient} />}
       {addByText && <AddByText handleAddText={handleAddText} addIngredientByText={addIngredientText} />}
       <RefrigeTitle>
@@ -115,13 +116,15 @@ const Refrige = () => {
         <div>
           <span
             onClick={() => {
-              setAddByImage(true);
+              login && setAddByImage(true);
+              !login && alert("로그인 후 이용이 가능합니다!");
             }}>
             <Button text={"사진으로 추가"} bgcolor={"orange"} txtcolor={"white"} />
           </span>
           <span
             onClick={() => {
-              setAddByText(true);
+              login && setAddByText(true);
+              !login && alert("로그인 후 이용이 가능합니다!");
             }}>
             <Button text={"직접 입력해서 추가"} bgcolor={"orange"} txtcolor={"white"} />
           </span>

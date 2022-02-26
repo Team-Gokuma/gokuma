@@ -78,6 +78,14 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
       await getRecommendation(tags);
       await getRelatedRecipes([mainRecipe[0]]);
     };
+    login && getData();
+  };
+
+  const handleClickNoLogin = () => {
+    const getData = async () => {
+      await getRecommendation(tags);
+      await getRelatedRecipes([mainRecipe[0]]);
+    };
     getData();
   };
 
@@ -176,7 +184,10 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
             )}
           </div>
           {page ? (
-            <Link to={tags.length > 0 && login && "/result"} style={{ textDecoration: "none" }} onClick={handleClick}>
+            <Link
+              to={tags.length > 0 && login ? "/result" : "/recommend"}
+              style={{ textDecoration: "none" }}
+              onClick={handleClick}>
               <Button text={"레시피 찾기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
             </Link>
           ) : (
@@ -187,7 +198,12 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
         </div>
       </RecommendContainer>
       {onModal && (
-        <AlertLoginModal page={"/result"} text={"로그인하고 냉장고에 추가 하시겠습니까?"} btnText={"바로 추천받기"} />
+        <AlertLoginModal
+          page={"/result"}
+          text={"로그인하고 냉장고에 추가 하시겠습니까?"}
+          btnText={"바로 추천받기"}
+          handleClick={handleClickNoLogin}
+        />
       )}
     </section>
   );
