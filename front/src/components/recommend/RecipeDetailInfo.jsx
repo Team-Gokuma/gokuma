@@ -10,6 +10,7 @@ export const RecipeDetailInfo = ({ data }) => {
   const [bookmark, setBookmark] = useState(data.bookmark);
   const level = ["초보환영", "보통", "어려움"];
   const ingredient = data.ingredient.sort((a, b) => b.inRefrige - a.inRefrige);
+  const login = window.sessionStorage.getItem("isLogin");
 
   const requestSetBookmark = async (id) => {
     const response = await setbookmark(id);
@@ -19,10 +20,18 @@ export const RecipeDetailInfo = ({ data }) => {
   };
 
   const handleLike = () => {
+    if (!login) {
+      alert("로그인 후 이용이 가능합니다!");
+      return;
+    }
     like ? setLike(false) : setLike(true);
   };
 
   const handleBookmark = () => {
+    if (!login) {
+      alert("로그인 후 이용이 가능합니다!");
+      return;
+    }
     bookmark ? setBookmark(false) : setBookmark(true);
     requestSetBookmark(data.id);
   };

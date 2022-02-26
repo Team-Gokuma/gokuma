@@ -65,7 +65,7 @@ const RecipeDetailContainer = styled.div`
       position: relative;
       & .bookmarkIcon {
         position: absolute;
-        top: ${-4 / 16}rem;
+        top: ${-3 / 16}rem;
         right: -2.3rem;
         cursor: pointer;
       }
