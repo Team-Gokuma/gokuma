@@ -1,25 +1,15 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ReactComponent as IconOutlineFavorite } from "../../asset/icon/favoriteEmpty.svg";
 import { ReactComponent as IconFilledFavorite } from "../../asset/icon/favoriteBlack.svg";
-import { ReactComponent as IconStar } from "../../asset/icon/starBlack.svg";
 import { ReactComponent as IconThumbUp } from "../../asset/icon/thumbUp.svg";
 import { setbookmark } from "../../api/bookmark";
 
 export const RecipeDetailInfo = ({ data }) => {
-  const [level, setLevel] = useState([]);
   const [like, setLike] = useState(data.isLike);
   const [bookmark, setBookmark] = useState(data.bookmark);
-
-  useEffect(() => {
-    setLevel(() => {
-      const newLevel = [];
-      for (let i = 0; i < data.level; i++) {
-        newLevel.push(<IconStar key={"star" + i} fill={"#F7941E"} />);
-      }
-      return newLevel;
-    });
-  }, []);
+  const level = ["초보환영", "보통", "어려움"];
+  const ingredient = data.ingredient.sort((a, b) => b.inRefrige - a.inRefrige);
 
   const requestSetBookmark = async (id) => {
     const response = await setbookmark(id);
@@ -28,14 +18,14 @@ export const RecipeDetailInfo = ({ data }) => {
     }
   };
 
-  function handleLike() {
+  const handleLike = () => {
     like ? setLike(false) : setLike(true);
-  }
+  };
 
-  function handleBookmark() {
+  const handleBookmark = () => {
     bookmark ? setBookmark(false) : setBookmark(true);
     requestSetBookmark(data.id);
-  }
+  };
   return (
     <div className="recipeInfo">
       <div className="detailImgBox">
@@ -56,7 +46,7 @@ export const RecipeDetailInfo = ({ data }) => {
           <span>{data.like}</span>
         </LikeBox>
         <p className="level">
-          난이도 <span className="stars">{level}</span>
+          난이도 <span className="stars">{level[data.level - 1]}</span>
         </p>
         <p className="calories">
           칼로리 <span className="calorieContent">{data.calorie}kcal</span>
@@ -66,7 +56,7 @@ export const RecipeDetailInfo = ({ data }) => {
         </p>
         <div className="ingredient">
           <p>재료</p>
-          {data.ingredient.map((item, idx) => {
+          {ingredient.map((item, idx) => {
             return (
               <span key={"detailIngredient" + idx}>
                 <IngredientName inRefrige={item.inRefrige}>{item.name}</IngredientName>

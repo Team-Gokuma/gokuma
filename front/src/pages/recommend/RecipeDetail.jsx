@@ -70,14 +70,14 @@ const RecipeDetailContainer = styled.div`
     }
     & .summary {
       margin-bottom: 1.4rem;
+      line-height: 1.4;
     }
-    & .level {
-      position: relative;
-      & .stars {
-        position: absolute;
-        top: -0.4rem;
-        left: 3.3rem;
-      }
+
+    & .stars {
+      margin-left: 4px;
+    }
+    & .calorieContent {
+      margin-left: 4px;
     }
     & .servings {
       margin-bottom: ${24 / 16}rem;

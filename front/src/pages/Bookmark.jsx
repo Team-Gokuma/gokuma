@@ -24,7 +24,6 @@ const Bookmark = () => {
     const response = await getbookmark();
     if (response.status === 200) {
       setData(response.data.data);
-      console.log(response);
     } else {
       alert("즐겨찾는 레시피 불러오기를 실패했습니다.");
     }
