@@ -4,6 +4,7 @@ import { ReactComponent as IconOutlineFavorite } from "../../asset/icon/favorite
 import { ReactComponent as IconFilledFavorite } from "../../asset/icon/favoriteBlack.svg";
 import { ReactComponent as IconStar } from "../../asset/icon/starBlack.svg";
 import { ReactComponent as IconThumbUp } from "../../asset/icon/thumbUp.svg";
+import { setbookmark } from "../../api/bookmark";
 
 export const RecipeDetailInfo = ({ data }) => {
   const [level, setLevel] = useState([]);
@@ -20,12 +21,20 @@ export const RecipeDetailInfo = ({ data }) => {
     });
   }, []);
 
+  const requestSetBookmark = async (id) => {
+    const response = await setbookmark(id);
+    if (response.status === 200) {
+      return response.data.data;
+    }
+  };
+
   function handleLike() {
     like ? setLike(false) : setLike(true);
   }
 
   function handleBookmark() {
     bookmark ? setBookmark(false) : setBookmark(true);
+    requestSetBookmark(data.id);
   }
   return (
     <div className="recipeInfo">

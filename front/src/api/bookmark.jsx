@@ -8,3 +8,12 @@ export const getbookmark = () => {
     console.log(error);
   }
 };
+
+export const setbookmark = (id) => {
+  try {
+    const response = axios.get(`/api/bookmark/check/${id}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
