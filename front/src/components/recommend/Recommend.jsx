@@ -1,8 +1,8 @@
-import styled, { withTheme } from "styled-components";
+import styled from "styled-components";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
-import { loginState, modalState, mainRecipesState, relatedRecipesState } from "../../store/atom";
+import { useSetRecoilState, useRecoilState } from "recoil";
+import { modalState, mainRecipesState, relatedRecipesState } from "../../store/atom";
 import { ImageFileUpload } from "../common/ImageFileUpload";
 import { Button } from "../common/Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
@@ -22,7 +22,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [img, setImg] = useState("");
   const [data, setData] = useState({});
 
-  // const login = useRecoilValue(loginState);
   const login = window.sessionStorage.getItem("isLogin");
   const [onModal, setOnModal] = useRecoilState(modalState);
   const [mainRecipe, setMainRecipe] = useRecoilState(mainRecipesState);
@@ -31,7 +30,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const handleAddByPhoto = async (img) => {
     const response = await addIngredientByImage(img);
     if (response.status === 200) {
-      alert("냉장고에 재료를 넣었습니다!");
+      return response;
     } else {
       alert("저장을 실패했습니다.");
     }
@@ -83,6 +82,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
       await getRelatedRecipes([mainRecipe[0]]);
     };
     login && getData();
+    alert("냉장고에 재료를 넣었습니다!");
   };
   const handleClickNoLogin = () => {
     const getData = async () => {
