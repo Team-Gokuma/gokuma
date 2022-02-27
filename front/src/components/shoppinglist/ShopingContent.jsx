@@ -84,6 +84,15 @@ export const ShopingContent = () => {
     setAddValue("");
   };
 
+  const handleCheckbox = (content, checked, id) => {
+    const changeValue = checked ? false : true;
+    const postChangeValue = async () => {
+      await requestPut(content, changeValue, id);
+      await requestGet();
+    };
+    postChangeValue();
+  };
+
   useEffect(() => {
     requestGet();
   }, []);
@@ -100,7 +109,13 @@ export const ShopingContent = () => {
           shoppintlist.map((item, idx) => {
             return (
               <div key={"shoppinglist" + idx} className="listcontent">
-                <input type={"checkbox"} value={item.id} checked={item.checked} />
+                <input
+                  type={"checkbox"}
+                  checked={item.checked}
+                  onChange={() => {
+                    handleCheckbox(item.content, item.checked, item.id);
+                  }}
+                />
                 {String(edit) === String(idx) ? (
                   <form>
                     <textarea
@@ -113,7 +128,7 @@ export const ShopingContent = () => {
                     />
                   </form>
                 ) : (
-                  <span>{item.content}</span>
+                  <Content checked={item.checked}>{item.content}</Content>
                 )}
                 {String(edit) === String(idx) ? (
                   <button
@@ -193,7 +208,7 @@ const ShoppingListContent = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 1rem ${24 / 16}rem;
+    padding: 0.7rem ${24 / 16}rem;
 
     & input {
       margin-right: 1rem;
@@ -267,4 +282,11 @@ const ShoppingListContent = styled.div`
       margin-left: 4px;
     }
   }
+`;
+
+const Content = styled.span`
+  width: 100%;
+  line-height: 1.3;
+  text-decoration: ${(props) => (props.checked ? "line-through" : "none")};
+  color: ${(props) => (props.checked ? props.theme.color.lightblack : "none")};
 `;
