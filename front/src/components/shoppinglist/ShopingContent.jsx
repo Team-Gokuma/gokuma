@@ -15,6 +15,8 @@ export const ShopingContent = () => {
   const [addValue, setAddValue] = useState("");
   const [shoppintlist, setShoppinglist] = useState([]);
 
+  const login = window.sessionStorage.getItem("isLogin");
+
   const requestGet = async () => {
     const response = await getShoppinglist();
     if (response.status === 200) {
@@ -52,7 +54,8 @@ export const ShopingContent = () => {
   };
 
   const handleAddList = () => {
-    setAdd(true);
+    login && setAdd(true);
+    !login && alert("로그인이 필요한 기능입니다!");
   };
 
   const handleAddContent = () => {
@@ -104,7 +107,7 @@ export const ShopingContent = () => {
   };
 
   useEffect(() => {
-    requestGet();
+    login && requestGet();
   }, []);
 
   return (
@@ -112,7 +115,7 @@ export const ShopingContent = () => {
       <div className="titleBox">
         <IconBasket className="leftIcon" />
         <h3>장봐야할 재료</h3>
-        <IconDelete className="deleteIcon" onClick={handleAllDelete} />
+        <IconDelete className="deleteIcon" onClick={login && handleAllDelete} />
       </div>
       <div className="shoppinglistBox">
         {shoppintlist.length > 0 &&
