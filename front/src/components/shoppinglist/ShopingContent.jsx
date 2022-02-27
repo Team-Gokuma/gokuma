@@ -51,26 +51,6 @@ export const ShopingContent = () => {
     }
   };
 
-  const handleDetelelist = async (content, checked, id) => {
-    await requestDelete(content, checked, id);
-    await requestGet();
-  };
-
-  const handleEditlist = (content, idx) => {
-    setEdit(idx);
-    setEditValue(content);
-  };
-
-  const handleEditSubmit = (id, checked) => {
-    const editContent = async () => {
-      await requestPut(editValue, checked, id);
-      await requestGet();
-    };
-    editContent();
-    setEdit("");
-    setEditValue("");
-  };
-
   const handleAddList = () => {
     setAdd(true);
   };
@@ -93,6 +73,36 @@ export const ShopingContent = () => {
     postChangeValue();
   };
 
+  const handleEditlist = (content, idx) => {
+    setEdit(idx);
+    setEditValue(content);
+  };
+
+  const handleEditSubmit = (id, checked) => {
+    const editContent = async () => {
+      await requestPut(editValue, checked, id);
+      await requestGet();
+    };
+    editContent();
+    setEdit("");
+    setEditValue("");
+  };
+
+  const handleDetelelist = async (content, checked, id) => {
+    await requestDelete(content, checked, id);
+    await requestGet();
+  };
+
+  const handleAllDelete = () => {
+    const deleteAll = async () => {
+      for (let i = 0; i < shoppintlist.length; i++) {
+        await requestDelete(shoppintlist[i].content, shoppintlist[i].checked, shoppintlist[i].id);
+      }
+      await requestGet();
+    };
+    deleteAll();
+  };
+
   useEffect(() => {
     requestGet();
   }, []);
@@ -102,7 +112,7 @@ export const ShopingContent = () => {
       <div className="titleBox">
         <IconBasket className="leftIcon" />
         <h3>장봐야할 재료</h3>
-        <IconDelete className="deleteIcon" />
+        <IconDelete className="deleteIcon" onClick={handleAllDelete} />
       </div>
       <div className="shoppinglistBox">
         {shoppintlist.length > 0 &&
@@ -208,7 +218,7 @@ const ShoppingListContent = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 0.7rem ${24 / 16}rem;
+    padding: 0.8rem ${24 / 16}rem;
 
     & input {
       margin-right: 1rem;
