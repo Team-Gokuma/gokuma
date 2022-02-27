@@ -96,6 +96,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     const addIngredient = async () => {
       await handleAddByPhoto(img);
       await getIngredient();
+      alert("냉장고에 재료를 넣었습니다!");
     };
     addIngredient();
     handleAddImage();
