@@ -47,9 +47,12 @@ export const RefrigeIngredient = ({ ingredient }) => {
 
 const InRefrigeIngredient = styled.div`
   width: 50%;
+  height: 100%;
   border-right: 1px solid ${({ theme }) => theme.color.darkgray};
   & .refrigeContent {
     padding: 12px;
+    height: 88.55%;
+    overflow-y: scroll;
   }
   & .tag {
     display: inline-block;
