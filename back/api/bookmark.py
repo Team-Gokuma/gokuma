@@ -1,9 +1,7 @@
-from flask import Blueprint, jsonify, session, request
-from flask_restx import Resource, Namespace
-from pyrsistent import CheckedKeyTypeError
+from flask import session
+from flask_restx import Resource
 from models import User, Bookmark, Recipe
 from db_connect import db
-import json
 from api_model.bookmark_model import bookmark_api, response_success_recipe_model, response_fail_model, response_success_bookmark_model
 
 
@@ -18,20 +16,20 @@ class BookmarkList(Resource):
         user = None
         result = {"result_msg": "success", "data": []}
 
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
 
         if session.get('email'):
             email = session['email']
             user = User.query.filter(User.email == email).first()
         else:
-            result = {"result_msg": "fail"}
+            result = {"result_msg": "No User"}
             return result, 400
 
         items = Bookmark.query.filter(
-            Bookmark.user_id == user.id).all()
+            (Bookmark.user_id == user.id) & (Bookmark.checked == True)).all()
 
         for item in items:
-            recipe = Recipe.query.filter(Recipe.id == item.recipe_id).first()
+            recipe = Recipe.query.filter((Recipe.id == item.recipe_id)).first()
             result['data'].append(
                 {'id': recipe.id, 'name': recipe.name, 'img': recipe.img})
 
@@ -44,18 +42,18 @@ class BookmarkCheck(Resource):
     @bookmark_api.response(200, 'Success', response_success_bookmark_model)
     @bookmark_api.response(400, 'Fail', response_fail_model)
     def get(self, id):
-        """유저가 즐겨찾기한 레시피를 저장합니다"""
+        """유저가 즐겨찾기한 레시피를 저장/해제합니다"""
 
         user = None
         result = {"result_msg": "success", "data": []}
 
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
 
         if session.get('email'):
             email = session['email']
             user = User.query.filter(User.email == email).first()
         else:
-            result = {"result_msg": "fail"}
+            result = {"result_msg": "No User"}
             return result, 400
 
         item = Bookmark.query.filter(

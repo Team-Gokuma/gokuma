@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, session, request
+from flask import session, request
 from flask_restx import Resource
 from models import User, Recipe, RecipeIngrd, RecipeProcess, Ingredients, Refrigerator, Bookmark, UserLike
 from db_connect import db
@@ -31,8 +31,10 @@ class Recoginition(Resource):
         for ingrd in ingrds:
             item = Ingredients.query.filter(
                 Ingredients.name == ingrd).first()
-            result['data'].append(
-                {"content": item.name, "category": item.category})
+            if item is not None:
+                result['data'].append(
+                    {"content": item.name, "category": item.category})
+            # 재료 DB에 항목이 없을 경우 아예 인식 불가?
 
         return result
 
@@ -126,6 +128,12 @@ class Detail(Resource):
             user = User.query.filter(User.email == email).first()
 
         item = Recipe.query.filter((Recipe.id == id)).first()
+
+        # 초기값 설정
+        if item.id == 1:
+            item.like = 1
+            db.session.commit()
+
         result = {
             'id': item.id,
             'name': item.name,
@@ -147,13 +155,13 @@ class Detail(Resource):
             bookmark = Bookmark.query.filter(
                 (Bookmark.user_id == user.id) & (Bookmark.recipe_id == id)).first()
             if bookmark is not None:
-                result['bookmark'] = bookmark
+                result['bookmark'] = bookmark.checked
 
             # 유저 좋아요 db에서 user 찾아와서 isLike 설정하기
             like = UserLike.query.filter(
                 (UserLike.user_id == user.id) & (Bookmark.recipe_id == id)).first()
             if like is not None:
-                result['like'] = like
+                result['isLike'] = like.checked
 
         # 레시피 재료 정보
         ingrds = RecipeIngrd.query.filter(RecipeIngrd.recipe_id == id).all()
