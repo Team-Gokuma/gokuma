@@ -1,108 +1,188 @@
-from flask import Blueprint, jsonify, session, request
-from flask_restx import Resource, Namespace
+from flask import jsonify, session, request
+from flask_restx import Resource
 from models import User, ShoppingList
 from db_connect import db
-import json
-
-shopping_api = Namespace(
-    "Shopping List", description='장보기 리스트 API', path="/api/shoppingList")
+from api_model.shoppingList_model import shopping_api, response_success_shopping_item_model, response_fail_model, shopping_item_fields, shopping_item_id_fields
 
 
-@shopping_api.route('/')
+@shopping_api.route('/list')
 class shoppingLists(Resource):
 
-    def _get_list(self):
-        # user_email = session['email']
-        # user_id = User.query.filter(User.email == user_email).first().id
-        user_id = 1
-        list = ShoppingList.query.filter(ShoppingList.user_id == user_id).all()
-        return list
-
-    # 데이터 조회
+    @shopping_api.response(200, 'Success', response_success_shopping_item_model)
+    @shopping_api.response(400, 'Fail', response_fail_model)
     def get(self):
+        '''장보기 리스트를 보여줍니다.'''
 
-        list = self._get_list()
-        ret = []
-        for item in list:
-            print(item.id, item.content, item.checked)
-            # ingdr = ingredients.query.filter(ingredients.id == item.id).first()
-            # item_name = ingdr.name
+        # session['email'] = "admin@gokuma.com"
+        # session['email'] = None
+
+        if session.get('email'):
+            email = session['email']
+            user = User.query.filter(User.email == email).first()
+            items = ShoppingList.query.filter(
+                ShoppingList.user_id == user.id).all()
+        else:
+            result = {"result_msg": "No User"}
+            return result, 400
+
+        result = {"result_msg": "success", "data": []}
+        for item in items:
             ret_item = {
                 "id": item.id,
-                # "name": item_name,
                 "content": item.content,
                 "checked": item.checked
             }
-            ret.append(ret_item)
-        return jsonify(ret)
+            result['data'].append(ret_item)
+        return jsonify(result)
 
-    # 데이터 생성
+
+@shopping_api.route('/')
+@shopping_api.response(200, 'Success', response_success_shopping_item_model)
+@shopping_api.response(400, 'Fail', response_fail_model)
+class shoppingLists(Resource):
+
+    def _get_items(self):
+        # session['email'] = "admin@gokuma.com"
+        # session['email'] = None
+
+        if session.get('email'):
+            email = session['email']
+            user = User.query.filter(User.email == email).first()
+            items = ShoppingList.query.filter(
+                ShoppingList.user_id == user.id).all()
+            result = {"result_msg": "success", "data": []}
+            return result, items, user
+        else:
+            result = {"result_msg": "No User"}
+            return result, None, None
+
+    @shopping_api.expect(shopping_item_fields)
     def post(self):
-        # data = request.get_json()
-        list = self._get_list()
+        '''새로운 항목을 추가합니다'''
+
+        result, items, user = self._get_items()
+
+        if user is None:
+            return result, 400
+
+        data = request.get_json()
+        content = data['content']
+        checked = data['checked']
+
+        # 이미 리스트에 존재하는지 확인
         exist = False
-        try:
-            data = {'user_id': '1', 'content': '감자수제비', 'checked': False}
-            print(data['user_id'])
-            for item in list:
-                print(item.id, item.content, item.checked)
-                print(item.content, data['content'],
-                      item.content == data['content'], item.content == data['content'])
-                if item.content == data['content']:
-                    exist = True
-                    break
+        for item in items:
+            if item.content == data['content']:
+                exist = True
+                break
 
-            print("exist:", exist)
-            if exist == False:
-                new_item = ShoppingList(
-                    data['user_id'], data['content'], data['checked'])
-                db.session.add(new_item)
-                db.session.commit()
-                result = data, 200
+        # 리스트에 없을 경우 추가
+        print("exist:", exist)
+        if exist == False:
+            new_item = ShoppingList(
+                user.id, content, checked)
+            db.session.add(new_item)
+            db.session.commit()
+            ret_item = {
+                "id": new_item.id,
+                "content": content,
+                "checked": checked
+            }
+            result['data'].append(ret_item)
+            return result, 200
+        else:
+            result = {"result_msg": "Already Exists"}
+            return result, 400
 
-            else:
-                result = {
-                    'result_msg': f'오류발생 ::: 이미 존재하는 상품입니다.'
-                }, 400
-
-        except Exception as e:
-            result = {
-                'result_msg': f'오류발생 ::: {e}'
-            }, 400
-
-        return result
-
-    # 데이터 삭제
+    @shopping_api.expect(shopping_item_id_fields)
     def delete(self):
-        list = self._get_list()
+        '''해당 항목을 삭제합니다'''
+        result, items, user = self._get_items()
+
+        if user is None:
+            return result, 400
+
+        data = request.get_json()
+        content = data['content']
+        checked = data['checked']
+        id = data['id']
+
+        # 이미 리스트에 존재하는지 확인
         exist = False
-        try:
-            data = {'user_id': '1', 'content': '감자수제비', 'checked': False}
-            print(data['user_id'])
-            for item in list:
-                if item.content == data['content']:
-                    exist = True
-                    db.session.delete(item)
-                    db.session.commit()
-                    break
+        for item in items:
+            if item.content == content:
+                exist = True
+                break
 
-            print("exist:", exist)
-            if exist == False:
-                result = {
-                    'result_msg': f'오류발생 ::: 존재하지 않는 상품입니다.'
-                }, 400
-            else:
-                result = data, 200
+        # 존재할 경우 삭제
+        if exist == True:
+            del_item = ShoppingList.query.filter(
+                ShoppingList.content == content).first()
+            db.session.delete(del_item)
+            db.session.commit()
+            ret_item = {
+                "id": del_item.id,
+                "content": content,
+                "checked": checked
+            }
+            result['data'].append(ret_item)
+        # 존재하지 않을 경우 에러
+        else:
+            result = {"result_msg": "Do not Exists"}
+            return result, 400
 
-        except Exception as e:
-            result = {
-                'result_msg': f'오류발생 ::: {e}'
-            }, 400
+        return result
+
+    @shopping_api.expect(shopping_item_id_fields)
+    def put(self):
+        '''
+        해당 항목의 내용과 체크사항을 수정합니다
+
+        Parameter:
+        - content: 수정한 content 내용
+        - checked: 수정한 checked 상태
+        '''
+
+        result, items, user = self._get_items()
+
+        if user is None:
+            return result, 400
+
+        data = request.get_json()
+        content = data['content']
+        checked = data['checked']
+        id = data['id']
+
+        # 이미 리스트에 존재하는지 확인
+        exist = False
+        for item in items:
+            if item.id == id:
+                exist = True
+                break
+
+        # 존재할 경우 새로 받은 content로 내용 변경
+        if exist == True:
+            update_item = ShoppingList.query.filter(
+                ShoppingList.id == id).first()
+            update_item.content = content
+            update_item.checked = checked
+            db.session.commit()
+            ret_item = {
+                "id": update_item.id,
+                "content": content,
+                "checked": checked
+            }
+            result['data'].append(ret_item)
+
+        # 존재하지 않을 경우 에러
+        else:
+            result = {"result_msg": "Do not Exists"}
+            return result, 400
 
         return result
 
 
-@shopping_api.route('/<id>')
+@shopping_api.route('/<id>', doc=False)
 class shoppingItem(Resource):
 
     def get(self, id):

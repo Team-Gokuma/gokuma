@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { loginState, modalState } from "../../store/atom";
+import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
+import { loginState, modalState, mainRecipesState, relatedRecipesState } from "../../store/atom";
 import { ImageFileUpload } from "../common/ImageFileUpload";
 import { Button } from "../common/Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
 import { AlertLoginModal } from "../common/AlertLoginModal";
+import { recognition, recommendRecipe, relatedRecipe } from "../../api/receipe";
 
 const regTag = /^[가-힣]+$/;
 
@@ -18,12 +19,40 @@ export const Recommend = ({ page }) => {
   const [onIcon, setOnIcon] = useState(false);
   const [tags, setTags] = useState([]);
 
-  const onModal = useRecoilValue(modalState);
-  const setOnModal = useSetRecoilState(modalState);
-  // const login = useRecoilValue(loginState);
-  const login = false;
+  const login = useRecoilValue(loginState);
+  const [onModal, setOnModal] = useRecoilState(modalState);
+  const [mainRecipe, setMainRecipe] = useRecoilState(mainRecipesState);
+  const setRelatedRecipe = useSetRecoilState(relatedRecipesState);
 
-  // console.log(tags, inputValue);
+  const requestRecognition = async (img) => {
+    const response = await recognition(img);
+    if (response.status === 200) {
+      setAddToggle(false);
+      setTags((cur) => {
+        const newArr = [...cur];
+        response.data.data.forEach((item) => {
+          newArr.push(item.content);
+        });
+        return newArr;
+      });
+    } else {
+      alert("인식에 실패하였습니다.");
+    }
+  };
+
+  const getRecommendation = async (ingredients) => {
+    const response = await recommendRecipe(ingredients);
+    if (response.status === 200) {
+      setMainRecipe(response.data.data);
+    }
+  };
+
+  const getRelatedRecipes = async (recipes) => {
+    const response = await relatedRecipe(recipes);
+    if (response.status === 200) {
+      setRelatedRecipe(response.data.data);
+    }
+  };
 
   const handleToggle = () => {
     setAddToggle(false);
@@ -69,7 +98,12 @@ export const Recommend = ({ page }) => {
   }, [tags]);
 
   const handleClick = () => {
-    page && !login && setOnModal(true);
+    page && tags.length > 0 && !login && setOnModal(true);
+    async function getData() {
+      await getRecommendation(tags);
+      await getRelatedRecipes([mainRecipe[0]]);
+    }
+    getData();
   };
 
   return (
@@ -87,7 +121,7 @@ export const Recommend = ({ page }) => {
         ) : (
           <h2>사진으로 추가하기</h2>
         )}
-        <ImageFileUpload width={"600px"} height={"400PX"} />
+        <ImageFileUpload width={"600px"} height={"400PX"} requestRecognition={requestRecognition} />
         <div className="btnContainer">
           <div className="btnGroup">
             {AddToggle ? (
@@ -115,11 +149,11 @@ export const Recommend = ({ page }) => {
             )}
           </div>
           {page ? (
-            <Link to={login && "/result"} style={{ textDecoration: "none" }} onClick={handleClick}>
+            <Link to={tags.length > 0 && login && "/result"} style={{ textDecoration: "none" }} onClick={handleClick}>
               <Button text={"레시피 찾기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
             </Link>
           ) : (
-            <span style={{ textDecoration: "none" }} onClick={handleClick}>
+            <span style={{ textDecoration: "none" }}>
               <Button text={"식재료 추가하기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
             </span>
           )}

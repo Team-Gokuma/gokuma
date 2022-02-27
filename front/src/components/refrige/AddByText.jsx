@@ -2,11 +2,18 @@ import styled from "styled-components";
 import { useState } from "react";
 import { Button } from "../common/Button";
 import { ReactComponent as IconCloseCircle } from "../../asset/icon/closeCircle.svg";
+import { addIngredientByText } from "../../api/refrige";
 
 // 텍스트로 입력해서 재료 추가 모달창
 export const AddByText = ({ handleAddText, AddIngredientByText }) => {
   const [textValue, setTextValue] = useState("");
   const [selectValue, setSelectValue] = useState("");
+
+  async function addByText() {
+    const data = { content: textValue, category: Number(selectValue) };
+    const response = await addIngredientByText(data);
+    console.log(response);
+  }
 
   return (
     <div className="ModalContainer">
@@ -19,6 +26,7 @@ export const AddByText = ({ handleAddText, AddIngredientByText }) => {
               onSubmit={(e) => {
                 e.preventDefault();
                 AddIngredientByText(textValue, selectValue);
+                addByText();
                 setSelectValue("");
                 setTextValue("");
               }}>

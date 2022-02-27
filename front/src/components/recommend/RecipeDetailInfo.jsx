@@ -5,16 +5,16 @@ import { ReactComponent as IconFilledFavorite } from "../../asset/icon/favoriteB
 import { ReactComponent as IconStar } from "../../asset/icon/starBlack.svg";
 import { ReactComponent as IconThumbUp } from "../../asset/icon/thumbUp.svg";
 
-export const RecipeDetailInfo = ({ dummydata }) => {
+export const RecipeDetailInfo = ({ data }) => {
   const [level, setLevel] = useState([]);
-  const [like, setLike] = useState(dummydata.isLike);
-  const [bookmark, setBookmark] = useState(dummydata.bookmark);
+  const [like, setLike] = useState(data.isLike);
+  const [bookmark, setBookmark] = useState(data.bookmark);
 
   useEffect(() => {
     setLevel(() => {
       const newLevel = [];
-      for (let i = 0; i < dummydata.level; i++) {
-        newLevel.push(<IconStar fill={"#F7941E"} />);
+      for (let i = 0; i < data.level; i++) {
+        newLevel.push(<IconStar key={"star" + i} fill={"#F7941E"} />);
       }
       return newLevel;
     });
@@ -35,23 +35,29 @@ export const RecipeDetailInfo = ({ dummydata }) => {
         ) : (
           <IconOutlineFavorite className="bookmarkIcon" onClick={handleBookmark} />
         )}
-        <img src={`${process.env.PUBLIC_URL}/img/recipeExample.jpeg`} alt="food" />
+        <img src={data.img} alt="food" />
       </div>
       <div className="detailInfoBox">
-        <h3>{dummydata.name}</h3>
+        <h3>{data.name}</h3>
+        <p className="summary">
+          <span>{data.summary}</span>
+        </p>
         <LikeBox onClick={handleLike} like={like}>
           <IconThumbUp className="thumbUpIcon" />
-          <span>{dummydata.like}</span>
+          <span>{data.like}</span>
         </LikeBox>
         <p className="level">
-          난이도 <div className="stars">{level}</div>
+          난이도 <span className="stars">{level}</span>
+        </p>
+        <p className="calories">
+          칼로리 <span className="calorieContent">{data.calorie}kcal</span>
         </p>
         <p className="servings">
-          기준 <span className="servingsContent">{dummydata.servings}</span>
+          기준 <span className="servingsContent">{data.servings}인분</span>
         </p>
         <div className="ingredient">
           <p>재료</p>
-          {dummydata.ingredient.map((item, idx) => {
+          {data.ingredient.map((item, idx) => {
             return (
               <span key={"detailIngredient" + idx}>
                 <IngredientName inRefrige={item.inRefrige}>{item.name}</IngredientName>

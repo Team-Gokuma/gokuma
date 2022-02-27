@@ -28,7 +28,7 @@ const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   border: ${(props) => (props.border ? props.border : "none")};
-  border-radius: ${(props) => (props.round ? `999px` : `8px`)};
+  border-radius: ${(props) => (props.round ? `999px` : `${8 / 16}rem`)};
   background-color: ${(props) => props.theme.color[props.bgcolor]};
   color: ${(props) => props.theme.color[props.txtcolor]};
   ${(props) => props.txtstyle && props.theme.font[props.txtstyle]}
