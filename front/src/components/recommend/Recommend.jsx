@@ -216,12 +216,10 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
 
 const RecommendContainer = styled.div`
   width: ${740 / 16}rem;
-  border: 1px solid ${({ theme }) => theme.color.white};
   padding: 60px;
   margin: 0 auto;
   text-align: center;
   border-radius: 16px;
-  background-color: ${({ theme }) => theme.color.white};
 
   & h2 {
     ${({ theme }) => theme.font.large};
