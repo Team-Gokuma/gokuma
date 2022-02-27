@@ -1,44 +1,66 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ReactComponent as IconOutlineFavorite } from "../../asset/icon/favoriteEmpty.svg";
 import { ReactComponent as IconFilledFavorite } from "../../asset/icon/favoriteBlack.svg";
-import { ReactComponent as IconStar } from "../../asset/icon/starBlack.svg";
 import { ReactComponent as IconThumbUp } from "../../asset/icon/thumbUp.svg";
+import { setbookmark } from "../../api/bookmark";
 
 export const RecipeDetailInfo = ({ data }) => {
-  const [level, setLevel] = useState([]);
   const [like, setLike] = useState(data.isLike);
   const [bookmark, setBookmark] = useState(data.bookmark);
+  const level = ["초보환영", "보통", "어려움"];
+  const ingredient = data.ingredient.sort((a, b) => b.inRefrige - a.inRefrige);
+  const login = window.sessionStorage.getItem("isLogin");
 
-  useEffect(() => {
-    setLevel(() => {
-      const newLevel = [];
-      for (let i = 0; i < data.level; i++) {
-        newLevel.push(<IconStar key={"star" + i} fill={"#F7941E"} />);
-      }
-      return newLevel;
-    });
-  }, []);
+  const requestSetBookmark = async (id) => {
+    const response = await setbookmark(id);
+    if (response.status === 200) {
+      return response.data.data;
+    }
+  };
 
-  function handleLike() {
+  const handleLike = () => {
+    if (!login) {
+      alert("로그인 후 이용이 가능합니다!");
+      return;
+    }
     like ? setLike(false) : setLike(true);
-  }
+  };
 
-  function handleBookmark() {
+  const handleBookmark = () => {
+    if (!login) {
+      alert("로그인 후 이용이 가능합니다!");
+      return;
+    }
     bookmark ? setBookmark(false) : setBookmark(true);
-  }
+    requestSetBookmark(data.id);
+  };
   return (
     <div className="recipeInfo">
       <div className="detailImgBox">
-        {bookmark ? (
-          <IconFilledFavorite className="bookmarkIcon" onClick={handleBookmark} />
-        ) : (
-          <IconOutlineFavorite className="bookmarkIcon" onClick={handleBookmark} />
-        )}
         <img src={data.img} alt="food" />
       </div>
       <div className="detailInfoBox">
-        <h3>{data.name}</h3>
+        <h3>
+          {data.name}
+          {bookmark ? (
+            <IconFilledFavorite
+              className="bookmarkIcon"
+              onClick={handleBookmark}
+              fill={"#5AB66A"}
+              width={"1.7rem"}
+              height={"1.7rem"}
+            />
+          ) : (
+            <IconOutlineFavorite
+              className="bookmarkIcon"
+              onClick={handleBookmark}
+              fill={"#3a3a3a"}
+              width={"1.7rem"}
+              height={"1.7rem"}
+            />
+          )}
+        </h3>
         <p className="summary">
           <span>{data.summary}</span>
         </p>
@@ -47,7 +69,7 @@ export const RecipeDetailInfo = ({ data }) => {
           <span>{data.like}</span>
         </LikeBox>
         <p className="level">
-          난이도 <span className="stars">{level}</span>
+          난이도 <span className="stars">{level[data.level - 1]}</span>
         </p>
         <p className="calories">
           칼로리 <span className="calorieContent">{data.calorie}kcal</span>
@@ -57,7 +79,7 @@ export const RecipeDetailInfo = ({ data }) => {
         </p>
         <div className="ingredient">
           <p>재료</p>
-          {data.ingredient.map((item, idx) => {
+          {ingredient.map((item, idx) => {
             return (
               <span key={"detailIngredient" + idx}>
                 <IngredientName inRefrige={item.inRefrige}>{item.name}</IngredientName>

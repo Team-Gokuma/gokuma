@@ -5,11 +5,12 @@ import { ReactComponent as IconOutlineFavorite } from "../../asset/icon/favorite
 import { ReactComponent as IconFilledFavorite } from "../../asset/icon/favoriteBlack.svg";
 
 export const Recipe = ({ width, height, text, extratext, margin, image, isFavorite, recipeId }) => {
-  const [favorite, setFavorite] = useState(true);
+  // TO DO : 결과 리스트에서도 즐겨찾기에 등록했는지 확인하게 하기
+  // const [favorite, setFavorite] = useState(true);
 
   //TO DO : 즐겨찾기 기능
   useEffect(() => {
-    setFavorite(isFavorite);
+    // setFavorite(isFavorite);
   }, []);
 
   return (

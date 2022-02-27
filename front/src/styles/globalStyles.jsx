@@ -7,7 +7,17 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
     word-break: keep-all;
+    -ms-overflow-style: none;
     font-size: 16px;
+  }
+  ::-webkit-scrollbar {
+  display: none;
+}
+  @font-face {
+  font-family: 'BMHANNAPro';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
   }
   @font-face {
     font-family: 'MinSans-Bold';

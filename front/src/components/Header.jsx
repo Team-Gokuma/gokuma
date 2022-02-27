@@ -1,20 +1,25 @@
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CommonNav } from "./";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { logout } from "../api/user";
-import { loginState } from "../store/atom";
+import { mainRecipesState, relatedRecipesState } from "../store/atom";
 import { ReactComponent as Logo } from "../asset/icon/header/logo.svg";
 import { ReactComponent as Profile } from "../asset/icon/profile.svg";
 import Button from "../components/common/Button";
 
 const Header = () => {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useRecoilState(loginState);
+  const isLogin = window.sessionStorage.getItem("isLogin");
+  const mainRecipes = useSetRecoilState(mainRecipesState);
+  const relatedRecipes = useSetRecoilState(relatedRecipesState);
   const handleLogout = async () => {
     await logout().then((res) => {
       if (res.status === 200) {
-        setIsLogin(false);
+        window.sessionStorage.clear();
+        mainRecipes([]);
+        relatedRecipes([]);
+        // setIsLogin(false);
         navigate("/");
       } else {
         alert("error");
@@ -23,9 +28,11 @@ const Header = () => {
     });
   };
 
+  const name = window.sessionStorage.getItem("name");
+
   const LOGINNAVS = [
     { id: 0, navText: "레시피 추천받기", navigate: () => navigate("recommend") },
-    { id: 1, navText: "고쿠마 냉장고", navigate: () => navigate("refrige") },
+    { id: 1, navText: "나의 냉장고", navigate: () => navigate("refrige") },
     { id: 2, navText: "즐겨찾는 레시피", navigate: () => navigate("bookmark") },
     { id: 3, navText: "장보기 리스트", navigate: () => navigate("shoppinglist") },
   ];
@@ -35,16 +42,16 @@ const Header = () => {
       <StWrapper>
         <LogoWrapper onClick={() => navigate("/")}>
           <Img />
-          <div>고쿠마 레시피</div>
+          <div className="logo">어쩔냉장고</div>
         </LogoWrapper>
         <CommonNav navList={LOGINNAVS} />
         {isLogin ? (
           <ProfileWrapper>
-            <div onClick={handleLogout} style={{marginBottom:"15px"}}>
+            <div onClick={handleLogout} style={{ marginBottom: "15px" }}>
               <Button width="104px" height="45px" text="Logout" bgcolor="yellow" txtcolor="black" round="round" />
             </div>
             <Link to="/mypage" style={{ textDecoration: "none", color: "black" }}>
-              <div style={{ float: "left", marginTop: "14px", marginRight: "10px" }}>엘리스님</div>
+              <div style={{ float: "left", marginTop: "14px", marginRight: "10px" }}>{name}님</div>
               <Profile />
             </Link>
           </ProfileWrapper>
@@ -70,6 +77,11 @@ const LogoWrapper = styled.h1`
   cursor: pointer;
   ${({ theme }) => theme.font.xlarge};
   ${({ theme }) => theme.font.bold};
+  & .logo {
+    ${({ theme }) => theme.font.logo};
+    font-size: 26px;
+    letter-spacing: 3px;
+  }
 `;
 
 const StWrapper = styled.header`

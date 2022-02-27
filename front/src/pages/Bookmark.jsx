@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Recipe } from "../components/common/Recipe";
@@ -6,41 +6,37 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { loginState, modalState } from "../store/atom";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { Button } from "../components/common/Button";
-
-const dummydata = [
-  { name: "달걀볶음밥", favorite: true },
-  { name: "고쿠마덮밥", favorite: false },
-  { name: "치킨", favorite: false },
-  { name: "피자", favorite: true },
-  { name: "달걀후라이", favorite: true },
-  { name: "짜장면", favorite: true },
-  { name: "달걀후라이", favorite: false },
-  { name: "달걀후라이", favorite: false },
-  { name: "달걀후라이", favorite: false },
-  { name: "달걀후라이", favorite: false },
-  { name: "달걀후라이", favorite: false },
-  { name: "달걀후라이", favorite: false },
-  { name: "달걀후라이", favorite: false },
-  { name: "달걀후라이", favorite: false },
-];
+import { getbookmark } from "../api/bookmark";
 
 const Bookmark = () => {
+  const [data, setData] = useState([]);
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
-  const login = useRecoilValue(loginState);
+  // const login = useRecoilValue(loginState);
+  const login = window.sessionStorage.getItem("isLogin");
 
   useEffect(() => {
     !login && setModal(true);
+    login && getBookmark();
   }, []);
+
+  const getBookmark = async () => {
+    const response = await getbookmark();
+    if (response.status === 200) {
+      setData(response.data.data);
+    } else {
+      alert("즐겨찾는 레시피 불러오기를 실패했습니다.");
+    }
+  };
 
   return (
     <section>
-      {onModal && <AlertLoginModal page={"/bookmark"} text={"로그인이 필요한 기능입니다!"} btnText={"확인"} />}
+      {onModal && <AlertLoginModal text={"로그인이 필요한 기능입니다!"} btnText={"확인"} />}
       <BookmarkContainer>
         <h3>즐겨찾는 레시피</h3>
         <div className="bookmarkList">
-          {dummydata.length > 0 ? (
-            dummydata.map((item, idx) => {
+          {data.length > 0 ? (
+            data.map((item, idx) => {
               return (
                 <Recipe
                   key={"recipe" + idx}
@@ -48,9 +44,10 @@ const Bookmark = () => {
                   width={`${240 / 16}rem`}
                   height={`${240 / 16}rem`}
                   text={item.name}
+                  image={item.img}
                   margin={"1rem 1.8rem"}
-                  favorite={item.favorite}
-                  recipeId={idx} // TO DO: API 연결할때 변경
+                  favorite={true}
+                  recipeId={item.id} // TO DO: API 연결할때 변경
                 />
               );
             })

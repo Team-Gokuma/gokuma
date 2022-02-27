@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as IconDelete } from "../../asset/icon/delete.svg";
 import { ReactComponent as IconBasket } from "../../asset/icon/basket.svg";
@@ -6,54 +6,96 @@ import { ReactComponent as IconAdd } from "../../asset/icon/add.svg";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconCloseCircle } from "../../asset/icon/closeCircle.svg";
 import { ReactComponent as IconEdit } from "../../asset/icon/edit.svg";
+import { getShoppinglist, postShoppinglist, putShoppinglist, deleteShoppinglist } from "../../api/shoppinglist";
 
 export const ShopingContent = () => {
   const [edit, setEdit] = useState("");
   const [editValue, setEditValue] = useState("");
   const [add, setAdd] = useState(false);
   const [addValue, setAddValue] = useState("");
-  const [shoppintlist, setShoppinglist] = useState([
-    "이마트에 가서 필요한거 둘러보고 사오기 (꼭 사와야할 물건은 사와야함)",
-    "장보기",
-  ]);
+  const [shoppintlist, setShoppinglist] = useState([]);
 
-  function handleDetelelist(idx) {
-    setShoppinglist((cur) => {
-      const newArr = [...cur];
-      newArr.splice(idx, 1);
-      return newArr;
-    });
-  }
+  const requestGet = async () => {
+    const response = await getShoppinglist();
+    if (response.status === 200) {
+      setShoppinglist(response.data.data);
+    } else {
+      alert("장보기 리스트 불러오기를 실패했습니다.");
+    }
+  };
 
-  function handleEditlist(item, idx) {
+  const requestPost = async (content, checked) => {
+    const response = await postShoppinglist(content, checked);
+    if (response.status === 200) {
+      return response.data.data;
+    } else {
+      alert("장보기 리스트 추가를 실패했습니다.");
+    }
+  };
+
+  const requestPut = async (content, checked, id) => {
+    const response = await putShoppinglist(content, checked, id);
+    if (response.status === 200) {
+      return response.data.data;
+    } else {
+      alert("장보기 리스트 수정을 실패했습니다.");
+    }
+  };
+
+  const requestDelete = async (content, checked, id) => {
+    const response = await deleteShoppinglist(content, checked, id);
+    if (response.status === 200) {
+      return response.data.data;
+    } else {
+      alert("장보기 리스트 삭제를 실패했습니다.");
+    }
+  };
+
+  const handleDetelelist = async (content, checked, id) => {
+    await requestDelete(content, checked, id);
+    await requestGet();
+  };
+
+  const handleEditlist = (content, idx) => {
     setEdit(idx);
-    setEditValue(item);
-  }
+    setEditValue(content);
+  };
 
-  function handleEditSubmit(idx) {
-    setShoppinglist((cur) => {
-      const newArr = [...cur];
-      newArr[idx] = editValue;
-      return newArr;
-    });
+  const handleEditSubmit = (id, checked) => {
+    const editContent = async () => {
+      await requestPut(editValue, checked, id);
+      await requestGet();
+    };
+    editContent();
     setEdit("");
     setEditValue("");
-  }
+  };
 
-  function handleAddList() {
+  const handleAddList = () => {
     setAdd(true);
-  }
+  };
 
-  function handleAddContent() {
-    addValue !== "" &&
-      setShoppinglist((cur) => {
-        const newArr = [...cur];
-        newArr.push(addValue);
-        return newArr;
-      });
-    addValue !== "" && setAdd(false);
+  const handleAddContent = () => {
+    const addContent = async () => {
+      await requestPost(addValue, false);
+      await requestGet();
+    };
+    addValue !== "" && addContent() && setAdd(false);
     setAddValue("");
-  }
+  };
+
+  const handleCheckbox = (content, checked, id) => {
+    const changeValue = checked ? false : true;
+    const postChangeValue = async () => {
+      await requestPut(content, changeValue, id);
+      await requestGet();
+    };
+    postChangeValue();
+  };
+
+  useEffect(() => {
+    requestGet();
+  }, []);
 
   return (
     <ShoppingListContent>
@@ -62,12 +104,18 @@ export const ShopingContent = () => {
         <h3>장봐야할 재료</h3>
         <IconDelete className="deleteIcon" />
       </div>
-      <div>
+      <div className="shoppinglistBox">
         {shoppintlist.length > 0 &&
           shoppintlist.map((item, idx) => {
             return (
               <div key={"shoppinglist" + idx} className="listcontent">
-                <input type={"checkbox"} value={idx} />
+                <input
+                  type={"checkbox"}
+                  checked={item.checked}
+                  onChange={() => {
+                    handleCheckbox(item.content, item.checked, item.id);
+                  }}
+                />
                 {String(edit) === String(idx) ? (
                   <form>
                     <textarea
@@ -80,7 +128,7 @@ export const ShopingContent = () => {
                     />
                   </form>
                 ) : (
-                  <span>{item}</span>
+                  <Content checked={item.checked}>{item.content}</Content>
                 )}
                 {String(edit) === String(idx) ? (
                   <button
@@ -88,7 +136,7 @@ export const ShopingContent = () => {
                     className="editBtn"
                     onClick={(e) => {
                       e.preventDefault();
-                      handleEditSubmit(idx);
+                      handleEditSubmit(item.id, item.checked);
                     }}>
                     수정
                   </button>
@@ -96,14 +144,14 @@ export const ShopingContent = () => {
                   <IconEdit
                     className="ShoppingListIcon"
                     onClick={() => {
-                      handleEditlist(item, idx);
+                      handleEditlist(item.content, idx);
                     }}
                   />
                 )}
                 <IconClose
                   className="ShoppingListIcon"
                   onClick={() => {
-                    handleDetelelist(idx);
+                    handleDetelelist(item.content, item.checked, item.id);
                   }}
                 />
               </div>
@@ -148,13 +196,19 @@ export const ShopingContent = () => {
 };
 const ShoppingListContent = styled.div`
   width: 50%;
+  height: 100%;
+
+  & .shoppinglistBox {
+    height: 88.55%;
+    overflow-y: scroll;
+  }
 
   & .listcontent {
     border-bottom: 1px solid ${({ theme }) => theme.color.darkgray};
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 1rem ${24 / 16}rem;
+    padding: 0.7rem ${24 / 16}rem;
 
     & input {
       margin-right: 1rem;
@@ -228,4 +282,11 @@ const ShoppingListContent = styled.div`
       margin-left: 4px;
     }
   }
+`;
+
+const Content = styled.span`
+  width: 100%;
+  line-height: 1.3;
+  text-decoration: ${(props) => (props.checked ? "line-through" : "none")};
+  color: ${(props) => (props.checked ? props.theme.color.lightblack : "none")};
 `;

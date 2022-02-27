@@ -1,22 +1,34 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { modalState } from "../store/atom";
 import { RefrigeIngredient } from "../components/shoppinglist/RefrigeIngredient";
 import { ShopingContent } from "../components/shoppinglist/ShopingContent";
+import { AlertLoginModal } from "../components/common/AlertLoginModal";
+import { ingredientList } from "../api/refrige";
 
 const ShoppingList = () => {
-  const [ingredient, setIngredient] = useState([
-    { name: "사과", ingredient: 1 },
-    { name: "팽이버섯", ingredient: 2 },
-    { name: "살치살", ingredient: 3 },
-    { name: "연어", ingredient: 4 },
-    { name: "우유", ingredient: 5 },
-    { name: "고추장", ingredient: 6 },
-    { name: "와인", ingredient: 7 },
-  ]);
+  const [ingredient, setIngredient] = useState([]);
+  const login = window.sessionStorage.getItem("isLogin");
+  const onModal = useRecoilValue(modalState);
+  const setModal = useSetRecoilState(modalState);
+
+  const requestIngredient = async () => {
+    const response = await ingredientList();
+    if (response.status === 200) {
+      setIngredient(response.data.data);
+    }
+  };
+
+  useEffect(() => {
+    requestIngredient();
+    !login && setModal(true);
+  }, []);
 
   return (
     <>
       <ShoppingListContainer>
+        {onModal && <AlertLoginModal text={"로그인이 필요한 기능입니다!"} btnText={"확인"} />}
         <div>
           <h2>장보기 리스트</h2>
           <ShoppingListBox>

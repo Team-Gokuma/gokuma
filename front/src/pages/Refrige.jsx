@@ -9,9 +9,9 @@ import { loginState, modalState } from "../store/atom";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { AddByText } from "../components/refrige/AddByText";
 import { AddByImage } from "../components/refrige/AddByImage";
-import { ingredientList } from "../api/refrige";
+import { ingredientList, addIngredientByText, deleteAllIngredient, deleteIngredient } from "../api/refrige";
 
-const category = ["전체 식재료", "과일", "채소", "육류", "어류", "유제품", "소스류", "기타"];
+const category = ["전체 식재료", "과일", "채소", "육류", "해산물", "유제품", "소스류", "기타"];
 
 const Refrige = () => {
   const [addByImage, setAddByImage] = useState(false);
@@ -19,67 +19,116 @@ const Refrige = () => {
   const [isClicked, setIsClicked] = useState("전체 식재료");
   const [ingredient, setIngredient] = useState([]);
 
-  useEffect(() => {
-    async function getIngredient() {
-      const response = await ingredientList();
-      setIngredient(response.data.data);
-    }
-    getIngredient();
-  }, []);
-
-  function handleClickCategory(item) {
-    setIsClicked(item);
-  }
-
-  function removeIngredient(idx) {
-    setIngredient((cur) => {
-      const newArr = [...cur];
-      newArr.splice(idx, 1);
-      return newArr;
-    });
-  }
-
-  function handleAddText() {
-    setAddByText(false);
-  }
-
-  function handleAddImage() {
-    setAddByImage(false);
-  }
-
-  function AddIngredientByText(textValue, category) {
-    setIngredient((cur) => {
-      const newArr = [...cur];
-      newArr.push({ name: textValue, ingredient: Number(category) });
-      return newArr;
-    });
-  }
-
+  // const login = useRecoilValue(loginState);
+  const login = window.sessionStorage.getItem("isLogin");
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
-  const login = useRecoilValue(loginState);
+
+  const getIngredient = async () => {
+    const response = await ingredientList();
+    if (response && response.status === 200) {
+      setIngredient(response.data.data);
+    } else {
+      alert("냉장고 리스트 불러오기를 실패했습니다.");
+    }
+  };
+
+  const addtInRefrigeByText = async (textValue, category) => {
+    const response = await addIngredientByText(textValue, Number(category));
+    if (response.status === 200) {
+      alert("재료를 냉장고에 추가했습니다!");
+    } else {
+      alert("텍스트로 재료 추가를 실패했습니다.");
+    }
+  };
+
+  const deleteAllIngredientInRefrige = async () => {
+    const response = await deleteAllIngredient();
+    if (response.status === 200) {
+      alert("재료가 전부 삭제되었습니다.");
+    } else {
+      alert("재료 전체 삭제를 실패하였습니다.");
+    }
+  };
+
+  const deleteIngredientInRefrige = async (id) => {
+    const response = await deleteIngredient(id);
+    if (response.status === 200) {
+      alert("재료가 삭제되었습니다!");
+    } else {
+      alert("재료 삭제를 실패했습니다.");
+    }
+  };
 
   useEffect(() => {
+    const getlist = async () => {
+      await getIngredient();
+    };
+    getlist();
+
     !login && setModal(true);
   }, []);
 
+  const addIngredientText = (textValue, category) => {
+    const addAndGetList = async () => {
+      await addtInRefrigeByText(textValue, category);
+      await getIngredient();
+    };
+    addAndGetList();
+  };
+
+  const removeAllIngredient = () => {
+    if (!login) {
+      alert("로그인 후 이용이 가능합니다!");
+      return;
+    }
+    const inputValue = window.confirm("재료를 전체 삭제 하시겠습니까?");
+    const deleteall = async () => {
+      await deleteAllIngredientInRefrige();
+      await getIngredient();
+    };
+    inputValue && deleteall();
+  };
+
+  const removeIngredient = (id) => {
+    const deleteIngredient = async () => {
+      await deleteIngredientInRefrige(id);
+      await getIngredient();
+    };
+    deleteIngredient();
+  };
+
+  const handleClickCategory = (item) => {
+    setIsClicked(item);
+  };
+
+  const handleAddText = () => {
+    setAddByText(false);
+  };
+
+  const handleAddImage = () => {
+    setAddByImage(false);
+  };
+
   return (
     <RefrigeContainer>
-      {onModal && <AlertLoginModal page={"/refrige"} text={"로그인이 필요한 기능입니다!"} btnText={"확인"} />}
-      {addByImage && <AddByImage handleAddImage={handleAddImage} />}
-      {addByText && <AddByText handleAddText={handleAddText} AddIngredientByText={AddIngredientByText} />}
+      {onModal && <AlertLoginModal text={"로그인이 필요한 기능입니다!"} btnText={"확인"} />}
+      {addByImage && <AddByImage handleAddImage={handleAddImage} getIngredient={getIngredient} />}
+      {addByText && <AddByText handleAddText={handleAddText} addIngredientByText={addIngredientText} />}
       <RefrigeTitle>
-        <h2>고쿠마 냉장고</h2>
+        <h2>나의 냉장고</h2>
         <div>
           <span
             onClick={() => {
-              setAddByImage(true);
+              login && setAddByImage(true);
+              !login && alert("로그인 후 이용이 가능합니다!");
             }}>
             <Button text={"사진으로 추가"} bgcolor={"orange"} txtcolor={"white"} />
           </span>
           <span
             onClick={() => {
-              setAddByText(true);
+              login && setAddByText(true);
+              !login && alert("로그인 후 이용이 가능합니다!");
             }}>
             <Button text={"직접 입력해서 추가"} bgcolor={"orange"} txtcolor={"white"} />
           </span>
@@ -103,12 +152,7 @@ const Refrige = () => {
         </div>
         <div className="refrigeboxes ingredientSide">
           <div className="deleteIconBox">
-            <IconDelete
-              className="deleteIcon"
-              onClick={() => {
-                setIngredient([]);
-              }}
-            />
+            <IconDelete className="deleteIcon" onClick={removeAllIngredient} />
           </div>
           {ingredient.length > 0 &&
             ingredient.map((item, idx) => {
@@ -120,7 +164,7 @@ const Refrige = () => {
                       <IconClose
                         className="refrigeIngredientCloseBtn"
                         onClick={() => {
-                          removeIngredient(idx);
+                          removeIngredient(item.id);
                         }}
                       />
                     </span>

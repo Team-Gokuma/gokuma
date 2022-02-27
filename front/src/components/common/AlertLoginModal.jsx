@@ -1,9 +1,66 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as IconCloseCircle } from "../../asset/icon/closeCircle.svg";
 import { useSetRecoilState } from "recoil";
 import { modalState } from "../../store/atom";
 import { Button } from "../../components/common/Button";
+
+export const AlertLoginModal = ({ text, page, btnText, handleClick }) => {
+  const setModal = useSetRecoilState(modalState);
+  const navigate = useNavigate();
+  return (
+    <>
+      <div className="ModalContainer">
+        <Background>
+          <ModalContainer>
+            <IconCloseCircle
+              className="modalCloseIcon"
+              onClick={() => {
+                setModal(false);
+              }}
+            />
+            <div className="content">
+              <h4>{text}</h4>
+              <p>
+                냉장고에 저장해둔 재료를 고려해서
+                <br /> 레시피를 추천받을 수 있어요!
+              </p>
+              <div className="loginModalBtn">
+                <Link to="/login" style={{ textDecoration: "none" }}>
+                  <Button
+                    text={"로그인 하러가기"}
+                    bgcolor={"orange"}
+                    txtcolor={"white"}
+                    round={true}
+                    width={"280px"}
+                    height={"48px"}
+                  />
+                </Link>
+                <br />
+                <span
+                  style={{ textDecoration: "none" }}
+                  onClick={() => {
+                    setModal(false);
+                    handleClick && handleClick();
+                    page && navigate(page);
+                  }}>
+                  <Button
+                    text={btnText}
+                    bgcolor={"lightgray"}
+                    txtcolor={"lightblack"}
+                    round={true}
+                    width={"280px"}
+                    height={"48px"}
+                  />
+                </span>
+              </div>
+            </div>
+          </ModalContainer>
+        </Background>
+      </div>
+    </>
+  );
+};
 
 const Background = styled.div`
   position: fixed;
@@ -50,58 +107,3 @@ const ModalContainer = styled.div`
     }
   }
 `;
-
-export const AlertLoginModal = ({ text, page, btnText }) => {
-  const setModal = useSetRecoilState(modalState);
-  return (
-    <>
-      <div className="ModalContainer">
-        <Background>
-          <ModalContainer>
-            <IconCloseCircle
-              className="modalCloseIcon"
-              onClick={() => {
-                setModal(false);
-              }}
-            />
-            <div className="content">
-              <h4>{text}</h4>
-              <p>
-                냉장고에 저장해둔 재료를 고려해서
-                <br /> 레시피를 추천받을 수 있어요!
-              </p>
-              <div className="loginModalBtn">
-                <Link to="/login" style={{ textDecoration: "none" }}>
-                  <Button
-                    text={"로그인 하러가기"}
-                    bgcolor={"orange"}
-                    txtcolor={"white"}
-                    round={true}
-                    width={"280px"}
-                    height={"48px"}
-                  />
-                </Link>
-                <br />
-                <Link
-                  to={page}
-                  style={{ textDecoration: "none" }}
-                  onClick={() => {
-                    setModal(false);
-                  }}>
-                  <Button
-                    text={btnText}
-                    bgcolor={"lightgray"}
-                    txtcolor={"lightblack"}
-                    round={true}
-                    width={"280px"}
-                    height={"48px"}
-                  />
-                </Link>
-              </div>
-            </div>
-          </ModalContainer>
-        </Background>
-      </div>
-    </>
-  );
-};
