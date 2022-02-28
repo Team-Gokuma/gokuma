@@ -14,7 +14,7 @@ const StyledInput = styled.input`
   padding-left:24px;
 `;
 
-const LoginInput = function ({ type, name, placeholder, onChange, value }) {
+export const LoginInput = function ({ type, name, placeholder, onChange, value }) {
   return <StyledInput type={type} name={name} placeholder={placeholder} onChange={onChange} value={value} />;
 };
 

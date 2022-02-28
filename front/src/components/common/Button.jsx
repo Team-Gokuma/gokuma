@@ -3,7 +3,7 @@ import styled from "styled-components";
 // 필수 props: text, bgcolor, txtcolor
 // 선택 props: width('원하는크기'), height('원하는크기'), round(boolean), txtstyle('bold'), padding('원하는크기')
 // <Button text={} bgcolor={} txtcolor={} width={} height={} round={} txtstyle={} padding={} border={} />
-export const Button = ({ width, height, text, round, bgcolor, txtcolor, txtstyle, padding, border, cursor }) => {
+export const Button = ({ width, height, text, round, bgcolor, txtcolor, txtstyle, padding, border, cursor, onClick }) => {
   return (
     <StyledButton
       width={width}
@@ -14,7 +14,8 @@ export const Button = ({ width, height, text, round, bgcolor, txtcolor, txtstyle
       txtstyle={txtstyle}
       padding={padding}
       border={border}
-      cursor={cursor}>
+      cursor={cursor}
+      onClick={onClick}>
       {text}
     </StyledButton>
   );
