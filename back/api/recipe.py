@@ -81,11 +81,15 @@ class Recommend(Resource):
             ingrds_num = 0
             recipe_ingrds = RecipeIngrd.query.filter(
                 RecipeIngrd.recipe_id == recipe).all()
-            # list 안의 dict 처리 방법
+
+            recipe_ingrds_new = {}
             for recipe_ingrd in recipe_ingrds:
-                for ingrd in ingrds:
-                    if recipe_ingrd.name == ingrd["content"]:
-                        ingrds_num += 1
+                recipe_ingrds_new[recipe_ingrd.name] = {
+                    "amount": recipe_ingrd.capacity}
+
+            for ingrd in ingrds:
+                if ingrd["content"] in recipe_ingrds_new:
+                    ingrds_num += 1
 
             result['data'].append(
                 {"img": item.img, "id": item.id, "name": item.name, "ingrdients": ingrds_num})
