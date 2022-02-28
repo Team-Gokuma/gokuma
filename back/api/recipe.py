@@ -78,6 +78,7 @@ class Recommend(Resource):
             ingrds_num = 0
             recipe_ingrds = RecipeIngrd.query.filter(
                 RecipeIngrd.recipe_id == recipe).all()
+            # list 안의 dict 처리 방법
             for recipe_ingrd in recipe_ingrds:
                 for ingrd in ingrds:
                     if recipe_ingrd.name == ingrd["content"]:
@@ -134,6 +135,7 @@ class Detail(Resource):
             item.like = 1
             db.session.commit()
 
+        # item이 SQLAlchemy Model type이다 보니까 for문으로 작성이 어려운 점이 있었다.
         result = {
             'id': item.id,
             'name': item.name,
@@ -159,7 +161,7 @@ class Detail(Resource):
 
             # 유저 좋아요 db에서 user 찾아와서 isLike 설정하기
             like = UserLike.query.filter(
-                (UserLike.user_id == user.id) & (Bookmark.recipe_id == id)).first()
+                (UserLike.user_id == user.id) & (UserLike.recipe_id == id)).first()
             if like is not None:
                 result['isLike'] = like.checked
 
