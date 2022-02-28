@@ -53,7 +53,6 @@ recipe_detail_fields = recipe_api.inherit('RecipeDetail', recipe_fields, {
     'bookmark': fields.Boolean(description='유저가 즐겨찾기했는지 여부', required=True, example=False),
     'ingredient': fields.List(fields.Nested(recipe_ingrd_fields)),
     'recipe': fields.List(fields.Nested(recipe_proc_fields))
-
 })
 
 img_fields = recipe_api.model('Image', {
@@ -71,14 +70,17 @@ response_fail_model = recipe_api.model('ResponseFail', {
 response_success_recipe_model = recipe_api.inherit(
     'RecipeSuccess', response_success_model, {
         'data': fields.List(fields.Nested(recipe_fields))
-    })
+    }
+)
 
 response_success_ingrds_model = recipe_api.inherit(
     'IngrdSuccess', response_success_model, {
         'data': fields.List(fields.Nested(ingrd_fields))
-    })
+    }
+)
 
 response_success_detail_model = recipe_api.inherit(
     'RecipeDetailSuccess', response_success_model, {
         'data': fields.List(fields.Nested(recipe_detail_fields))
-    })
+    }
+)
