@@ -18,14 +18,14 @@ const Mypage = () => {
             <p>
               닉네임 : {name}
               <span className="editNameBtn">
-                <Button text={"수정"} bgcolor={"white"} txtcolor={"orange"} border={"1px solid"} padding={"0 1rem"} />
+                <Button text="수정" bgcolor="white" txtcolor="orange" border="1px solid" padding="0 1rem" />
               </span>
             </p>
             <span className="userInfoBtn">
-              <Button text={"비밀번호 변경"} bgcolor={"orange"} txtcolor={"white"} round={true} />
+              <Button text="비밀번호 변경" bgcolor="orange" txtcolor="white" round={true} />
             </span>
             <span>
-              <Button text={"회원 탈퇴"} bgcolor={"orange"} txtcolor={"white"} round={true} padding={"0 2rem"} />
+              <Button text="회원 탈퇴" bgcolor="orange" txtcolor="white" round={true} padding="0 2rem" />
             </span>
           </div>
         </div>

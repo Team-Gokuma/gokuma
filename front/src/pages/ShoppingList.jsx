@@ -28,7 +28,7 @@ const ShoppingList = () => {
   return (
     <>
       <ShoppingListContainer>
-        {onModal && <AlertLoginModal text={"로그인이 필요한 기능입니다!"} btnText={"확인"} />}
+        {onModal && <AlertLoginModal text="로그인이 필요한 기능입니다!" btnText="확인" />}
         <div>
           <h2>장보기 리스트</h2>
           <ShoppingListBox>

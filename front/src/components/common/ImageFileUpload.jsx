@@ -60,7 +60,7 @@ export const ImageFileUpload = ({ width, height, requestRecognition }) => {
 };
 
 const FileUpload = styled.div`
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.color.white};
   width: ${(props) => props.width};
   margin: 0 auto;
   padding: 20px;

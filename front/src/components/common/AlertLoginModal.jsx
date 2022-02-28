@@ -28,12 +28,12 @@ export const AlertLoginModal = ({ text, page, btnText, handleClick }) => {
               <div className="loginModalBtn">
                 <Link to="/login" style={{ textDecoration: "none" }}>
                   <Button
-                    text={"로그인 하러가기"}
-                    bgcolor={"orange"}
-                    txtcolor={"white"}
+                    text="로그인 하러가기"
+                    bgcolor="orange"
+                    txtcolor="white"
                     round={true}
-                    width={"280px"}
-                    height={"48px"}
+                    width="280px"
+                    height="48px"
                   />
                 </Link>
                 <br />

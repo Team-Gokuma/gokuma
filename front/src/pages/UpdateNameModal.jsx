@@ -7,7 +7,6 @@ import { modalState } from "../store/atom";
 import { Button } from "../components/common/Button";
 import { nameupdate } from "../api/user";
 
-
 const UpdateNameModal = () => {
   const setModal = useSetRecoilState(modalState);
   const navigate = useNavigate();
@@ -15,18 +14,16 @@ const UpdateNameModal = () => {
 
   const handleChange = (e) => {
     setNewname(e.target.value);
-  }
+  };
 
   const handleClick = (e) => {
-      e.preventDefault();
-      if(newname){
-        requestUpdateName(newname);
-      }
-      else{
-        alert("이름을 입력해주세요!");
-      }
-      
-  }
+    e.preventDefault();
+    if (newname) {
+      requestUpdateName(newname);
+    } else {
+      alert("이름을 입력해주세요!");
+    }
+  };
 
   const requestUpdateName = async (newname) => {
     await nameupdate(newname).then((res) => {
@@ -55,13 +52,11 @@ const UpdateNameModal = () => {
                 <br /> 레시피를 추천받을 수 있어요!
               </p> */}
               <div className="loginModalBtn">
-                <UpadateInput 
-                type="text"
-                name="이름"
-                placeholder="수정할 이름을 작성해주세요"
-                onChange={handleChange}
-                >
-                </UpadateInput>
+                <UpadateInput
+                  type="text"
+                  name="이름"
+                  placeholder="수정할 이름을 작성해주세요"
+                  onChange={handleChange}></UpadateInput>
                 <br />
                 <span
                   style={{ textDecoration: "none" }}
@@ -69,14 +64,7 @@ const UpdateNameModal = () => {
                     setModal(false);
                     handleClick();
                   }}>
-                  <Button
-                    text={"수정하기"}
-                    bgcolor={"orange"}
-                    txtcolor={"white"}
-                    round={true}
-                    width={"280px"}
-                    height={"48px"}
-                  />
+                  <Button text="수정하기" bgcolor="orange" txtcolor="white" round={true} width="280px" height="48px" />
                 </span>
               </div>
             </div>
@@ -133,15 +121,15 @@ const ModalContainer = styled.div`
   }
 `;
 const UpadateInput = styled.input`
-    width: 319px;
-    outline: none;
-    box-sizing: border-box;
-    margin-bottom: 24px;
-    background-color: ${({ theme }) => theme.color.white};
-    color: black;
-    /* 크기 */
-    height: 48px;
-    border: 1px solid #BDBDBD;
-    border-radius: 4px;
-    padding-left:24px;
-`
+  width: 319px;
+  outline: none;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  background-color: ${({ theme }) => theme.color.white};
+  color: black;
+  /* 크기 */
+  height: 48px;
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  padding-left: 24px;
+`;
