@@ -34,7 +34,10 @@ class Recoginition(Resource):
             if item is not None:
                 result['data'].append(
                     {"content": item.name, "category": item.category})
-            # 재료 DB에 항목이 없을 경우 아예 인식 불가?
+            # 재료 DB에 항목이 없을 경우 기타 항목으로 넣기
+            else:
+                result['data'].append(
+                    {"content": ingrd, "category": 7})
 
         return result
 
