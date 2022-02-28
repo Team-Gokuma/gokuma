@@ -32,7 +32,7 @@ export const AddByText = ({ handleAddText, addIngredientByText }) => {
                 <option value="1">과일</option>
                 <option value="2">채소</option>
                 <option value="3">육류</option>
-                <option value="4">어류</option>
+                <option value="4">해산물</option>
                 <option value="5">유제품</option>
                 <option value="6">소스류</option>
                 <option value="7">기타</option>

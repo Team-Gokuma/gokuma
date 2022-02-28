@@ -15,6 +15,8 @@ export const ShopingContent = () => {
   const [addValue, setAddValue] = useState("");
   const [shoppintlist, setShoppinglist] = useState([]);
 
+  const login = window.sessionStorage.getItem("isLogin");
+
   const requestGet = async () => {
     const response = await getShoppinglist();
     if (response.status === 200) {
@@ -51,9 +53,27 @@ export const ShopingContent = () => {
     }
   };
 
-  const handleDetelelist = async (content, checked, id) => {
-    await requestDelete(content, checked, id);
-    await requestGet();
+  const handleAddList = () => {
+    login && setAdd(true);
+    !login && alert("로그인이 필요한 기능입니다!");
+  };
+
+  const handleAddContent = () => {
+    const addContent = async () => {
+      await requestPost(addValue, false);
+      await requestGet();
+    };
+    addValue !== "" && addContent() && setAdd(false);
+    setAddValue("");
+  };
+
+  const handleCheckbox = (content, checked, id) => {
+    const changeValue = checked ? false : true;
+    const postChangeValue = async () => {
+      await requestPut(content, changeValue, id);
+      await requestGet();
+    };
+    postChangeValue();
   };
 
   const handleEditlist = (content, idx) => {
@@ -71,21 +91,23 @@ export const ShopingContent = () => {
     setEditValue("");
   };
 
-  const handleAddList = () => {
-    setAdd(true);
+  const handleDetelelist = async (content, checked, id) => {
+    await requestDelete(content, checked, id);
+    await requestGet();
   };
 
-  const handleAddContent = () => {
-    const addContent = async () => {
-      await requestPost(addValue, false);
+  const handleAllDelete = () => {
+    const deleteAll = async () => {
+      for (let i = 0; i < shoppintlist.length; i++) {
+        await requestDelete(shoppintlist[i].content, shoppintlist[i].checked, shoppintlist[i].id);
+      }
       await requestGet();
     };
-    addValue !== "" && addContent() && setAdd(false);
-    setAddValue("");
+    deleteAll();
   };
 
   useEffect(() => {
-    requestGet();
+    login && requestGet();
   }, []);
 
   return (
@@ -93,14 +115,20 @@ export const ShopingContent = () => {
       <div className="titleBox">
         <IconBasket className="leftIcon" />
         <h3>장봐야할 재료</h3>
-        <IconDelete className="deleteIcon" />
+        <IconDelete className="deleteIcon" onClick={login && handleAllDelete} />
       </div>
       <div className="shoppinglistBox">
         {shoppintlist.length > 0 &&
           shoppintlist.map((item, idx) => {
             return (
               <div key={"shoppinglist" + idx} className="listcontent">
-                <input type={"checkbox"} value={item.id} checked={item.checked} />
+                <input
+                  type={"checkbox"}
+                  checked={item.checked}
+                  onChange={() => {
+                    handleCheckbox(item.content, item.checked, item.id);
+                  }}
+                />
                 {String(edit) === String(idx) ? (
                   <form>
                     <textarea
@@ -113,7 +141,7 @@ export const ShopingContent = () => {
                     />
                   </form>
                 ) : (
-                  <span>{item.content}</span>
+                  <Content checked={item.checked}>{item.content}</Content>
                 )}
                 {String(edit) === String(idx) ? (
                   <button
@@ -193,7 +221,7 @@ const ShoppingListContent = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 1rem ${24 / 16}rem;
+    padding: 0.8rem ${24 / 16}rem;
 
     & input {
       margin-right: 1rem;
@@ -267,4 +295,11 @@ const ShoppingListContent = styled.div`
       margin-left: 4px;
     }
   }
+`;
+
+const Content = styled.span`
+  width: 100%;
+  line-height: 1.3;
+  text-decoration: ${(props) => (props.checked ? "line-through" : "none")};
+  color: ${(props) => (props.checked ? props.theme.color.lightblack : "none")};
 `;
