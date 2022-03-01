@@ -12,7 +12,9 @@ const RecipeDetail = () => {
 
   const getDetailRecipe = async () => {
     const response = await detailRecipe(id);
-    setDetailData(response.data);
+    if (response.status === 200) {
+      setDetailData(response.data);
+    }
   };
 
   const clickLike = async () => {
