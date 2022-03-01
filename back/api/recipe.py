@@ -2,7 +2,7 @@ from flask import session, request
 from flask_restx import Resource
 from models import User, Recipe, RecipeIngrd, RecipeProcess, Ingredients, Refrigerator, Bookmark, UserLike
 from db_connect import db
-from api_model.recipe_model import recipe_api, ingrds_fields, recipes_fields, img_fields, response_fail_model, response_success_recipe_model, response_success_ingrds_model, response_success_detail_model
+from api_model.recipe_model import recipe_api, ingrds_fields, img_fields, response_fail_model, response_success_ingrds_model, response_success_detail_model, response_success_recipe_ingrdnum_model
 
 
 @recipe_api.route('/recoginition')
@@ -46,7 +46,7 @@ class Recoginition(Resource):
 class Recommend(Resource):
 
     @recipe_api.expect(ingrds_fields)
-    @recipe_api.response(200, 'Success', response_success_recipe_model)
+    @recipe_api.response(200, 'Success', response_success_recipe_ingrdnum_model)
     @recipe_api.response(400, 'Fail', response_fail_model)
     def post(self):
         """인식된 재료와 냉장고 재료를 합해 가장 많은 재료를 사용하는 순서대로 레시피를 추천합니다"""

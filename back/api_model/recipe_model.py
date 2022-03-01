@@ -9,7 +9,7 @@ ingrd_fields = recipe_api.model('Ingredient', {
     'category': fields.Integer(description='재료 카테고리', required=True, example=6)
 })
 
-ingrd_time_fields = recipe_api.inherit('IngrgTime', ingrd_fields, {
+ingrd_time_fields = recipe_api.inherit('IngrdTime', ingrd_fields, {
     'time': fields.String(description='재료가 냉장고에 등록된 시간', required=True, example='2022-02-23')
 })
 
@@ -35,12 +35,17 @@ recipe_fields = recipe_api.model('Recipe', {
     'img': fields.String(description='이미지 url', required=True, example='image url'),
     'id': fields.Integer(description='레시피 ID', required=True, example=1),
     'name': fields.String(description='레시피 이름', required=True, example='나물비빔밥'),
-    'ingredients': fields.Integer(description='냉장고 재료 사용 수', required=True, example=5),
+
+})
+
+recipe_ingrdnum_fields = recipe_api.inherit('RecipeIngrdNum', recipe_fields, {
+    'ingredients': fields.Integer(description='냉장고 재료 사용 수', required=True, example=5)
 })
 
 recipes_fields = recipe_api.model('Recipes', {
     'recipes': fields.List(fields.Nested(recipe_fields))
 })
+
 
 recipe_detail_fields = recipe_api.inherit('RecipeDetail', recipe_fields, {
     'summary': fields.String(description='레시피 설명', required=True, example='영양만점 나물비빔밥!'),
@@ -70,6 +75,12 @@ response_fail_model = recipe_api.model('ResponseFail', {
 response_success_recipe_model = recipe_api.inherit(
     'RecipeSuccess', response_success_model, {
         'data': fields.List(fields.Nested(recipe_fields))
+    }
+)
+
+response_success_recipe_ingrdnum_model = recipe_api.inherit(
+    'RecipeIngrdNumSuccess', response_success_model, {
+        'data': fields.List(fields.Nested(recipe_ingrdnum_fields))
     }
 )
 
