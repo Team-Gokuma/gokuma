@@ -34,7 +34,10 @@ class Recoginition(Resource):
             if item is not None:
                 result['data'].append(
                     {"content": item.name, "category": item.category})
-            # 재료 DB에 항목이 없을 경우 아예 인식 불가?
+            # 재료 DB에 항목이 없을 경우 기타 항목으로 넣기
+            else:
+                result['data'].append(
+                    {"content": ingrd, "category": 7})
 
         return result
 
@@ -78,10 +81,15 @@ class Recommend(Resource):
             ingrds_num = 0
             recipe_ingrds = RecipeIngrd.query.filter(
                 RecipeIngrd.recipe_id == recipe).all()
+
+            recipe_ingrds_new = {}
             for recipe_ingrd in recipe_ingrds:
-                for ingrd in ingrds:
-                    if recipe_ingrd.name == ingrd["content"]:
-                        ingrds_num += 1
+                recipe_ingrds_new[recipe_ingrd.name] = {
+                    "amount": recipe_ingrd.capacity}
+
+            for ingrd in ingrds:
+                if ingrd["content"] in recipe_ingrds_new:
+                    ingrds_num += 1
 
             result['data'].append(
                 {"img": item.img, "id": item.id, "name": item.name, "ingrdients": ingrds_num})
@@ -134,6 +142,7 @@ class Detail(Resource):
             item.like = 1
             db.session.commit()
 
+        # item이 SQLAlchemy Model type이다 보니까 for문으로 작성이 어려운 점이 있었다.
         result = {
             'id': item.id,
             'name': item.name,
@@ -159,7 +168,7 @@ class Detail(Resource):
 
             # 유저 좋아요 db에서 user 찾아와서 isLike 설정하기
             like = UserLike.query.filter(
-                (UserLike.user_id == user.id) & (Bookmark.recipe_id == id)).first()
+                (UserLike.user_id == user.id) & (UserLike.recipe_id == id)).first()
             if like is not None:
                 result['isLike'] = like.checked
 
