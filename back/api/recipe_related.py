@@ -30,7 +30,7 @@ class Rank(Resource):
             item = Recipe.query.filter(
                 Recipe.recipe_id == recipe.recipe_id).first()
             result['data'].append(
-                {"img": item.img, "id": item.id, "name": item.name})
+                {"img": item.img, "id": item.recipe_id, "name": item.name})
 
         return result
 
@@ -47,7 +47,13 @@ class CookTime(Resource):
     @recipe_api.response(200, 'Success', response_success_recipe_model)
     @recipe_api.response(400, 'Fail', response_fail_model)
     def get(self):
-        """조리 시간별로 레시피를 보여줍니다"""
+        """조리 시간별로 레시피를 보여줍니다
+
+        query value
+        1: 25분 안에 후딱
+        2: 30분에서 40분
+        3: 50분이상
+        """
 
         args = cooktime_parser.parse_args()
         cooktime = args['time']
@@ -70,6 +76,6 @@ class CookTime(Resource):
             item = Recipe.query.filter(
                 Recipe.recipe_id == recipe.recipe_id).first()
             result['data'].append(
-                {"img": item.img, "id": item.id, "name": item.name})
+                {"img": item.img, "id": item.recipe_id, "name": item.name})
 
         return result

@@ -92,7 +92,7 @@ class Recommend(Resource):
                     ingrds_num += 1
 
             result['data'].append(
-                {"img": item.img, "id": item.id, "name": item.name, "ingrdients": ingrds_num})
+                {"img": item.img, "id": item.recipe_id, "name": item.name, "ingrdients": ingrds_num})
 
         return result
 
@@ -114,13 +114,13 @@ class Detail(Resource):
         item = Recipe.query.filter((Recipe.recipe_id == id)).first()
 
         # 초기값 설정
-        if item.id == 1:
+        if item.recipe_id == 1:
             item.like = 1
             db.session.commit()
 
         # item이 SQLAlchemy Model type이다 보니까 for문으로 작성이 어려운 점이 있었다.
         result = {
-            'id': item.id,
+            'id': item.recipe_id,
             'name': item.name,
             'like': item.like,
             'summary': item.summary,
