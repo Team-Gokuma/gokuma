@@ -18,8 +18,8 @@ import {
   ShoppingList,
   SignupNick,
   Mypage,
-  UpdateNameModal,
-  UpdatePassModal,
+  // UpdateNameModal,
+  // UpdatePassModal,
 } from "./pages";
 import { Header } from "./components";
 
@@ -52,8 +52,8 @@ function App() {
             <Route path="/signupPass" element={<SignupPass />} />
             <Route path="/signupNick" element={<SignupNick />} />
             <Route path="/mypage" element={<Mypage />} />
-            <Route path="/UpdateNameModal" element={<UpdateNameModal />} />
-            <Route path="/UpdatePassModal" element={<UpdatePassModal />} />
+            {/* <Route path="/UpdateNameModal" element={<UpdateNameModal />} />
+            <Route path="/UpdatePassModal" element={<UpdatePassModal />} /> */}
 
             
           </Routes>

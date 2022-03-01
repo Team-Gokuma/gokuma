@@ -1,12 +1,25 @@
 import styled from "styled-components";
 import { Button } from "../components/common/Button";
-
+import { useState } from "react";
+import { UpdateNameModal } from "../components/mypage/UpdateNameModal";
+import { UpdatePassModal } from "../components/mypage/UpdatePassModal";
 const Mypage = () => {
   const name = window.sessionStorage.getItem("name");
   const email = window.sessionStorage.getItem("email");
+  const [UpdateName, setUpdateName] = useState(false);
+  const [UpdatePass, setUpdatePass] = useState(false);
 
+
+  const handleCloseName = () => {
+    setUpdateName(false);
+  }
+  const handleClosePass = () => {
+    setUpdatePass(false);
+  }
   return (
     <MypageContainer>
+      {UpdateName && <UpdateNameModal handleCloseName={handleCloseName}/>}
+      {UpdatePass && <UpdateNameModal handleClosePass={handleClosePass}/>}
       <MypageContent>
         <h2>
           <span>{name}</span> 님
@@ -17,11 +30,18 @@ const Mypage = () => {
             <p>이메일 : {email}</p>
             <p>
               닉네임 : {name}
-              <span className="editNameBtn">
-                <Button text={"수정"} bgcolor={"white"} txtcolor={"orange"} border={"1px solid"} padding={"0 1rem"} />
+              <span className="editNameBtn"
+              onClick={() => {
+                setUpdateName(true);
+              }}>
+                <Button text={"수정"} bgcolor={"white"} txtcolor={"orange"} border={"1px solid"} padding={"0 1rem"} 
+                />
               </span>
             </p>
-            <span className="userInfoBtn">
+            <span className="userInfoBtn"
+            onClick={() => {
+              setUpdatePass(true);
+            }}>
               <Button text={"비밀번호 변경"} bgcolor={"orange"} txtcolor={"white"} round={true} />
             </span>
             <span>

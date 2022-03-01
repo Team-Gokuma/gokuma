@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ReactComponent as IconCloseCircle } from "../asset/icon/closeCircle.svg";
+import { ReactComponent as IconCloseCircle } from "../../asset/icon/closeCircle.svg";
 import { useSetRecoilState } from "recoil";
-import { modalState } from "../store/atom";
-import { Button } from "../components/common/Button";
-import { nameupdate } from "../api/user";
+import { modalState } from "../../store/atom";
+import { Button } from "../common/Button";
+import { nameupdate } from "../../api/user";
 
 
-const UpdateNameModal = () => {
+export const UpdateNameModal = ({handleCloseName}) => {
   const setModal = useSetRecoilState(modalState);
   const navigate = useNavigate();
   const [newname, setNewname] = useState("");
@@ -44,12 +44,10 @@ const UpdateNameModal = () => {
           <ModalContainer>
             <IconCloseCircle
               className="modalCloseIcon"
-              onClick={() => {
-                setModal(false);
-              }}
+              onClick={handleCloseName}
             />
             <div className="content">
-              <h4>이름 변경</h4>
+              <h4>닉네임 변경</h4>
               {/* <p>
                 냉장고에 저장해둔 재료를 고려해서
                 <br /> 레시피를 추천받을 수 있어요!
@@ -86,7 +84,6 @@ const UpdateNameModal = () => {
     </>
   );
 };
-export default UpdateNameModal;
 const Background = styled.div`
   position: fixed;
   top: 0;
@@ -128,6 +125,7 @@ const ModalContainer = styled.div`
       line-height: 1.2;
     }
     & .loginModalBtn :first-child {
+      margin-top: 16px;
       margin-bottom: 1rem;
     }
   }

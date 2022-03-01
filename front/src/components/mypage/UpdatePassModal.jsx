@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ReactComponent as IconCloseCircle } from "../asset/icon/closeCircle.svg";
+import { ReactComponent as IconCloseCircle } from "../../asset/icon/closeCircle.svg";
 import { useSetRecoilState } from "recoil";
-import { modalState } from "../store/atom";
-import { Button } from "../components/common/Button";
-import { passupdate } from "../api/user";
-import { ReactComponent as Ckeckicon } from "../asset/icon/check.svg";
+import { modalState } from "../../store/atom";
+import { Button } from "../common/Button";
+import { passupdate } from "../../api/user";
+import { ReactComponent as Ckeckicon } from "../../asset/icon/check.svg";
 
 
-const UpdatePassModal = () => {
+export const UpdatePassModal = () => {
   const setModal = useSetRecoilState(modalState);
   const navigate = useNavigate();
   const [ckNum, setCkNum] = useState(false);
@@ -165,7 +165,6 @@ const UpdatePassModal = () => {
     </>
   );
 };
-export default UpdatePassModal;
 
 const Background = styled.div`
   position: fixed;
@@ -203,6 +202,7 @@ const ModalContainer = styled.div`
     & h4 {
       ${({ theme }) => theme.font.bold};
       font-size: 20px;
+      margin-top:40px;
       margin-bottom: 1.5rem;
     }
 
@@ -213,7 +213,7 @@ const ModalContainer = styled.div`
 `;
 
 const StCheck = styled.div`
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   margin-left: 0rem;
   width: 20rem;
 
