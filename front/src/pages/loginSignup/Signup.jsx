@@ -1,13 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-// import { useSetRecoilState } from "recoil";
-// import { login } from "../api/user";
-
 import styled from "styled-components";
 import LoginInput from "../../components/common/LoginInput";
 import Button from "../../components/common/Button";
 import CommonTab from "../../components/common/CommonTab";
-
+import {isEmail} from "../../util/isEmail";
 const Signup = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -15,10 +12,7 @@ const Signup = () => {
     const value = e.target.value;
     setEmail(value);
   };
-  function isEmail(asValue) {
-    var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-    return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
-  }
+ 
   const handleClick = (e) => {
     e.preventDefault();
     if (isEmail(email)) {
