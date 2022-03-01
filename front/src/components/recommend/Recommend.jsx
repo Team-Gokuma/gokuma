@@ -10,6 +10,7 @@ import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
 import { AlertLoginModal } from "../common/AlertLoginModal";
 import { recognition, recommendRecipe, relatedRecipe } from "../../api/receipe";
 import { addIngredientByImage } from "../../api/refrige";
+import { StyledLink } from "../../styles/commonStyle";
 
 const regTag = /^[가-힣]+$/;
 
@@ -190,14 +191,11 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
             )}
           </div>
           {page ? (
-            <Link
-              to={tags.length > 0 && login ? "/result" : "/recommend"}
-              style={{ textDecoration: "none" }}
-              onClick={handleClick}>
+            <StyledLink to={tags.length > 0 && login ? "/result" : "/recommend"} onClick={handleClick}>
               <Button text={"레시피 찾기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
-            </Link>
+            </StyledLink>
           ) : (
-            <span style={{ textDecoration: "none" }} onClick={hanldeAddByImage}>
+            <span onClick={hanldeAddByImage}>
               <Button text={"식재료 추가하기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
             </span>
           )}

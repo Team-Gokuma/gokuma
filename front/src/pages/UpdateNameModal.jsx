@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as IconCloseCircle } from "../asset/icon/closeCircle.svg";
 import { useSetRecoilState } from "recoil";
 import { modalState } from "../store/atom";
