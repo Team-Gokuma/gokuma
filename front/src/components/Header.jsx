@@ -30,12 +30,6 @@ const Header = () => {
 
   const name = window.sessionStorage.getItem("name");
 
-  const LOGINNAVS = [
-    { id: 0, navText: "레시피 추천받기", navigate: () => navigate("recommend") },
-    { id: 1, navText: "나의 냉장고", navigate: () => navigate("refrige") },
-    { id: 2, navText: "즐겨찾는 레시피", navigate: () => navigate("bookmark") },
-    { id: 3, navText: "장보기 리스트", navigate: () => navigate("shoppinglist") },
-  ];
 
   return (
     <>
@@ -44,9 +38,10 @@ const Header = () => {
           <Img />
           <div className="logo">어쩔냉장고</div>
         </LogoWrapper>
-        <CommonNav navList={LOGINNAVS} />
+        <CommonNav/>
+        <ProfileWrapper>
         {isLogin ? (
-          <ProfileWrapper>
+          <>
             <div onClick={handleLogout} style={{ marginBottom: "15px" }}>
               <Button width="104px" height="45px" text="Logout" bgcolor="yellow" txtcolor="black" round="round" />
             </div>
@@ -54,14 +49,13 @@ const Header = () => {
               <div style={{ float: "left", marginTop: "14px", marginRight: "10px" }}>{name}님</div>
               <Profile />
             </Link>
-          </ProfileWrapper>
+            </>
         ) : (
-          <ProfileWrapper>
             <Link to="/login" style={{ textDecoration: "none", color: "black" }}>
               <Button text="Login / Sign up" bgcolor="yellow" txtcolor="black" round="round" />
             </Link>
-          </ProfileWrapper>
         )}
+        </ProfileWrapper>
       </StWrapper>
     </>
   );
