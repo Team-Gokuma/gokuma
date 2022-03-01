@@ -30,7 +30,7 @@ const Login = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [value, setValue] = useState(0);
-
+  const [error, setError] = useState(false);
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -57,10 +57,11 @@ const Login = () => {
         window.sessionStorage.setItem("isLogin", true);
         navigate("/");
       } else if (res && res.status !== 200) {
-        alert("로그인에 실패하였습니다!");
+        setError(true);
       }
     });
   };
+  
   const onSubmit = (e) => {
     e.preventDefault();
     let body = {
@@ -117,6 +118,10 @@ const Login = () => {
               type="submit"
             />
           </form>
+          <Error display={error}>
+            *이메일 또는 비밀번호가 일치하지않습니다.
+        </Error>
+
         </StInput>
       </StWrapper>
     </Stbody>
@@ -165,4 +170,7 @@ const StInput = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: row wrap;
+`;
+const Error = styled.strong`
+  display: ${(props) => (props.display ? 'block' : 'none')};
 `;
