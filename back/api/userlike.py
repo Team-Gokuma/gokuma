@@ -9,7 +9,7 @@ import json
 
 @userlike_api.route('/check/<int:id>')
 class LikeCheck(Resource):
-    @userlike_api.expect(recipe_id_fields)
+
     @userlike_api.doc(responses={200: 'Success'})
     @userlike_api.doc(responses={400: 'No User'})
     def get(self, id):
@@ -31,6 +31,7 @@ class LikeCheck(Resource):
         if item is not None:
             # 이미 좋아요를 눌렀다면
             if recipe.like == 0:
+                item.checked = not item.checked
                 recipe.like += 1
             else:
                 item.checked = not item.checked
