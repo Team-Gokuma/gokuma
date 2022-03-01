@@ -77,12 +77,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
 
   const handleClick = () => {
     page && tags.length > 0 && !login && setOnModal(true);
-    const getData = async () => {
-      await handleAddByPhoto(img);
-      await getRecommendation(data);
-      await getRelatedRecipes([mainRecipe[0]]);
-    };
-    login && getData();
+    login && Promise.all([handleAddByPhoto(img), getRecommendation(data), getRelatedRecipes([mainRecipe[0]])]);
     login && alert("냉장고에 재료를 넣었습니다!");
   };
   const handleClickNoLogin = () => {
