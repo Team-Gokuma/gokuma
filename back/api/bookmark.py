@@ -29,9 +29,10 @@ class BookmarkList(Resource):
             (Bookmark.user_id == user.id) & (Bookmark.checked == True)).all()
 
         for item in items:
-            recipe = Recipe.query.filter((Recipe.id == item.recipe_id)).first()
+            recipe = Recipe.query.filter(
+                (Recipe.recipe_id == item.recipe_id)).first()
             result['data'].append(
-                {'id': recipe.id, 'name': recipe.name, 'img': recipe.img})
+                {'id': recipe.recipe_id, 'name': recipe.name, 'img': recipe.img})
 
         return result, 200
 

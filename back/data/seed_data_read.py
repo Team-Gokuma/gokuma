@@ -10,6 +10,7 @@ def get_recipe():
     recipes = []
     for i in range(df_cnt):
         recipe = {}
+        recipe['recipe_id'] = df.loc[i]['RECIPE_ID']
         recipe['name'] = df.loc[i]['RECIPE_NM_KO']
         recipe['summary'] = df.loc[i]['SUMRY']
         recipe['nation'] = df.loc[i]['NATION_NM']

@@ -76,7 +76,7 @@ class Recommend(Resource):
         result = {'result_msg': "success", "data": []}
         for recipe in recipes:
             item = Recipe.query.filter(
-                Recipe.id == recipe).first()
+                Recipe.recipe_id == recipe).first()
 
             ingrds_num = 0
             recipe_ingrds = RecipeIngrd.query.filter(
@@ -97,30 +97,6 @@ class Recommend(Resource):
         return result
 
 
-@recipe_api.route('/related')
-class Related(Resource):
-
-    @recipe_api.expect(recipes_fields)
-    @recipe_api.response(200, 'Success', response_success_recipe_model)
-    @recipe_api.response(400, 'Fail', response_fail_model)
-    def post(self):
-        """관련 레시피를 보여줍니다"""
-        data = request.get_json()
-        recipes = data['recipes']
-
-        # 관련 레시피 추천 알고리즘 input = 추천된 레시피, output = 추천된 레시피와 관련된 레시피
-        related_recipes = [6, 7, 8]
-
-        result = {'result_msg': "success", "data": []}
-        for recipe in related_recipes:
-            item = Recipe.query.filter(
-                Recipe.id == recipe).first()
-            result['data'].append(
-                {"img": item.img, "id": item.id, "name": item.name})
-
-        return result
-
-
 @recipe_api.route('/<int:id>')
 class Detail(Resource):
 
@@ -135,7 +111,7 @@ class Detail(Resource):
             email = session['email']
             user = User.query.filter(User.email == email).first()
 
-        item = Recipe.query.filter((Recipe.id == id)).first()
+        item = Recipe.query.filter((Recipe.recipe_id == id)).first()
 
         # 초기값 설정
         if item.id == 1:

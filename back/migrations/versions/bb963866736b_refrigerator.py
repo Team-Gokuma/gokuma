@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 2b997e774d61
-Revises: 35b2449a81ab
-Create Date: 2022-02-19 16:11:12.957425
+Revision ID: bb963866736b
+Revises: ea86606881ab
+Create Date: 2022-03-01 08:28:34.362279
 
 """
 from alembic import op
@@ -13,8 +13,8 @@ from pytz import timezone
 
 
 # revision identifiers, used by Alembic.
-revision = '2b997e774d61'
-down_revision = '35b2449a81ab'
+revision = 'bb963866736b'
+down_revision = 'ea86606881ab'
 branch_labels = None
 depends_on = None
 
