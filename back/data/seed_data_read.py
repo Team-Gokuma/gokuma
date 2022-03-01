@@ -65,7 +65,7 @@ def get_recipe_process():
 
 
 # 레시피 조리방법 DB
-df4 = pd.read_csv('./data/ingredients.csv')
+df4 = pd.read_csv('./data/ingredients.csv', encoding='cp949')
 df4_cnt = df4['name'].count()
 
 
