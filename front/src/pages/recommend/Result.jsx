@@ -55,7 +55,7 @@ const Result = () => {
         <div className="recipeList">{maxIngredientRecipe}</div>
         <h3>조리시간이 짧은 레시피 입니다!</h3>
         <div className="recipeList">{maxIngredientRecipe}</div> */}
-        <h3 className="relative">관련 레시피 결과</h3>
+        <h3 className="relative">지금 인기가 많은 레시피 입니다!</h3>
         <div className="recipeList">{relativeRecipe}</div>
       </ResultContainer>
     </Suspense>

@@ -38,3 +38,12 @@ export const deleteShoppinglist = async (content, checked, id) => {
     console.log(error);
   }
 };
+
+export const deleteAllShoppinglist = async () => {
+  try {
+    const reponse = await axios.delete("/api/shoppingList/list");
+    return reponse;
+  } catch (error) {
+    console.log(error);
+  }
+};

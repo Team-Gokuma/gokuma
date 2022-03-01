@@ -42,7 +42,7 @@ export const deleteIngredient = async (id) => {
 
 export const deleteAllIngredient = async () => {
   try {
-    const response = await axios.delete("/api/refrigerator/delete/all");
+    const response = await axios.delete("/api/refrigerator/list");
     return response;
   } catch (error) {
     console.log(error);

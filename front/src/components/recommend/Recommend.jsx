@@ -8,7 +8,7 @@ import { Button } from "../common/Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
 import { AlertLoginModal } from "../common/AlertLoginModal";
-import { recognition, recommendRecipe, relatedRecipe } from "../../api/receipe";
+import { recognition, recommendRecipe, cooktimeRecipe, rankRecipe } from "../../api/receipe";
 import { addIngredientByImage } from "../../api/refrige";
 import { StyledLink } from "../../styles/commonStyle";
 
@@ -86,24 +86,31 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     }
   };
 
-  const getRelatedRecipes = async (recipes) => {
-    const response = await relatedRecipe(recipes);
+  const getCooktimeRecipes = async (recipes) => {
+    const response = await cooktimeRecipe(recipes);
     if (response.status === 200) {
       setRelatedRecipe(response.data.data);
     } else {
-      alert("관련 메뉴 추천에 실패하였습니다.");
+      alert("조리시간 관련 메뉴 추천에 실패하였습니다.");
+    }
+  };
+
+  const getRankRecipe = async () => {
+    const response = await rankRecipe();
+    if (response.status === 200) {
+      setRelatedRecipe(response.data.data);
     }
   };
 
   const handleClick = () => {
     page && tags.length > 0 && !login && setOnModal(true);
-    login && Promise.all([handleAddByPhoto(img), getRecommendation(data), getRelatedRecipes([mainRecipe[0]])]);
+    login && Promise.all([handleAddByPhoto(img), getRecommendation(data), getRankRecipe()]);
     login && alert("냉장고에 재료를 넣었습니다!");
   };
   const handleClickNoLogin = () => {
     const getData = async () => {
       await getRecommendation(data);
-      await getRelatedRecipes([mainRecipe[0]]);
+      await getRankRecipe();
     };
     getData();
   };

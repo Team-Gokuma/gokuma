@@ -6,7 +6,13 @@ import { ReactComponent as IconAdd } from "../../asset/icon/add.svg";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconCloseCircle } from "../../asset/icon/closeCircle.svg";
 import { ReactComponent as IconEdit } from "../../asset/icon/edit.svg";
-import { getShoppinglist, postShoppinglist, putShoppinglist, deleteShoppinglist } from "../../api/shoppinglist";
+import {
+  getShoppinglist,
+  postShoppinglist,
+  putShoppinglist,
+  deleteShoppinglist,
+  deleteAllShoppinglist,
+} from "../../api/shoppinglist";
 
 export const ShopingContent = () => {
   const [edit, setEdit] = useState("");
@@ -47,6 +53,13 @@ export const ShopingContent = () => {
       return response.data.data;
     } else {
       alert("장보기 리스트 삭제를 실패했습니다.");
+    }
+  };
+
+  const requestDeleteAll = async () => {
+    const response = await deleteAllShoppinglist();
+    if (response.status === 200) {
+      return response;
     }
   };
 
@@ -94,13 +107,12 @@ export const ShopingContent = () => {
   };
 
   const handleAllDelete = () => {
+    const inputValue = window.confirm("재료를 전체 삭제 하시겠습니까?");
     const deleteAll = async () => {
-      for (let i = 0; i < shoppintlist.length; i++) {
-        await requestDelete(shoppintlist[i].content, shoppintlist[i].checked, shoppintlist[i].id);
-      }
+      await requestDeleteAll();
       await requestGet();
     };
-    deleteAll();
+    inputValue && deleteAll();
   };
 
   useEffect(() => {
