@@ -1,17 +1,22 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ReactComponent as IconOutlineFavorite } from "../../asset/icon/favoriteEmpty.svg";
 import { ReactComponent as IconFilledFavorite } from "../../asset/icon/favoriteBlack.svg";
 import { ReactComponent as IconThumbUp } from "../../asset/icon/thumbUp.svg";
 import { setbookmark } from "../../api/bookmark";
 
+const level = ["초보환영", "보통", "어려움"];
+
 export const RecipeDetailInfo = ({ data }) => {
   const [like, setLike] = useState(data.isLike);
   const [bookmark, setBookmark] = useState(data.bookmark);
-  const level = ["초보환영", "보통", "어려움"];
-  const ingredient = data.ingredient.sort((a, b) => b.inRefrige - a.inRefrige);
-  const login = window.sessionStorage.getItem("isLogin");
+  const [login, setLogin] = useState(true);
 
+  useEffect(() => {
+    setLogin(window.sessionStorage.getItem("isLogin"));
+  }, []);
+
+  const ingredient = data.ingredient.sort((a, b) => b.inRefrige - a.inRefrige);
   const requestSetBookmark = async (id) => {
     const response = await setbookmark(id);
     if (response.status === 200) {
@@ -35,6 +40,7 @@ export const RecipeDetailInfo = ({ data }) => {
     bookmark ? setBookmark(false) : setBookmark(true);
     requestSetBookmark(data.id);
   };
+
   return (
     <div className="recipeInfo">
       <div className="detailImgBox">

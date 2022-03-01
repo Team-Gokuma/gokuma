@@ -18,9 +18,9 @@ const Refrige = () => {
   const [addByText, setAddByText] = useState(false);
   const [isClicked, setIsClicked] = useState("전체 식재료");
   const [ingredient, setIngredient] = useState([]);
+  const [login, setLogin] = useState(true);
 
   // const login = useRecoilValue(loginState);
-  const login = window.sessionStorage.getItem("isLogin");
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
 
@@ -61,6 +61,7 @@ const Refrige = () => {
   };
 
   useEffect(() => {
+    setLogin(window.sessionStorage.getItem("isLogin"));
     const getlist = async () => {
       await getIngredient();
     };

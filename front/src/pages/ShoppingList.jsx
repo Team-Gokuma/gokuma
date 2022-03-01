@@ -9,7 +9,8 @@ import { ingredientList } from "../api/refrige";
 
 const ShoppingList = () => {
   const [ingredient, setIngredient] = useState([]);
-  const login = window.sessionStorage.getItem("isLogin");
+  const [login, setLogin] = useState(true);
+
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
 
@@ -21,6 +22,7 @@ const ShoppingList = () => {
   };
 
   useEffect(() => {
+    setLogin(window.sessionStorage.getItem("isLogin"));
     requestIngredient();
     !login && setModal(true);
   }, []);

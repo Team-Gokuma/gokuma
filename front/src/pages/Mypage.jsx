@@ -1,9 +1,15 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button } from "../components/common/Button";
 
 const Mypage = () => {
-  const name = window.sessionStorage.getItem("name");
-  const email = window.sessionStorage.getItem("email");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    setName(window.sessionStorage.getItem("name"));
+    setEmail(window.sessionStorage.getItem("email"));
+  }, []);
 
   return (
     <MypageContainer>

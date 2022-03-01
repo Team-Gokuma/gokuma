@@ -10,12 +10,14 @@ import { getbookmark } from "../api/bookmark";
 
 const Bookmark = () => {
   const [data, setData] = useState([]);
+  const [login, setLogin] = useState(true);
+
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
   // const login = useRecoilValue(loginState);
-  const login = window.sessionStorage.getItem("isLogin");
 
   useEffect(() => {
+    setLogin(window.sessionStorage.getItem("isLogin"));
     !login && setModal(true);
     login && getBookmark();
   }, []);
