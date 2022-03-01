@@ -6,24 +6,25 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { loginState, modalState } from "../store/atom";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { Button } from "../components/common/Button";
-import { getbookmark } from "../api/bookmark";
+import { getBookmark } from "../api/bookmark";
 
 const Bookmark = () => {
   const [data, setData] = useState([]);
-  const [login, setLogin] = useState(true);
+  // const [login, setLogin] = useState(false);
 
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
   // const login = useRecoilValue(loginState);
 
+  const login = window.sessionStorage.getItem("isLogin");
+
   useEffect(() => {
-    setLogin(window.sessionStorage.getItem("isLogin"));
     !login && setModal(true);
-    login && getBookmark();
+    login && setBookmark();
   }, []);
 
-  const getBookmark = async () => {
-    const response = await getbookmark();
+  const setBookmark = async () => {
+    const response = await getBookmark();
     if (response.status === 200) {
       setData(response.data.data);
     } else {
@@ -75,22 +76,21 @@ const BookmarkContainer = styled.div`
   width: 1200px;
   margin: 0 auto;
   margin-top: 5rem;
-  /* border: 1px solid red; */
-  & h3 {
+  h3 {
     ${({ theme }) => theme.font.xlarge};
     ${({ theme }) => theme.font.bold};
     margin-bottom: ${48 / 16}rem;
     margin-left: 1.8rem;
   }
-  & .bookmarkList {
+  .bookmarkList {
     line-height: 1.5;
   }
-  & .noBookmark {
+  .noBookmark {
     margin-top: 5rem;
     margin-left: 4rem;
     ${({ theme }) => theme.font.large};
 
-    & .goRecommend {
+    .goRecommend {
       display: inline-block;
       animation: motion 1.4s linear 0s infinite;
 
@@ -103,7 +103,7 @@ const BookmarkContainer = styled.div`
             100% {margin-top: 20px;}
         }
       }
-      & :hover {
+      :hover {
         opacity: 0.8;
       }
     }

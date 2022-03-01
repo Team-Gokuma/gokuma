@@ -2,9 +2,14 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { ReactComponent as IconRefrige } from "../../asset/icon/refrige.svg";
 import { Button } from "../common/Button";
+import { useEffect, useState } from "react";
 
 export const RefrigeIngredient = ({ ingredient }) => {
-  const login = window.sessionStorage.getItem("isLogin");
+  const [login, setLogin] = useState(true);
+
+  useEffect(() => {
+    setLogin(window.sessionStorage.getItem("isLogin"));
+  }, []);
 
   return (
     <InRefrigeIngredient>
@@ -29,13 +34,13 @@ export const RefrigeIngredient = ({ ingredient }) => {
               <span key={item.id} className="tag">
                 <Button
                   text={item.content}
-                  bgcolor={"white"}
-                  txtcolor={"lightblack"}
-                  height={"32px"}
-                  cursor={"default"}
+                  bgcolor="white"
+                  txtcolor="lightblack"
+                  height="32px"
+                  cursor="default"
                   round={true}
-                  border={"1.9px solid #757575"}
-                  padding={"16px 16px"}
+                  border="1.9px solid #757575"
+                  padding="16px 16px"
                 />
               </span>
             );
@@ -49,16 +54,16 @@ const InRefrigeIngredient = styled.div`
   width: 50%;
   height: 100%;
   border-right: 1px solid ${({ theme }) => theme.color.darkgray};
-  & .refrigeContent {
+  .refrigeContent {
     padding: 12px;
     height: 88.55%;
     overflow-y: scroll;
   }
-  & .tag {
+  .tag {
     display: inline-block;
     margin: 12px 4px 0 4px;
   }
-  & .noIngredient {
+  .noIngredient {
     color: ${({ theme }) => theme.color.black};
     display: inline-block;
     margin: 3.5rem;

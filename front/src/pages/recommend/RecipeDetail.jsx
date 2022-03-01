@@ -41,91 +41,91 @@ const RecipeDetailContainer = styled.div`
   background-color: ${({ theme }) => theme.color.white};
   border-radius: 1.6rem;
   margin: 0 auto;
-  & .recipeInfo {
+  .recipeInfo {
     display: flex;
   }
-  & .detailImgBox {
+  .detailImgBox {
     width: ${400 / 16}rem;
     height: ${400 / 16}rem;
     margin-left: ${30 / 16}rem;
     position: relative;
   }
-  & .detailInfoBox {
+  .detailInfoBox {
     margin-top: 1rem;
     width: ${450 / 16}rem;
     margin-left: 80px;
-    & p {
+    p {
       margin-bottom: ${12 / 16}rem;
     }
-    & h3 {
+    h3 {
       display: inline-block;
       ${({ theme }) => theme.font.bold};
       ${({ theme }) => theme.font.large};
       margin-bottom: 1.2rem;
       position: relative;
-      & .bookmarkIcon {
+      .bookmarkIcon {
         position: absolute;
         top: ${-3 / 16}rem;
         right: -2.3rem;
         cursor: pointer;
       }
     }
-    & .summary {
+    .summary {
       margin-bottom: 1.4rem;
       line-height: 1.4;
     }
 
-    & .stars {
+    .stars {
       margin-left: 4px;
     }
-    & .calorieContent {
+    .calorieContent {
       margin-left: 4px;
     }
-    & .servings {
+    .servings {
       margin-bottom: ${24 / 16}rem;
       & .servingsContent {
         margin-left: 0.7rem;
       }
     }
-    & .ingredient {
+    .ingredient {
       word-break: break-all;
       & span:nth-child(2) {
         margin-right: ${20 / 16}rem;
       }
     }
   }
-  & .detailRecipeBox {
+  .detailRecipeBox {
     width: ${960 / 16}rem;
     padding: ${60 / 16}rem;
     background-color: #f8f8f8;
     margin-top: 100px;
-    & h4 {
+    h4 {
       ${({ theme }) => theme.font.bold};
       ${({ theme }) => theme.font.large};
       margin-bottom: ${36 / 16}rem;
       position: relative;
-      & img {
+      img {
         width: ${48 / 16}rem;
         height: ${48 / 16}rem;
       }
-      & span {
+      span {
         position: absolute;
         top: ${14 / 16}rem;
         left: ${60 / 16}rem;
       }
     }
-    & div {
+    div {
       margin-bottom: ${36 / 16}rem;
       position: relative;
     }
-    & span:first-child {
+    span:first-child {
       ${({ theme }) => theme.font.bold};
       ${({ theme }) => theme.font.large};
       position: absolute;
       top: 0;
       left: 0;
     }
-    & p:nth-child(2) {
+    p:nth-child(2) {
       margin-left: ${32 / 16}rem;
       ${({ theme }) => theme.font.medium};
       line-height: 1.3;

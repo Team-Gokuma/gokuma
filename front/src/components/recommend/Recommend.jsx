@@ -14,6 +14,15 @@ import { StyledLink } from "../../styles/commonStyle";
 
 const regTag = /^[가-힣]+$/;
 
+const handleAddByPhoto = async (img) => {
+  const response = await addIngredientByImage(img);
+  if (response.status === 200) {
+    return response;
+  } else {
+    alert("저장을 실패했습니다.");
+  }
+};
+
 export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [AddToggle, setAddToggle] = useState(true);
   const [inputValue, setInputValue] = useState("");
@@ -27,15 +36,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [onModal, setOnModal] = useRecoilState(modalState);
   const [mainRecipe, setMainRecipe] = useRecoilState(mainRecipesState);
   const setRelatedRecipe = useSetRecoilState(relatedRecipesState);
-
-  const handleAddByPhoto = async (img) => {
-    const response = await addIngredientByImage(img);
-    if (response.status === 200) {
-      return response;
-    } else {
-      alert("저장을 실패했습니다.");
-    }
-  };
 
   const requestRecognition = async (img) => {
     setMainRecipe([]);
@@ -126,22 +126,31 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     }
   };
 
+  const removeTag = (item) => {
+    setTags((cur) => {
+      const newTags = [...cur];
+      const rmvIdx = newTags.indexOf(item);
+      newTags.splice(rmvIdx, 1);
+      return newTags;
+    });
+  };
+
   const tagList = useMemo(() => {
-    if (!tags.length) setAddToggle(true);
+    if (!tags.length) {
+      setAddToggle(true);
+      return null;
+    }
     if (tags.length > 0) {
       return tags.map((item, idx) => {
-        const removeTag = () => {
-          setTags((cur) => {
-            const newTags = [...cur];
-            const rmvIdx = newTags.indexOf(item);
-            newTags.splice(rmvIdx, 1);
-            return newTags;
-          });
-        };
         return (
           <div className="tag" key={idx}>
-            <Button text={item} bgcolor={"orange"} txtcolor={"white"} round={true} padding={"0 40px 0 20px"} />
-            <IconClose className="closeIcon" onClick={removeTag} />
+            <Button text={item} bgcolor="orange" txtcolor="white" round={true} padding="0 40px 0 20px" />
+            <IconClose
+              className="closeIcon"
+              onClick={() => {
+                removeTag(item);
+              }}
+            />
           </div>
         );
       });
@@ -163,19 +172,19 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
         ) : (
           <h2>사진으로 추가하기</h2>
         )}
-        <ImageFileUpload width={"600px"} height={"400PX"} requestRecognition={requestRecognition} />
+        <ImageFileUpload width="600px" height="400PX" requestRecognition={requestRecognition} />
         <div className="btnContainer">
           <div className="btnGroup">
             {AddToggle ? (
               <span onClick={handleToggle} className="addtag">
-                <Button text={"추가하기"} bgcolor={"orange"} txtcolor={"white"} round={true} />
+                <Button text="추가하기" bgcolor="orange" txtcolor="white" round={true} />
               </span>
             ) : (
               <>
                 <div className="tags">{tagList}</div>
                 <form onSubmit={saveTags}>
                   <input
-                    type={"text"}
+                    type="text"
                     value={inputValue}
                     placeholder="한글로 재료명을 입력해주세요."
                     onChange={(e) => {
@@ -192,20 +201,20 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
           </div>
           {page ? (
             <StyledLink to={tags.length > 0 && login ? "/result" : "/recommend"} onClick={handleClick}>
-              <Button text={"레시피 찾기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
+              <Button text="레시피 찾기" bgcolor="yellow" txtcolor="black" width="180px" />
             </StyledLink>
           ) : (
             <span onClick={hanldeAddByImage}>
-              <Button text={"식재료 추가하기"} bgcolor={"yellow"} txtcolor={"black"} width={"180px"} />
+              <Button text="식재료 추가하기" bgcolor="yellow" txtcolor="black" width="180px" />
             </span>
           )}
         </div>
       </RecommendContainer>
       {onModal && (
         <AlertLoginModal
-          page={"/result"}
-          text={"로그인하고 냉장고에 추가 하시겠습니까?"}
-          btnText={"바로 추천받기"}
+          page="/result"
+          text="로그인하고 냉장고에 추가 하시겠습니까?"
+          btnText="바로 추천받기"
           handleClick={handleClickNoLogin}
         />
       )}
@@ -220,25 +229,25 @@ const RecommendContainer = styled.div`
   text-align: center;
   border-radius: 16px;
 
-  & h2 {
+  h2 {
     ${({ theme }) => theme.font.large};
     ${({ theme }) => theme.font.bold};
     margin-bottom: 12px;
   }
-  & p {
+  p {
     line-height: 1.5;
   }
-  & .btnContainer {
+  .btnContainer {
   }
-  & .btnGroup {
+  .btnGroup {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    & .addtag {
+    .addtag {
       display: inline-block;
       margin-bottom: 32px;
     }
-    & .tags {
+    .tags {
       width: 80%;
       margin-bottom: 20px;
       display: flex;
@@ -246,11 +255,11 @@ const RecommendContainer = styled.div`
       flex-wrap: wrap;
       justify-content: flex-start;
     }
-    & .tag {
+    .tag {
       margin-right: 8px;
       position: relative;
       margin-bottom: 8px;
-      & .closeIcon {
+      .closeIcon {
         fill: ${({ theme }) => theme.color.white};
         position: absolute;
         top: 10px;
@@ -258,9 +267,9 @@ const RecommendContainer = styled.div`
         cursor: pointer;
       }
     }
-    & form {
+    form {
       width: 100%;
-      & input {
+      input {
         width: 320px;
         height: 44px;
         padding-left: 24px;
@@ -269,7 +278,7 @@ const RecommendContainer = styled.div`
         margin-bottom: 20px;
       }
     }
-    & .infoIcon {
+    .infoIcon {
       width: ${18 / 16}rem;
       height: ${18 / 16}rem;
       position: absolute;
@@ -277,7 +286,7 @@ const RecommendContainer = styled.div`
       left: -24px;
       fill: #d23236;
     }
-    & p {
+    p {
       margin-bottom: 32px;
       font-size: ${15 / 16}rem;
       position: relative;

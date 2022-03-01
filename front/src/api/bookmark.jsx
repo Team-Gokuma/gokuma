@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getbookmark = async () => {
+export const getBookmark = async () => {
   try {
     const response = await axios.get("/api/bookmark/list");
     return response;
@@ -9,7 +9,7 @@ export const getbookmark = async () => {
   }
 };
 
-export const setbookmark = async (id) => {
+export const saveBookmark = async (id) => {
   try {
     const response = await axios.get(`/api/bookmark/check/${id}`);
     return response;

@@ -13,16 +13,45 @@ import { ingredientList, addIngredientByText, deleteAllIngredient, deleteIngredi
 
 const category = ["전체 식재료", "과일", "채소", "육류", "해산물", "유제품", "소스류", "기타"];
 
+const addtInRefrigeByText = async (textValue, category) => {
+  const response = await addIngredientByText(textValue, Number(category));
+  if (response.status === 200) {
+    alert("재료를 냉장고에 추가했습니다!");
+  } else {
+    alert("텍스트로 재료 추가를 실패했습니다.");
+  }
+};
+
+const deleteAllIngredientInRefrige = async () => {
+  const response = await deleteAllIngredient();
+  if (response.status === 200) {
+    alert("재료가 전부 삭제되었습니다.");
+  } else {
+    alert("재료 전체 삭제를 실패하였습니다.");
+  }
+};
+
+const deleteIngredientInRefrige = async (id) => {
+  const response = await deleteIngredient(id);
+  if (response.status === 200) {
+    alert("재료가 삭제되었습니다!");
+  } else {
+    alert("재료 삭제를 실패했습니다.");
+  }
+};
+
 const Refrige = () => {
   const [addByImage, setAddByImage] = useState(false);
   const [addByText, setAddByText] = useState(false);
   const [isClicked, setIsClicked] = useState("전체 식재료");
   const [ingredient, setIngredient] = useState([]);
-  const [login, setLogin] = useState(true);
+  // const [login, setLogin] = useState(false);
 
   // const login = useRecoilValue(loginState);
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
+
+  const login = window.sessionStorage.getItem("isLogin");
 
   const getIngredient = async () => {
     const response = await ingredientList();
@@ -33,35 +62,7 @@ const Refrige = () => {
     }
   };
 
-  const addtInRefrigeByText = async (textValue, category) => {
-    const response = await addIngredientByText(textValue, Number(category));
-    if (response.status === 200) {
-      alert("재료를 냉장고에 추가했습니다!");
-    } else {
-      alert("텍스트로 재료 추가를 실패했습니다.");
-    }
-  };
-
-  const deleteAllIngredientInRefrige = async () => {
-    const response = await deleteAllIngredient();
-    if (response.status === 200) {
-      alert("재료가 전부 삭제되었습니다.");
-    } else {
-      alert("재료 전체 삭제를 실패하였습니다.");
-    }
-  };
-
-  const deleteIngredientInRefrige = async (id) => {
-    const response = await deleteIngredient(id);
-    if (response.status === 200) {
-      alert("재료가 삭제되었습니다!");
-    } else {
-      alert("재료 삭제를 실패했습니다.");
-    }
-  };
-
   useEffect(() => {
-    setLogin(window.sessionStorage.getItem("isLogin"));
     const getlist = async () => {
       await getIngredient();
     };
@@ -200,10 +201,10 @@ const RefrigeTitle = styled.div`
   justify-content: space-between;
   ${({ theme }) => theme.font.bold};
 
-  & h2 {
+  h2 {
     ${({ theme }) => theme.font.xlarge}
   }
-  & span:first-child {
+  span:first-child {
     margin-right: ${12 / 16}rem;
   }
 `;
@@ -218,7 +219,7 @@ const RefrigeBox = styled.div`
   display: flex;
   position: relative;
 
-  & .refrigeboxes {
+  .refrigeboxes {
     width: 50%;
     &.ingredientSide {
       background-color: ${({ theme }) => theme.color.white};
@@ -226,11 +227,11 @@ const RefrigeBox = styled.div`
       border-bottom-right-radius: ${10 / 16}rem;
     }
 
-    & .deleteIconBox {
+    .deleteIconBox {
       text-align: end;
       padding: 1rem 1rem 0 0;
     }
-    & .deleteIcon {
+    .deleteIcon {
       cursor: pointer;
     }
     & :first-child {
@@ -241,7 +242,7 @@ const RefrigeBox = styled.div`
       border-bottom-left-radius: ${10 / 16}rem;
     }
   }
-  & .noIngredient {
+  .noIngredient {
     color: ${({ theme }) => theme.color.black};
     display: inline-block;
     margin: 3.5rem;
@@ -269,13 +270,13 @@ const RefrigeIngredientBox = styled.div`
   width: 100%;
   text-align: center;
 
-  & .refrigeIngredient {
+  .refrigeIngredient {
     display: inline-block;
     text-decoration: underline;
     position: relative;
     margin-bottom: 1.2rem;
 
-    & .refrigeIngredientCloseBtn {
+    .refrigeIngredientCloseBtn {
       width: 1.2rem;
       height: 1.2rem;
       cursor: pointer;

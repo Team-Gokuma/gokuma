@@ -68,19 +68,19 @@ const ResultContainer = styled.section`
   width: ${1200 / 16}rem;
   margin: 0 auto;
   margin-top: ${80 / 16}rem;
-  & h3 {
+  h3 {
     ${({ theme }) => theme.font.large};
     ${({ theme }) => theme.font.bold};
     margin-top: 40px;
   }
-  & .recipeList {
+  .recipeList {
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
     margin-top: 36px;
     justify-content: flex-start;
   }
-  & .relative {
+  .relative {
     margin-top: 80px;
   }
 `;

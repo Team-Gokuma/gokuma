@@ -3,9 +3,16 @@ import { useEffect, useState } from "react";
 import { ReactComponent as IconOutlineFavorite } from "../../asset/icon/favoriteEmpty.svg";
 import { ReactComponent as IconFilledFavorite } from "../../asset/icon/favoriteBlack.svg";
 import { ReactComponent as IconThumbUp } from "../../asset/icon/thumbUp.svg";
-import { setbookmark } from "../../api/bookmark";
+import { saveBookmark } from "../../api/bookmark";
 
 const level = ["초보환영", "보통", "어려움"];
+
+const requestSetBookmark = async (id) => {
+  const response = await saveBookmark(id);
+  if (response.status === 200) {
+    return response.data.data;
+  }
+};
 
 export const RecipeDetailInfo = ({ data }) => {
   const [like, setLike] = useState(data.isLike);
@@ -17,19 +24,13 @@ export const RecipeDetailInfo = ({ data }) => {
   }, []);
 
   const ingredient = data.ingredient.sort((a, b) => b.inRefrige - a.inRefrige);
-  const requestSetBookmark = async (id) => {
-    const response = await setbookmark(id);
-    if (response.status === 200) {
-      return response.data.data;
-    }
-  };
 
   const handleLike = () => {
     if (!login) {
       alert("로그인 후 이용이 가능합니다!");
       return;
     }
-    like ? setLike(false) : setLike(true);
+    setLike((like) => !like);
   };
 
   const handleBookmark = () => {
@@ -37,7 +38,7 @@ export const RecipeDetailInfo = ({ data }) => {
       alert("로그인 후 이용이 가능합니다!");
       return;
     }
-    bookmark ? setBookmark(false) : setBookmark(true);
+    setBookmark((bookmark) => !bookmark);
     requestSetBookmark(data.id);
   };
 
@@ -112,13 +113,13 @@ const LikeBox = styled.span`
   position: relative;
   cursor: pointer;
 
-  & .thumbUpIcon {
+  .thumbUpIcon {
     position: absolute;
     top: 3px;
     left: 12px;
     fill: ${(props) => (props.like ? props.theme.color.white : props.theme.color.black)};
   }
-  & span {
+  span {
     margin-left: ${12 / 16}rem;
     ${({ theme }) => theme.font.normal};
     font-size: 1rem;

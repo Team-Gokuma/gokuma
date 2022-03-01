@@ -27,29 +27,26 @@ export const ImageFileUpload = ({ width, height, requestRecognition }) => {
       {!isFile && (
         <ImageUpload height={height}>
           <input
-            className="file-upload-input"
+            className="fileUploadInput"
             type="file"
             onChange={(e) => {
-              readURL(e.target.files[0]);
-              requestRecognition("image url");
+              readURL(e.target.files[0]).then(() => requestRecognition("image url"));
             }}
             value={image}
             accept="image/*"
           />
-          <div className="drag-text">
-            <p>
-              재료 사진을 드래그 해서 올려놓거나, 클릭해서 업로드 해주세요!
-              <br />
-              자동으로 재료를 빠르고 쉽게 인식해서 추가해드립니다!
-            </p>
-          </div>
+          <p className="dragText">
+            재료 사진을 드래그 해서 올려놓거나, 클릭해서 업로드 해주세요!
+            <br />
+            자동으로 재료를 빠르고 쉽게 인식해서 추가해드립니다!
+          </p>
         </ImageUpload>
       )}
       {isFile && (
         <FileUploadContent height={height}>
-          {image && <img className="file-upload-image" src={image} alt="uploaded" />}
-          <div className="image-title-wrap">
-            <button type="button" onClick={removeFile} className="remove-image">
+          {image && <img className="fileUploadImage" src={image} alt="uploaded" />}
+          <div className="imageTitleWrap">
+            <button type="button" onClick={removeFile} className="removeImageBtn">
               사진 삭제
             </button>
           </div>
@@ -64,11 +61,10 @@ const FileUpload = styled.div`
   width: ${(props) => props.width};
   margin: 0 auto;
   padding: 20px;
-  & :hover,
-  .image-dropping {
+  & :hover {
     background-color: ${({ theme }) => theme.color.lightgray};
   }
-  & .drag-text {
+  .dragText {
     padding: 160px 0;
   }
 `;
@@ -76,7 +72,7 @@ const ImageUpload = styled.div`
   height: ${(props) => props.height};
   border: 1px solid ${({ theme }) => theme.color.darkgray};
   position: relative;
-  & .file-upload-input {
+  .fileUploadInput {
     position: absolute;
     margin: 0;
     padding: 0;
@@ -92,21 +88,17 @@ const ImageUpload = styled.div`
 `;
 const FileUploadContent = styled.div`
   text-align: center;
-  & .image-upload-wrap {
-    margin-top: 20px;
-    position: relative;
-  }
-  .image-title-wrap {
+  .imageTitleWrap {
     padding: 0 15px 15px 15px;
     color: #222;
   }
-  .file-upload-image {
+  .fileUploadImage {
     max-width: ${(props) => props.height};
     max-height: ${(props) => props.height};
     margin: auto;
     padding: 40px;
   }
-  .remove-image {
+  .removeImageBtn {
     width: 200px;
     margin: 0;
     color: #fff;
@@ -121,14 +113,14 @@ const FileUploadContent = styled.div`
     font-weight: 700;
   }
 
-  .remove-image:hover {
+  .removeImageBtn:hover {
     background: #c13b2a;
     color: #ffffff;
     transition: all 0.2s ease;
     cursor: pointer;
   }
 
-  .remove-image:active {
+  .removeImageBtn:active {
     border: 0;
     transition: all 0.2s ease;
   }
