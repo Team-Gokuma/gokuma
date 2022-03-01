@@ -21,7 +21,7 @@ const Result = () => {
           text={item.name}
           image={item.img}
           extratext={`재료를 ${item.ingrdients}개 사용하는 레시피 입니다!`}
-          margin={"0 3rem 0 0"}
+          margin="0 3rem 0 0"
           // isFavorite={item.favorite}
           recipeId={item.id}
         />
@@ -38,7 +38,7 @@ const Result = () => {
           height={`${240 / 16}rem`}
           text={item.name}
           image={item.img}
-          margin={"1.2rem 3.7rem 1.2rem 0"}
+          margin="1.2rem 3.7rem 1.2rem 0"
           // favorite={item.favorite}
           recipeId={item.id}
         />

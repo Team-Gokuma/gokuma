@@ -45,7 +45,7 @@ const Bookmark = () => {
                   height={`${240 / 16}rem`}
                   text={item.name}
                   image={item.img}
-                  margin={"1rem 1.8rem"}
+                  margin="1rem 1.8rem"
                   favorite={true}
                   recipeId={item.id} // TO DO: API 연결할때 변경
                 />
@@ -57,7 +57,7 @@ const Bookmark = () => {
               <br /> 나만의 레시피북을 만들어 보세요!
               <br />
               <Link to="/recommend" style={{ textDecoration: "none" }} className="goRecommend">
-                <Button text={"레시피 추천 받기 ->"} bgcolor={"orange"} txtcolor={"white"} round={true} />
+                <Button text="레시피 추천 받기 ->" bgcolor="orange" txtcolor="white" round={true} />
               </Link>
             </div>
           )}

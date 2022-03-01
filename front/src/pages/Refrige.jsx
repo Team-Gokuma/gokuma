@@ -112,7 +112,7 @@ const Refrige = () => {
 
   return (
     <RefrigeContainer>
-      {onModal && <AlertLoginModal text={"로그인이 필요한 기능입니다!"} btnText={"확인"} />}
+      {onModal && <AlertLoginModal text="로그인이 필요한 기능입니다!" btnText="확인" />}
       {addByImage && <AddByImage handleAddImage={handleAddImage} getIngredient={getIngredient} />}
       {addByText && <AddByText handleAddText={handleAddText} addIngredientByText={addIngredientText} />}
       <RefrigeTitle>
@@ -123,14 +123,14 @@ const Refrige = () => {
               login && setAddByImage(true);
               !login && alert("로그인 후 이용이 가능합니다!");
             }}>
-            <Button text={"사진으로 추가"} bgcolor={"orange"} txtcolor={"white"} />
+            <Button text="사진으로 추가" bgcolor="orange" txtcolor="white" />
           </span>
           <span
             onClick={() => {
               login && setAddByText(true);
               !login && alert("로그인 후 이용이 가능합니다!");
             }}>
-            <Button text={"직접 입력해서 추가"} bgcolor={"orange"} txtcolor={"white"} />
+            <Button text="직접 입력해서 추가" bgcolor="orange" txtcolor="white" />
           </span>
         </div>
       </RefrigeTitle>

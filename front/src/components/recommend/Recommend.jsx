@@ -82,7 +82,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
       await getRelatedRecipes([mainRecipe[0]]);
     };
     login && getData();
-    alert("냉장고에 재료를 넣었습니다!");
+    login && alert("냉장고에 재료를 넣었습니다!");
   };
   const handleClickNoLogin = () => {
     const getData = async () => {

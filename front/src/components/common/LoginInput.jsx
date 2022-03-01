@@ -9,9 +9,9 @@ const StyledInput = styled.input`
   color: black;
   /* 크기 */
   height: 44px;
-  border: 1px solid #BDBDBD;
+  border: 1px solid ${({ theme }) => theme.color.darkgray};
   border-radius: 4px;
-  padding-left:24px;
+  padding-left: 24px;
 `;
 
 export const LoginInput = function ({ type, name, placeholder, onChange, value }) {

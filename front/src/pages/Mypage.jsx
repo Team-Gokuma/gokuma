@@ -45,7 +45,7 @@ const Mypage = () => {
               <Button text={"비밀번호 변경"} bgcolor={"orange"} txtcolor={"white"} round={true} />
             </span>
             <span>
-              <Button text={"회원 탈퇴"} bgcolor={"orange"} txtcolor={"white"} round={true} padding={"0 2rem"} />
+              <Button text="회원 탈퇴" bgcolor="orange" txtcolor="white" round={true} padding="0 2rem" />
             </span>
           </div>
         </div>

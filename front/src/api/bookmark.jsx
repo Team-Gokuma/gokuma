@@ -1,17 +1,17 @@
 import axios from "axios";
 
-export const getbookmark = () => {
+export const getbookmark = async () => {
   try {
-    const response = axios.get("/api/bookmark/list");
+    const response = await axios.get("/api/bookmark/list");
     return response;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const setbookmark = (id) => {
+export const setbookmark = async (id) => {
   try {
-    const response = axios.get(`/api/bookmark/check/${id}`);
+    const response = await axios.get(`/api/bookmark/check/${id}`);
     return response;
   } catch (error) {
     console.log(error);

@@ -8,10 +8,10 @@ from api_model.refrigerator_model import refrigerator_api, response_fail_model, 
 
 
 @refrigerator_api.route('/list')
+@refrigerator_api.response(200, 'Success', response_success_ingrds_model)
+@refrigerator_api.response(400, 'Fail', response_fail_model)
 class Contents(Resource):
 
-    @refrigerator_api.response(200, 'Success', response_success_ingrds_model)
-    @refrigerator_api.response(400, 'Fail', response_fail_model)
     def get(self):
         """냉장고에 유저가 가지고 있는 재료 목록을 보여줍니다"""
 
@@ -39,6 +39,37 @@ class Contents(Resource):
             })
 
         return result, 200
+
+    def delete(self):
+        '''냉장고의 모든 재료 항목을 삭제합니다'''
+
+        user = None
+        result = {"result_msg": "success", "data": []}
+
+        # session['email'] = "admin@gokuma.com"
+        # session['email'] = None
+
+        if session.get('email'):
+            email = session['email']
+            user = User.query.filter(User.email == email).first()
+            items = Refrigerator.query.filter(
+                Refrigerator.user_id == user.id).all()
+        else:
+            result = {"result_msg": "No User"}
+            return result, 400
+
+        for item in items:
+            db.session.delete(item)
+            db.session.commit()
+            ret_item = {
+                "id": item.id,
+                "content": item.content,
+                "category": item.category,
+                "time": item.time.strftime("%Y-%m-%d")
+            }
+            result['data'].append(ret_item)
+
+        return result
 
 
 @refrigerator_api.route('/recoginition/photo')
@@ -237,7 +268,7 @@ class DeleteAllItem(Resource):
     @refrigerator_api.response(200, 'Success', response_success_ingrds_model)
     @refrigerator_api.response(400, 'Fail', response_fail_model)
     def delete(self):
-        '''해당 항목을 삭제합니다'''
+        '''냉장고의 모든 재료 항목을 삭제합니다'''
 
         user = None
         result = {"result_msg": "success", "data": []}
