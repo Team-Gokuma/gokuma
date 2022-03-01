@@ -55,3 +55,12 @@ export const passupdate = async (body) => {
     console.log(error);
   }
 };
+
+export const userdelete = async (body) => {
+  try {
+    const { data } = await axios.post("/api/user/delete", body);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

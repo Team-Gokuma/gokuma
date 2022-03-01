@@ -3,12 +3,18 @@ import { Button } from "../components/common/Button";
 import { useState } from "react";
 import { UpdateNameModal } from "../components/mypage/UpdateNameModal";
 import { UpdatePassModal } from "../components/mypage/UpdatePassModal";
+import { userdelete } from "../api/userdelete";
+import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+
 const Mypage = () => {
   const name = window.sessionStorage.getItem("name");
   const email = window.sessionStorage.getItem("email");
   const [UpdateName, setUpdateName] = useState(false);
   const [UpdatePass, setUpdatePass] = useState(false);
-
+  const mainRecipes = useSetRecoilState(mainRecipesState);
+  const relatedRecipes = useSetRecoilState(relatedRecipesState);
+  const navigate = useNavigate();
 
   const handleCloseName = () => {
     setUpdateName(false);
@@ -16,6 +22,20 @@ const Mypage = () => {
   const handleClosePass = () => {
     setUpdatePass(false);
   }
+
+  const requestDelete = async (body) => {
+    const body = {email:email}
+    await userdelete(body).then((res) => {
+      if (res && res.status === 200) {
+        window.sessionStorage.clear();
+        mainRecipes([]);
+        relatedRecipes([]);
+        navigate("/");
+      } else if (res && res.status !== 200) {
+        alert(res.msg);
+      }
+    });
+  };
   return (
     <MypageContainer>
       {UpdateName && <UpdateNameModal handleCloseName={handleCloseName}/>}
@@ -44,7 +64,7 @@ const Mypage = () => {
             }}>
               <Button text={"비밀번호 변경"} bgcolor={"orange"} txtcolor={"white"} round={true} />
             </span>
-            <span>
+            <span onClick={requestDelete}>
               <Button text="회원 탈퇴" bgcolor="orange" txtcolor="white" round={true} padding="0 2rem" />
             </span>
           </div>
