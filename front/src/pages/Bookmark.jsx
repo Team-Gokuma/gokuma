@@ -3,32 +3,27 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Recipe } from "../components/common/Recipe";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { loginState, modalState } from "../store/atom";
+import { modalState } from "../store/atom";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { Button } from "../components/common/Button";
 import { getBookmark } from "../api/bookmark";
 
 const Bookmark = () => {
   const [data, setData] = useState([]);
-  // const [login, setLogin] = useState(false);
 
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
-  // const login = useRecoilValue(loginState);
-
-  const login = window.sessionStorage.getItem("isLogin");
 
   useEffect(() => {
-    !login && setModal(true);
-    login && setBookmark();
+    requestBookmark();
   }, []);
 
-  const setBookmark = async () => {
+  const requestBookmark = async () => {
     const response = await getBookmark();
-    if (response.status === 200) {
+    if (response && response.status === 200) {
       setData(response.data.data);
     } else {
-      alert("즐겨찾는 레시피 불러오기를 실패했습니다.");
+      setModal(true);
     }
   };
 

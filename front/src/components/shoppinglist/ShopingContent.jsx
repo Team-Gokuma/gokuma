@@ -18,10 +18,8 @@ export const ShopingContent = () => {
 
   const requestGet = async () => {
     const response = await getShoppinglist();
-    if (response.status === 200) {
+    if (response && response.status === 200) {
       setShoppinglist(response.data.data);
-    } else {
-      alert("장보기 리스트 불러오기를 실패했습니다.");
     }
   };
 

@@ -58,7 +58,7 @@ const Refrige = () => {
     if (response && response.status === 200) {
       setIngredient(response.data.data);
     } else {
-      alert("냉장고 리스트 불러오기를 실패했습니다.");
+      setModal(true);
     }
   };
 
@@ -67,8 +67,6 @@ const Refrige = () => {
       await getIngredient();
     };
     getlist();
-
-    !login && setModal(true);
   }, []);
 
   const addIngredientText = (textValue, category) => {
