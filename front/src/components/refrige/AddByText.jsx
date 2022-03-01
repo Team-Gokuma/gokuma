@@ -2,18 +2,11 @@ import styled from "styled-components";
 import { useState } from "react";
 import { Button } from "../common/Button";
 import { ReactComponent as IconCloseCircle } from "../../asset/icon/closeCircle.svg";
-import { addIngredientByText } from "../../api/refrige";
 
 // 텍스트로 입력해서 재료 추가 모달창
-export const AddByText = ({ handleAddText, AddIngredientByText }) => {
+export const AddByText = ({ handleAddText, addIngredientByText }) => {
   const [textValue, setTextValue] = useState("");
   const [selectValue, setSelectValue] = useState("");
-
-  async function addByText() {
-    const data = { content: textValue, category: Number(selectValue) };
-    const response = await addIngredientByText(data);
-    console.log(response);
-  }
 
   return (
     <div className="ModalContainer">
@@ -25,8 +18,7 @@ export const AddByText = ({ handleAddText, AddIngredientByText }) => {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                AddIngredientByText(textValue, selectValue);
-                addByText();
+                addIngredientByText(textValue, selectValue);
                 setSelectValue("");
                 setTextValue("");
               }}>
@@ -40,7 +32,7 @@ export const AddByText = ({ handleAddText, AddIngredientByText }) => {
                 <option value="1">과일</option>
                 <option value="2">채소</option>
                 <option value="3">육류</option>
-                <option value="4">어류</option>
+                <option value="4">해산물</option>
                 <option value="5">유제품</option>
                 <option value="6">소스류</option>
                 <option value="7">기타</option>

@@ -49,12 +49,6 @@ const RecipeDetailContainer = styled.div`
     height: ${400 / 16}rem;
     margin-left: ${30 / 16}rem;
     position: relative;
-    & .bookmarkIcon {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      cursor: pointer;
-    }
   }
   & .detailInfoBox {
     margin-top: 1rem;
@@ -64,20 +58,28 @@ const RecipeDetailContainer = styled.div`
       margin-bottom: ${12 / 16}rem;
     }
     & h3 {
+      display: inline-block;
       ${({ theme }) => theme.font.bold};
       ${({ theme }) => theme.font.large};
       margin-bottom: 1.2rem;
+      position: relative;
+      & .bookmarkIcon {
+        position: absolute;
+        top: ${-3 / 16}rem;
+        right: -2.3rem;
+        cursor: pointer;
+      }
     }
     & .summary {
       margin-bottom: 1.4rem;
+      line-height: 1.4;
     }
-    & .level {
-      position: relative;
-      & .stars {
-        position: absolute;
-        top: -0.4rem;
-        left: 3.3rem;
-      }
+
+    & .stars {
+      margin-left: 4px;
+    }
+    & .calorieContent {
+      margin-left: 4px;
     }
     & .servings {
       margin-bottom: ${24 / 16}rem;
