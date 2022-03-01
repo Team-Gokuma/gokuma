@@ -3,9 +3,10 @@ import { Button } from "../components/common/Button";
 import { useState } from "react";
 import { UpdateNameModal } from "../components/mypage/UpdateNameModal";
 import { UpdatePassModal } from "../components/mypage/UpdatePassModal";
-import { userdelete } from "../api/userdelete";
+import { userdelete } from "../api/user";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
+import { mainRecipesState, relatedRecipesState } from "../store/atom";
 
 const Mypage = () => {
   const name = window.sessionStorage.getItem("name");
@@ -22,9 +23,13 @@ const Mypage = () => {
   const handleClosePass = () => {
     setUpdatePass(false);
   }
-
-  const requestDelete = async (body) => {
+  const handleUserDelete = (e) => {
+    e.preventDefault();
     const body = {email:email}
+    requestDelete(body);
+  }
+  
+  const requestDelete = async (body) => {
     await userdelete(body).then((res) => {
       if (res && res.status === 200) {
         window.sessionStorage.clear();
@@ -64,7 +69,7 @@ const Mypage = () => {
             }}>
               <Button text={"비밀번호 변경"} bgcolor={"orange"} txtcolor={"white"} round={true} />
             </span>
-            <span onClick={requestDelete}>
+            <span onClick={handleUserDelete}>
               <Button text="회원 탈퇴" bgcolor="orange" txtcolor="white" round={true} padding="0 2rem" />
             </span>
           </div>

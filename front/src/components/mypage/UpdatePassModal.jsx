@@ -1,22 +1,14 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as IconCloseCircle } from "../../asset/icon/closeCircle.svg";
-import { useSetRecoilState } from "recoil";
-import { modalState } from "../../store/atom";
 import { Button } from "../common/Button";
 import { passupdate } from "../../api/user";
 import { ReactComponent as Ckeckicon } from "../../asset/icon/check.svg";
 
 
 export const UpdatePassModal = ({handleClosePass}) => {
-  const setModal = useSetRecoilState(modalState);
   const navigate = useNavigate();
-  const [ckNum, setCkNum] = useState(false);
-  const [ckEng, setCkEng] = useState(false);
-  const [ckSpc, setCkSpc] = useState(false);
-  const [ckLen, setCkLen] = useState(false);
-  const [ckCorrect, setCkCorrect] = useState(false);
   const [ pass, setPass] = useState({
     password:"",
     newpassword: "",
@@ -31,21 +23,16 @@ export const UpdatePassModal = ({handleClosePass}) => {
     });
   };
 
-  useEffect(() => {
-    PassValid(newpassword);
-  }, [pass]);
+  let checkNum = /[0-9]/;
+  let checkEng = /[a-zA-Z]/;
+  let checkSpc = /[~!@#$%^&*()_+|<>?:{}]/
 
-  function PassValid(newpassword) {
-    let checkNum = /[0-9]/;
-    let checkEng = /[a-zA-Z]/;
-    let checkSpc = /[~!@#$%^&*()_+|<>?:{}]/;
+  const ckEng = checkEng.test(password) ? true : false;
+  const ckNum = checkNum.test(password) ? true : false;
+  const ckSpc = checkSpc.test(password) ? true : false;
+  const ckLen = newpassword.length >= 8 ? true : false;
+  const ckCorrect = (newpassword.length !== 0 && newpassword === cknewpassword) ? true : false;
 
-    setCkEng(checkEng.test(newpassword) ? true : false);
-    setCkNum(checkNum.test(newpassword) ? true : false);
-    setCkSpc(checkSpc.test(newpassword) ? true : false);
-    setCkLen(newpassword.length >= 8 ? true : false);
-    setCkCorrect(newpassword.length !== 0 && newpassword === cknewpassword ? true : false);
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,9 +48,8 @@ export const UpdatePassModal = ({handleClosePass}) => {
       alert("비밀번호를 다시 확인해주세요!");
       }
     }
-     
   };
-// 수정은 성공적으로 되지만 바로 반영되는것이 아닌 다시로그인했을때 반영된다
+
    const requestUpdatePass = async (body) => {
      await passupdate(body).then((res) => {
        if (res && res.status === 200) {
@@ -74,6 +60,13 @@ export const UpdatePassModal = ({handleClosePass}) => {
        }
      });
    };
+
+   const list = [
+    { id:0, ck: ckEng, message: '영어 포함'},
+    { id:1, ck: ckNum, message: '숫자 포함'},
+    { id:2, ck: ckSpc, message: '특수문자 포함'},
+    { id:3, ck: ckLen, message: '8자리이상'}
+  ]
   return (
     <>
       <div className="ModalContainer">
@@ -103,27 +96,13 @@ export const UpdatePassModal = ({handleClosePass}) => {
               value={newpassword}
             />
             <StCheck>
-              <div style={ckEng ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black" }}>
-                <span>영어 포함</span>
-                <Ckeckicon />
-              </div>
-
-              <div style={ckNum ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black" }}>
-                <span>숫자 포함</span>
-                <Ckeckicon />
-              </div>
-
-              <div style={ckSpc ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black" }}>
-                <span>특수문자 포함</span>
-                <Ckeckicon />
-              </div>
-
-              <div style={ckLen ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black" }}>
-                <span>
-                  8자리이상</span>
+            {list.map((nav) => (
+                <div key={`nav-${nav.id}`} 
+                style={nav.ck ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black"}}>
+                  <span>{nav.message}</span>
                   <Ckeckicon />
-                
-              </div>
+                </div>
+              ))}
             </StCheck>
             <SignInput
               type="password"
