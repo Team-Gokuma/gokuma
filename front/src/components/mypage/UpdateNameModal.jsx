@@ -15,21 +15,26 @@ export const UpdateNameModal = ({handleCloseName}) => {
 
   const handleChange = (e) => {
     setNewname(e.target.value);
+    console.log(newname);
   };
 
-  const handleClick = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    const body = {newname:newname};
     if (newname) {
-      requestUpdateName(newname);
+      requestUpdateName(body);
     } else {
       alert("이름을 입력해주세요!");
     }
   };
+// 수정은 성공적으로 되지만 바로 반영되는것이 아닌 다시로그인했을때 반영된다
 
-  const requestUpdateName = async (newname) => {
-    await nameupdate(newname).then((res) => {
+  const requestUpdateName = async (body) => {
+    await nameupdate(body).then((res) => {
       if (res && res.status === 200) {
-        navigate("/mypage");
+        window.sessionStorage.setItem("name", newname);
+        alert("성공적으로 변경되었습니다.");
+        navigate("/");
       } else if (res && res.status !== 200) {
         alert("이름변경에 실패하였습니다!");
       }
@@ -59,10 +64,7 @@ export const UpdateNameModal = ({handleCloseName}) => {
                 <br />
                 <span
                   style={{ textDecoration: "none" }}
-                  onClick={() => {
-                    setModal(false);
-                    handleClick();
-                  }}>
+                  onClick={handleSubmit}>
                   <Button text="수정하기" bgcolor="orange" txtcolor="white" round={true} width="280px" height="48px" />
                 </span>
               </div>

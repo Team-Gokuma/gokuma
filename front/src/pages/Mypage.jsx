@@ -19,7 +19,7 @@ const Mypage = () => {
   return (
     <MypageContainer>
       {UpdateName && <UpdateNameModal handleCloseName={handleCloseName}/>}
-      {UpdatePass && <UpdateNameModal handleClosePass={handleClosePass}/>}
+      {UpdatePass && <UpdatePassModal handleClosePass={handleClosePass}/>}
       <MypageContent>
         <h2>
           <span>{name}</span> 님

@@ -9,7 +9,7 @@ import { passupdate } from "../../api/user";
 import { ReactComponent as Ckeckicon } from "../../asset/icon/check.svg";
 
 
-export const UpdatePassModal = () => {
+export const UpdatePassModal = ({handleClosePass}) => {
   const setModal = useSetRecoilState(modalState);
   const navigate = useNavigate();
   const [ckNum, setCkNum] = useState(false);
@@ -63,11 +63,12 @@ export const UpdatePassModal = () => {
     }
      
   };
-
+// 수정은 성공적으로 되지만 바로 반영되는것이 아닌 다시로그인했을때 반영된다
    const requestUpdatePass = async (body) => {
      await passupdate(body).then((res) => {
        if (res && res.status === 200) {
-         navigate("/mypage");
+         alert("성공적으로 변경되었습니다.");
+         navigate("/");
        } else if (res && res.status !== 200) {
          alert("비밀번호 변경에 실패하였습니다!");
        }
@@ -80,9 +81,7 @@ export const UpdatePassModal = () => {
           <ModalContainer>
             <IconCloseCircle
               className="modalCloseIcon"
-              onClick={() => {
-                setModal(false);
-              }}
+              onClick={handleClosePass}
             />
             <div className="content">
               <h4>비밀번호 변경</h4>
@@ -142,11 +141,7 @@ export const UpdatePassModal = () => {
           
                 <br />
                 <span
-                  style={{ textDecoration: "none" }}
-                  onClick={() => {
-                    setModal(false);
-                    
-                  }}>
+                  style={{ textDecoration: "none" }}>
                   <Button
                     text={"수정하기"}
                     bgcolor={"orange"}
