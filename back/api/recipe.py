@@ -112,6 +112,8 @@ class Detail(Resource):
             user = User.query.filter(User.email == email).first()
 
         item = Recipe.query.filter((Recipe.recipe_id == id)).first()
+        if item is None:
+            return {"result_msg": "No Such Item"}
 
         # 초기값 설정
         if item.recipe_id == 1:
