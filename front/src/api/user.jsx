@@ -37,9 +37,9 @@ export const signup = async (body) => {
   }
 };
 
-export const nameupdate = async (newname) => {
+export const nameupdate = async (body) => {
   try {
-    const { data } = await axios.post("/api/user/nameupdate", newname);
+    const { data } = await axios.post("/api/user/nameupdate", body);
     return data;
   } catch (error) {
     console.log(error);
@@ -50,6 +50,15 @@ export const nameupdate = async (newname) => {
 export const passupdate = async (body) => {
   try {
     const { data } = await axios.post("/api/user/passupdate", body);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const userdelete = async (body) => {
+  try {
+    const { data } = await axios.post("/api/user/delete", body);
     return data;
   } catch (error) {
     console.log(error);

@@ -1,34 +1,39 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ReactComponent as IconCloseCircle } from "../asset/icon/closeCircle.svg";
+import { Link, useNavigate } from "react-router-dom";
+import { ReactComponent as IconCloseCircle } from "../../asset/icon/closeCircle.svg";
 import { useSetRecoilState } from "recoil";
-import { modalState } from "../store/atom";
-import { Button } from "../components/common/Button";
-import { nameupdate } from "../api/user";
+import { modalState } from "../../store/atom";
+import { Button } from "../common/Button";
+import { nameupdate } from "../../api/user";
 
-const UpdateNameModal = () => {
+export const UpdateNameModal = ({ handleCloseName }) => {
   const setModal = useSetRecoilState(modalState);
   const navigate = useNavigate();
   const [newname, setNewname] = useState("");
 
   const handleChange = (e) => {
     setNewname(e.target.value);
+    console.log(newname);
   };
 
-  const handleClick = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    const body = { newname: newname };
     if (newname) {
-      requestUpdateName(newname);
+      requestUpdateName(body);
     } else {
       alert("이름을 입력해주세요!");
     }
   };
+  // 수정은 성공적으로 되지만 바로 반영되는것이 아닌 다시로그인했을때 반영된다
 
-  const requestUpdateName = async (newname) => {
-    await nameupdate(newname).then((res) => {
+  const requestUpdateName = async (body) => {
+    await nameupdate(body).then((res) => {
       if (res && res.status === 200) {
-        navigate("/mypage");
+        window.sessionStorage.setItem("name", newname);
+        alert("성공적으로 변경되었습니다.");
+        navigate("/");
       } else if (res && res.status !== 200) {
         alert("이름변경에 실패하였습니다!");
       }
@@ -39,14 +44,9 @@ const UpdateNameModal = () => {
       <div className="ModalContainer">
         <Background>
           <ModalContainer>
-            <IconCloseCircle
-              className="modalCloseIcon"
-              onClick={() => {
-                setModal(false);
-              }}
-            />
+            <IconCloseCircle className="modalCloseIcon" onClick={handleCloseName} />
             <div className="content">
-              <h4>이름 변경</h4>
+              <h4>닉네임 변경</h4>
               {/* <p>
                 냉장고에 저장해둔 재료를 고려해서
                 <br /> 레시피를 추천받을 수 있어요!
@@ -58,12 +58,7 @@ const UpdateNameModal = () => {
                   placeholder="수정할 이름을 작성해주세요"
                   onChange={handleChange}></UpadateInput>
                 <br />
-                <span
-                  style={{ textDecoration: "none" }}
-                  onClick={() => {
-                    setModal(false);
-                    handleClick();
-                  }}>
+                <span style={{ textDecoration: "none" }} onClick={handleSubmit}>
                   <Button text="수정하기" bgcolor="orange" txtcolor="white" round={true} width="280px" height="48px" />
                 </span>
               </div>
@@ -74,7 +69,6 @@ const UpdateNameModal = () => {
     </>
   );
 };
-export default UpdateNameModal;
 const Background = styled.div`
   position: fixed;
   top: 0;
@@ -116,6 +110,7 @@ const ModalContainer = styled.div`
       line-height: 1.2;
     }
     & .loginModalBtn :first-child {
+      margin-top: 16px;
       margin-bottom: 1rem;
     }
   }

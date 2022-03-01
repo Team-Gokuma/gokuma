@@ -8,7 +8,7 @@ export { default as Refrige } from "./Refrige";
 export { default as Bookmark } from "./Bookmark";
 export { default as ShoppingList } from "./ShoppingList";
 export { default as Mypage } from "./Mypage";
-export { default as UpdateNameModal } from "./UpdateNameModal";
-export { default as UpdatePassModal } from "./UpdatePassModal";
+// export { default as UpdateNameModal } from "./UpdateNameModal";
+// export { default as UpdatePassModal } from "./UpdatePassModal";
 
 
