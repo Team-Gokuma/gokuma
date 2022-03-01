@@ -1,13 +1,10 @@
-from flask import Blueprint, request, session, jsonify
+from flask import request, session, jsonify
 from werkzeug.security import check_password_hash
 from werkzeug.security import generate_password_hash
 from flask_restx import Api, Resource, reqparse, Namespace
 from models import User
 from db_connect import db
-
-user = Blueprint("user", __name__, url_prefix="/api/user")
-user_api = Namespace("User", description='유저 auth API', path="/api/user")
-
+from api_model.user_model import user_api, user_signup_model
 
 @user_api.route('/temp', doc=False)
 class testUserApi(Resource):
@@ -17,8 +14,10 @@ class testUserApi(Resource):
 
 
 @user_api.route('/signup')
+@user_api.expect(user_signup_model)
 class UserSignup(Resource):
     def post(self):
+        '''유저 회원가입'''
         params = request.get_json()
         name = params['nickname']
         email = params['email']
@@ -53,10 +52,10 @@ class UserSignup(Resource):
 @user_api.route('/login')
 class UserLogin(Resource):
     def post(self):
+        '''유저 로그인'''
         params = request.get_json()
         email = params['email']
         password = params['password']
-
         message = None
 
         user = User.query.filter(User.email == email).first()
@@ -82,6 +81,7 @@ class UserLogin(Resource):
 @user_api.route('/logout')
 class UserLogin(Resource):
     def get(self):
+        '''유저 로그아웃'''
         message = None
         if session.get('email'):
             session.pop('email')
@@ -96,6 +96,7 @@ class UserLogin(Resource):
 @user_api.route('/delete')  # 회원탈퇴
 class UserDelete(Resource):
     def post(self):
+        '''유저 회원탈퇴'''
         params = request.get_json()
         email = params['email']
 
@@ -115,6 +116,7 @@ class UserDelete(Resource):
 @user_api.route('/passupdate')  # 비밀번호 변경
 class UserPassUpdate(Resource):
     def post(self):
+        '''유저 비밀번호 변경'''
         params = request.get_json()
         password = params['password']
         newpassword = params['newpassword']
@@ -135,6 +137,7 @@ class UserPassUpdate(Resource):
 @user_api.route('/nameupdate')  # 닉네임변경
 class UserNameUpdate(Resource):
     def post(self):
+        '''유저 닉네임 변경'''
         params = request.get_json()
         newname = params['newname']
         message=None
