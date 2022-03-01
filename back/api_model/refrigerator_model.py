@@ -28,4 +28,5 @@ response_fail_model = refrigerator_api.model('ResponseFail', {
 response_success_ingrds_model = refrigerator_api.inherit(
     'IngrdSuccess(+Time)', response_success_model, {
         'data': fields.List(fields.Nested(ingrd_time_fields))
-    })
+    }
+)

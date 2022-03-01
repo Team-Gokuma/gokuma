@@ -44,6 +44,7 @@ class Recipe(db.Model):
     __tablename__ = "Recipe"
     id = db.Column(db.Integer, nullable=False,
                    primary_key=True, autoincrement=True)
+    recipe_id = db.Column(db.Integer, nullable=False, unique=True)
     name = db.Column(db.VARCHAR(255), nullable=False)
     summary = db.Column(db.Text, nullable=True)
     nation = db.Column(db.VARCHAR(255), nullable=True)
@@ -57,6 +58,7 @@ class Recipe(db.Model):
 
     def __init__(self, data):
         if type(data) is dict:
+            self.recipe_id = data['recipe_id']
             self.name = data['name']
             self.summary = data['summary']
             self.nation = data['nation']
@@ -76,7 +78,7 @@ class RecipeIngrd(db.Model):
     id = db.Column(db.Integer, nullable=False,
                    primary_key=True, autoincrement=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey(
-        'Recipe.id'), nullable=False)
+        'Recipe.recipe_id'), nullable=False)
     name = db.Column(db.VARCHAR(255), nullable=False)
     capacity = db.Column(db.Text, nullable=True)
     typ = db.Column(db.VARCHAR(255), nullable=True)
@@ -97,7 +99,7 @@ class RecipeProcess(db.Model):
     id = db.Column(db.Integer, nullable=False,
                    primary_key=True, autoincrement=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey(
-        'Recipe.id'), nullable=False)
+        'Recipe.recipe_id'), nullable=False)
     cooking_no = db.Column(db.Integer, nullable=True)
     content = db.Column(db.Text, nullable=True)
 
@@ -138,7 +140,7 @@ class Ingredients(db.Model):
             self.category = data['category']
 
 
-# Refrigerator
+# # Refrigerator
 
 class Refrigerator(db.Model):
     __tablename__ = 'Refrigerator'
@@ -157,7 +159,7 @@ class Refrigerator(db.Model):
         self.time = time
 
 
-# User Bookmark DB & User like DB
+# # User Bookmark DB & User like DB
 
 class Bookmark(db.Model):
     __tablename__ = 'Bookmark'
@@ -165,7 +167,7 @@ class Bookmark(db.Model):
                    primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
     recipe_id = db.Column(db.Integer, db.ForeignKey(
-        'Recipe.id'), nullable=False)
+        'Recipe.recipe_id'), nullable=False)
     checked = db.Column(db.Boolean())
 
     def __init__(self, user_id, recipe_id, checked):
@@ -180,7 +182,7 @@ class UserLike(db.Model):
                    primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
     recipe_id = db.Column(db.Integer, db.ForeignKey(
-        'Recipe.id'), nullable=False)
+        'Recipe.recipe_id'), nullable=False)
     checked = db.Column(db.Boolean())
 
     def __init__(self, user_id, recipe_id, checked):

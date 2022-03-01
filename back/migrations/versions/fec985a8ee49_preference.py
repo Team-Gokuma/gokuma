@@ -1,17 +1,18 @@
 """empty message
 
-Revision ID: 7ee3494a8723
-Revises: 2b997e774d61
-Create Date: 2022-02-21 01:40:42.777974
+Revision ID: fec985a8ee49
+Revises: bb963866736b
+Create Date: 2022-03-01 08:28:51.843481
 
 """
 from alembic import op
 import sqlalchemy as sa
 from sqlalchemy.sql import table, column
 
+
 # revision identifiers, used by Alembic.
-revision = '7ee3494a8723'
-down_revision = '2b997e774d61'
+revision = 'fec985a8ee49'
+down_revision = 'bb963866736b'
 branch_labels = None
 depends_on = None
 
@@ -24,7 +25,8 @@ def upgrade():
                     sa.Column('user_id', sa.Integer(), nullable=False),
                     sa.Column('recipe_id', sa.Integer(), nullable=False),
                     sa.Column('checked', sa.Boolean(), nullable=True),
-                    sa.ForeignKeyConstraint(['recipe_id'], ['Recipe.id'], ),
+                    sa.ForeignKeyConstraint(
+                        ['recipe_id'], ['Recipe.recipe_id'], ),
                     sa.ForeignKeyConstraint(['user_id'], ['User.id'], ),
                     sa.PrimaryKeyConstraint('id')
                     )
@@ -34,7 +36,8 @@ def upgrade():
                     sa.Column('user_id', sa.Integer(), nullable=False),
                     sa.Column('recipe_id', sa.Integer(), nullable=False),
                     sa.Column('checked', sa.Boolean(), nullable=True),
-                    sa.ForeignKeyConstraint(['recipe_id'], ['Recipe.id'], ),
+                    sa.ForeignKeyConstraint(
+                        ['recipe_id'], ['Recipe.recipe_id'], ),
                     sa.ForeignKeyConstraint(['user_id'], ['User.id'], ),
                     sa.PrimaryKeyConstraint('id')
                     )

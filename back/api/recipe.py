@@ -2,7 +2,7 @@ from flask import session, request
 from flask_restx import Resource
 from models import User, Recipe, RecipeIngrd, RecipeProcess, Ingredients, Refrigerator, Bookmark, UserLike
 from db_connect import db
-from api_model.recipe_model import recipe_api, ingrds_fields, recipes_fields, img_fields, response_fail_model, response_success_recipe_model, response_success_ingrds_model, response_success_detail_model
+from api_model.recipe_model import recipe_api, ingrds_fields, img_fields, response_fail_model, response_success_ingrds_model, response_success_detail_model, response_success_recipe_ingrdnum_model
 
 
 @recipe_api.route('/recoginition')
@@ -46,7 +46,7 @@ class Recoginition(Resource):
 class Recommend(Resource):
 
     @recipe_api.expect(ingrds_fields)
-    @recipe_api.response(200, 'Success', response_success_recipe_model)
+    @recipe_api.response(200, 'Success', response_success_recipe_ingrdnum_model)
     @recipe_api.response(400, 'Fail', response_fail_model)
     def post(self):
         """인식된 재료와 냉장고 재료를 합해 가장 많은 재료를 사용하는 순서대로 레시피를 추천합니다"""
@@ -76,7 +76,7 @@ class Recommend(Resource):
         result = {'result_msg': "success", "data": []}
         for recipe in recipes:
             item = Recipe.query.filter(
-                Recipe.id == recipe).first()
+                Recipe.recipe_id == recipe).first()
 
             ingrds_num = 0
             recipe_ingrds = RecipeIngrd.query.filter(
@@ -92,31 +92,7 @@ class Recommend(Resource):
                     ingrds_num += 1
 
             result['data'].append(
-                {"img": item.img, "id": item.id, "name": item.name, "ingrdients": ingrds_num})
-
-        return result
-
-
-@recipe_api.route('/related')
-class Related(Resource):
-
-    @recipe_api.expect(recipes_fields)
-    @recipe_api.response(200, 'Success', response_success_recipe_model)
-    @recipe_api.response(400, 'Fail', response_fail_model)
-    def post(self):
-        """관련 레시피를 보여줍니다"""
-        data = request.get_json()
-        recipes = data['recipes']
-
-        # 관련 레시피 추천 알고리즘 input = 추천된 레시피, output = 추천된 레시피와 관련된 레시피
-        related_recipes = [6, 7, 8]
-
-        result = {'result_msg': "success", "data": []}
-        for recipe in related_recipes:
-            item = Recipe.query.filter(
-                Recipe.id == recipe).first()
-            result['data'].append(
-                {"img": item.img, "id": item.id, "name": item.name})
+                {"img": item.img, "id": item.recipe_id, "name": item.name, "ingrdients": ingrds_num})
 
         return result
 
@@ -135,16 +111,18 @@ class Detail(Resource):
             email = session['email']
             user = User.query.filter(User.email == email).first()
 
-        item = Recipe.query.filter((Recipe.id == id)).first()
+        item = Recipe.query.filter((Recipe.recipe_id == id)).first()
+        if item is None:
+            return {"result_msg": "No Such Item"}
 
         # 초기값 설정
-        if item.id == 1:
+        if item.recipe_id == 1:
             item.like = 1
             db.session.commit()
 
         # item이 SQLAlchemy Model type이다 보니까 for문으로 작성이 어려운 점이 있었다.
         result = {
-            'id': item.id,
+            'id': item.recipe_id,
             'name': item.name,
             'like': item.like,
             'summary': item.summary,

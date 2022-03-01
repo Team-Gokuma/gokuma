@@ -4,6 +4,7 @@ from db_connect import db
 from api.user import user_api
 from api.shoppingList import shopping_api
 from api.recipe import recipe_api
+from api.recipe_related import recipe_api
 from api.refrigerator import refrigerator_api
 from api.bookmark import bookmark_api
 from api.userlike import userlike_api
