@@ -117,10 +117,11 @@ const Login = () => {
               round="round"
               type="submit"
             />
-          </form>
-          <Error display={error}>
+            <Error display={error}>
             *이메일 또는 비밀번호가 일치하지않습니다.
         </Error>
+          </form>
+          
 
         </StInput>
       </StWrapper>
@@ -172,5 +173,6 @@ const StInput = styled.div`
   flex-flow: row wrap;
 `;
 const Error = styled.strong`
+  margin-top: 20px;
   display: ${(props) => (props.display ? 'block' : 'none')};
 `;
