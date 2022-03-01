@@ -38,3 +38,12 @@ export const detailRecipe = async (id) => {
     console.log(error);
   }
 };
+
+export const addLike = async (id) => {
+  try {
+    const response = await axios.get(`/api/userlike/check/${id}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

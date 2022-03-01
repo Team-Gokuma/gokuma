@@ -3,26 +3,45 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { RecipeDetailContent } from "../../components/recommend/RecipeDetailContent";
 import { RecipeDetailInfo } from "../../components/recommend/RecipeDetailInfo";
-import { detailRecipe } from "../../api/receipe";
+import { detailRecipe, addLike } from "../../api/receipe";
 
 const RecipeDetail = () => {
   const { id } = useParams();
   const [detailData, setDetailData] = useState();
+  const [login, setLogin] = useState(true);
+
+  const getDetailRecipe = async () => {
+    const response = await detailRecipe(id);
+    setDetailData(response.data);
+  };
+
+  const clickLike = async () => {
+    await addLike(detailData.id);
+  };
 
   useEffect(() => {
-    const getDetailRecipe = async () => {
-      const response = await detailRecipe(id);
-      setDetailData(response.data);
-    };
+    setLogin(window.sessionStorage.getItem("isLogin"));
     getDetailRecipe();
   }, []);
+
+  const handleLike = () => {
+    if (!login) {
+      alert("로그인 후 이용이 가능합니다!");
+      return;
+    }
+    const getLike = async () => {
+      await clickLike();
+      await getDetailRecipe();
+    };
+    getLike();
+  };
 
   return (
     <RecipeDetailSection>
       <RecipeDetailContainer>
         {detailData && (
           <>
-            <RecipeDetailInfo data={detailData} />
+            <RecipeDetailInfo data={detailData} handleLike={handleLike} />
             <RecipeDetailContent data={detailData} />
           </>
         )}

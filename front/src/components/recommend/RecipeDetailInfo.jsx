@@ -14,8 +14,7 @@ const requestSetBookmark = async (id) => {
   }
 };
 
-export const RecipeDetailInfo = ({ data }) => {
-  const [like, setLike] = useState(data.isLike);
+export const RecipeDetailInfo = ({ data, handleLike }) => {
   const [bookmark, setBookmark] = useState(data.bookmark);
   const [login, setLogin] = useState(true);
 
@@ -24,14 +23,6 @@ export const RecipeDetailInfo = ({ data }) => {
   }, []);
 
   const ingredient = data.ingredient.sort((a, b) => b.inRefrige - a.inRefrige);
-
-  const handleLike = () => {
-    if (!login) {
-      alert("로그인 후 이용이 가능합니다!");
-      return;
-    }
-    setLike((like) => !like);
-  };
 
   const handleBookmark = () => {
     if (!login) {
@@ -71,7 +62,7 @@ export const RecipeDetailInfo = ({ data }) => {
         <p className="summary">
           <span>{data.summary}</span>
         </p>
-        <LikeBox onClick={handleLike} like={like}>
+        <LikeBox onClick={handleLike} like={data.isLike}>
           <IconThumbUp className="thumbUpIcon" />
           <span>{data.like}</span>
         </LikeBox>

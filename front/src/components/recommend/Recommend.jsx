@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useReducer } from "react";
 import { Link } from "react-router-dom";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { modalState, mainRecipesState, relatedRecipesState } from "../../store/atom";
@@ -23,6 +23,24 @@ const handleAddByPhoto = async (img) => {
   }
 };
 
+// TO DO: useReducer 적용
+// const initialState = {
+//   inputValue: "",
+//   data: {},
+//   msg: "",
+//   addToggle: true,
+//   tags: [],
+//   img: "",
+//   onIcon: false
+// }
+
+// const reducer = (state, action) => {
+//   switch(action.type){
+//     case :
+//       return state;
+//   }
+// }
+
 export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [AddToggle, setAddToggle] = useState(true);
   const [inputValue, setInputValue] = useState("");
@@ -31,6 +49,8 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [tags, setTags] = useState([]);
   const [img, setImg] = useState("");
   const [data, setData] = useState({});
+
+  // const [state, dispatch] = useReducer(reducer, initialState);
 
   const login = window.sessionStorage.getItem("isLogin");
   const [onModal, setOnModal] = useRecoilState(modalState);
