@@ -5,10 +5,20 @@ import { modalState } from "../store/atom";
 import { RefrigeIngredient } from "../components/shoppinglist/RefrigeIngredient";
 import { ShopingContent } from "../components/shoppinglist/ShopingContent";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
+import { Toast } from "../components/common/Toast";
 import { ingredientList } from "../api/refrige";
 
 const ShoppingList = () => {
   const [ingredient, setIngredient] = useState([]);
+  const [isActive, setIsActive] = useState(false);
+
+  const onToast = () => {
+    setIsActive(true);
+  };
+
+  const OffToast = () => {
+    setIsActive(false);
+  };
 
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
@@ -29,12 +39,23 @@ const ShoppingList = () => {
   return (
     <>
       <ShoppingListContainer>
+        <Toast
+          isActive={isActive}
+          OffToast={() => {
+            OffToast();
+          }}
+        />
         {onModal && <AlertLoginModal text="로그인이 필요한 기능입니다!" btnText="확인" />}
+
         <div>
           <h2>장보기 리스트</h2>
           <ShoppingListBox>
             <RefrigeIngredient ingredient={ingredient} />
-            <ShopingContent />
+            <ShopingContent
+              handleToast={() => {
+                onToast();
+              }}
+            />
           </ShoppingListBox>
         </div>
       </ShoppingListContainer>
@@ -48,6 +69,7 @@ const ShoppingListContainer = styled.section`
   width: ${740 / 16}rem;
   margin: 0 auto;
   margin-top: ${88 / 16}rem;
+  position: relative;
 
   h2 {
     ${({ theme }) => theme.font.bold};

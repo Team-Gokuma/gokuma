@@ -4,7 +4,6 @@ import { ReactComponent as IconCloseCircle } from "../../asset/icon/closeCircle.
 import { useSetRecoilState } from "recoil";
 import { modalState } from "../../store/atom";
 import { Button } from "../../components/common/Button";
-import { StyledLink } from "../../styles/commonStyle";
 
 export const AlertLoginModal = ({ text, page, btnText, handleClick }) => {
   const setModal = useSetRecoilState(modalState);
@@ -27,7 +26,11 @@ export const AlertLoginModal = ({ text, page, btnText, handleClick }) => {
                 <br /> 레시피를 추천받을 수 있어요!
               </p>
               <div className="loginModalBtn">
-                <StyledLink to="/login">
+                <span
+                  onClick={() => {
+                    setModal(false);
+                    navigate("/login");
+                  }}>
                   <Button
                     text="로그인 하러가기"
                     bgcolor="orange"
@@ -36,7 +39,7 @@ export const AlertLoginModal = ({ text, page, btnText, handleClick }) => {
                     width="280px"
                     height="48px"
                   />
-                </StyledLink>
+                </span>
                 <br />
                 <span
                   onClick={() => {

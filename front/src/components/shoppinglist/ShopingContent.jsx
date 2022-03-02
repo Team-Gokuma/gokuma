@@ -14,7 +14,7 @@ import {
   deleteAllShoppinglist,
 } from "../../api/shoppinglist";
 
-export const ShopingContent = () => {
+export const ShopingContent = ({ handleToast }) => {
   const [edit, setEdit] = useState("");
   const [editValue, setEditValue] = useState("");
   const [add, setAdd] = useState(false);
@@ -64,8 +64,9 @@ export const ShopingContent = () => {
   };
 
   const handleAddList = () => {
-    login && setAdd(true);
-    !login && alert("로그인이 필요한 기능입니다!");
+    // login && setAdd(true);
+    // !login && alert("로그인이 필요한 기능입니다!");
+    login && handleToast();
   };
 
   const handleAddContent = () => {
