@@ -10,6 +10,7 @@ import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { AddByText } from "../components/refrige/AddByText";
 import { AddByImage } from "../components/refrige/AddByImage";
 import { ingredientList, addIngredientByText, deleteAllIngredient, deleteIngredient } from "../api/refrige";
+import { Toast } from "../components/common/Toast";
 
 const category = ["전체 식재료", "과일", "채소", "육류", "해산물", "유제품", "소스류", "기타"];
 
@@ -45,9 +46,8 @@ const Refrige = () => {
   const [addByText, setAddByText] = useState(false);
   const [isClicked, setIsClicked] = useState("전체 식재료");
   const [ingredient, setIngredient] = useState([]);
-  // const [login, setLogin] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
-  // const login = useRecoilValue(loginState);
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
 
@@ -61,13 +61,6 @@ const Refrige = () => {
       setModal(true);
     }
   };
-
-  useEffect(() => {
-    const getlist = async () => {
-      await getIngredient();
-    };
-    getlist();
-  }, []);
 
   const addIngredientText = (textValue, category) => {
     const addAndGetList = async () => {
@@ -110,25 +103,47 @@ const Refrige = () => {
     setAddByImage(false);
   };
 
+  const onToast = () => {
+    setIsActive(true);
+  };
+
+  const OffToast = () => {
+    setIsActive(false);
+  };
+
+  useEffect(() => {
+    const getlist = async () => {
+      await getIngredient();
+    };
+    getlist();
+  }, []);
+
+  console.log(isActive);
   return (
     <RefrigeContainer>
       {onModal && <AlertLoginModal text="로그인이 필요한 기능입니다!" btnText="확인" />}
       {addByImage && <AddByImage handleAddImage={handleAddImage} getIngredient={getIngredient} />}
       {addByText && <AddByText handleAddText={handleAddText} addIngredientByText={addIngredientText} />}
+      <Toast
+        isActive={isActive}
+        OffToast={() => {
+          OffToast();
+        }}
+      />
       <RefrigeTitle>
         <h2>나의 냉장고</h2>
         <div>
           <span
             onClick={() => {
               login && setAddByImage(true);
-              !login && alert("로그인 후 이용이 가능합니다!");
+              !login && onToast();
             }}>
             <Button text="사진으로 추가" bgcolor="orange" txtcolor="white" />
           </span>
           <span
             onClick={() => {
               login && setAddByText(true);
-              !login && alert("로그인 후 이용이 가능합니다!");
+              !login && onToast();
             }}>
             <Button text="직접 입력해서 추가" bgcolor="orange" txtcolor="white" />
           </span>
@@ -188,9 +203,10 @@ const Refrige = () => {
 export default Refrige;
 
 const RefrigeContainer = styled.section`
-  width: ${660 / 16}rem;
+  width: ${740 / 16}rem;
   margin: 0 auto;
   margin-top: ${88 / 16}rem;
+  position: relative;
 `;
 
 const RefrigeTitle = styled.div`

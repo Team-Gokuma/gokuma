@@ -64,9 +64,8 @@ export const ShopingContent = ({ handleToast }) => {
   };
 
   const handleAddList = () => {
-    // login && setAdd(true);
-    // !login && alert("로그인이 필요한 기능입니다!");
-    login && handleToast();
+    login && setAdd(true);
+    !login && handleToast();
   };
 
   const handleAddContent = () => {
