@@ -18,7 +18,7 @@ const Header = () => {
   const relatedRecipes = useSetRecoilState(relatedRecipesState);
   const handleLogout = async () => {
     await logout().then((res) => {
-      if (res.status === 200) {
+      if (res.status !== 404) {
         window.sessionStorage.clear();
         mainRecipes([]);
         relatedRecipes([]);
@@ -33,6 +33,34 @@ const Header = () => {
 
   const name = window.sessionStorage.getItem("name");
 
+  //   function getCookie(key) {
+  //     var result = null;
+  //     var cookie = document.cookie.split(';');
+  //     cookie.some(function (item) {
+  //         // 공백을 제거
+  //         item = item.replace(' ', '');
+
+  //         var dic = item.split('=');
+
+  //         if (key === dic[0]) {
+  //             result = dic[1];
+  //             return true;    // break;
+  //         }
+  //     });
+  //     return result;
+  // }
+  // var setCookie = function(name, value, exp) {
+  //   var date = new Date();
+  //   date.setTime(date.getTime() + exp*24*60*60*1000);
+  //   document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+  // };
+  // var deleteCookie = function(name) {
+  //   document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+  //   }
+
+  // setCookie("name", "wkdgns", 1);
+  //   const name = getCookie("name");
+  //   console.log(name);
   return (
     <>
       <StWrapper>

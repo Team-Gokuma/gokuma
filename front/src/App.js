@@ -35,7 +35,7 @@ function App() {
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <p>{msg}</p>
+        {/* <p>{msg}</p> */}
         <RecoilRoot>
           <Header />
           <Routes>

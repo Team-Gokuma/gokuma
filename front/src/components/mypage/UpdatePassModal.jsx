@@ -112,7 +112,6 @@ export const UpdatePassModal = ({ handleClosePass }) => {
                       <Ckeckicon />
                     </div>
                   </StCheckPass>
-
                   <br />
                   <span style={{ textDecoration: "none" }}>
                     <Button
@@ -123,56 +122,6 @@ export const UpdatePassModal = ({ handleClosePass }) => {
                       width={"280px"}
                       height={"48px"}
                     />
-                    <StCheck>
-                      <div style={ckEng ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black" }}>
-                        <span>영어 포함</span>
-                        <Ckeckicon />
-                      </div>
-
-                      <div style={ckNum ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black" }}>
-                        <span>숫자 포함</span>
-                        <Ckeckicon />
-                      </div>
-
-                      <div style={ckSpc ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black" }}>
-                        <span>특수문자 포함</span>
-                        <Ckeckicon />
-                      </div>
-
-                      <div style={ckLen ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black" }}>
-                        <span>8자리이상</span>
-                        <Ckeckicon />
-                      </div>
-                    </StCheck>
-                    <SignInput
-                      type="password"
-                      name="cknewpassword"
-                      placeholder="비밀번호 확인"
-                      onChange={handleChange}
-                      value={cknewpassword}
-                    />
-                    <StCheckPass>
-                      <div
-                        style={ckCorrect ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black" }}>
-                        <span>비밀번호 확인</span>
-                        <Ckeckicon />
-                      </div>
-                    </StCheckPass>
-
-                    <br />
-                    <span
-                      onClick={() => {
-                        // setModal(false);
-                      }}>
-                      <Button
-                        text={"수정하기"}
-                        bgcolor={"orange"}
-                        txtcolor={"white"}
-                        round={true}
-                        width={"280px"}
-                        height={"48px"}
-                      />
-                    </span>
                   </span>
                 </form>
               </div>

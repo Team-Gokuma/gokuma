@@ -14,8 +14,8 @@ import config
 
 def create_app(test_config=None):
     app = Flask(__name__)
-    api = Api(app, version='1.0', title='고쿠마 냉장고 API 문서', description='고쿠마 냉장고의 Back API 문서입니다',
-              doc="/api-docs", contact="", license="elice team 06")
+    api = Api(app, version='1.0', title='고쿠마 냉장고 API 문서',
+              description='고쿠마 냉장고의 Back API 문서입니다', doc="/api-docs")
     api.add_namespace(user_api)
     api.add_namespace(shopping_api)
     api.add_namespace(recipe_api)
