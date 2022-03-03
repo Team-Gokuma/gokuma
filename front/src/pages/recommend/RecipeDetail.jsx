@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { media } from "../../styles/theme";
 import { RecipeDetailContent } from "../../components/recommend/RecipeDetailContent";
 import { RecipeDetailInfo } from "../../components/recommend/RecipeDetailInfo";
 import { detailRecipe, addLike } from "../../api/receipe";
@@ -53,7 +54,7 @@ const RecipeDetail = () => {
 };
 
 const RecipeDetailSection = styled.section`
-  padding: ${44 / 16}rem 0;
+  padding: 44px 0;
   background-color: #f0f1f3;
 `;
 const RecipeDetailContainer = styled.div`
@@ -150,6 +151,27 @@ const RecipeDetailContainer = styled.div`
       margin-left: ${32 / 16}rem;
       ${({ theme }) => theme.font.medium};
       line-height: 1.3;
+    }
+  }
+  ${media.tablet} {
+    width: 728px;
+    .detailImgBox {
+      width: ${360 / 16}rem;
+      height: ${360 / 16}rem;
+      margin-left: 0;
+    }
+    .detailInfoBox {
+      margin-left: 40px;
+    }
+    .ingredient {
+      & span:nth-child(2) {
+        word-break: keep-all;
+        margin-right: 0px;
+      }
+    }
+    .detailRecipeBox {
+      width: 620px;
+      margin-top: 60px;
     }
   }
 `;

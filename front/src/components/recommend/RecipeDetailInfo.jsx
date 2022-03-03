@@ -125,4 +125,5 @@ const IngredientName = styled.span`
   padding: 0.5rem 1rem;
   margin-bottom: 1rem;
   margin-right: ${8 / 16}rem;
+  word-break: keep-all;
 `;

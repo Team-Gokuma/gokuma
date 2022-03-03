@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { media } from "../styles/theme";
 import styled from "styled-components";
 import { Recipe } from "../components/common/Recipe";
 import { useRecoilValue, useSetRecoilState } from "recoil";
@@ -90,17 +91,31 @@ const BookmarkContainer = styled.div`
       animation: motion 1.4s linear 0s infinite;
 
       @keyframes motion {
-            0% {margin-top: 20px;}
-            20% {margin-top: 30px;}
-            40% {margin-top: 20px;}
-            60% {margin-top: 30px;}
-            80% {margin-top: 20px;}
-            100% {margin-top: 20px;}
+        0% {
+          margin-top: 20px;
+        }
+        20% {
+          margin-top: 30px;
+        }
+        40% {
+          margin-top: 20px;
+        }
+        60% {
+          margin-top: 30px;
+        }
+        80% {
+          margin-top: 20px;
+        }
+        100% {
+          margin-top: 20px;
         }
       }
-      :hover {
-        opacity: 0.8;
-      }
     }
+    :hover {
+      opacity: 0.8;
+    }
+  }
+  ${media.tablet} {
+    width: 768px;
   }
 `;

@@ -76,8 +76,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     }
   };
 
-  console.log(data);
-
   const getRecommendation = async (ingredients) => {
     const response = await recommendRecipe(ingredients);
     if (response.status === 200) {

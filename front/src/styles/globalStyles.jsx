@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import { media } from "../styles/theme";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -9,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
     word-wrap: break-word;
     word-break: break-all;
     -ms-overflow-style: none;
-    font-size: 16px;
+    font-size: 16px;    
   }
   ::-webkit-scrollbar {
   display: none;
@@ -39,6 +40,12 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     line-height: 1.2;
     background-color: ${({ theme }) => theme.color.background};
+    ${media.tablet} {
+    font-size: 15px;
+  }
+    ${media.mobile} {
+      font-size: 14px;
+  }
   }
   img{
     width: 100%;

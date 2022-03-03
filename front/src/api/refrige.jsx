@@ -13,7 +13,6 @@ export const addIngredient = async (ingredients) => {
   try {
     const data = { ingredients: ingredients };
     const response = await axios.post("api/refrigerator/save", data);
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
