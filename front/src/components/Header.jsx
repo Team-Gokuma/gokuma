@@ -22,7 +22,7 @@ const Header = () => {
         window.sessionStorage.clear();
         mainRecipes([]);
         relatedRecipes([]);
-        // setIsLogin(false);
+        setIsLogin(false);
         navigate("/");
       } else {
         alert("error");

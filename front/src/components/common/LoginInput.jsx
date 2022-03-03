@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 const StyledInput = styled.input`
-  width: 460px;
   outline: none;
   box-sizing: border-box;
   margin-bottom: 24px;
@@ -9,6 +8,8 @@ const StyledInput = styled.input`
   color: black;
   /* 크기 */
   height: 44px;
+  width: 460px; 
+  // 327, 40 mobile
   border: 1px solid ${({ theme }) => theme.color.darkgray};
   border-radius: 4px;
   padding-left: 24px;

@@ -10,6 +10,7 @@ import Tab from "@mui/material/Tab";
 import LoginInput from "../../components/common/LoginInput";
 import Button from "../../components/common/Button";
 import { makeStyles } from "@material-ui/styles";
+import { media } from "../../styles/theme";
 
 const useStyles = makeStyles(() => ({
   customStyleOnTab: {
@@ -53,6 +54,9 @@ const Login = () => {
   const requestLogin = async (inputs) => {
     await login(inputs).then((res) => {
       if (res && res.status !== 404) {
+        window.sessionStorage.setItem("name", res.name);
+        window.sessionStorage.setItem("email", res.email);
+        window.sessionStorage.setItem("isLogin", true);
         navigate('/');
       } else if (res && res.status === 404) {
         alert("로그인에 실패하였습니다!");
@@ -98,7 +102,7 @@ const Login = () => {
         </StAppBar>
         <StInput>
           <form onSubmit={onSubmit} style={{ textAlign: "center" }}>
-            <LoginInput type="text" name="email" placeholder="이메일" onChange={handleChange} value={email} />
+            <LoginInput className="login" type="text" name="email" placeholder="이메일" onChange={handleChange} value={email} />
             <LoginInput
               type="password"
               name="password"
@@ -119,8 +123,6 @@ const Login = () => {
             *이메일 또는 비밀번호가 일치하지않습니다.
         </Error>
           </form>
-          
-
         </StInput>
       </StWrapper>
     </Stbody>
@@ -135,6 +137,7 @@ const Stbody = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${({ theme }) => theme.color.lightgray};
+
 `;
 
 const StWrapper = styled.div`
@@ -146,6 +149,15 @@ const StWrapper = styled.div`
   box-shadow: 3px 7px 14px rgba(0, 0, 0, 0.05);
   border-radius: ${10 / 16}rem;
   background: ${({ theme }) => theme.color.white};
+  ${media.mobile} {
+    position: absolute;
+    width: 320px;
+    height: 360px;
+    left: 20px;
+    top: 106px;
+    }
+  }
+
 `;
 
 const StAppBar = styled(Tabs)`
@@ -161,6 +173,13 @@ const StAppBar = styled(Tabs)`
     font-size: 5rem;
     font-weight: 800;
   }
+  ${media.mobile} {
+    position: absolute;
+    width: 300px;
+    height: 0px;
+    left: -120px; 
+    top: -36px;
+  }
 `;
 
 const StInput = styled.div`
@@ -169,6 +188,13 @@ const StInput = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: row wrap;
+
+  ${media.mobile} {
+    position: absolute;
+    top: 120px;
+    background:red;
+    
+  }
 `;
 const Error = styled.strong`
   margin-top: 20px;
