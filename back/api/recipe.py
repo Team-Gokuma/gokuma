@@ -131,6 +131,7 @@ class Detail(Resource):
             'level': item.level,
             'calorie': item.calorie,
             'img': item.img,
+            'video': item.video,
             'isLike': False,
             'bookmark': False,
             'ingredient': [],

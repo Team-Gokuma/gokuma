@@ -56,6 +56,7 @@ recipe_detail_fields = recipe_api.inherit('RecipeDetail', recipe_fields, {
     'calorie': fields.Integer(description='칼로리', required=True, example=100),
     'isLike': fields.Boolean(description='유저가 좋아요 눌렀는지 여부', required=True, example=False),
     'bookmark': fields.Boolean(description='유저가 즐겨찾기했는지 여부', required=True, example=False),
+    'video': fields.String(description='유튜브 동영상 ID', required=True, example='youtube_video_id'),
     'ingredient': fields.List(fields.Nested(recipe_ingrd_fields)),
     'recipe': fields.List(fields.Nested(recipe_proc_fields))
 })
