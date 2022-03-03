@@ -35,6 +35,7 @@ def upgrade():
                     sa.Column('img', sa.VARCHAR(length=255), nullable=True),
                     sa.Column('like', sa.Integer(),
                               server_default='0', nullable=False),
+                    sa.Column('video', sa.VARCHAR(length=255), nullable=True),
                     sa.PrimaryKeyConstraint('id'),
                     sa.UniqueConstraint('recipe_id')
                     )
@@ -74,7 +75,8 @@ def upgrade():
                          column('quantity', sa.Integer),
                          column('level', sa.Integer),
                          column('calorie', sa.Integer),
-                         column('img', sa.VARCHAR)
+                         column('img', sa.VARCHAR),
+                         column('video', sa.VARCHAR)
                          )
     op.bulk_insert(seed_recipes, recipes)
 
