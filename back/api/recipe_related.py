@@ -1,3 +1,4 @@
+import random
 from flask import session, request
 from flask_restx import Resource
 from models import User, Recipe, RecipeIngrd, RecipeProcess, Ingredients, Refrigerator, Bookmark, UserLike
@@ -112,6 +113,44 @@ class CookTime(Resource):
         elif cooktime == 3:
             related_recipes = Recipe.query.filter(
                 (Recipe.time > 40)).order_by(Recipe.time, Recipe.like.desc()).limit(limit_num).all()
+
+        result = {'result_msg': "success", "data": []}
+        for recipe in related_recipes:
+            item = Recipe.query.filter(
+                Recipe.recipe_id == recipe.recipe_id).first()
+            result['data'].append(
+                {"img": item.img, "id": item.recipe_id, "name": item.name})
+
+        return result
+
+
+# parser 설정
+level_parser = recipe_api.parser()
+level_parser.add_argument('level', type=int, location='args')
+
+
+@recipe_api.route('/related/level')
+class level(Resource):
+
+    @recipe_api.expect(level_parser)
+    @recipe_api.response(200, 'Success', response_success_recipe_model)
+    @recipe_api.response(400, 'Fail', response_fail_model)
+    def get(self):
+        """난이도별로 레시피를 보여줍니다
+
+        query value
+        1: 초보환영
+        2: 보통
+        3: 어려움
+        """
+
+        args = level_parser.parse_args()
+        level = args['level']
+        limit_num = 8
+        offset_num = random.randint(0, 158)
+        related_recipes = []
+        related_recipes = Recipe.query.filter(Recipe.level == level).order_by(
+            Recipe.like.desc()).offset(offset_num).limit(limit_num).all()
 
         result = {'result_msg': "success", "data": []}
         for recipe in related_recipes:
