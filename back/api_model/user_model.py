@@ -8,20 +8,28 @@ user_signup_model = user_api.model('UserSignup', {
     'password': fields.String(description='비밀번호', required=True, example='asvd12!!')
 })
 
+user_login_model = user_api.model('UserLogin', {
+    'email': fields.String(description='이메일', required=True, example='test@naver.com'),
+    'password': fields.String(description='비밀번호', required=True, example='asvd12!!')
+})
 
-# shopping_item_id_fields = shopping_api.inherit('ShoppingItem with ID', shopping_item_fields, {
-#     'id': fields.Integer(description='장보기 리스트 ID', required=True, example=1)
-# })
+response_success_model = user_api.model('ResponseSuccess', {
+    'result_msg': fields.String(description='응답 상태', required=True, example='success')
+})
 
-# response_success_model = shopping_api.model('ResponseSuccess', {
-#     'result_msg': fields.String(description='응답 상태', required=True, example='success')
-# })
+response_fail_model = user_api.model('ResponseFail', {
+    'result_msg': fields.String(description='응답 상태', required=True, example='cause of failure')
+})
 
-# response_fail_model = shopping_api.model('ResponseFail', {
-#     'result_msg': fields.String(description='응답 상태', required=True, example='cause of failure')
-# })
+user_delete_model = user_api.model('UserDelete', {
+    'email': fields.String(description='이메일', required=True, example='test@naver.com')
+})
 
-# response_success_shopping_item_model = shopping_api.inherit(
-#     'ShoppingItemSuccess', response_success_model, {
-#         'data': fields.List(fields.Nested(shopping_item_id_fields))
-#     })
+user_update_password_model = user_api.model('UpdatePassword', {
+    'password': fields.String(description='현재 비밀번호', required=True, example='asvd12!!'),
+    'newpassword': fields.String(description='새로운 비밀번호', required=True, example='1234asfd111!!!!')
+})
+
+user_update_name_model = user_api.model('UpdateName', {
+    'newname': fields.String(description='새로운 닉네임', required=True, example='채셔')
+})

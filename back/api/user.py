@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash
 from flask_restx import Api, Resource, reqparse, Namespace
 from models import User
 from db_connect import db
-from api_model.user_model import user_api, user_signup_model
+from api_model.user_model import user_api, user_signup_model , user_login_model, response_success_model, response_fail_model, user_delete_model, user_update_password_model, user_update_name_model 
 from urllib import parse
 
 @user_api.route('/temp', doc=False)
@@ -16,6 +16,8 @@ class testUserApi(Resource):
 
 @user_api.route('/signup')
 @user_api.expect(user_signup_model)
+@user_api.response(200, 'Success', response_success_model)
+@user_api.response(404, 'Fail', response_fail_model)
 class UserSignup(Resource):
     def post(self):
         '''유저 회원가입'''
@@ -51,6 +53,8 @@ class UserSignup(Resource):
 
 
 @user_api.route('/login')
+@user_api.expect(user_login_model)
+@user_api.response(404, 'Fail', response_fail_model)
 class UserLogin(Resource):
     def post(self):
         '''유저 로그인'''
@@ -82,6 +86,7 @@ class UserLogin(Resource):
 
 
 @user_api.route('/logout')
+@user_api.response(400, 'Fail', response_fail_model)
 class UserLogin(Resource):
     def get(self):
         '''유저 로그아웃'''
@@ -101,6 +106,9 @@ class UserLogin(Resource):
 
 
 @user_api.route('/delete')  # 회원탈퇴
+@user_api.expect(user_delete_model)
+@user_api.response(200, 'Success', response_success_model)
+@user_api.response(400, 'Fail', response_fail_model)
 class UserDelete(Resource):
     def post(self):
         '''유저 회원탈퇴'''
@@ -121,6 +129,9 @@ class UserDelete(Resource):
 
 
 @user_api.route('/passupdate')  # 비밀번호 변경
+@user_api.expect(user_update_password_model)
+@user_api.response(200, 'Success', response_success_model)
+@user_api.response(400, 'Fail', response_fail_model)
 class UserPassUpdate(Resource):
     def post(self):
         '''유저 비밀번호 변경'''
@@ -142,6 +153,9 @@ class UserPassUpdate(Resource):
 
 
 @user_api.route('/nameupdate')  # 닉네임변경
+@user_api.expect(user_update_name_model)
+@user_api.response(200, 'Success', response_success_model)
+@user_api.response(400, 'Fail', response_fail_model)
 class UserNameUpdate(Resource):
     def post(self):
         '''유저 닉네임 변경'''
