@@ -26,7 +26,13 @@ export default function CommonNav() {
 }
 const Wrapdiv = styled.div`
   justify-content: flex-start;
-  /* border: 2px solid cyan; */
+
+  ${media.mobile} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
 `;
 const StWrapper = styled(StListWrapper)`
   display: flex;
@@ -36,16 +42,16 @@ const StWrapper = styled(StListWrapper)`
     width: 28rem;
   }
   ${media.mobile} {
-    width: 100%;
-    display: block;
-    justify-content: flex-start;
+    width: 130px;
+    justify-content: center;
+    display: flex;
     flex-wrap: wrap;
-    /* border: 2px solid red; */
 
     span {
-      display: inline;
-      /* border: 2px solid blue; */
+      display: inline-block;
       text-align: center;
+      margin: 8px 0;
+      padding: 8px;
     }
   }
 

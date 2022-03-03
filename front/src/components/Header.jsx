@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CommonNav } from "./";
@@ -12,6 +13,8 @@ import { media } from "../styles/theme";
 import { StyledLink } from "../styles/commonStyle";
 
 const Header = () => {
+  const [menuToggle, setMenutoggle] = useState(false);
+
   const navigate = useNavigate();
   const isLogin = window.sessionStorage.getItem("isLogin");
   const mainRecipes = useSetRecoilState(mainRecipesState);
@@ -64,7 +67,11 @@ const Header = () => {
   return (
     <>
       <StWrapper>
-        <div className="mobileMenu">
+        <div
+          className="mobileMenuBtn"
+          onClick={() => {
+            setMenutoggle((menuToggle) => !menuToggle);
+          }}>
           <img src={menu} alt="mobile menu" />
         </div>
         <LogoWrapper onClick={() => navigate("/")}>
@@ -80,7 +87,7 @@ const Header = () => {
               <div className="auth" onClick={handleLogout}>
                 <Button width="104px" height="45px" text="Logout" bgcolor="yellow" txtcolor="black" round="round" />
               </div>
-              <StyledLink to="/mypage">
+              <StyledLink to="/mypage" className="profile">
                 <div className="name" style={{ float: "left", marginTop: "14px", marginRight: "10px" }}>
                   {name}님
                 </div>
@@ -92,20 +99,57 @@ const Header = () => {
               <StyledLink to="/login" className="auth">
                 <Button text="Login / Sign up" bgcolor="yellow" txtcolor="black" />
               </StyledLink>
-              <StyledLink to="/login">
+              <StyledLink to="/login" className="profile">
                 <Profile />
               </StyledLink>
             </>
           )}
         </ProfileWrapper>
       </StWrapper>
-      <MobileMenu>
-        <CommonNav />
-      </MobileMenu>
+      {menuToggle && (
+        <MobileMenu>
+          <CommonNav />
+        </MobileMenu>
+      )}
     </>
   );
 };
 export default Header;
+
+const StWrapper = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 36px;
+  height: 5rem;
+  background: ${({ theme }) => theme.color.yellow};
+  & > span,
+  svg {
+    cursor: pointer;
+  }
+  .mobileMenuBtn {
+    display: none;
+  }
+  ${media.tablet} {
+    height: 60px;
+  }
+  ${media.mobile} {
+    min-width: 360px;
+    height: 60px;
+    align-items: center;
+    padding-right: 0px;
+    box-sizing: border-box;
+    position: relative;
+
+    .mobileMenuBtn {
+      display: block;
+      padding: 16px;
+    }
+    .nav {
+      display: none;
+    }
+  }
+`;
 
 const LogoWrapper = styled.h1`
   margin-right: ${36 / 16}rem;
@@ -122,35 +166,21 @@ const LogoWrapper = styled.h1`
     letter-spacing: 3px;
   }
   ${media.tablet} {
-    flex-direction: column;
     margin-right: 20px;
     .logo {
       display: none;
     }
   }
-`;
-
-const StWrapper = styled.header`
-  display: flex;
-  align-items: center;
-  padding-right: ${36 / 16}rem;
-  /* width: 100%; */
-  height: 5rem;
-  background: ${({ theme }) => theme.color.yellow};
-  & > span,
-  svg {
-    cursor: pointer;
-  }
-  ${media.tablet} {
-    height: 60px;
-  }
   ${media.mobile} {
-    height: 60px;
-  }
-  nav {
-    ${media.mobile} {
-      display: none;
+    .logo {
+      display: block;
+      ${({ theme }) => theme.font.large};
     }
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
   }
 `;
 
@@ -178,6 +208,10 @@ const ProfileWrapper = styled.div`
     .auth {
       display: none;
     }
+    .profile {
+      padding-right: 16px;
+    }
+    margin-left: 0;
   }
 `;
 export const StListWrapper = styled.nav`
@@ -185,8 +219,9 @@ export const StListWrapper = styled.nav`
 `;
 
 const MobileMenu = styled.div`
-  border: 1px solid;
   display: none;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+
   ${media.mobile} {
     display: block;
     width: 100vw;
