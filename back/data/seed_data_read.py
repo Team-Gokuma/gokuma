@@ -2,7 +2,7 @@ from numpy import NaN
 import pandas as pd
 
 # 레시피 DB
-df = pd.read_csv('./data/recipe.csv', encoding='cp949')
+df = pd.read_csv('./data/recipe.csv', encoding='utf-8')
 df_cnt = df['RECIPE_ID'].count()
 
 
@@ -20,6 +20,7 @@ def get_recipe():
         recipe['level'] = df.loc[i]['LEVEL_NM']
         recipe['calorie'] = df.loc[i]['CALORIE']
         recipe['img'] = df.loc[i]['IMG_URL']
+        recipe['video'] = df.loc[i]['VIDEO_LINK']
         recipes.append(recipe)
 
     return recipes

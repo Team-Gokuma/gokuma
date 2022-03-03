@@ -55,6 +55,7 @@ class Recipe(db.Model):
     calorie = db.Column(db.Integer, nullable=True)
     img = db.Column(db.VARCHAR(255), nullable=True)
     like = db.Column(db.Integer, nullable=False, server_default='0')
+    video = db.Column(db.VARCHAR(255), nullable=True)
 
     def __init__(self, data):
         if type(data) is dict:
@@ -68,6 +69,7 @@ class Recipe(db.Model):
             self.level = data['level']
             self.calorie = data['calorie']
             self.img = data['img']
+            self.video = data['video']
 
     def __str__(self):
         return f'{self.name}\n{self.summary}\n'
