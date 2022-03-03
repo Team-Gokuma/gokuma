@@ -42,11 +42,11 @@ const ToastContainer = styled.div`
   animation-name: fadein, fadeout;
   animation-delay: 0s, 2.5s;
   animation-duration: 0.5s, 0.5s;
-  animation-timing-function: linear;
+  animation-timing-function: ease;
   z-index: 100;
   @keyframes fadein {
     from {
-      top: -90px;
+      top: -120px;
       opacity: 0;
     }
     to {
@@ -60,7 +60,7 @@ const ToastContainer = styled.div`
       opacity: 1;
     }
     to {
-      top: -90px;
+      top: -120px;
       opacity: 0;
     }
   }

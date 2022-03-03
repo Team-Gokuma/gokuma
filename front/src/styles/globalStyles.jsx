@@ -6,8 +6,8 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
-    word-break: break-all;
     word-wrap: break-word;
+    word-break: break-all;
     -ms-overflow-style: none;
     font-size: 16px;
   }
@@ -32,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
   }
-  html{
+  html,body{
     font-family: 'MinSans-Regular', 'sans-serif';
     font-size: 16px;
     font-style: normal;
