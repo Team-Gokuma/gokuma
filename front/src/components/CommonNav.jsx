@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { theme } from 'styled-tools';
-import { StListWrapper } from './Header';
+import styled from "styled-components";
+import { StListWrapper } from "./Header";
 import { useNavigate } from "react-router-dom";
+import { media } from "../styles/theme";
 
 export default function CommonNav() {
   const navigate = useNavigate();
@@ -26,15 +26,34 @@ export default function CommonNav() {
 }
 const Wrapdiv = styled.div`
   justify-content: flex-start;
+  /* border: 2px solid cyan; */
 `;
 const StWrapper = styled(StListWrapper)`
   display: flex;
   justify-content: space-between;
+  width: 30rem;
+  ${media.tablet} {
+    width: 28rem;
+  }
+  ${media.mobile} {
+    width: 100%;
+    display: block;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    /* border: 2px solid red; */
 
-  width: 32rem;
+    span {
+      display: inline;
+      /* border: 2px solid blue; */
+      text-align: center;
+    }
+  }
 
-  & > span {
-    ${theme('font.medium')};
+  span {
+    ${({ theme }) => theme.font.medium};
     cursor: pointer;
+    ${media.tablet} {
+      font-size: 1rem;
+    }
   }
 `;

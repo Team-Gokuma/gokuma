@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../components/common/Button";
 import { UpdateNameModal } from "../components/mypage/UpdateNameModal";
 import { UpdatePassModal } from "../components/mypage/UpdatePassModal";
-import { userdelete } from "../api/user";
+import { userdelete, logout } from "../api/user";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { mainRecipesState, relatedRecipesState } from "../store/atom";
+import { media } from "../styles/theme";
 
 const Mypage = () => {
   const name = window.sessionStorage.getItem("name");
@@ -41,11 +43,32 @@ const Mypage = () => {
       }
     });
   };
+
+  const handleLogout = async () => {
+    await logout().then((res) => {
+      if (res.status === 200) {
+        window.sessionStorage.clear();
+        mainRecipes([]);
+        relatedRecipes([]);
+        // setIsLogin(false);
+        navigate("/");
+      } else {
+        alert("error");
+        return res.msg;
+      }
+    });
+  };
+
   return (
     <MypageContainer>
       {UpdateName && <UpdateNameModal handleCloseName={handleCloseName} />}
       {UpdatePass && <UpdatePassModal handleClosePass={handleClosePass} />}
       <MypageContent>
+        <LogoutBtn onClick={handleLogout}>
+          <Link to="/" className="logout">
+            Logout
+          </Link>
+        </LogoutBtn>
         <h2>
           <span>{name}</span> 님
         </h2>
@@ -92,16 +115,16 @@ const MypageContent = styled.div`
   margin: 0 auto;
   padding-top: ${80 / 16}rem;
 
-  & h2 {
+  h2 {
     ${({ theme }) => theme.font.xlarge};
     margin-bottom: ${40 / 16}rem;
     margin-left: 1rem;
 
-    & span {
+    span {
       ${({ theme }) => theme.font.bold}
     }
   }
-  & .mypageContent {
+  .mypageContent {
     width: ${600 / 16}rem;
     height: ${400 / 16}rem;
     background-color: ${({ theme }) => theme.color.white};
@@ -110,26 +133,37 @@ const MypageContent = styled.div`
     ${({ theme }) => theme.font.medium};
     box-shadow: 3px 7px 14px 0 rgba(0, 0, 0, 0.05);
 
-    & h3 {
+    h3 {
       ${({ theme }) => theme.font.bold};
       ${({ theme }) => theme.font.xlarge};
       padding-bottom: ${40 / 16}rem;
     }
-    & p {
+    p {
       margin-bottom: ${28 / 16}rem;
       width: 70%;
       position: relative;
     }
-    & .editNameBtn {
+    .editNameBtn {
       margin-left: ${60 / 16}rem;
       position: absolute;
       top: -12px;
       right: -40px;
     }
-    & .userInfoBtn {
+    .userInfoBtn {
       display: inline-block;
       margin-top: ${40 / 16}rem;
       margin-right: 1.2rem;
+    }
+  }
+`;
+
+const LogoutBtn = styled.div`
+  display: none;
+  ${media.mobile} {
+    display: inline-block;
+    border: 1px solid red;
+    .logout {
+      text-decoration: none;
     }
   }
 `;

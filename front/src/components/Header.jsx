@@ -6,7 +6,10 @@ import { logout } from "../api/user";
 import { mainRecipesState, relatedRecipesState } from "../store/atom";
 import { ReactComponent as Logo } from "../asset/icon/header/logo.svg";
 import { ReactComponent as Profile } from "../asset/icon/profile.svg";
+import menu from "../asset/icon/mobile/menu.svg";
 import Button from "../components/common/Button";
+import { media } from "../styles/theme";
+import { StyledLink } from "../styles/commonStyle";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -30,40 +33,54 @@ const Header = () => {
 
   const name = window.sessionStorage.getItem("name");
 
-
   return (
     <>
       <StWrapper>
+        <div className="mobileMenu">
+          <img src={menu} alt="mobile menu" />
+        </div>
         <LogoWrapper onClick={() => navigate("/")}>
           <Img />
           <div className="logo">어쩔냉장고</div>
         </LogoWrapper>
-        <CommonNav/>
+        <div className="nav">
+          <CommonNav />
+        </div>
         <ProfileWrapper>
-        {isLogin ? (
-          <>
-            <div onClick={handleLogout} style={{ marginBottom: "15px" }}>
-              <Button width="104px" height="45px" text="Logout" bgcolor="yellow" txtcolor="black" round="round" />
-            </div>
-            <Link to="/mypage" style={{ textDecoration: "none", color: "black" }}>
-              <div style={{ float: "left", marginTop: "14px", marginRight: "10px" }}>{name}님</div>
-              <Profile />
-            </Link>
+          {isLogin ? (
+            <>
+              <div className="auth" onClick={handleLogout}>
+                <Button width="104px" height="45px" text="Logout" bgcolor="yellow" txtcolor="black" round="round" />
+              </div>
+              <StyledLink to="/mypage">
+                <div className="name" style={{ float: "left", marginTop: "14px", marginRight: "10px" }}>
+                  {name}님
+                </div>
+                <Profile />
+              </StyledLink>
             </>
-        ) : (
-            <Link to="/login" style={{ textDecoration: "none", color: "black" }}>
-              <Button text="Login / Sign up" bgcolor="yellow" txtcolor="black" round="round" />
-            </Link>
-        )}
+          ) : (
+            <>
+              <StyledLink to="/login" className="auth">
+                <Button text="Login / Sign up" bgcolor="yellow" txtcolor="black" />
+              </StyledLink>
+              <StyledLink to="/login">
+                <Profile />
+              </StyledLink>
+            </>
+          )}
         </ProfileWrapper>
       </StWrapper>
+      <MobileMenu>
+        <CommonNav />
+      </MobileMenu>
     </>
   );
 };
 export default Header;
 
 const LogoWrapper = styled.h1`
-  margin-right: ${50 / 16}rem;
+  margin-right: ${36 / 16}rem;
   margin-left: ${25 / 16}rem;
   text-decoration: none;
   align-items: center;
@@ -76,18 +93,36 @@ const LogoWrapper = styled.h1`
     font-size: 26px;
     letter-spacing: 3px;
   }
+  ${media.tablet} {
+    flex-direction: column;
+    margin-right: 20px;
+    .logo {
+      display: none;
+    }
+  }
 `;
 
 const StWrapper = styled.header`
   display: flex;
   align-items: center;
   padding-right: ${36 / 16}rem;
-  width: 100%;
+  /* width: 100%; */
   height: 5rem;
   background: ${({ theme }) => theme.color.yellow};
   & > span,
   svg {
     cursor: pointer;
+  }
+  ${media.tablet} {
+    height: 60px;
+  }
+  ${media.mobile} {
+    height: 60px;
+  }
+  nav {
+    ${media.mobile} {
+      display: none;
+    }
   }
 `;
 
@@ -95,15 +130,38 @@ const Img = styled(Logo)`
   width: ${36 / 16}rem;
   height: ${36 / 16}rem;
   margin-right: 1rem;
+  ${media.tablet} {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 const ProfileWrapper = styled.div`
-  width: 300px;
   height: 40px;
   margin-left: auto;
   display: flex;
   justify-content: flex-end;
+  ${media.tablet} {
+    .name {
+      display: none;
+    }
+  }
+  ${media.mobile} {
+    .auth {
+      display: none;
+    }
+  }
 `;
 export const StListWrapper = styled.nav`
   display: flex;
+`;
+
+const MobileMenu = styled.div`
+  border: 1px solid;
+  display: none;
+  ${media.mobile} {
+    display: block;
+    width: 100vw;
+    height: 240px;
+  }
 `;
