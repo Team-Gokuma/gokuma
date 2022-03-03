@@ -34,6 +34,10 @@ const Header = () => {
     });
   };
 
+  const mobileMenuToggle = () => {
+    setMenutoggle((menuToggle) => !menuToggle);
+  };
+
   const name = window.sessionStorage.getItem("name");
 
   //   function getCookie(key) {
@@ -67,11 +71,7 @@ const Header = () => {
   return (
     <>
       <StWrapper>
-        <div
-          className="mobileMenuBtn"
-          onClick={() => {
-            setMenutoggle((menuToggle) => !menuToggle);
-          }}>
+        <div className="mobileMenuBtn" onClick={mobileMenuToggle}>
           <img src={menu} alt="mobile menu" />
         </div>
         <LogoWrapper onClick={() => navigate("/")}>
@@ -108,7 +108,7 @@ const Header = () => {
       </StWrapper>
       {menuToggle && (
         <MobileMenu>
-          <CommonNav />
+          <CommonNav mobileMenuToggle={mobileMenuToggle} />
         </MobileMenu>
       )}
     </>

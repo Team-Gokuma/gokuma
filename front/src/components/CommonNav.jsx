@@ -3,7 +3,7 @@ import { StListWrapper } from "./Header";
 import { useNavigate } from "react-router-dom";
 import { media } from "../styles/theme";
 
-export default function CommonNav() {
+export default function CommonNav({ mobileMenuToggle }) {
   const navigate = useNavigate();
   const LOGINNAVS = [
     { id: 0, navText: "레시피 추천받기", navigate: () => navigate("recommend") },
@@ -16,7 +16,12 @@ export default function CommonNav() {
     <Wrapdiv>
       <StWrapper>
         {LOGINNAVS.map((nav) => (
-          <span key={`nav-${nav.id}`} onClick={nav.navigate}>
+          <span
+            key={`nav-${nav.id}`}
+            onClick={() => {
+              nav.navigate();
+              mobileMenuToggle && mobileMenuToggle();
+            }}>
             {nav.navText}
           </span>
         ))}
