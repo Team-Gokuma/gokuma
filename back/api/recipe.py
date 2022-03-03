@@ -3,6 +3,7 @@ from flask_restx import Resource
 from models import User, Recipe, RecipeIngrd, RecipeProcess, Ingredients, Refrigerator, Bookmark, UserLike
 from db_connect import db
 from api_model.recipe_model import recipe_api, ingrds_fields, img_fields, response_fail_model, response_success_ingrds_model, response_success_detail_model, response_success_recipe_ingrdnum_model
+from recommendFunc.maxIngrds import maxIngrds
 
 
 @recipe_api.route('/recoginition')
@@ -25,7 +26,7 @@ class Recoginition(Resource):
         # ingrds에는 재료인식 model을 통과한 class명 들이 담겨져있다.
         ingrds = ['딸기', '당근', '닭가슴살']
 
-        # ingrds를 여기서 냉장고 db에 저장?
+        # ingrds를 여기서 냉장고 db에 저장? 근데 텍스트까지 포함해서 저장해야함 얘는 사진 재료 인식일 뿐
 
         result = {'result_msg': "success", "data": []}
         for ingrd in ingrds:
@@ -57,7 +58,6 @@ class Recommend(Resource):
             user = User.query.filter(User.email == email).first()
 
         data = request.get_json()
-
         ingrds = []
         # user가 없을 경우 넘어온 재료로만 판별
         if user is None:
@@ -71,25 +71,19 @@ class Recommend(Resource):
                               "category": item.category})
 
         # 레시피 추천 알고리즘 input = 인식된 재료들, output = 추천된 레시피들의 id or name
-        recipes = [1, 2, 3]
+        items = []
+        for ingrd in ingrds:
+            items.append(ingrd["content"])
+
+        recipes = maxIngrds(items)
 
         result = {'result_msg': "success", "data": []}
         for recipe in recipes:
+            recipe_id = recipe[0]
+            ingrds_num = recipe[2]
+
             item = Recipe.query.filter(
-                Recipe.recipe_id == recipe).first()
-
-            ingrds_num = 0
-            recipe_ingrds = RecipeIngrd.query.filter(
-                RecipeIngrd.recipe_id == recipe).all()
-
-            recipe_ingrds_new = {}
-            for recipe_ingrd in recipe_ingrds:
-                recipe_ingrds_new[recipe_ingrd.name] = {
-                    "amount": recipe_ingrd.capacity}
-
-            for ingrd in ingrds:
-                if ingrd["content"] in recipe_ingrds_new:
-                    ingrds_num += 1
+                Recipe.recipe_id == recipe_id).first()
 
             result['data'].append(
                 {"img": item.img, "id": item.recipe_id, "name": item.name, "ingrdients": ingrds_num})

@@ -3,6 +3,48 @@ from flask_restx import Resource
 from models import User, Recipe, RecipeIngrd, RecipeProcess, Ingredients, Refrigerator, Bookmark, UserLike
 from db_connect import db
 from api_model.recipe_model import recipe_api, recipes_fields, response_success_recipe_model, response_fail_model
+from recommendFunc.bookmarkTaste import bookmarkTaste
+
+
+@recipe_api.route('/related/bookmark')
+class RelatedBookmark(Resource):
+
+    @recipe_api.response(200, 'Success', response_success_recipe_model)
+    @recipe_api.response(400, 'Fail', response_fail_model)
+    def get(self):
+        """사용자의 즐겨찾기 리스트 기반 추천 레시피입니다."""
+
+        user = None
+        result = {"result_msg": "success", "data": []}
+
+        # session['email'] = "admin@gokuma.com"
+        # session['email'] = None
+
+        if session.get('email'):
+            email = session['email']
+            user = User.query.filter(User.email == email).first()
+        else:
+            result = {"result_msg": "No User"}
+            return result, 400
+
+        items = []
+        bookmarks = Bookmark.query.filter(Bookmark.user_id == user.id).all()
+        for bookmark in bookmarks:
+            item = Recipe.query.filter(Recipe.id == bookmark.recipe_id).first()
+            items.append(item.name)
+
+        print(items)
+        recipes = bookmarkTaste(items)
+
+        print(recipes)
+        for recipe in recipes:
+            item = Recipe.query.filter(
+                Recipe.name == recipe).first()
+
+            result['data'].append(
+                {"img": item.img, "id": item.recipe_id, "name": item.name})
+
+        return result
 
 
 @recipe_api.route('/related/rank')

@@ -118,7 +118,6 @@ const Refrige = () => {
     getlist();
   }, []);
 
-  console.log(isActive);
   return (
     <RefrigeContainer>
       {onModal && <AlertLoginModal text="로그인이 필요한 기능입니다!" btnText="확인" />}
