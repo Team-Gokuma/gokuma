@@ -72,11 +72,11 @@ def Recommendation(names, cosine_sim, name_to_index, df):
 
 def bookmarkTaste(names):
     df = pd.read_csv('./data/recipe.csv', encoding='utf-8')
-    cosine_sim = np.load("./recommendFunc/recipe_matrix.npy")
+    cosine_sim = np.load("./recommendFunc/recipe_matrix_new.npy")
     name_to_index = dict(zip(df['RECIPE_NM_KO'], df.index))
 
     return Recommendation(names, cosine_sim, name_to_index, df)
 
 
-names = ['나물비빔밥', '갈비탕']
+names = ['나물비빔밥']
 print(bookmarkTaste(names))

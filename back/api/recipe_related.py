@@ -34,10 +34,11 @@ class RelatedBookmark(Resource):
             item = Recipe.query.filter(Recipe.id == bookmark.recipe_id).first()
             items.append(item.name)
 
-        print(items)
+        # items = ['까르보나라스파게티']
+        # print(items)
         recipes = bookmarkTaste(items)
 
-        print(recipes)
+        # print(recipes)
         for recipe in recipes:
             item = Recipe.query.filter(
                 Recipe.name == recipe).first()
@@ -147,10 +148,38 @@ class level(Resource):
         args = level_parser.parse_args()
         level = args['level']
         limit_num = 8
-        offset_num = random.randint(0, 158)
+        offset_num = random.randint(0, len(Recipe.query.filter(
+            Recipe.level == level).all()) - limit_num)
+
         related_recipes = []
         related_recipes = Recipe.query.filter(Recipe.level == level).order_by(
             Recipe.like.desc()).offset(offset_num).limit(limit_num).all()
+
+        result = {'result_msg': "success", "data": []}
+        for recipe in related_recipes:
+            item = Recipe.query.filter(
+                Recipe.recipe_id == recipe.recipe_id).first()
+            result['data'].append(
+                {"img": item.img, "id": item.recipe_id, "name": item.name})
+
+        return result
+
+
+@recipe_api.route('/related/editorpick')
+class editorPick(Resource):
+
+    @recipe_api.response(200, 'Success', response_success_recipe_model)
+    @recipe_api.response(400, 'Fail', response_fail_model)
+    def get(self):
+        """에디터픽 레시피를 보여줍니다. 밑반찬/김치류 모음"""
+
+        limit_num = 8
+        offset_num = random.randint(0, len(Recipe.query.filter(
+            Recipe.typ == '밑반찬/김치').all()) - limit_num)
+
+        related_recipes = []
+        related_recipes = Recipe.query.filter(
+            Recipe.typ == '밑반찬/김치').offset(offset_num).limit(limit_num).all()
 
         result = {'result_msg': "success", "data": []}
         for recipe in related_recipes:
