@@ -1,10 +1,11 @@
-from flask import request, session, jsonify
+from flask import request, session, jsonify, redirect, make_response
 from werkzeug.security import check_password_hash
 from werkzeug.security import generate_password_hash
 from flask_restx import Api, Resource, reqparse, Namespace
 from models import User
 from db_connect import db
 from api_model.user_model import user_api, user_signup_model
+from urllib import parse
 
 @user_api.route('/temp', doc=False)
 class testUserApi(Resource):
@@ -69,9 +70,11 @@ class UserLogin(Resource):
 # 세션은 서버에서 쿠키역할 -> 주기를 정할수있지만 지금은 무한,
         if message is None:
             session['email'] = user.email
+            resp = make_response("Create Cookie!")
+            resp.set_cookie('email', email, httponly = True)
+            resp.set_cookie('name', name, httponly = True)
             message = '로그인에 성공하였습니다.'
-            value = {"status": 200, "result": "success",
-                     "msg": message, "email": email, "password": password, "name": name}
+            return resp
         else:
             value = {"status": 404, "result": "fail", "msg": message}
 
@@ -86,7 +89,11 @@ class UserLogin(Resource):
         if session.get('email'):
             session.pop('email')
             message = "로그아웃에 성공하였습니다."
-            value = {"status": 200, "result": "success", "msg":message}
+            resp = make_response(redirect('/'))
+            resp.delete_cookie('email')
+            resp.delete_cookie('name')
+            return resp
+            # value = {"status": 200, "result": "success", "msg":message}
         else:
             message = "로그아웃에 실패하였습니다."
             value = {"status": 404, "result": "fail", "msg":message}
