@@ -15,7 +15,7 @@ const Header = () => {
   const relatedRecipes = useSetRecoilState(relatedRecipesState);
   const handleLogout = async () => {
     await logout().then((res) => {
-      if (res.status === 200) {
+      if (res.status !== 404) {
         window.sessionStorage.clear();
         mainRecipes([]);
         relatedRecipes([]);

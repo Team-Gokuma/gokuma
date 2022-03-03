@@ -26,6 +26,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 const Login = () => {
+
   const setIsLogin = useSetRecoilState(loginState);
   const classes = useStyles();
   const navigate = useNavigate();
@@ -51,13 +52,10 @@ const Login = () => {
   };
   const requestLogin = async (inputs) => {
     await login(inputs).then((res) => {
-      if (res && res.status === 200) {
-        window.sessionStorage.setItem("name", res.name);
-        window.sessionStorage.setItem("email", res.email);
-        window.sessionStorage.setItem("isLogin", true);
-        navigate("/");
-      } else if (res && res.status !== 200) {
-        setError(true);
+      if (res && res.status !== 404) {
+        navigate('/');
+      } else if (res && res.status === 404) {
+        alert("로그인에 실패하였습니다!");
       }
     });
   };
