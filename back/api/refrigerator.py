@@ -4,7 +4,7 @@ from models import User, Ingredients, Refrigerator
 from db_connect import db
 from datetime import datetime
 from pytz import timezone
-from api_model.refrigerator_model import refrigerator_api, response_fail_model, response_success_ingrds_model, img_fields, ingrd_fields
+from api_model.refrigerator_model import refrigerator_api, response_fail_model, response_success_ingrds_model, img_fields, ingrd_fields, ingrds_fields, response_success_model
 
 
 @refrigerator_api.route('/list')
@@ -18,7 +18,7 @@ class Contents(Resource):
         user = None
         result = {"result_msg": "success", "data": []}
 
-        # session['email'] = "admin@gokuma.com"
+        session['email'] = "admin@gokuma.com"
 
         if session.get('email'):
             email = session['email']
@@ -130,7 +130,7 @@ class RecoginitionPhoto(Resource):
             # 재료DB에 없는 재료를 냉장고에 넣으려한다.
             # 텍스트로 추가?
 
-        return result
+        return result, 200
 
 
 @refrigerator_api.route('/recoginition/text')
@@ -174,6 +174,56 @@ class RecoginitionText(Resource):
             db.session.commit()
             result['data'] = {
                 'id': item.id, 'content': content, 'category': category, "time": datetime.now(timezone('Asia/Seoul')).strftime("%Y-%m-%d")}
+
+        return result, 200
+
+
+@refrigerator_api.route('/save')
+class Save(Resource):
+
+    @refrigerator_api.expect(ingrds_fields)
+    @refrigerator_api.response(200, 'Success', response_success_model)
+    @refrigerator_api.response(400, 'Fail', response_fail_model)
+    def post(self):
+        """냉장고에 재료를 저장합니다"""
+
+        user = None
+        result = {"result_msg": "success"}
+
+        session['email'] = "admin@gokuma.com"
+
+        if session.get('email'):
+            email = session['email']
+            user = User.query.filter(User.email == email).first()
+        else:
+            result = {"result_msg": "No User"}
+            return result, 400
+
+        data = request.get_json()
+        ingrds = data['ingredients']
+
+        result = {'result_msg': "success"}
+        for ingrd in ingrds:
+            item = Ingredients.query.filter(
+                Ingredients.name == ingrd["content"]).first()
+            if item is not None:
+                new_item = Refrigerator.query.filter(
+                    (Refrigerator.user_id == user.id) & (Refrigerator.content == item.name)).first()
+                if new_item is None:
+                    new = Refrigerator(
+                        user.id, item.name, item.category, datetime.now(timezone('Asia/Seoul')))
+                    db.session.add(new)
+                    db.session.commit()
+                else:
+                    # 냉장고 DB에 이미 존재한다. 타임 업데이트
+                    new_item.time = datetime.now(timezone('Asia/Seoul'))
+                    db.session.commit()
+            else:
+                # 재료DB에 없는 재료를 냉장고에 넣으려한다.
+                new = Refrigerator(user.id, ingrd["content"], 7,
+                                   datetime.now(timezone('Asia/Seoul')))
+                db.session.add(new)
+                db.session.commit()
 
         return result, 200
 
