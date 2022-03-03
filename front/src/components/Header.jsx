@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CommonNav } from "./";
@@ -38,7 +38,17 @@ const Header = () => {
     setMenutoggle((menuToggle) => !menuToggle);
   };
 
-  const name = window.sessionStorage.getItem("name");
+  // TO DO : 모바일 메뉴의 다른부분을 선택하면 사라지게하기
+  // const mobilemenu = useRef(null);
+
+  // const onLeaveFocusMobileMenu = useCallback((e) => {
+  //   if (!mobilemenu.current) return;
+  //   if (!mobilemenu.current.contains(e.target)) {
+  //     mobileMenuToggle();
+  //   }
+  // }, []);
+
+  const name = "토끼";
 
   //   function getCookie(key) {
   //     var result = null;
@@ -144,6 +154,7 @@ const StWrapper = styled.header`
     .mobileMenuBtn {
       display: block;
       padding: 16px;
+      cursor: pointer;
     }
     .nav {
       display: none;
@@ -221,10 +232,28 @@ export const StListWrapper = styled.nav`
 const MobileMenu = styled.div`
   display: none;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+  width: 100vw;
+  height: 240px;
+  animation: toggleMenu 0.5s ease forwards;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  background-color: ${({ theme }) => theme.color.white};
+  z-index: 1;
+  @keyframes toggleMenu {
+    from {
+      top: 56px;
+      left: 0;
+      opacity: 0.8;
+    }
+    to {
+      top: 60px;
+      left: 0;
+      opacity: 1;
+    }
+  }
 
   ${media.mobile} {
     display: block;
-    width: 100vw;
-    height: 240px;
   }
 `;
