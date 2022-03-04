@@ -98,7 +98,7 @@ class Detail(Resource):
     @recipe_api.expect(ingrds_fields)
     @recipe_api.response(200, 'Success', response_success_detail_model)
     @recipe_api.response(400, 'Fail', response_fail_model)
-    def get(self, id):
+    def post(self, id):
         """레시피 디테일 정보를 알려줍니다"""
 
         user = None
@@ -161,8 +161,9 @@ class Detail(Resource):
             else:
                 data = request.get_json()
                 my_ingrds = data['ingredients']
+                # my_ingrds = ['고추장']
                 for my_ingrd in my_ingrds:
-                    if ingrd == my_ingrd:
+                    if ingrd.name == my_ingrd['content']:
                         ingrd_data['inRefrige'] = True
 
             result['ingredient'].append(ingrd_data)
