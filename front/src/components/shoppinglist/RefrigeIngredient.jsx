@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { media } from "../../styles/theme";
 import { ReactComponent as IconRefrige } from "../../asset/icon/refrige.svg";
 import { Button } from "../common/Button";
 import { useEffect, useState } from "react";
 
-export const RefrigeIngredient = ({ ingredient }) => {
+export const RefrigeIngredient = ({ ingredient, onTap1 }) => {
   const [login, setLogin] = useState(true);
 
   useEffect(() => {
@@ -12,7 +13,7 @@ export const RefrigeIngredient = ({ ingredient }) => {
   }, []);
 
   return (
-    <InRefrigeIngredient>
+    <InRefrigeIngredient onTap1={onTap1}>
       <div className="titleBox">
         <IconRefrige className="leftIcon" />
         <h3>냉장고에 있는 재료</h3>
@@ -69,5 +70,9 @@ const InRefrigeIngredient = styled.div`
     margin: 3.5rem;
     line-height: 1.5;
     border-bottom-left-radius: 999rem;
+  }
+  ${media.mobile} {
+    display: ${(props) => (props.onTap1 ? "block" : "none")};
+    width: 100%;
   }
 `;

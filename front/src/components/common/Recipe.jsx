@@ -60,7 +60,7 @@ const RecipeDiv = styled(Link)`
   border: 1px solid ${({ theme }) => theme.color.lightgray};
   transition-duration: 0.3s;
   transition-property: transform;
-  margin-right: 5%;
+  /* margin-right: 5%; */
   margin-bottom: 3%;
 
   :hover {
@@ -86,5 +86,16 @@ const RecipeDiv = styled(Link)`
   }
   ${media.tablet} {
     margin-right: 2%;
+  }
+  ${media.mobile} {
+    width: 140px;
+    height: 140px;
+
+    div {
+      padding: 4px;
+    }
+    h4:first-child {
+      display: none;
+    }
   }
 `;

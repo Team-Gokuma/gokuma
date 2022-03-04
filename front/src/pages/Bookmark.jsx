@@ -8,6 +8,7 @@ import { modalState } from "../store/atom";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { Button } from "../components/common/Button";
 import { getBookmark } from "../api/bookmark";
+import { MobileTitle } from "../components/mobile/MobileTitle";
 
 const Bookmark = () => {
   const [data, setData] = useState([]);
@@ -31,6 +32,7 @@ const Bookmark = () => {
   return (
     <section>
       {onModal && <AlertLoginModal text={"로그인이 필요한 기능입니다!"} btnText={"확인"} />}
+      <MobileTitle text="즐겨찾는 레시피" />
       <BookmarkContainer>
         <h3>즐겨찾는 레시피</h3>
         <div className="bookmarkList">
@@ -40,8 +42,8 @@ const Bookmark = () => {
                 <Recipe
                   key={"recipe" + idx}
                   className="recipe"
-                  width={`${240 / 16}rem`}
-                  height={`${240 / 16}rem`}
+                  width={`240px`}
+                  height={`240px`}
                   text={item.name}
                   image={item.img}
                   margin="1rem 1.8rem"
@@ -72,6 +74,7 @@ const BookmarkContainer = styled.div`
   width: 1200px;
   margin: 0 auto;
   margin-top: 5rem;
+
   h3 {
     ${({ theme }) => theme.font.xlarge};
     ${({ theme }) => theme.font.bold};
@@ -80,6 +83,9 @@ const BookmarkContainer = styled.div`
   }
   .bookmarkList {
     line-height: 1.5;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
   .noBookmark {
     margin-top: 5rem;
@@ -117,5 +123,13 @@ const BookmarkContainer = styled.div`
   }
   ${media.tablet} {
     width: 768px;
+  }
+  ${media.mobile} {
+    width: 320px;
+    margin-top: 20px;
+
+    h3 {
+      display: none;
+    }
   }
 `;

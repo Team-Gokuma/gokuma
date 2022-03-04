@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { media } from "../../styles/theme";
 import styled from "styled-components";
 import { ReactComponent as IconDelete } from "../../asset/icon/delete.svg";
 import { ReactComponent as IconBasket } from "../../asset/icon/basket.svg";
@@ -14,7 +15,7 @@ import {
   deleteAllShoppinglist,
 } from "../../api/shoppinglist";
 
-export const ShopingContent = ({ handleToast }) => {
+export const ShopingContent = ({ handleToast, onTap2 }) => {
   const [edit, setEdit] = useState("");
   const [editValue, setEditValue] = useState("");
   const [add, setAdd] = useState(false);
@@ -121,7 +122,7 @@ export const ShopingContent = ({ handleToast }) => {
   }, []);
 
   return (
-    <ShoppingListContent>
+    <ShoppingListContent onTap2={onTap2}>
       <div className="titleBox">
         <IconBasket className="leftIcon" />
         <h3>장봐야할 재료</h3>
@@ -311,6 +312,10 @@ const ShoppingListContent = styled.div`
       fill: #757575;
       margin-left: 4px;
     }
+  }
+  ${media.mobile} {
+    display: ${(props) => (props.onTap2 ? "block" : "none")};
+    width: 100%;
   }
 `;
 

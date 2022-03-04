@@ -62,7 +62,7 @@ const RecipeDetailSection = styled.section`
   background-color: #f0f1f3;
 
   ${media.mobile} {
-    width: 360px;
+    width: 320px;
     padding: 0px;
     background-color: #fff;
   }
@@ -192,8 +192,8 @@ const RecipeDetailContainer = styled.div`
       display: block;
     }
     .detailImgBox {
-      width: 90vw;
-      height: 90vw;
+      width: 80vw;
+      height: 80vw;
       margin: 0 auto;
     }
     .detailInfoBox {
@@ -210,8 +210,11 @@ const RecipeDetailContainer = styled.div`
     .infoBox {
       width: 90vw;
       display: flex;
+      flex-wrap: nowrap;
+
       p {
         margin-right: 4%;
+        flex-shrink: 0;
         ${({ theme }) => theme.font.bold};
         span {
           ${({ theme }) => theme.font.normal};

@@ -161,7 +161,7 @@ const StWrapper = styled.header`
     height: 60px;
   }
   ${media.mobile} {
-    min-width: 360px;
+    min-width: 320px;
     height: 60px;
     align-items: center;
     padding-right: 0px;

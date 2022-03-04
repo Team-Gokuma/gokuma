@@ -74,23 +74,25 @@ const ResultContainer = styled.section`
     margin-top: 40px;
   }
   .recipeList {
+    /* max-width: 95%; */
     display: flex;
     flex-wrap: wrap;
-    margin: 0 auto;
     margin-top: 36px;
-    justify-content: flex-start;
+    justify-content: space-between;
   }
   .relative {
     margin-top: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   ${media.tablet} {
     width: 768px;
   }
   ${media.mobile} {
-    width: 360px;
+    width: 320px;
     margin-top: 40px;
-    padding: 0 20px;
 
     h3 {
       ${({ theme }) => theme.font.medium};
