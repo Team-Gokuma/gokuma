@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import styled from "styled-components";
+import { media } from "../../styles/theme";
 import { Recipe } from "../../components/common/Recipe";
 import { useRecoilValue } from "recoil";
 import { mainRecipesState, relatedRecipesState } from "../../store/atom";
@@ -16,13 +17,11 @@ const Result = () => {
         <Recipe
           key={"recipe" + idx}
           className="recipe"
-          width={`${328 / 16}rem`}
-          height={`${286 / 16}rem`}
+          width="328px"
+          height="286px"
           text={item.name}
           image={item.img}
           extratext={`재료를 ${item.ingrdients}개 사용하는 레시피 입니다!`}
-          margin={"0 3rem 0 0"}
-          // isFavorite={item.favorite}
           recipeId={item.id}
         />
       );
@@ -34,12 +33,10 @@ const Result = () => {
         <Recipe
           key={"recipe" + idx}
           className="recipe"
-          width={`${240 / 16}rem`}
-          height={`${240 / 16}rem`}
+          width="240px"
+          height="240px"
           text={item.name}
           image={item.img}
-          margin={"1.2rem 3.7rem 1.2rem 0"}
-          // favorite={item.favorite}
           recipeId={item.id}
         />
       );
@@ -55,7 +52,7 @@ const Result = () => {
         <div className="recipeList">{maxIngredientRecipe}</div>
         <h3>조리시간이 짧은 레시피 입니다!</h3>
         <div className="recipeList">{maxIngredientRecipe}</div> */}
-        <h3 className="relative">관련 레시피 결과</h3>
+        <h3 className="relative">지금 인기가 많은 레시피 입니다!</h3>
         <div className="recipeList">{relativeRecipe}</div>
       </ResultContainer>
     </Suspense>
@@ -65,22 +62,28 @@ const Result = () => {
 export default Result;
 
 const ResultContainer = styled.section`
-  width: ${1200 / 16}rem;
+  width: 1200px;
   margin: 0 auto;
-  margin-top: ${80 / 16}rem;
-  & h3 {
+  margin-top: 80px;
+
+  h3 {
     ${({ theme }) => theme.font.large};
     ${({ theme }) => theme.font.bold};
     margin-top: 40px;
   }
-  & .recipeList {
+  .recipeList {
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
     margin-top: 36px;
     justify-content: flex-start;
   }
-  & .relative {
+  .relative {
     margin-top: 80px;
+  }
+
+  ${media.tablet} {
+    width: 768px;
+    margin: 0 auto;
   }
 `;

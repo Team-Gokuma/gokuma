@@ -20,10 +20,18 @@ export const recommendRecipe = async (ingredients) => {
   }
 };
 
-export const relatedRecipe = async (recipes) => {
+export const cooktimeRecipe = async (time) => {
   try {
-    const data = { recipes: recipes };
-    const response = await axios.post("/api/recipe/related", data);
+    const response = await axios.get(`/api/recipe/related/cooktime?time${time}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const rankRecipe = async () => {
+  try {
+    const response = await axios.get("api/recipe/related/rank");
     return response;
   } catch (error) {
     console.log(error);
@@ -33,6 +41,15 @@ export const relatedRecipe = async (recipes) => {
 export const detailRecipe = async (id) => {
   try {
     const response = await axios.get(`/api/recipe/${id}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addLike = async (id) => {
+  try {
+    const response = await axios.get(`/api/userlike/check/${id}`);
     return response;
   } catch (error) {
     console.log(error);
