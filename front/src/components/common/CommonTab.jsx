@@ -4,6 +4,7 @@ import Tab from "@mui/material/Tab";
 import { makeStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
 import {useState} from "react";
+import { media } from "../../styles/theme";
 
 const useStyles = makeStyles(() => ({
   customStyleOnTab: {
@@ -69,5 +70,11 @@ const StAppBar = styled(Tabs)`
   height: 3rem;
   background-color: ${({ theme }) => theme.color.white};
   color: ${({ theme }) => theme.color.black};
-
+  ${media.mobile} {
+    position: absolute;
+    width: 300px;
+    height: 0px;
+    left: 80px; 
+    top: 50px;
+  }
 `;

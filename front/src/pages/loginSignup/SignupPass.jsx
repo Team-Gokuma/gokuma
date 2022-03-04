@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Button from "../../components/common/Button";
 import CommonTab from "../../components/common/CommonTab";
 import { ReactComponent as Ckeckicon } from "../../asset/icon/check.svg";
+import { media } from "../../styles/theme";
 
 const SignupPass = () => {
   const location = useLocation();
@@ -116,6 +117,12 @@ const StWrapper = styled.div`
   box-shadow: 3px 7px 14px rgba(0, 0, 0, 0.05);
   border-radius: ${10 / 16}rem;
   background: ${({ theme }) => theme.color.white};
+  ${media.mobile} {
+    width: 320px;
+    height: 360px;
+    left: 20px;
+    top: 58px;
+    }
 `;
 
 const StInput = styled.div`
@@ -142,6 +149,13 @@ const SignInput = styled.input`
   border: 1px solid #bdbdbd;
   border-radius: 4px;
   padding-left: 24px;
+  ${media.mobile} {
+    position: relative;
+    width: 277px;
+    height: 40px;
+    top: 20px;
+  }
+
 `;
 
 const StCheck = styled.div`
@@ -151,6 +165,9 @@ const StCheck = styled.div`
 
   & span {
     font-size: 12px;
+    ${media.mobile} {
+      font-size: 8px;
+    }
   }
   & div {
     display: inline-block;
@@ -165,5 +182,8 @@ const StCheckPass = styled.div`
 
   & span {
     font-size: 12px;
+    ${media.mobile} {
+      font-size: 8px;
+    }
   }
 `;

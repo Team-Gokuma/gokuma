@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { media } from "../../styles/theme";
+
 const StyledInput = styled.input`
   outline: none;
   box-sizing: border-box;
@@ -13,6 +15,13 @@ const StyledInput = styled.input`
   border: 1px solid ${({ theme }) => theme.color.darkgray};
   border-radius: 4px;
   padding-left: 24px;
+
+  ${media.mobile} {
+    position: relative;
+    width: 277px;
+    height: 40px;
+    top: 20px;
+  }
 `;
 
 export const LoginInput = function ({ type, name, placeholder, onChange, value }) {
