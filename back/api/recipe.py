@@ -15,8 +15,7 @@ class Recoginition(Resource):
     def post(self):
         """사진에서 재료를 인식합니다."""
 
-        data = request.get_json()
-        img = data['img']
+        f = request.files['file']
 
         # 재료인식 알고리즘 input = img, output = 재료
         # Model
