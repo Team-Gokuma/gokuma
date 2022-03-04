@@ -38,46 +38,7 @@ const Header = () => {
     setMenutoggle((menuToggle) => !menuToggle);
   };
 
-  // TO DO : 모바일 메뉴의 다른부분을 선택하면 사라지게하기
-  // const mobilemenu = useRef(null);
-
-  // const onLeaveFocusMobileMenu = useCallback((e) => {
-  //   if (!mobilemenu.current) return;
-  //   if (!mobilemenu.current.contains(e.target)) {
-  //     mobileMenuToggle();
-  //   }
-  // }, []);
-
-  const name = "토끼";
-
-  //   function getCookie(key) {
-  //     var result = null;
-  //     var cookie = document.cookie.split(';');
-  //     cookie.some(function (item) {
-  //         // 공백을 제거
-  //         item = item.replace(' ', '');
-
-  //         var dic = item.split('=');
-
-  //         if (key === dic[0]) {
-  //             result = dic[1];
-  //             return true;    // break;
-  //         }
-  //     });
-  //     return result;
-  // }
-  // var setCookie = function(name, value, exp) {
-  //   var date = new Date();
-  //   date.setTime(date.getTime() + exp*24*60*60*1000);
-  //   document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
-  // };
-  // var deleteCookie = function(name) {
-  //   document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
-  //   }
-
-  // setCookie("name", "wkdgns", 1);
-  //   const name = getCookie("name");
-  //   console.log(name);
+  const name = window.sessionStorage.getItem("name");
   return (
     <>
       <StWrapper>

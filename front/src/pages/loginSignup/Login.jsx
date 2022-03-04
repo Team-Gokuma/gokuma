@@ -57,7 +57,6 @@ const Login = () => {
         window.sessionStorage.setItem("name", res.name);
         window.sessionStorage.setItem("email", res.email);
         window.sessionStorage.setItem("isLogin", true);
-        setIsLogin(true);
         navigate('/');
       } else if (res && res.status === 404) {
         alert("로그인에 실패하였습니다!");
