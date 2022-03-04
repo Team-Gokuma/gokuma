@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Button from "../../components/common/Button";
 import CommonTab from "../../components/common/CommonTab";
 import { ReactComponent as Ckeckicon } from "../../asset/icon/check.svg";
+import { media } from "../../styles/theme";
 
 const SignupPass = () => {
   const location = useLocation();
@@ -88,7 +89,7 @@ const SignupPass = () => {
                 <Ckeckicon />
               </div>
             </StCheckPass>
-            <Button width="300px" height="60px" text="다음" bgcolor="orange" txtcolor="white" round="round" />
+            <PassButton>다음</PassButton>
           </form>
         </StInput>
       </StWrapper>
@@ -116,6 +117,12 @@ const StWrapper = styled.div`
   box-shadow: 3px 7px 14px rgba(0, 0, 0, 0.05);
   border-radius: ${10 / 16}rem;
   background: ${({ theme }) => theme.color.white};
+  ${media.mobile} {
+    width: 320px;
+    height: 360px;
+    left: 20px;
+    top: 58px;
+    }
 `;
 
 const StInput = styled.div`
@@ -127,6 +134,15 @@ const StInput = styled.div`
   margin-bottom: 8.5rem;
   & span {
     margin-top: 8.5rem;
+  }
+  ${media.mobile} {
+    & span {
+      margin-top: 100px;
+    }
+  }
+  span{
+    ${media.tablet} {
+    margin-bottom:20px;
   }
 `;
 
@@ -142,19 +158,38 @@ const SignInput = styled.input`
   border: 1px solid #bdbdbd;
   border-radius: 4px;
   padding-left: 24px;
+  ${media.mobile} {
+    position: relative;
+    width: 277px;
+    height: 40px;
+    top: 20px;
+    margin-bottom: 5px;
+  }
+
 `;
 
 const StCheck = styled.div`
   margin-bottom: 15px;
   margin-left: 0rem;
   width: 20rem;
-
+  ${media.mobile} {
+    margin-bottom: 0px;
+  }
+  ${media.tablet} {
+    width: 320px;
+    }
   & span {
     font-size: 12px;
+    ${media.mobile} {
+      font-size: 8px;
+    }
   }
   & div {
     display: inline-block;
     text-align: center;
+    ${media.mobile} {
+      margin-top: 15px;
+    }
   }
 `;
 
@@ -165,5 +200,33 @@ const StCheckPass = styled.div`
 
   & span {
     font-size: 12px;
+    ${media.mobile} {
+      font-size: 8px;
+    }
+  }
+  & div {
+    ${media.mobile} {
+      margin-top: 15px;
+    }
+  }
+`;
+
+
+const PassButton = styled.button`
+  width: 300px;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 999px;
+  background-color: ${({ theme }) => theme.color.orange};
+  color: ${({ theme }) => theme.color.white};
+  cursor: ${(props) => (props.cursor ? props.cursor : "pointer")};
+  ${media.mobile} {
+    position: relative;
+    width: 278px;
+    height: 40px;
+    top: 0px;
   }
 `;

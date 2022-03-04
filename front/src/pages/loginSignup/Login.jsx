@@ -93,7 +93,7 @@ const Login = () => {
             to="/login"
             component={Link}
           />
-          <Tab label="" disabled value="disabled" />
+          <Tab className="disabled" label="" disabled value="disabled" />
           <Tab
             label={<span className={value === 2 ? classes.activeTab : classes.customStyleOnTab}> Sign up</span>}
             to="/signup"
@@ -137,7 +137,6 @@ const Stbody = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${({ theme }) => theme.color.lightgray};
-
 `;
 
 const StWrapper = styled.div`
@@ -149,12 +148,12 @@ const StWrapper = styled.div`
   box-shadow: 3px 7px 14px rgba(0, 0, 0, 0.05);
   border-radius: ${10 / 16}rem;
   background: ${({ theme }) => theme.color.white};
+  text-align: center;
   ${media.mobile} {
-    position: absolute;
     width: 320px;
     height: 360px;
     left: 20px;
-    top: 106px;
+    top: 58px;
     }
   }
 
@@ -175,10 +174,13 @@ const StAppBar = styled(Tabs)`
   }
   ${media.mobile} {
     position: absolute;
-    width: 300px;
+    width: 250px;
     height: 0px;
-    left: -120px; 
-    top: -36px;
+    left: 40px; 
+    top: 50px;
+    .disabled{
+      display:none;
+    }
   }
 `;
 
@@ -189,12 +191,6 @@ const StInput = styled.div`
   align-items: center;
   flex-flow: row wrap;
 
-  ${media.mobile} {
-    position: absolute;
-    top: 120px;
-    background:red;
-    
-  }
 `;
 const Error = styled.strong`
   margin-top: 20px;

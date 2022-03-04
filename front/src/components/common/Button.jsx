@@ -21,9 +21,11 @@ const StyledButton = styled.button`
   color: ${(props) => props.theme.color[props.txtcolor]};
   ${(props) => props.txtstyle && props.theme.font[props.txtstyle]}
   cursor: ${(props) => (props.cursor ? props.cursor : "pointer")};
-
   ${media.mobile} {
+    position: relative;
+    width: 278px;
     height: 40px;
+    top: 60px;
   }
 `;
 
