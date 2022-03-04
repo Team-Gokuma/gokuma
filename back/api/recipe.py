@@ -95,6 +95,7 @@ class Recommend(Resource):
 class Detail(Resource):
 
     @recipe_api.doc(params={'id': '레시피 ID'})
+    @recipe_api.expect(ingrds_fields)
     @recipe_api.response(200, 'Success', response_success_detail_model)
     @recipe_api.response(400, 'Fail', response_fail_model)
     def get(self, id):
@@ -156,6 +157,13 @@ class Detail(Resource):
                     Refrigerator.content == ingrd.name)).first()
                 if item is not None:
                     ingrd_data['inRefrige'] = True
+
+            else:
+                data = request.get_json()
+                my_ingrds = data['ingredients']
+                for my_ingrd in my_ingrds:
+                    if ingrd == my_ingrd:
+                        ingrd_data['inRefrige'] = True
 
             result['ingredient'].append(ingrd_data)
 
