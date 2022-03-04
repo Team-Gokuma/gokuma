@@ -11,10 +11,10 @@ import menu from "../asset/icon/mobile/menu.svg";
 import Button from "../components/common/Button";
 import { media } from "../styles/theme";
 import { StyledLink } from "../styles/commonStyle";
-
+import { loginState } from "../store/atom";
 const Header = () => {
   const [menuToggle, setMenutoggle] = useState(false);
-
+  const setIsLogin = useSetRecoilState(loginState);
   const navigate = useNavigate();
   const isLogin = window.sessionStorage.getItem("isLogin");
   const mainRecipes = useSetRecoilState(mainRecipesState);

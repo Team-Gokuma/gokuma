@@ -57,6 +57,7 @@ const Login = () => {
         window.sessionStorage.setItem("name", res.name);
         window.sessionStorage.setItem("email", res.email);
         window.sessionStorage.setItem("isLogin", true);
+        setIsLogin(true);
         navigate('/');
       } else if (res && res.status === 404) {
         alert("로그인에 실패하였습니다!");
@@ -137,7 +138,6 @@ const Stbody = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${({ theme }) => theme.color.lightgray};
-
 `;
 
 const StWrapper = styled.div`
@@ -149,12 +149,12 @@ const StWrapper = styled.div`
   box-shadow: 3px 7px 14px rgba(0, 0, 0, 0.05);
   border-radius: ${10 / 16}rem;
   background: ${({ theme }) => theme.color.white};
+  text-align: center;
   ${media.mobile} {
-    position: absolute;
     width: 320px;
     height: 360px;
     left: 20px;
-    top: 106px;
+    top: 58px;
     }
   }
 
@@ -177,8 +177,8 @@ const StAppBar = styled(Tabs)`
     position: absolute;
     width: 300px;
     height: 0px;
-    left: -120px; 
-    top: -36px;
+    left: 80px; 
+    top: 50px;
   }
 `;
 
@@ -189,12 +189,6 @@ const StInput = styled.div`
   align-items: center;
   flex-flow: row wrap;
 
-  ${media.mobile} {
-    position: absolute;
-    top: 120px;
-    background:red;
-    
-  }
 `;
 const Error = styled.strong`
   margin-top: 20px;
