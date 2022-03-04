@@ -5,6 +5,7 @@ import { media } from "../../styles/theme";
 import { RecipeDetailContent } from "../../components/recommend/RecipeDetailContent";
 import { RecipeDetailInfo } from "../../components/recommend/RecipeDetailInfo";
 import { detailRecipe, addLike } from "../../api/receipe";
+import { MobileTitle } from "../../components/mobile/MobileTitle";
 
 const RecipeDetail = () => {
   const { id } = useParams();
@@ -40,22 +41,31 @@ const RecipeDetail = () => {
   };
 
   return (
-    <RecipeDetailSection>
-      <RecipeDetailContainer>
-        {detailData && (
-          <>
-            <RecipeDetailInfo data={detailData} handleLike={handleLike} />
-            <RecipeDetailContent data={detailData} />
-          </>
-        )}
-      </RecipeDetailContainer>
-    </RecipeDetailSection>
+    <>
+      <MobileTitle text="레시피 추천받기" />
+      <RecipeDetailSection>
+        <RecipeDetailContainer>
+          {detailData && (
+            <>
+              <RecipeDetailInfo data={detailData} handleLike={handleLike} />
+              <RecipeDetailContent data={detailData} />
+            </>
+          )}
+        </RecipeDetailContainer>
+      </RecipeDetailSection>
+    </>
   );
 };
 
 const RecipeDetailSection = styled.section`
   padding: 44px 0;
   background-color: #f0f1f3;
+
+  ${media.mobile} {
+    width: 360px;
+    padding: 0px;
+    background-color: #fff;
+  }
 `;
 const RecipeDetailContainer = styled.div`
   width: ${1080 / 16}rem;
@@ -67,14 +77,14 @@ const RecipeDetailContainer = styled.div`
     display: flex;
   }
   .detailImgBox {
-    width: ${400 / 16}rem;
-    height: ${400 / 16}rem;
-    margin-left: ${30 / 16}rem;
+    width: 400px;
+    height: 400px;
+    margin-left: 30px;
     position: relative;
   }
   .detailInfoBox {
     margin-top: 1rem;
-    width: ${450 / 16}rem;
+    width: 450px;
     margin-left: 80px;
     p {
       margin-bottom: ${12 / 16}rem;
@@ -117,27 +127,27 @@ const RecipeDetailContainer = styled.div`
     }
   }
   .detailRecipeBox {
-    width: ${960 / 16}rem;
-    padding: ${60 / 16}rem;
+    width: 960px;
+    padding: 60px;
     background-color: #f8f8f8;
     margin-top: 100px;
     h4 {
       ${({ theme }) => theme.font.bold};
       ${({ theme }) => theme.font.large};
-      margin-bottom: ${36 / 16}rem;
+      margin-bottom: 36px;
       position: relative;
       img {
-        width: ${48 / 16}rem;
-        height: ${48 / 16}rem;
+        width: 48px;
+        height: 48px;
       }
       span {
         position: absolute;
-        top: ${14 / 16}rem;
-        left: ${60 / 16}rem;
+        top: 14px;
+        left: 60px;
       }
     }
     div {
-      margin-bottom: ${36 / 16}rem;
+      margin-bottom: 36px;
       position: relative;
     }
     span:first-child {
@@ -156,8 +166,8 @@ const RecipeDetailContainer = styled.div`
   ${media.tablet} {
     width: 728px;
     .detailImgBox {
-      width: ${360 / 16}rem;
-      height: ${360 / 16}rem;
+      width: 360px;
+      height: 360px;
       margin-left: 0;
     }
     .detailInfoBox {
@@ -172,6 +182,46 @@ const RecipeDetailContainer = styled.div`
     .detailRecipeBox {
       width: 620px;
       margin-top: 60px;
+    }
+  }
+  ${media.mobile} {
+    width: 100vw;
+    padding: 20px;
+
+    .recipeInfo {
+      display: block;
+    }
+    .detailImgBox {
+      width: 90vw;
+      height: 90vw;
+      margin: 0 auto;
+    }
+    .detailInfoBox {
+      width: 100%;
+      margin-top: 20px;
+      margin-left: 0;
+      padding: 0 10px;
+    }
+    .detailRecipeBox {
+      width: 100%;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    .infoBox {
+      width: 90vw;
+      display: flex;
+      p {
+        margin-right: 4%;
+        ${({ theme }) => theme.font.bold};
+        span {
+          ${({ theme }) => theme.font.normal};
+        }
+      }
+    }
+    .ingredient {
+      p {
+        ${({ theme }) => theme.font.bold};
+      }
     }
   }
 `;

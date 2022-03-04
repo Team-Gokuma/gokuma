@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { Button } from "../components/common/Button";
 import { ReactComponent as IconClose } from "../asset/icon/close.svg";
 import { ReactComponent as IconDelete } from "../asset/icon/delete.svg";
+import addByPhotoIcon from "../asset/icon/addByPhoto.svg";
+import addByTextIcon from "../asset/icon/addByText.svg";
+import menuBook from "../asset/icon/menuBook.svg";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { loginState, modalState } from "../store/atom";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
@@ -130,6 +133,10 @@ const Refrige = () => {
           OffToast();
         }}
       />
+      {/* TO DO: 냉장고 재료로 추천받기 추가하기 */}
+      {/* <div className="findRecipe">
+        <img src={menuBook} alt="menuBook" />
+      </div> */}
       <RefrigeTitle>
         <h2>나의 냉장고</h2>
         <div>
@@ -138,14 +145,16 @@ const Refrige = () => {
               login && setAddByImage(true);
               !login && onToast();
             }}>
-            <Button text="사진으로 추가" bgcolor="orange" txtcolor="white" />
+            <img className="addIcon" src={addByPhotoIcon} alt="addByPhotoIcon" />
+            {/* <Button text="사진으로 추가" bgcolor="orange" txtcolor="white" /> */}
           </span>
           <span
             onClick={() => {
               login && setAddByText(true);
               !login && onToast();
             }}>
-            <Button text="직접 입력해서 추가" bgcolor="orange" txtcolor="white" />
+            <img className="addIcon" src={addByTextIcon} alt="addByPhotoIcon" />
+            {/* <Button text="직접 입력해서 추가" bgcolor="orange" txtcolor="white" /> */}
           </span>
         </div>
       </RefrigeTitle>
@@ -207,6 +216,21 @@ const RefrigeContainer = styled.section`
   margin: 0 auto;
   margin-top: ${88 / 16}rem;
   position: relative;
+  .findRecipe {
+    width: 60px;
+    height: 60px;
+    border-radius: 9999px;
+    position: absolute;
+    top: 480px;
+    right: 0;
+    z-index: 1;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    transition-property: transform;
+    :hover {
+      transform: translateY(-8px);
+    }
+  }
 `;
 
 const RefrigeTitle = styled.div`
@@ -220,6 +244,12 @@ const RefrigeTitle = styled.div`
   }
   span:first-child {
     margin-right: ${12 / 16}rem;
+  }
+  .addIcon {
+    width: 36px;
+    height: 36px;
+    margin-right: 12px;
+    cursor: pointer;
   }
 `;
 

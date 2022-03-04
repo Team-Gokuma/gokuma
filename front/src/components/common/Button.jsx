@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "../../styles/theme";
 
 // 필수 props: text, bgcolor, txtcolor
 // 선택 props: width('원하는크기'), height('원하는크기'), round(boolean), txtstyle('bold'), padding('원하는크기')
@@ -20,6 +21,12 @@ const StyledButton = styled.button`
   color: ${(props) => props.theme.color[props.txtcolor]};
   ${(props) => props.txtstyle && props.theme.font[props.txtstyle]}
   cursor: ${(props) => (props.cursor ? props.cursor : "pointer")};
+  ${media.mobile} {
+    position: relative;
+    width: 278px;
+    height: 40px;
+    top: 60px;
+  }
 `;
 
 export default Button;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { media } from "../../styles/theme";
 import { Recipe } from "../../components/common/Recipe";
 import { useRecoilValue } from "recoil";
+import { MobileTitle } from "../../components/mobile/MobileTitle";
 import { mainRecipesState, relatedRecipesState } from "../../store/atom";
 
 const Result = () => {
@@ -44,6 +45,7 @@ const Result = () => {
 
   return (
     <Suspense fallback={<LoadingPage />}>
+      <MobileTitle text={"레시피 추천받기"} />
       <ResultContainer>
         <h3>재료를 최대한 많이 사용하는 레시피 입니다!</h3>
         <div className="recipeList">{maxIngredientRecipe}</div>
@@ -84,6 +86,14 @@ const ResultContainer = styled.section`
 
   ${media.tablet} {
     width: 768px;
-    margin: 0 auto;
+  }
+  ${media.mobile} {
+    width: 360px;
+    margin-top: 40px;
+    padding: 0 20px;
+
+    h3 {
+      ${({ theme }) => theme.font.medium};
+    }
   }
 `;
