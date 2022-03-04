@@ -90,7 +90,7 @@ const ShoppingListContainer = styled.section`
     margin-bottom: 2rem;
   }
   ${media.mobile} {
-    width: 320px;
+    width: 100%;
     margin-top: 20px;
 
     h2 {

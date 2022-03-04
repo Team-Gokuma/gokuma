@@ -74,5 +74,8 @@ const InRefrigeIngredient = styled.div`
   ${media.mobile} {
     display: ${(props) => (props.onTap1 ? "block" : "none")};
     width: 100%;
+    .refrigeContent {
+      padding: 0;
+    }
   }
 `;
