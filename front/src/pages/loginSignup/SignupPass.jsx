@@ -140,6 +140,10 @@ const StInput = styled.div`
       margin-top: 100px;
     }
   }
+  span{
+    ${media.tablet} {
+    margin-bottom:20px;
+  }
 `;
 
 const SignInput = styled.input`
@@ -171,6 +175,9 @@ const StCheck = styled.div`
   ${media.mobile} {
     margin-bottom: 0px;
   }
+  ${media.tablet} {
+    width: 320px;
+    }
   & span {
     font-size: 12px;
     ${media.mobile} {
