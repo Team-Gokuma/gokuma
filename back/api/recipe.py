@@ -80,30 +80,13 @@ class Recommend(Resource):
         result = {'result_msg': "success", "data": []}
         for recipe in recipes:
             recipe_id = recipe[0]
-            jaccard_sim = recipe[1]
             ingrds_num = recipe[2]
-            left_ingrds_num = recipe[3]
 
             item = Recipe.query.filter(
                 Recipe.recipe_id == recipe_id).first()
 
-            # ingrds_num = 0
-            # recipe_ingrds = RecipeIngrd.query.filter(
-            #     RecipeIngrd.recipe_id == recipe_id).all()
-
-            # recipe_ingrds_new = {}
-            # for recipe_ingrd in recipe_ingrds:
-            #     recipe_ingrds_new[recipe_ingrd.name] = {
-            #         "amount": recipe_ingrd.capacity}
-
-            # for ingrd in ingrds:
-            #     if ingrd["content"] in recipe_ingrds_new:
-            #         ingrds_num += 1
-
             result['data'].append(
-                {"img": item.img, "id": item.recipe_id, "name": item.name, "ingrdients": ingrds_num, "like": item.like})
-
-        result['data'] = sorted(result['data'], key=lambda x: x['like'])
+                {"img": item.img, "id": item.recipe_id, "name": item.name, "ingrdients": ingrds_num})
 
         return result
 

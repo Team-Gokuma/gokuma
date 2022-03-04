@@ -18,20 +18,20 @@ const LoadingContainer = styled.div`
   margin: 10rem auto;
   text-align: center;
   position: relative;
-  & .findRecipe {
+  .findRecipe {
     ${({ theme }) => theme.font.xlarge};
     ${({ theme }) => theme.font.bold};
     margin-bottom: 100px;
   }
-  & .imgBox {
+  .imgBox {
     text-align: right;
   }
-  & img {
+  img {
     width: ${180 / 16}rem;
     height: ${180 / 16}rem;
     margin-right: 120px;
   }
-  & .chef {
+  .chef {
     position: absolute;
     bottom: 0;
     left: 0;

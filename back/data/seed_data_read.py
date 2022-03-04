@@ -36,7 +36,7 @@ def get_recipe_ingrd():
     ingrds = []
     for i in range(df2_cnt):
         ingrd = {}
-        ingrd['recipe_id'] = df2.loc[i]['RECIPE_ID']
+        ingrd['recipe_id'] = int(df2.loc[i]['RECIPE_ID'])
         ingrd['name'] = df2.loc[i]['IRDNT_NM']
         if df2.loc[i]['IRDNT_CPCTY'] is NaN:
             ingrd['capacity'] = None
