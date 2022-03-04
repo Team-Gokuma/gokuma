@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useMemo, useState, useReducer } from "react";
-import { Link } from "react-router-dom";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { modalState, mainRecipesState, relatedRecipesState } from "../../store/atom";
 import { ImageFileUpload } from "../common/ImageFileUpload";
@@ -9,13 +8,13 @@ import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
 import { AlertLoginModal } from "../common/AlertLoginModal";
 import { recognition, recommendRecipe, cooktimeRecipe, rankRecipe } from "../../api/receipe";
-import { addIngredientByImage } from "../../api/refrige";
+import { addIngredient } from "../../api/refrige";
 import { StyledLink } from "../../styles/commonStyle";
 
 const regTag = /^[가-힣]+$/;
 
-const handleAddByPhoto = async (img) => {
-  const response = await addIngredientByImage(img);
+const handleAddIngredient = async (data) => {
+  const response = await addIngredient(data);
   if (response.status === 200) {
     return response;
   } else {
@@ -48,13 +47,13 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [onIcon, setOnIcon] = useState(false);
   const [tags, setTags] = useState([]);
   const [img, setImg] = useState("");
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
 
   // const [state, dispatch] = useReducer(reducer, initialState);
 
   const login = window.sessionStorage.getItem("isLogin");
   const [onModal, setOnModal] = useRecoilState(modalState);
-  const [mainRecipe, setMainRecipe] = useRecoilState(mainRecipesState);
+  const setMainRecipe = useSetRecoilState(mainRecipesState);
   const setRelatedRecipe = useSetRecoilState(relatedRecipesState);
 
   const requestRecognition = async (img) => {
@@ -104,9 +103,10 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
 
   const handleClick = () => {
     page && tags.length > 0 && !login && setOnModal(true);
-    login && Promise.all([handleAddByPhoto(img), getRecommendation(data), getRankRecipe()]);
+    login && Promise.all([handleAddIngredient(data), getRecommendation(data), getRankRecipe()]);
     login && alert("냉장고에 재료를 넣었습니다!");
   };
+
   const handleClickNoLogin = () => {
     const getData = async () => {
       await getRecommendation(data);
@@ -115,11 +115,11 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     getData();
   };
 
-  const hanldeAddByImage = () => {
+  const hanldeAddIngredient = () => {
     const addIngredient = async () => {
-      await handleAddByPhoto(img);
+      await handleAddIngredient(data);
       await getIngredient();
-      alert("냉장고에 재료를 넣었습니다!");
+      login && alert("냉장고에 재료를 넣었습니다!");
     };
     addIngredient();
     handleAddImage();
@@ -137,6 +137,11 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
       setTags((cur) => {
         const newTags = [...cur, inputValue];
         return newTags;
+      });
+      setData((cur) => {
+        const newData = [...cur];
+        newData.push({ content: inputValue, categoty: 7 });
+        return newData;
       });
       setInputValue("");
       setMsg("");
@@ -226,7 +231,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
               <Button text="레시피 찾기" bgcolor="yellow" txtcolor="black" width="180px" />
             </StyledLink>
           ) : (
-            <span onClick={hanldeAddByImage}>
+            <span onClick={hanldeAddIngredient}>
               <Button text="식재료 추가하기" bgcolor="yellow" txtcolor="black" width="180px" />
             </span>
           )}

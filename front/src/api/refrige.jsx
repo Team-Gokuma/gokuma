@@ -9,22 +9,10 @@ export const ingredientList = async () => {
   }
 };
 
-export const addIngredientByImage = async (img) => {
+export const addIngredient = async (ingredients) => {
   try {
-    const data = {
-      img: img,
-    };
-    const response = await axios.post("api/refrigerator/recoginition/photo", data);
-    return response;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const addIngredientByText = async (content, category) => {
-  try {
-    const data = { content: content, category: category };
-    const response = await axios.post("api/refrigerator/recoginition/text", data);
+    const data = { ingredients: ingredients };
+    const response = await axios.post("api/refrigerator/save", data);
     return response;
   } catch (error) {
     console.log(error);

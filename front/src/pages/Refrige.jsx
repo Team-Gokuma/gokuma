@@ -9,13 +9,14 @@ import { loginState, modalState } from "../store/atom";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { AddByText } from "../components/refrige/AddByText";
 import { AddByImage } from "../components/refrige/AddByImage";
-import { ingredientList, addIngredientByText, deleteAllIngredient, deleteIngredient } from "../api/refrige";
+import { ingredientList, deleteAllIngredient, deleteIngredient, addIngredient } from "../api/refrige";
 import { Toast } from "../components/common/Toast";
 
 const category = ["전체 식재료", "과일", "채소", "육류", "해산물", "유제품", "소스류", "기타"];
 
 const addtInRefrigeByText = async (textValue, category) => {
-  const response = await addIngredientByText(textValue, Number(category));
+  const data = [{ content: textValue, category: Number(category) }];
+  const response = await addIngredient(data);
   if (response.status === 200) {
     alert("재료를 냉장고에 추가했습니다!");
   } else {
