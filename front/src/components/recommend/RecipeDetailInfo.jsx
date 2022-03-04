@@ -66,15 +66,17 @@ export const RecipeDetailInfo = ({ data, handleLike }) => {
           <IconThumbUp className="thumbUpIcon" />
           <span>{data.like}</span>
         </LikeBox>
-        <p className="level">
-          난이도 <span className="stars">{level[data.level - 1]}</span>
-        </p>
-        <p className="calories">
-          칼로리 <span className="calorieContent">{data.calorie}kcal</span>
-        </p>
-        <p className="servings">
-          기준 <span className="servingsContent">{data.servings}인분</span>
-        </p>
+        <div className="infoBox">
+          <p className="level">
+            난이도 <span className="stars">{level[data.level - 1]}</span>
+          </p>
+          <p className="calories">
+            칼로리 <span className="calorieContent">{data.calorie}kcal</span>
+          </p>
+          <p className="servings">
+            기준 <span className="servingsContent">{data.servings}인분</span>
+          </p>
+        </div>
         <div className="ingredient">
           <p>재료</p>
           {ingredient.map((item, idx) => {

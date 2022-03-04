@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { media } from "../../styles/theme";
 
 export const ImageFileUpload = ({ width, height, requestRecognition }) => {
   const [isFile, setIsFile] = useState(false);
@@ -35,11 +36,11 @@ export const ImageFileUpload = ({ width, height, requestRecognition }) => {
             value={image}
             accept="image/*"
           />
-          <p className="dragText">
+          <span className="dragText">
             재료 사진을 드래그 해서 올려놓거나, 클릭해서 업로드 해주세요!
             <br />
             자동으로 재료를 빠르고 쉽게 인식해서 추가해드립니다!
-          </p>
+          </span>
         </ImageUpload>
       )}
       {isFile && (
@@ -65,7 +66,19 @@ const FileUpload = styled.div`
     background-color: ${({ theme }) => theme.color.lightgray};
   }
   .dragText {
+    display: inline-block;
     padding: 160px 0;
+  }
+
+  ${media.mobile} {
+    width: 100%;
+
+    .dragText {
+      padding: 20% 24%;
+      word-break: keep-all;
+      text-align: left;
+      line-height: 1.5;
+    }
   }
 `;
 const ImageUpload = styled.div`
@@ -84,6 +97,9 @@ const ImageUpload = styled.div`
     opacity: 0;
     cursor: pointer;
     border: 2px solid orange;
+  }
+  ${media.mobile} {
+    height: 320px;
   }
 `;
 const FileUploadContent = styled.div`
@@ -123,5 +139,11 @@ const FileUploadContent = styled.div`
   .removeImageBtn:active {
     border: 0;
     transition: all 0.2s ease;
+  }
+  ${media.mobile} {
+    .removeImageBtn {
+      width: 120px;
+      height: 44px;
+    }
   }
 `;

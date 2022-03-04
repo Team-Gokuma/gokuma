@@ -43,9 +43,6 @@ const GlobalStyle = createGlobalStyle`
     ${media.tablet} {
     font-size: 15px;
   }
-    ${media.mobile} {
-      font-size: 14px;
-  }
   }
   img{
     width: 100%;

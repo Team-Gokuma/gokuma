@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "../../styles/theme";
 import { useMemo, useState, useReducer } from "react";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { modalState, mainRecipesState, relatedRecipesState } from "../../store/atom";
@@ -10,6 +11,7 @@ import { AlertLoginModal } from "../common/AlertLoginModal";
 import { recognition, recommendRecipe, cooktimeRecipe, rankRecipe } from "../../api/receipe";
 import { addIngredient } from "../../api/refrige";
 import { StyledLink } from "../../styles/commonStyle";
+import { MobileTitle } from "../mobile/MobileTitle";
 
 const regTag = /^[가-힣]+$/;
 
@@ -22,24 +24,6 @@ const handleAddIngredient = async (data) => {
   }
 };
 
-// TO DO: useReducer 적용
-// const initialState = {
-//   inputValue: "",
-//   data: {},
-//   msg: "",
-//   addToggle: true,
-//   tags: [],
-//   img: "",
-//   onIcon: false
-// }
-
-// const reducer = (state, action) => {
-//   switch(action.type){
-//     case :
-//       return state;
-//   }
-// }
-
 export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [AddToggle, setAddToggle] = useState(true);
   const [inputValue, setInputValue] = useState("");
@@ -48,8 +32,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [tags, setTags] = useState([]);
   const [img, setImg] = useState("");
   const [data, setData] = useState([]);
-
-  // const [state, dispatch] = useReducer(reducer, initialState);
 
   const login = window.sessionStorage.getItem("isLogin");
   const [onModal, setOnModal] = useRecoilState(modalState);
@@ -186,6 +168,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
 
   return (
     <section>
+      {page && <MobileTitle text={"레시피 추천받기"} />}
       <RecommendContainer>
         {page ? (
           <>
@@ -250,7 +233,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
 };
 
 const RecommendContainer = styled.div`
-  width: ${740 / 16}rem;
+  width: 740px;
   padding: 60px;
   margin: 0 auto;
   text-align: center;
@@ -278,7 +261,6 @@ const RecommendContainer = styled.div`
       width: 80%;
       margin-bottom: 20px;
       display: flex;
-      /* justify-content: center; */
       flex-wrap: wrap;
       justify-content: flex-start;
     }
@@ -320,14 +302,17 @@ const RecommendContainer = styled.div`
       color: #d23236;
     }
   }
-`;
 
-// To DO : 추가하기 버튼에 + 아이콘 추가
-// const Img = styled(IconAdd)`
-//   width: ${({ theme }) => theme.calcRem(24)};
-//   height: ${({ theme }) => theme.calcRem(24)};
-//   fill: ${({ theme }) => theme.color.white};
-//   position: absolute;
-//   top: 10px;
-//   left: 324px;
-// `;
+  ${media.mobile} {
+    width: 100vw;
+    padding: 0;
+    margin-top: 40px;
+    h2 {
+      word-break: keep-all;
+      word-wrap: break-word;
+    }
+    p {
+      display: none;
+    }
+  }
+`;

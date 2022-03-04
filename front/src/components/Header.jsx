@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CommonNav } from "./";
 import { useSetRecoilState } from "recoil";
@@ -16,9 +16,8 @@ const Header = () => {
   const [menuToggle, setMenutoggle] = useState(false);
   const setIsLogin = useSetRecoilState(loginState);
   const navigate = useNavigate();
+
   const isLogin = window.sessionStorage.getItem("isLogin");
-  const mainRecipes = useSetRecoilState(mainRecipesState);
-  const relatedRecipes = useSetRecoilState(relatedRecipesState);
   const handleLogout = async () => {
     await logout().then((res) => {
       if (res.status !== 404) {
@@ -27,6 +26,7 @@ const Header = () => {
         relatedRecipes([]);
         // setIsLogin(false);
         navigate("/");
+        setMenutoggle(false);
       } else {
         alert("error");
         return res.msg;
@@ -45,7 +45,11 @@ const Header = () => {
         <div className="mobileMenuBtn" onClick={mobileMenuToggle}>
           <img src={menu} alt="mobile menu" />
         </div>
-        <LogoWrapper onClick={() => navigate("/")}>
+        <LogoWrapper
+          onClick={() => {
+            navigate("/");
+            setMenutoggle(false);
+          }}>
           <Img />
           <div className="logo">어쩔냉장고</div>
         </LogoWrapper>
@@ -58,7 +62,12 @@ const Header = () => {
               <div className="auth" onClick={handleLogout}>
                 <Button width="104px" height="45px" text="Logout" bgcolor="yellow" txtcolor="black" round="round" />
               </div>
-              <StyledLink to="/mypage" className="profile">
+              <StyledLink
+                to="/mypage"
+                className="profile"
+                onClick={() => {
+                  setMenutoggle(false);
+                }}>
                 <div className="name" style={{ float: "left", marginTop: "14px", marginRight: "10px" }}>
                   {name}님
                 </div>
@@ -70,7 +79,12 @@ const Header = () => {
               <StyledLink to="/login" className="auth">
                 <Button text="Login / Sign up" bgcolor="yellow" txtcolor="black" />
               </StyledLink>
-              <StyledLink to="/login" className="profile">
+              <StyledLink
+                to="/login"
+                className="profile"
+                onClick={() => {
+                  setMenutoggle(false);
+                }}>
                 <Profile />
               </StyledLink>
             </>
@@ -78,7 +92,7 @@ const Header = () => {
         </ProfileWrapper>
       </StWrapper>
       {menuToggle && (
-        <MobileMenu>
+        <MobileMenu ref={mobilemenu}>
           <CommonNav mobileMenuToggle={mobileMenuToggle} />
         </MobileMenu>
       )}
