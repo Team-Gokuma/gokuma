@@ -68,6 +68,7 @@ const StWrapper = styled.div`
     height: 360px;
     left: 20px;
     top: 58px;
+    text-align: center;
     }
 `;
 

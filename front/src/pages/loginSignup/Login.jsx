@@ -93,7 +93,7 @@ const Login = () => {
             to="/login"
             component={Link}
           />
-          <Tab label="" disabled value="disabled" />
+          <Tab className="disabled" label="" disabled value="disabled" />
           <Tab
             label={<span className={value === 2 ? classes.activeTab : classes.customStyleOnTab}> Sign up</span>}
             to="/signup"
@@ -174,10 +174,13 @@ const StAppBar = styled(Tabs)`
   }
   ${media.mobile} {
     position: absolute;
-    width: 300px;
+    width: 250px;
     height: 0px;
-    left: 80px; 
+    left: 40px; 
     top: 50px;
+    .disabled{
+      display:none;
+    }
   }
 `;
 

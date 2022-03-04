@@ -89,7 +89,7 @@ const SignupPass = () => {
                 <Ckeckicon />
               </div>
             </StCheckPass>
-            <Button width="300px" height="60px" text="다음" bgcolor="orange" txtcolor="white" round="round" />
+            <PassButton>다음</PassButton>
           </form>
         </StInput>
       </StWrapper>
@@ -135,6 +135,11 @@ const StInput = styled.div`
   & span {
     margin-top: 8.5rem;
   }
+  ${media.mobile} {
+    & span {
+      margin-top: 100px;
+    }
+  }
 `;
 
 const SignInput = styled.input`
@@ -154,6 +159,7 @@ const SignInput = styled.input`
     width: 277px;
     height: 40px;
     top: 20px;
+    margin-bottom: 5px;
   }
 
 `;
@@ -162,7 +168,9 @@ const StCheck = styled.div`
   margin-bottom: 15px;
   margin-left: 0rem;
   width: 20rem;
-
+  ${media.mobile} {
+    margin-bottom: 0px;
+  }
   & span {
     font-size: 12px;
     ${media.mobile} {
@@ -172,6 +180,9 @@ const StCheck = styled.div`
   & div {
     display: inline-block;
     text-align: center;
+    ${media.mobile} {
+      margin-top: 15px;
+    }
   }
 `;
 
@@ -185,5 +196,30 @@ const StCheckPass = styled.div`
     ${media.mobile} {
       font-size: 8px;
     }
+  }
+  & div {
+    ${media.mobile} {
+      margin-top: 15px;
+    }
+  }
+`;
+
+
+const PassButton = styled.button`
+  width: 300px;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 999px;
+  background-color: ${({ theme }) => theme.color.orange};
+  color: ${({ theme }) => theme.color.white};
+  cursor: ${(props) => (props.cursor ? props.cursor : "pointer")};
+  ${media.mobile} {
+    position: relative;
+    width: 278px;
+    height: 40px;
+    top: 0px;
   }
 `;
