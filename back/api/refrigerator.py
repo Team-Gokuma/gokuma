@@ -220,9 +220,12 @@ class Save(Resource):
                     db.session.commit()
             else:
                 # 재료DB에 없는 재료를 냉장고에 넣으려한다.
-                new = Refrigerator(user.id, ingrd["content"], 7,
+                new = Refrigerator(user.id, ingrd["content"], ingrd["category"],
                                    datetime.now(timezone('Asia/Seoul')))
                 db.session.add(new)
+                db.session.commit()
+                new_ingrd = Ingredients(ingrd["content"], ingrd["category"])
+                db.session.add(new_ingrd)
                 db.session.commit()
 
         return result, 200
