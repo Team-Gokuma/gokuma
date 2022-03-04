@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CommonNav } from "./";
 import { useSetRecoilState } from "recoil";
@@ -14,11 +14,12 @@ import { StyledLink } from "../styles/commonStyle";
 
 const Header = () => {
   const [menuToggle, setMenutoggle] = useState(false);
-
-  const navigate = useNavigate();
-  const isLogin = window.sessionStorage.getItem("isLogin");
   const mainRecipes = useSetRecoilState(mainRecipesState);
   const relatedRecipes = useSetRecoilState(relatedRecipesState);
+
+  const navigate = useNavigate();
+
+  const isLogin = window.sessionStorage.getItem("isLogin");
   const handleLogout = async () => {
     await logout().then((res) => {
       if (res.status !== 404) {
@@ -39,13 +40,14 @@ const Header = () => {
   };
 
   // TO DO : 모바일 메뉴의 다른부분을 선택하면 사라지게하기
-  // const mobilemenu = useRef(null);
+  const mobilemenu = useRef();
 
   // const onLeaveFocusMobileMenu = useCallback((e) => {
   //   if (!mobilemenu.current) return;
   //   if (!mobilemenu.current.contains(e.target)) {
   //     mobileMenuToggle();
   //   }
+  //   console.log(mobilemenu.current);
   // }, []);
 
   const name = "토끼";
@@ -117,7 +119,7 @@ const Header = () => {
         </ProfileWrapper>
       </StWrapper>
       {menuToggle && (
-        <MobileMenu>
+        <MobileMenu ref={mobilemenu}>
           <CommonNav mobileMenuToggle={mobileMenuToggle} />
         </MobileMenu>
       )}
