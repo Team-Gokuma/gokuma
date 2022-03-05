@@ -14,8 +14,18 @@ export const mainRecipesState = atom({
   default: [],
 });
 
-export const relatedRecipesState = atom({
-  key: "relatedRecipesState",
+export const rankRecipesState = atom({
+  key: "rankRecipesState",
+  default: [],
+});
+
+export const editorpickRecipesState = atom({
+  key: "editorpickRecipesState",
+  default: [],
+});
+
+export const bookmarkRecipesState = atom({
+  key: "bookmarkRecipesState",
   default: [],
 });
 

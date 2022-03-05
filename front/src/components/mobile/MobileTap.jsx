@@ -22,6 +22,7 @@ const TapContainer = styled.div`
   font-size: 16px;
   margin-top: 12px;
   display: none;
+  cursor: pointer;
   ${media.mobile} {
     display: flex;
   }

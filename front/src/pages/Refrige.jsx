@@ -8,13 +8,19 @@ import { ReactComponent as IconDelete } from "../asset/icon/delete.svg";
 import addByPhotoIcon from "../asset/icon/addByPhoto.svg";
 import addByTextIcon from "../asset/icon/addByText.svg";
 import menuBook from "../asset/icon/menuBook.svg";
-import { modalState, mainRecipesState, relatedRecipesState } from "../store/atom";
+import {
+  modalState,
+  mainRecipesState,
+  rankRecipesState,
+  editorpickRecipesState,
+  bookmarkRecipesState,
+} from "../store/atom";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { MobileTitle } from "../components/mobile/MobileTitle";
 import { AddByText } from "../components/refrige/AddByText";
 import { AddByImage } from "../components/refrige/AddByImage";
 import { ingredientList, deleteAllIngredient, deleteIngredient, addIngredient } from "../api/refrige";
-import { recommendRecipe, rankRecipe } from "../api/receipe";
+import { recommendRecipe, rankRecipe, editorpick, bookmarkRecipe } from "../api/receipe";
 import { Toast } from "../components/common/Toast";
 
 const category = ["전체 식재료", "과일", "채소", "육류", "해산물", "유제품", "소스류", "기타"];
@@ -56,7 +62,9 @@ const Refrige = () => {
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
   const setMainRecipe = useSetRecoilState(mainRecipesState);
-  const setRelatedRecipe = useSetRecoilState(relatedRecipesState);
+  const setRankRecipe = useSetRecoilState(rankRecipesState);
+  const setEditorpickRecipe = useSetRecoilState(editorpickRecipesState);
+  const setBookmarkRecipe = useSetRecoilState(bookmarkRecipesState);
 
   const navigate = useNavigate();
 
@@ -84,13 +92,26 @@ const Refrige = () => {
     const getRankRecipe = async () => {
       const response = await rankRecipe();
       if (response.status === 200) {
-        setRelatedRecipe(response.data.data);
+        setRankRecipe(response.data.data);
+      }
+    };
+
+    const getEditorpick = async () => {
+      const response = await editorpick();
+      if (response.status === 200) {
+        setEditorpickRecipe(response.data.data);
+      }
+    };
+
+    const getBookmarkRecipe = async () => {
+      const response = await bookmarkRecipe();
+      if (response.status === 200) {
+        setBookmarkRecipe(response.data.data);
       }
     };
 
     const getResult = async () => {
-      await getRecommendation(ingredients);
-      await getRankRecipe();
+      Promise.all([getRecommendation(ingredients), getRankRecipe(), getEditorpick(), getBookmarkRecipe()]);
     };
     getResult();
   };

@@ -23,7 +23,6 @@ const RecipeDetail = () => {
     }
   };
 
-  console.log(detailData);
   const clickLike = async () => {
     await addLike(detailData.id);
   };

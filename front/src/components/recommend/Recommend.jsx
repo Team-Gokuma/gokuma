@@ -2,13 +2,27 @@ import styled from "styled-components";
 import { media } from "../../styles/theme";
 import { useEffect, useMemo, useState } from "react";
 import { useSetRecoilState, useRecoilState } from "recoil";
-import { modalState, mainRecipesState, relatedRecipesState, ingredientState } from "../../store/atom";
+import {
+  modalState,
+  mainRecipesState,
+  rankRecipesState,
+  editorpickRecipesState,
+  ingredientState,
+  bookmarkRecipesState,
+} from "../../store/atom";
 import { ImageFileUpload } from "../common/ImageFileUpload";
 import { Button } from "../common/Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
 import { AlertLoginModal } from "../common/AlertLoginModal";
-import { recognition, recommendRecipe, cooktimeRecipe, rankRecipe } from "../../api/receipe";
+import {
+  recognition,
+  recommendRecipe,
+  cooktimeRecipe,
+  rankRecipe,
+  editorpick,
+  bookmarkRecipe,
+} from "../../api/receipe";
 import { addIngredient } from "../../api/refrige";
 import { StyledLink } from "../../styles/commonStyle";
 import { MobileTitle } from "../mobile/MobileTitle";
@@ -36,11 +50,12 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [onModal, setOnModal] = useRecoilState(modalState);
   const [ingredient, setIngredient] = useRecoilState(ingredientState);
   const setMainRecipe = useSetRecoilState(mainRecipesState);
-  const setRelatedRecipe = useSetRecoilState(relatedRecipesState);
+  const setRankRecipe = useSetRecoilState(rankRecipesState);
+  const setEditorpickRecipe = useSetRecoilState(editorpickRecipesState);
+  const setBookmarkRecipe = useSetRecoilState(bookmarkRecipesState);
 
   const requestRecognition = async (img) => {
     setMainRecipe([]);
-    setRelatedRecipe([]);
     const response = await recognition(img);
     if (response.status === 200) {
       setImg(img);
@@ -71,13 +86,27 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     const getRankRecipe = async () => {
       const response = await rankRecipe();
       if (response.status === 200) {
-        setRelatedRecipe(response.data.data);
+        setRankRecipe(response.data.data);
+      }
+    };
+
+    const getEditorpick = async () => {
+      const response = await editorpick();
+      console.log(response);
+      if (response.status === 200) {
+        setEditorpickRecipe(response.data.data);
+      }
+    };
+
+    const getBookmarkRecipe = async () => {
+      const response = await bookmarkRecipe();
+      if (response.status === 200) {
+        setBookmarkRecipe(response.data.data);
       }
     };
 
     const getResult = async () => {
-      await getRecommendation(ingredients);
-      await getRankRecipe();
+      Promise.all([getRecommendation(ingredients), getRankRecipe(), getEditorpick(), getBookmarkRecipe()]);
     };
     getResult();
   };
@@ -104,7 +133,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const handleToggle = () => {
     setAddToggle(false);
     setMainRecipe([]);
-    setRelatedRecipe([]);
+    setRankRecipe([]);
   };
 
   const saveTags = (e) => {

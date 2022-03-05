@@ -4,13 +4,15 @@ import { media } from "../../styles/theme";
 import { Recipe } from "../../components/common/Recipe";
 import { useRecoilValue } from "recoil";
 import { MobileTitle } from "../../components/mobile/MobileTitle";
-import { mainRecipesState, relatedRecipesState } from "../../store/atom";
+import { mainRecipesState, rankRecipesState, editorpickRecipesState, bookmarkRecipesState } from "../../store/atom";
 import { RecipeListResult } from "../../components/recommend/RecipeListResult";
 
 const Result = () => {
   const LoadingPage = React.lazy(() => import("./FindRecipe")); // 지연 로딩
   const mainRecipes = useRecoilValue(mainRecipesState);
-  const relatedRecipes = useRecoilValue(relatedRecipesState);
+  const rankRecipes = useRecoilValue(rankRecipesState);
+  const editorpickRecipes = useRecoilValue(editorpickRecipesState);
+  const bookmarkRecipes = useRecoilValue(bookmarkRecipesState);
 
   const maxIngredientRecipe =
     mainRecipes &&
@@ -28,9 +30,41 @@ const Result = () => {
         />
       );
     });
-  const relativeRecipe =
-    relatedRecipes &&
-    relatedRecipes.map((item, idx) => {
+  const rankRecipe =
+    rankRecipes &&
+    rankRecipes.map((item, idx) => {
+      return (
+        <Recipe
+          key={"recipe" + idx}
+          className="recipe"
+          width="270px"
+          height="270px"
+          text={item.name}
+          image={item.img}
+          recipeId={item.id}
+        />
+      );
+    });
+
+  const editorpickRecipe =
+    editorpickRecipes &&
+    editorpickRecipes.map((item, idx) => {
+      return (
+        <Recipe
+          key={"recipe" + idx}
+          className="recipe"
+          width="270px"
+          height="270px"
+          text={item.name}
+          image={item.img}
+          recipeId={item.id}
+        />
+      );
+    });
+
+  const bookmarkRecipe =
+    bookmarkRecipes &&
+    bookmarkRecipes.map((item, idx) => {
       return (
         <Recipe
           key={"recipe" + idx}
@@ -51,12 +85,12 @@ const Result = () => {
         <h3>재료를 최대한 많이 사용하는 레시피 입니다!</h3>
         <RecipeListResult Recipes={maxIngredientRecipe} main={true} />
         {/* TO DO: 추천 알고리즘 만들고 생성 */}
-        {/* <h3>좋아요를 많이 받은 레시피 입니다!</h3>
-        <div className="recipeList">{maxIngredientRecipe}</div>
-        <h3>조리시간이 짧은 레시피 입니다!</h3>
-        <div className="recipeList">{maxIngredientRecipe}</div> */}
+        <h3 className="relative">회원님이 좋아할만한 레시피 입니다!</h3>
+        <RecipeListResult Recipes={bookmarkRecipe} />
         <h3 className="relative">지금 인기가 많은 레시피 입니다!</h3>
-        <RecipeListResult Recipes={relativeRecipe} />
+        <RecipeListResult Recipes={rankRecipe} />
+        <h3 className="relative">에디터가 추천하는 레시피 입니다!</h3>
+        <RecipeListResult Recipes={editorpickRecipe} />
       </ResultContainer>
     </Suspense>
   );

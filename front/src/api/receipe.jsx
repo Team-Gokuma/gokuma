@@ -42,10 +42,36 @@ export const rankRecipe = async () => {
   }
 };
 
+export const editorpick = async () => {
+  try {
+    const response = await axios.get("api/recipe/related/editorpick");
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const bookmarkRecipe = async () => {
+  try {
+    const response = await axios.get("api/recipe/related/bookmark");
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const levelRecipe = async (level) => {
+  try {
+    const response = await axios.get(`api/recipe/related/level?level=${level}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const detailRecipe = async (id, ingredients) => {
   try {
     const response = await axios.post(`/api/recipe/${id}`, ingredients);
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);

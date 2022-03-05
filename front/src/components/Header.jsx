@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { CommonNav } from "./";
 import { useSetRecoilState } from "recoil";
 import { logout } from "../api/user";
-import { mainRecipesState, relatedRecipesState } from "../store/atom";
+import { mainRecipesState, rankRecipesState } from "../store/atom";
 import { ReactComponent as Logo } from "../asset/icon/header/logo.svg";
 import { ReactComponent as Profile } from "../asset/icon/profile.svg";
 import menu from "../asset/icon/mobile/menu.svg";
@@ -16,7 +16,7 @@ const Header = () => {
   const [menuToggle, setMenutoggle] = useState(false);
   const navigate = useNavigate();
   const mainRecipes = useSetRecoilState(mainRecipesState);
-  const relatedRecipes = useSetRecoilState(relatedRecipesState);
+  const rankRecipes = useSetRecoilState(rankRecipesState);
 
   const isLogin = window.sessionStorage.getItem("isLogin");
   const handleLogout = async () => {
@@ -24,8 +24,7 @@ const Header = () => {
       if (res.status !== 404) {
         window.sessionStorage.clear();
         mainRecipes([]);
-        relatedRecipes([]);
-        // setIsLogin(false);
+        rankRecipes([]);
         navigate("/");
         setMenutoggle(false);
       } else {

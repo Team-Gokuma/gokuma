@@ -16,7 +16,10 @@ export const RecipeDetailContent = ({ data }) => {
           </div>
         );
       })}
-      <h4>관련 동영상</h4>
+      <h4>
+        <img src={`${process.env.PUBLIC_URL}/img/cuttongBoard.png`} alt="cuttingBoard" />
+        <span>관련 동영상</span>
+      </h4>
       <div>
         <iframe
           className="youtubeVideo"
