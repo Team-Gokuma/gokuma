@@ -14,6 +14,8 @@ const Result = () => {
   const editorpickRecipes = useRecoilValue(editorpickRecipesState);
   const bookmarkRecipes = useRecoilValue(bookmarkRecipesState);
 
+  const login = window.sessionStorage.getItem("isLogin");
+
   const maxIngredientRecipe =
     mainRecipes &&
     mainRecipes.map((item, idx) => {
@@ -85,8 +87,12 @@ const Result = () => {
         <h3>재료를 최대한 많이 사용하는 레시피 입니다!</h3>
         <RecipeListResult Recipes={maxIngredientRecipe} main={true} />
         {/* TO DO: 추천 알고리즘 만들고 생성 */}
-        <h3 className="relative">회원님이 좋아할만한 레시피 입니다!</h3>
-        <RecipeListResult Recipes={bookmarkRecipe} />
+        {login && (
+          <>
+            <h3 className="relative">회원님이 좋아할만한 레시피 입니다!</h3>
+            <RecipeListResult Recipes={bookmarkRecipe} />
+          </>
+        )}
         <h3 className="relative">지금 인기가 많은 레시피 입니다!</h3>
         <RecipeListResult Recipes={rankRecipe} />
         <h3 className="relative">에디터가 추천하는 레시피 입니다!</h3>
