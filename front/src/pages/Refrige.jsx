@@ -277,12 +277,12 @@ const RefrigeTitle = styled.div`
 `;
 
 const RefrigeBox = styled.div`
-  height: ${520 / 16}rem;
+  height: 520px;
   background-color: ${({ theme }) => theme.color.gray};
   border: 1px solid ${({ theme }) => theme.color.darkgray};
-  border-radius: ${10 / 16}rem;
+  border-radius: 10px;
   margin: 0 auto;
-  margin-top: ${28 / 16}rem;
+  margin-top: 28px;
   display: flex;
   position: relative;
 
@@ -297,17 +297,17 @@ const RefrigeBox = styled.div`
 
     .deleteIconBox {
       text-align: end;
-      margin: 1rem 1rem 0 0;
+      margin: 16px 16px 0 0;
     }
     .deleteIcon {
       cursor: pointer;
     }
     & :first-child {
-      border-top-left-radius: ${10 / 16}rem;
+      border-top-left-radius: 10px;
     }
     & :last-child {
       border-bottom: none;
-      border-bottom-left-radius: ${10 / 16}rem;
+      border-bottom-left-radius: 10px;
     }
   }
   .noIngredient {
@@ -348,6 +348,11 @@ const RefrigeBox = styled.div`
     }
     .categorySide {
       width: 80%;
+    }
+    .noIngredient {
+      margin: 0;
+      margin: 12px;
+      word-break: keep-all;
     }
   }
 `;

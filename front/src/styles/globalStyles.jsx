@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
     word-wrap: break-word;
     word-break: break-all;
     -ms-overflow-style: none;
-    font-size: 16px;    
+    font-size: 16px;  
   }
   ::-webkit-scrollbar {
   display: none;
@@ -42,7 +42,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.color.background};
     ${media.tablet} {
     font-size: 15px;
-  }
+    } 
   }
   img{
     width: 100%;

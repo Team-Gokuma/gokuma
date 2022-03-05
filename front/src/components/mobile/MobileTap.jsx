@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { media } from "../../styles/theme";
 
-export const MobileTap = ({ onTap1, onTap2, handleTap }) => {
+export const MobileTap = ({ handleTap1, handleTap2, handleTap }) => {
   return (
     <TapContainer>
-      <Tap onTap={onTap1} onClick={handleTap}>
+      <Tap handleTap={handleTap1} onClick={handleTap}>
         냉장고에 있는 재료
       </Tap>
-      <Tap onTap={onTap2} onClick={handleTap}>
+      <Tap handleTap={handleTap2} onClick={handleTap}>
         장봐야할 재료
       </Tap>
     </TapContainer>
@@ -31,5 +31,5 @@ const Tap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: ${(props) => props.onTap && "4px solid" + props.theme.color.orange};
+  border-bottom: ${(props) => props.handleTap && "4px solid" + props.theme.color.orange};
 `;

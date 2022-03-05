@@ -131,5 +131,9 @@ const BookmarkContainer = styled.div`
     h3 {
       display: none;
     }
+    .noBookmark {
+      margin: 0;
+      margin-top: 20px;
+    }
   }
 `;

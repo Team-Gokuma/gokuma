@@ -14,8 +14,8 @@ import { MobileTap } from "../components/mobile/MobileTap";
 const ShoppingList = () => {
   const [ingredient, setIngredient] = useState([]);
   const [isActive, setIsActive] = useState(false);
-  const [onTap1, setOnTap1] = useState(false);
-  const [onTap2, setOnTap2] = useState(true);
+  const [handleTap1, setHandleTap1] = useState(false);
+  const [handleTap2, setHandleTap2] = useState(true);
 
   const onToast = () => {
     setIsActive(true);
@@ -38,8 +38,8 @@ const ShoppingList = () => {
   };
 
   const handleTap = () => {
-    setOnTap1((onTap1) => !onTap1);
-    setOnTap2((onTap2) => !onTap2);
+    setHandleTap1((handleTap1) => !handleTap1);
+    setHandleTap2((handleTap2) => !handleTap2);
   };
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const ShoppingList = () => {
   return (
     <>
       <MobileTitle text="장보기 리스트" />
-      <MobileTap onTap1={onTap1} onTap2={onTap2} handleTap={handleTap} />
+      <MobileTap handleTap1={handleTap1} handleTap2={handleTap2} handleTap={handleTap} />
       <ShoppingListContainer>
         <Toast
           isActive={isActive}
@@ -62,9 +62,9 @@ const ShoppingList = () => {
         <div>
           <h2>장보기 리스트</h2>
           <ShoppingListBox>
-            <RefrigeIngredient ingredient={ingredient} onTap1={onTap1} />
+            <RefrigeIngredient ingredient={ingredient} handleTap1={handleTap1} />
             <ShopingContent
-              onTap2={onTap2}
+              handleTap2={handleTap2}
               handleToast={() => {
                 onToast();
               }}
@@ -90,7 +90,7 @@ const ShoppingListContainer = styled.section`
     margin-bottom: 2rem;
   }
   ${media.mobile} {
-    width: 100%;
+    width: 90%;
     margin-top: 20px;
 
     h2 {
@@ -100,19 +100,19 @@ const ShoppingListContainer = styled.section`
 `;
 const ShoppingListBox = styled.div`
   border: 1px solid ${({ theme }) => theme.color.darkgray};
-  height: ${520 / 16}rem;
+  height: 520px;
   display: flex;
   background-color: ${({ theme }) => theme.color.white};
   /* color: ${({ theme }) => theme.color.lightblack}; */
 
   .titleBox {
     border-bottom: 2px dashed ${({ theme }) => theme.color.darkgray};
-    height: ${60 / 16}rem;
+    height: 60px;
     position: relative;
 
     h3 {
-      padding-left: ${52 / 16}rem;
-      padding-top: 1.3rem;
+      padding-left: 52px;
+      padding-top: 20px;
       ${({ theme }) => theme.font.medium};
     }
 

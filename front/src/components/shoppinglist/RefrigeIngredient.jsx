@@ -5,7 +5,7 @@ import { ReactComponent as IconRefrige } from "../../asset/icon/refrige.svg";
 import { Button } from "../common/Button";
 import { useEffect, useState } from "react";
 
-export const RefrigeIngredient = ({ ingredient, onTap1 }) => {
+export const RefrigeIngredient = ({ ingredient, handleTap1 }) => {
   const [login, setLogin] = useState(true);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export const RefrigeIngredient = ({ ingredient, onTap1 }) => {
   }, []);
 
   return (
-    <InRefrigeIngredient onTap1={onTap1}>
+    <InRefrigeIngredient handleTap1={handleTap1}>
       <div className="titleBox">
         <IconRefrige className="leftIcon" />
         <h3>냉장고에 있는 재료</h3>
@@ -72,7 +72,7 @@ const InRefrigeIngredient = styled.div`
     border-bottom-left-radius: 999rem;
   }
   ${media.mobile} {
-    display: ${(props) => (props.onTap1 ? "block" : "none")};
+    display: ${(props) => (props.handleTap1 ? "block" : "none")};
     width: 100%;
     .refrigeContent {
       padding: 0;

@@ -15,7 +15,7 @@ import {
   deleteAllShoppinglist,
 } from "../../api/shoppinglist";
 
-export const ShopingContent = ({ handleToast, onTap2 }) => {
+export const ShopingContent = ({ handleToast, handleTap2 }) => {
   const [edit, setEdit] = useState("");
   const [editValue, setEditValue] = useState("");
   const [add, setAdd] = useState(false);
@@ -122,7 +122,7 @@ export const ShopingContent = ({ handleToast, onTap2 }) => {
   }, []);
 
   return (
-    <ShoppingListContent onTap2={onTap2}>
+    <ShoppingListContent handleTap2={handleTap2}>
       <div className="titleBox">
         <IconBasket className="leftIcon" />
         <h3>장봐야할 재료</h3>
@@ -314,8 +314,14 @@ const ShoppingListContent = styled.div`
     }
   }
   ${media.mobile} {
-    display: ${(props) => (props.onTap2 ? "block" : "none")};
+    display: ${(props) => (props.handleTap2 ? "block" : "none")};
     width: 100%;
+
+    .listcontent {
+      .editInput {
+        width: 156px;
+      }
+    }
   }
 `;
 
