@@ -148,8 +148,9 @@ const Refrige = () => {
     const data = ingredient.map((item) => {
       return { content: item.content, category: item.category };
     });
-    await getRecommendationResult(data);
-    navigate("/result");
+    login && (await getRecommendationResult(data));
+    login && navigate("/result");
+    !login && onToast();
   };
 
   useEffect(() => {
@@ -396,6 +397,16 @@ const FindRecipe = styled.div`
     transform: translateY(-8px);
     .findRecipeText {
       display: block;
+    }
+  }
+  ${media.mobile} {
+    width: 52px;
+    height: 52px;
+    top: 360px;
+    .findRecipeText {
+      word-break: keep-all;
+
+      font-size: 14px;
     }
   }
 `;
