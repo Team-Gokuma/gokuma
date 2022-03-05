@@ -27,9 +27,9 @@ export const RecipeDetailContent = ({ data }) => {
           height="280"
           src={`https://www.youtube.com/embed/${data.video}`}
           title="YouTube video player"
-          frameborder="0"
+          frameBorder="0"
           allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
+          allowFullScreen></iframe>
       </div>
     </DetailRecipeBox>
   );
