@@ -125,43 +125,6 @@ const RecipeDetailContainer = styled.div`
       }
     }
   }
-  .detailRecipeBox {
-    width: 960px;
-    padding: 60px;
-    background-color: #f8f8f8;
-    margin-top: 100px;
-    h4 {
-      ${({ theme }) => theme.font.bold};
-      ${({ theme }) => theme.font.large};
-      margin-bottom: 36px;
-      position: relative;
-      img {
-        width: 48px;
-        height: 48px;
-      }
-      span {
-        position: absolute;
-        top: 14px;
-        left: 60px;
-      }
-    }
-    div {
-      margin-bottom: 36px;
-      position: relative;
-    }
-    span:first-child {
-      ${({ theme }) => theme.font.bold};
-      ${({ theme }) => theme.font.large};
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    p:nth-child(2) {
-      margin-left: ${32 / 16}rem;
-      ${({ theme }) => theme.font.medium};
-      line-height: 1.3;
-    }
-  }
   ${media.tablet} {
     width: 728px;
     .detailImgBox {
@@ -171,10 +134,6 @@ const RecipeDetailContainer = styled.div`
     }
     .detailInfoBox {
       margin-left: 40px;
-    }
-    .detailRecipeBox {
-      width: 620px;
-      margin-top: 60px;
     }
   }
   ${media.mobile} {
@@ -195,14 +154,8 @@ const RecipeDetailContainer = styled.div`
       margin-left: 0;
       padding: 0 10px;
     }
-    .detailRecipeBox {
-      width: 100%;
-      padding: 20px;
-      margin-top: 40px;
-    }
     .infoBox {
       width: 90vw;
-
       p {
         margin-right: 4%;
         ${({ theme }) => theme.font.bold};
