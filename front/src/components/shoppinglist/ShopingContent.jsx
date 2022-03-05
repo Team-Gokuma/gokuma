@@ -273,7 +273,7 @@ const ShoppingListContent = styled.div`
       }
     }
     .addlistForm {
-      width: ${320 / 16}rem;
+      width: 320px;
       position: relative;
 
       .addlistClose {
@@ -318,8 +318,25 @@ const ShoppingListContent = styled.div`
     width: 100%;
 
     .listcontent {
+      form {
+        width: 100%;
+      }
       .editInput {
-        width: 156px;
+        width: 80%;
+      }
+      .editBtn {
+        right: -14px;
+      }
+
+      .addlistForm {
+        width: 100%;
+        textarea {
+        }
+        button {
+          margin: 0;
+          margin-top: 4px;
+          margin-left: 12px;
+        }
       }
     }
   }

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "../../styles/theme";
 import { useEffect, useState } from "react";
 import { ReactComponent as IconOutlineFavorite } from "../../asset/icon/favoriteEmpty.svg";
 import { ReactComponent as IconFilledFavorite } from "../../asset/icon/favoriteBlack.svg";
@@ -77,17 +78,17 @@ export const RecipeDetailInfo = ({ data, handleLike }) => {
             기준 <span className="servingsContent">{data.servings}인분</span>
           </p>
         </div>
-        <div className="ingredient">
+        <Ingredient>
           <p>재료</p>
           {ingredient.map((item, idx) => {
             return (
-              <span key={"detailIngredient" + idx}>
+              <DetailIngredient key={"detailIngredient" + idx}>
                 <IngredientName inRefrige={item.inRefrige}>{item.name}</IngredientName>
                 <span>{item.amount}</span>
-              </span>
+              </DetailIngredient>
             );
           })}
-        </div>
+        </Ingredient>
       </div>
     </div>
   );
@@ -113,19 +114,37 @@ const LikeBox = styled.span`
     fill: ${(props) => (props.like ? props.theme.color.white : props.theme.color.black)};
   }
   span {
-    margin-left: ${12 / 16}rem;
+    margin-left: 12px;
     ${({ theme }) => theme.font.normal};
-    font-size: 1rem;
+    /* font-size: 1rem; */
   }
 `;
+
+const Ingredient = styled.div`
+  p {
+    ${({ theme }) => theme.font.bold};
+  }
+`;
+
+const DetailIngredient = styled.span`
+  word-break: keep-all;
+  margin-right: 12px;
+  span {
+    word-break: keep-all;
+  }
+`;
+
 const IngredientName = styled.span`
   background-color: ${(props) => (props.inRefrige ? props.theme.color.orange : props.theme.color.white)};
   color: ${(props) => (props.inRefrige ? props.theme.color.white : props.theme.color.lightblack)};
   border: 1px solid ${(props) => (props.inRefrige ? props.theme.color.white : props.theme.color.darkgray)};
   border-radius: 4px;
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 8px 12px;
   margin-bottom: 1rem;
-  margin-right: ${8 / 16}rem;
+  margin-right: 8px;
   word-break: keep-all;
+  ${media.mobile} {
+    padding: 6px 8px;
+  }
 `;

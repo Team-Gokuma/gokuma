@@ -119,12 +119,6 @@ const RecipeDetailContainer = styled.div`
         margin-left: 0.7rem;
       }
     }
-    .ingredient {
-      word-break: break-all;
-      & span:nth-child(2) {
-        margin-right: ${20 / 16}rem;
-      }
-    }
   }
   .detailRecipeBox {
     width: 960px;
@@ -173,12 +167,6 @@ const RecipeDetailContainer = styled.div`
     .detailInfoBox {
       margin-left: 40px;
     }
-    .ingredient {
-      & span:nth-child(2) {
-        word-break: keep-all;
-        margin-right: 0px;
-      }
-    }
     .detailRecipeBox {
       width: 620px;
       margin-top: 60px;
@@ -209,21 +197,13 @@ const RecipeDetailContainer = styled.div`
     }
     .infoBox {
       width: 90vw;
-      display: flex;
-      flex-wrap: nowrap;
 
       p {
         margin-right: 4%;
-        flex-shrink: 0;
         ${({ theme }) => theme.font.bold};
         span {
           ${({ theme }) => theme.font.normal};
         }
-      }
-    }
-    .ingredient {
-      p {
-        ${({ theme }) => theme.font.bold};
       }
     }
   }

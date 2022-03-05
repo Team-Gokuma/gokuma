@@ -77,5 +77,8 @@ const InRefrigeIngredient = styled.div`
     .refrigeContent {
       padding: 0;
     }
+    .noIngredient {
+      word-break: keep-all;
+    }
   }
 `;
