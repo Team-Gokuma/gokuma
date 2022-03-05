@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { media } from "../../styles/theme";
 import { Link } from "react-router-dom";
 import { ReactComponent as IconOutlineFavorite } from "../../asset/icon/favoriteEmpty.svg";
 import { ReactComponent as IconFilledFavorite } from "../../asset/icon/favoriteBlack.svg";
@@ -54,16 +55,19 @@ const RecipeDiv = styled(Link)`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   color: ${({ theme }) => theme.color.black};
-  margin: ${(props) => props.margin};
   background: ${({ theme }) => theme.color.lightgray} url(${(props) => props.image}) no-repeat;
   background-size: cover;
   border: 1px solid ${({ theme }) => theme.color.lightgray};
   transition-duration: 0.3s;
   transition-property: transform;
-  &:hover {
+  /* margin-right: 5%; */
+  margin-bottom: 3%;
+  flex-shrink: 0;
+
+  :hover {
     transform: translateY(-8px);
   }
-  & div {
+  div {
     position: absolute;
     width: 100%;
     padding: 16px;
@@ -75,10 +79,24 @@ const RecipeDiv = styled(Link)`
       padding-top: 8px;
     }
   }
-  & .favoriteIcon {
+  .favoriteIcon {
     position: absolute;
     top: 1rem;
     left: 1rem;
     cursor: pointer;
+  }
+  ${media.tablet} {
+    margin-right: 2%;
+  }
+  ${media.mobile} {
+    width: 140px;
+    height: 140px;
+
+    div {
+      padding: 4px;
+    }
+    h4:first-child {
+      display: none;
+    }
   }
 `;

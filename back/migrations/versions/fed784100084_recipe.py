@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 10f60713d026
+Revision ID: fed784100084
 Revises: 104efac049e8
-Create Date: 2022-02-19 14:27:08.143785
+Create Date: 2022-03-01 08:27:42.875395
 
 """
 from alembic import op
@@ -12,7 +12,7 @@ from data.seed_data_read import get_recipe, get_recipe_ingrd, get_recipe_process
 
 
 # revision identifiers, used by Alembic.
-revision = '10f60713d026'
+revision = 'fed784100084'
 down_revision = '104efac049e8'
 branch_labels = None
 depends_on = None
@@ -23,6 +23,7 @@ def upgrade():
     op.create_table('Recipe',
                     sa.Column('id', sa.Integer(),
                               autoincrement=True, nullable=False),
+                    sa.Column('recipe_id', sa.Integer(), nullable=False),
                     sa.Column('name', sa.VARCHAR(length=255), nullable=False),
                     sa.Column('summary', sa.Text(), nullable=True),
                     sa.Column('nation', sa.VARCHAR(length=255), nullable=True),
@@ -34,7 +35,9 @@ def upgrade():
                     sa.Column('img', sa.VARCHAR(length=255), nullable=True),
                     sa.Column('like', sa.Integer(),
                               server_default='0', nullable=False),
-                    sa.PrimaryKeyConstraint('id')
+                    sa.Column('video', sa.VARCHAR(length=255), nullable=True),
+                    sa.PrimaryKeyConstraint('id'),
+                    sa.UniqueConstraint('recipe_id')
                     )
     op.create_table('RecipeIngrd',
                     sa.Column('id', sa.Integer(),
@@ -43,7 +46,8 @@ def upgrade():
                     sa.Column('name', sa.VARCHAR(length=255), nullable=False),
                     sa.Column('capacity', sa.Text(), nullable=True),
                     sa.Column('typ', sa.VARCHAR(length=255), nullable=True),
-                    sa.ForeignKeyConstraint(['recipe_id'], ['Recipe.id'], ),
+                    sa.ForeignKeyConstraint(
+                        ['recipe_id'], ['Recipe.recipe_id'], ),
                     sa.PrimaryKeyConstraint('id')
                     )
     op.create_table('RecipeProcess',
@@ -52,7 +56,8 @@ def upgrade():
                     sa.Column('recipe_id', sa.Integer(), nullable=False),
                     sa.Column('cooking_no', sa.Integer(), nullable=True),
                     sa.Column('content', sa.Text(), nullable=True),
-                    sa.ForeignKeyConstraint(['recipe_id'], ['Recipe.id'], ),
+                    sa.ForeignKeyConstraint(
+                        ['recipe_id'], ['Recipe.recipe_id'], ),
                     sa.PrimaryKeyConstraint('id')
                     )
     # ### end Alembic commands ###
@@ -61,6 +66,7 @@ def upgrade():
     procs = get_recipe_process()
 
     seed_recipes = table('Recipe',
+                         column('recipe_id', sa.Integer),
                          column('name', sa.VARCHAR),
                          column('summary', sa.Text),
                          column('nation', sa.VARCHAR),
@@ -69,7 +75,8 @@ def upgrade():
                          column('quantity', sa.Integer),
                          column('level', sa.Integer),
                          column('calorie', sa.Integer),
-                         column('img', sa.VARCHAR)
+                         column('img', sa.VARCHAR),
+                         column('video', sa.VARCHAR)
                          )
     op.bulk_insert(seed_recipes, recipes)
 

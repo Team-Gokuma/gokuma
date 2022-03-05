@@ -38,7 +38,7 @@ const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  & .modalCloseIcon {
+  .modalCloseIcon {
     position: absolute;
     top: 1.2rem;
     right: 1.2rem;

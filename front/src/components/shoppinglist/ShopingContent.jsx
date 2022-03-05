@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { media } from "../../styles/theme";
 import styled from "styled-components";
 import { ReactComponent as IconDelete } from "../../asset/icon/delete.svg";
 import { ReactComponent as IconBasket } from "../../asset/icon/basket.svg";
@@ -6,23 +7,26 @@ import { ReactComponent as IconAdd } from "../../asset/icon/add.svg";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconCloseCircle } from "../../asset/icon/closeCircle.svg";
 import { ReactComponent as IconEdit } from "../../asset/icon/edit.svg";
-import { getShoppinglist, postShoppinglist, putShoppinglist, deleteShoppinglist } from "../../api/shoppinglist";
+import {
+  getShoppinglist,
+  postShoppinglist,
+  putShoppinglist,
+  deleteShoppinglist,
+  deleteAllShoppinglist,
+} from "../../api/shoppinglist";
 
-export const ShopingContent = () => {
+export const ShopingContent = ({ handleToast, handleTap2 }) => {
   const [edit, setEdit] = useState("");
   const [editValue, setEditValue] = useState("");
   const [add, setAdd] = useState(false);
   const [addValue, setAddValue] = useState("");
   const [shoppintlist, setShoppinglist] = useState([]);
-
-  const login = window.sessionStorage.getItem("isLogin");
+  const [login, setLogin] = useState(true);
 
   const requestGet = async () => {
     const response = await getShoppinglist();
-    if (response.status === 200) {
+    if (response && response.status === 200) {
       setShoppinglist(response.data.data);
-    } else {
-      alert("장보기 리스트 불러오기를 실패했습니다.");
     }
   };
 
@@ -53,9 +57,16 @@ export const ShopingContent = () => {
     }
   };
 
+  const requestDeleteAll = async () => {
+    const response = await deleteAllShoppinglist();
+    if (response.status === 200) {
+      return response;
+    }
+  };
+
   const handleAddList = () => {
     login && setAdd(true);
-    !login && alert("로그인이 필요한 기능입니다!");
+    !login && handleToast();
   };
 
   const handleAddContent = () => {
@@ -97,21 +108,21 @@ export const ShopingContent = () => {
   };
 
   const handleAllDelete = () => {
+    const inputValue = window.confirm("재료를 전체 삭제 하시겠습니까?");
     const deleteAll = async () => {
-      for (let i = 0; i < shoppintlist.length; i++) {
-        await requestDelete(shoppintlist[i].content, shoppintlist[i].checked, shoppintlist[i].id);
-      }
+      await requestDeleteAll();
       await requestGet();
     };
-    deleteAll();
+    inputValue && deleteAll();
   };
 
   useEffect(() => {
+    setLogin(window.sessionStorage.getItem("isLogin"));
     login && requestGet();
   }, []);
 
   return (
-    <ShoppingListContent>
+    <ShoppingListContent handleTap2={handleTap2}>
       <div className="titleBox">
         <IconBasket className="leftIcon" />
         <h3>장봐야할 재료</h3>
@@ -123,7 +134,7 @@ export const ShopingContent = () => {
             return (
               <div key={"shoppinglist" + idx} className="listcontent">
                 <input
-                  type={"checkbox"}
+                  type="checkbox"
                   checked={item.checked}
                   onChange={() => {
                     handleCheckbox(item.content, item.checked, item.id);
@@ -133,40 +144,39 @@ export const ShopingContent = () => {
                   <form>
                     <textarea
                       className="editInput"
-                      type={"text"}
+                      type="text"
                       value={editValue}
                       onChange={(e) => {
                         setEditValue(e.target.value);
                       }}
                     />
+                    <button
+                      type="submit"
+                      className="editBtn"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleEditSubmit(item.id, item.checked);
+                      }}>
+                      수정
+                    </button>
                   </form>
                 ) : (
-                  <Content checked={item.checked}>{item.content}</Content>
+                  <>
+                    <Content checked={item.checked}>{item.content}</Content>
+                    <IconEdit
+                      className="ShoppingListIcon"
+                      onClick={() => {
+                        handleEditlist(item.content, idx);
+                      }}
+                    />
+                    <IconClose
+                      className="ShoppingListIcon"
+                      onClick={() => {
+                        handleDetelelist(item.content, item.checked, item.id);
+                      }}
+                    />
+                  </>
                 )}
-                {String(edit) === String(idx) ? (
-                  <button
-                    type="submit"
-                    className="editBtn"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleEditSubmit(item.id, item.checked);
-                    }}>
-                    수정
-                  </button>
-                ) : (
-                  <IconEdit
-                    className="ShoppingListIcon"
-                    onClick={() => {
-                      handleEditlist(item.content, idx);
-                    }}
-                  />
-                )}
-                <IconClose
-                  className="ShoppingListIcon"
-                  onClick={() => {
-                    handleDetelelist(item.content, item.checked, item.id);
-                  }}
-                />
               </div>
             );
           })}
@@ -211,32 +221,37 @@ const ShoppingListContent = styled.div`
   width: 50%;
   height: 100%;
 
-  & .shoppinglistBox {
+  .shoppinglistBox {
     height: 88.55%;
     overflow-y: scroll;
   }
 
-  & .listcontent {
+  .listcontent {
     border-bottom: 1px solid ${({ theme }) => theme.color.darkgray};
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: 0.8rem ${24 / 16}rem;
 
-    & input {
+    input {
       margin-right: 1rem;
     }
 
-    & span {
+    span {
       width: 100%;
       line-height: 1.3;
     }
-    & .editInput {
-      width: 240px;
+
+    form {
+      position: relative;
+    }
+
+    .editInput {
+      width: 220px;
       height: 60px;
       overflow-y: scroll;
     }
-    & .editBtn {
+    .editBtn {
       display: inline-block;
       color: #757575;
       font-size: 14px;
@@ -245,8 +260,11 @@ const ShoppingListContent = styled.div`
       border-radius: 4px;
       border: 1px solid #757575;
       padding: 4px 10px;
+      position: absolute;
+      top: 16px;
+      right: -68px;
     }
-    & .addListBtn {
+    .addListBtn {
       position: relative;
       padding-left: 2rem;
       &:hover {
@@ -254,11 +272,11 @@ const ShoppingListContent = styled.div`
         cursor: pointer;
       }
     }
-    & .addlistForm {
-      width: ${320 / 16}rem;
+    .addlistForm {
+      width: 320px;
       position: relative;
 
-      & .addlistClose {
+      .addlistClose {
         position: absolute;
         top: 0;
         right: 2px;
@@ -266,11 +284,11 @@ const ShoppingListContent = styled.div`
         width: 22px;
         cursor: pointer;
       }
-      & textarea {
+      textarea {
         width: 79%;
         height: 60px;
       }
-      & button {
+      button {
         border: 1px solid #757575;
         border-radius: 999px;
         padding: 2px 10px;
@@ -279,7 +297,7 @@ const ShoppingListContent = styled.div`
         background-color: #f5f5f5;
       }
     }
-    & .ShoppingListAddIcon {
+    .ShoppingListAddIcon {
       width: 1.4rem;
       margin-right: 0.4rem;
       &.add {
@@ -288,17 +306,43 @@ const ShoppingListContent = styled.div`
         left: 0px;
       }
     }
-    & .ShoppingListIcon {
+    .ShoppingListIcon {
       width: 1.3rem;
       cursor: pointer;
       fill: #757575;
       margin-left: 4px;
     }
   }
+  ${media.mobile} {
+    display: ${(props) => (props.handleTap2 ? "block" : "none")};
+    width: 100%;
+
+    .listcontent {
+      form {
+        width: 100%;
+      }
+      .editInput {
+        width: 80%;
+      }
+      .editBtn {
+        right: -14px;
+      }
+
+      .addlistForm {
+        width: 100%;
+        textarea {
+        }
+        button {
+          margin: 0;
+          margin-top: 4px;
+          margin-left: 12px;
+        }
+      }
+    }
+  }
 `;
 
 const Content = styled.span`
-  width: 100%;
   line-height: 1.3;
   text-decoration: ${(props) => (props.checked ? "line-through" : "none")};
   color: ${(props) => (props.checked ? props.theme.color.lightblack : "none")};

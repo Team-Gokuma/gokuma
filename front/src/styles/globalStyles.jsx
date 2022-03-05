@@ -1,14 +1,16 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import { media } from "../styles/theme";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
 
   * {
     box-sizing: border-box;
-    word-break: keep-all;
+    word-wrap: break-word;
+    word-break: break-all;
     -ms-overflow-style: none;
-    font-size: 16px;
+    font-size: 16px;  
   }
   ::-webkit-scrollbar {
   display: none;
@@ -31,13 +33,16 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
   }
-  html{
+  html,body{
     font-family: 'MinSans-Regular', 'sans-serif';
     font-size: 16px;
     font-style: normal;
     font-weight: normal;
     line-height: 1.2;
     background-color: ${({ theme }) => theme.color.background};
+    ${media.tablet} {
+    font-size: 15px;
+    } 
   }
   img{
     width: 100%;

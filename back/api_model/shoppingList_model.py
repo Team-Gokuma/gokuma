@@ -24,4 +24,5 @@ response_fail_model = shopping_api.model('ResponseFail', {
 response_success_shopping_item_model = shopping_api.inherit(
     'ShoppingItemSuccess', response_success_model, {
         'data': fields.List(fields.Nested(shopping_item_id_fields))
-    })
+    }
+)

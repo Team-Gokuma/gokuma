@@ -4,6 +4,7 @@ import Tab from "@mui/material/Tab";
 import { makeStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
 import {useState} from "react";
+import { media } from "../../styles/theme";
 
 const useStyles = makeStyles(() => ({
   customStyleOnTab: {
@@ -27,14 +28,15 @@ const CommonTab = () => {
   };
 
   return (
+    <>
         <StAppBar
           onChange={handleChangeTab}
           aria-label="disabled tabs example"
-          centered
           style={{ backgroundColor: "white" }}
           TabIndicatorProps={{ style: { background: "orange" } }}
           classes={{ indicator: classes.customStyleOnTab }}
-          value={value}>
+          value={value}
+          centered>
           <Tab label= {
           <span
             className={value === 0 ? classes.activeTab : classes.customStyleOnTab}
@@ -45,7 +47,7 @@ const CommonTab = () => {
             }
             to='/login' component={Link}
           />
-          <Tab label="" disabled value="disabled" />
+          <Tab className="disabled" abel="" disabled value="disabled" display="none"/>
           <Tab label={
           <span
             className={value === 2 ? classes.activeTab : classes.customStyleOnTab}
@@ -57,6 +59,7 @@ const CommonTab = () => {
             to='/signup' component={Link}
           />
         </StAppBar>
+        </>
   );
 };
 
@@ -70,4 +73,16 @@ const StAppBar = styled(Tabs)`
   background-color: ${({ theme }) => theme.color.white};
   color: ${({ theme }) => theme.color.black};
 
+
+  ${media.mobile} {
+    position: absolute;
+    width: 190px;
+    height: 0px;
+    left: 100px; 
+    top: 50px;
+    background-color:red;
+    .disabled{
+      display:none;
+    }
 `;
+

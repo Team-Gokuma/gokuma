@@ -1,10 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import styled from "styled-components";
 import Button from "../../components/common/Button";
 import CommonTab from "../../components/common/CommonTab";
 import { ReactComponent as Ckeckicon } from "../../asset/icon/check.svg";
+import { media } from "../../styles/theme";
 
 const SignupPass = () => {
   const location = useLocation();
@@ -14,13 +15,9 @@ const SignupPass = () => {
     password: "",
     ckpassword:""
   });
-  const [ckNum, setCkNum] = useState(false);
-  const [ckEng, setCkEng] = useState(false);
-  const [ckSpc, setCkSpc] = useState(false);
-  const [ckLen, setCkLen] = useState(false);
-  const [ckCorrect, setCkCorrect] = useState(false);
 
   const { password, ckpassword } = pass;
+
   const handleChange = (e) => {
     const { value, name } = e.target;
     setPass({
@@ -28,22 +25,18 @@ const SignupPass = () => {
       [name]: value,
     });
   };
+
+  let checkNum = /[0-9]/;
+  let checkEng = /[a-zA-Z]/;
+  let checkSpc = /[~!@#$%^&*()_+|<>?:{}]/;
+
+  const ckEng = checkEng.test(password) ? true : false;
+  const ckNum = checkNum.test(password) ? true : false;
+  const ckSpc = checkSpc.test(password) ? true : false;
+  const ckLen = password.length >= 8 ? true : false;
+  const ckCorrect = (password.length !== 0 && password === ckpassword) ? true : false;
+
   // 영어, 숫자, 특수문자, 8자리이상
-  useEffect(() => {
-    PassValid(password);
-  }, [pass]);
-  function PassValid(password) {
-    let checkNum = /[0-9]/;
-    let checkEng = /[a-zA-Z]/;
-    let checkSpc = /[~!@#$%^&*()_+|<>?:{}]/;
-
-    setCkEng(checkEng.test(password) ? true : false);
-    setCkNum(checkNum.test(password) ? true : false);
-    setCkSpc(checkSpc.test(password) ? true : false);
-    setCkLen(password.length >= 8 ? true : false);
-    setCkCorrect(password.length !== 0 && password === ckpassword ? true : false);
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === ckpassword && ckEng && ckSpc && ckLen && ckNum && ckCorrect) {
@@ -52,6 +45,12 @@ const SignupPass = () => {
       alert("비밀번호를 다시 확인해주세요!");
     }
   };
+  const list = [
+    { id:0, ck: ckEng, message: '영어 포함'},
+    { id:1, ck: ckNum, message: '숫자 포함'},
+    { id:2, ck: ckSpc, message: '특수문자 포함'},
+    { id:3, ck: ckLen, message: '8자리이상'}
+  ]
 
   return (
     <Stbody>
@@ -68,27 +67,13 @@ const SignupPass = () => {
               value={password}
             />
             <StCheck>
-              <div style={ckEng ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black" }}>
-                <span>영어 포함</span>
-                <Ckeckicon />
-              </div>
-
-              <div style={ckNum ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black" }}>
-                <span>숫자 포함</span>
-                <Ckeckicon />
-              </div>
-
-              <div style={ckSpc ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black" }}>
-                <span>특수문자 포함</span>
-                <Ckeckicon />
-              </div>
-
-              <div style={ckLen ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black" }}>
-                <span>
-                  8자리이상
+              {list.map((nav) => (
+                <div key={`nav-${nav.id}`} 
+                style={nav.ck ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black"}}>
+                  <span>{nav.message}</span>
                   <Ckeckicon />
-                </span>
-              </div>
+                </div>
+              ))}
             </StCheck>
 
             <SignInput
@@ -104,7 +89,7 @@ const SignupPass = () => {
                 <Ckeckicon />
               </div>
             </StCheckPass>
-            <Button width="300px" height="60px" text="다음" bgcolor="orange" txtcolor="white" round="round" />
+            <PassButton>다음</PassButton>
           </form>
         </StInput>
       </StWrapper>
@@ -132,6 +117,12 @@ const StWrapper = styled.div`
   box-shadow: 3px 7px 14px rgba(0, 0, 0, 0.05);
   border-radius: ${10 / 16}rem;
   background: ${({ theme }) => theme.color.white};
+  ${media.mobile} {
+    width: 320px;
+    height: 360px;
+    left: 20px;
+    top: 58px;
+    }
 `;
 
 const StInput = styled.div`
@@ -143,6 +134,15 @@ const StInput = styled.div`
   margin-bottom: 8.5rem;
   & span {
     margin-top: 8.5rem;
+  }
+  ${media.mobile} {
+    & span {
+      margin-top: 100px;
+    }
+  }
+  span{
+    ${media.tablet} {
+    margin-bottom:20px;
   }
 `;
 
@@ -158,19 +158,38 @@ const SignInput = styled.input`
   border: 1px solid #bdbdbd;
   border-radius: 4px;
   padding-left: 24px;
+  ${media.mobile} {
+    position: relative;
+    width: 277px;
+    height: 40px;
+    top: 20px;
+    margin-bottom: 5px;
+  }
+
 `;
 
 const StCheck = styled.div`
   margin-bottom: 15px;
   margin-left: 0rem;
   width: 20rem;
-
+  ${media.mobile} {
+    margin-bottom: 0px;
+  }
+  ${media.tablet} {
+    width: 320px;
+    }
   & span {
     font-size: 12px;
+    ${media.mobile} {
+      font-size: 8px;
+    }
   }
   & div {
     display: inline-block;
     text-align: center;
+    ${media.mobile} {
+      margin-top: 15px;
+    }
   }
 `;
 
@@ -181,5 +200,33 @@ const StCheckPass = styled.div`
 
   & span {
     font-size: 12px;
+    ${media.mobile} {
+      font-size: 8px;
+    }
+  }
+  & div {
+    ${media.mobile} {
+      margin-top: 15px;
+    }
+  }
+`;
+
+
+const PassButton = styled.button`
+  width: 300px;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 999px;
+  background-color: ${({ theme }) => theme.color.orange};
+  color: ${({ theme }) => theme.color.white};
+  cursor: ${(props) => (props.cursor ? props.cursor : "pointer")};
+  ${media.mobile} {
+    position: relative;
+    width: 278px;
+    height: 40px;
+    top: 0px;
   }
 `;
