@@ -4,12 +4,18 @@ from models import User, Recipe, RecipeIngrd, RecipeProcess, Ingredients, Refrig
 from db_connect import db
 from api_model.recipe_model import recipe_api, ingrds_fields, img_fields, response_fail_model, response_success_ingrds_model, response_success_detail_model, response_success_recipe_ingrdnum_model
 from recommendFunc.maxIngrds import maxIngrds
+from werkzeug.datastructures import FileStorage
+
+
+upload_parser = recipe_api.parser()
+upload_parser.add_argument('file', location='files',
+                           type=FileStorage, required=True)
 
 
 @recipe_api.route('/recoginition')
 class Recoginition(Resource):
 
-    @recipe_api.expect(img_fields)
+    @recipe_api.expect(upload_parser)
     @recipe_api.response(200, 'Success', response_success_ingrds_model)
     @recipe_api.response(400, 'Fail', response_fail_model)
     def post(self):
