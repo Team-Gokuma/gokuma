@@ -8,13 +8,13 @@ import { ReactComponent as IconDelete } from "../asset/icon/delete.svg";
 import addByPhotoIcon from "../asset/icon/addByPhoto.svg";
 import addByTextIcon from "../asset/icon/addByText.svg";
 import menuBook from "../asset/icon/menuBook.svg";
-import { modalState, mainRecipesState } from "../store/atom";
+import { modalState, mainRecipesState, relatedRecipesState } from "../store/atom";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { MobileTitle } from "../components/mobile/MobileTitle";
 import { AddByText } from "../components/refrige/AddByText";
 import { AddByImage } from "../components/refrige/AddByImage";
 import { ingredientList, deleteAllIngredient, deleteIngredient, addIngredient } from "../api/refrige";
-import { recommendRecipe } from "../api/receipe";
+import { recommendRecipe, rankRecipe } from "../api/receipe";
 import { Toast } from "../components/common/Toast";
 
 const category = ["전체 식재료", "과일", "채소", "육류", "해산물", "유제품", "소스류", "기타"];
@@ -56,6 +56,7 @@ const Refrige = () => {
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
   const setMainRecipe = useSetRecoilState(mainRecipesState);
+  const setRelatedRecipe = useSetRecoilState(relatedRecipesState);
 
   const navigate = useNavigate();
 
@@ -70,13 +71,28 @@ const Refrige = () => {
     }
   };
 
-  const getRecommendation = async (data) => {
-    const response = await recommendRecipe(data);
-    if (response && response.status === 200) {
-      setMainRecipe(response.data.data);
-    } else {
-      alert("레시피 추천에 실패했습니다.");
-    }
+  const getRecommendationResult = (ingredients) => {
+    const getRecommendation = async (ingredients) => {
+      const response = await recommendRecipe(ingredients);
+      if (response.status === 200) {
+        setMainRecipe(response.data.data);
+      } else {
+        alert("메뉴 추천에 실패하였습니다.");
+      }
+    };
+
+    const getRankRecipe = async () => {
+      const response = await rankRecipe();
+      if (response.status === 200) {
+        setRelatedRecipe(response.data.data);
+      }
+    };
+
+    const getResult = async () => {
+      await getRecommendation();
+      await getRankRecipe();
+    };
+    getResult();
   };
 
   const addIngredientText = (textValue, category) => {
@@ -132,7 +148,7 @@ const Refrige = () => {
     const data = ingredient.map((item) => {
       return { content: item.content, category: item.category };
     });
-    await getRecommendation(data);
+    await getRecommendationResult(data);
     navigate("/result");
   };
 

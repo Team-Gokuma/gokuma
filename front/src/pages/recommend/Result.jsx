@@ -5,6 +5,7 @@ import { Recipe } from "../../components/common/Recipe";
 import { useRecoilValue } from "recoil";
 import { MobileTitle } from "../../components/mobile/MobileTitle";
 import { mainRecipesState, relatedRecipesState } from "../../store/atom";
+import { RecipeListResult } from "../../components/recommend/RecipeListResult";
 
 const Result = () => {
   const LoadingPage = React.lazy(() => import("./FindRecipe")); // 지연 로딩
@@ -18,8 +19,8 @@ const Result = () => {
         <Recipe
           key={"recipe" + idx}
           className="recipe"
-          width="328px"
-          height="286px"
+          width="360px"
+          height="360px"
           text={item.name}
           image={item.img}
           extratext={`재료를 ${item.ingrdients}개 사용하는 레시피 입니다!`}
@@ -34,8 +35,8 @@ const Result = () => {
         <Recipe
           key={"recipe" + idx}
           className="recipe"
-          width="240px"
-          height="240px"
+          width="270px"
+          height="270px"
           text={item.name}
           image={item.img}
           recipeId={item.id}
@@ -48,14 +49,14 @@ const Result = () => {
       <MobileTitle text={"레시피 추천받기"} />
       <ResultContainer>
         <h3>재료를 최대한 많이 사용하는 레시피 입니다!</h3>
-        <div className="recipeList">{maxIngredientRecipe}</div>
+        <RecipeListResult Recipes={maxIngredientRecipe} main={true} />
         {/* TO DO: 추천 알고리즘 만들고 생성 */}
         {/* <h3>좋아요를 많이 받은 레시피 입니다!</h3>
         <div className="recipeList">{maxIngredientRecipe}</div>
         <h3>조리시간이 짧은 레시피 입니다!</h3>
         <div className="recipeList">{maxIngredientRecipe}</div> */}
         <h3 className="relative">지금 인기가 많은 레시피 입니다!</h3>
-        <div className="recipeList">{relativeRecipe}</div>
+        <RecipeListResult Recipes={relativeRecipe} />
       </ResultContainer>
     </Suspense>
   );
@@ -67,18 +68,12 @@ const ResultContainer = styled.section`
   width: 1200px;
   margin: 0 auto;
   margin-top: 80px;
+  overflow: hidden;
 
   h3 {
     ${({ theme }) => theme.font.large};
     ${({ theme }) => theme.font.bold};
     margin-top: 40px;
-  }
-  .recipeList {
-    /* max-width: 95%; */
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 36px;
-    justify-content: space-between;
   }
   .relative {
     margin-top: 80px;

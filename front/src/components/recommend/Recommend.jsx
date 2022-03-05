@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { media } from "../../styles/theme";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { modalState, mainRecipesState, relatedRecipesState } from "../../store/atom";
 import { ImageFileUpload } from "../common/ImageFileUpload";
@@ -58,43 +58,48 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     }
   };
 
-  const getRecommendation = async (ingredients) => {
-    const response = await recommendRecipe(ingredients);
-    if (response.status === 200) {
-      setMainRecipe(response.data.data);
-    } else {
-      alert("메뉴 추천에 실패하였습니다.");
-    }
-  };
+  const getRecommendationResult = (ingredients) => {
+    const getRecommendation = async (ingredients) => {
+      const response = await recommendRecipe(ingredients);
+      if (response.status === 200) {
+        setMainRecipe(response.data.data);
+      } else {
+        alert("메뉴 추천에 실패하였습니다.");
+      }
+    };
 
-  const getCooktimeRecipes = async (recipes) => {
-    const response = await cooktimeRecipe(recipes);
-    if (response.status === 200) {
-      setRelatedRecipe(response.data.data);
-    } else {
-      alert("조리시간 관련 메뉴 추천에 실패하였습니다.");
-    }
-  };
+    const getRankRecipe = async () => {
+      const response = await rankRecipe();
+      if (response.status === 200) {
+        setRelatedRecipe(response.data.data);
+      }
+    };
 
-  const getRankRecipe = async () => {
-    const response = await rankRecipe();
-    if (response.status === 200) {
-      setRelatedRecipe(response.data.data);
-    }
+    const getCooktimeRecipes = async (recipes) => {
+      const response = await cooktimeRecipe(recipes);
+      if (response.status === 200) {
+        setRelatedRecipe(response.data.data);
+      } else {
+        alert("조리시간 관련 메뉴 추천에 실패하였습니다.");
+      }
+    };
+
+    const getResult = async () => {
+      await getRecommendation();
+      await getRankRecipe();
+    };
+    getResult();
   };
 
   const handleClick = () => {
     page && tags.length > 0 && !login && setOnModal(true);
-    login && Promise.all([handleAddIngredient(data), getRecommendation(data), getRankRecipe()]);
+    login && handleAddIngredient(data);
+    login && Promise.all([handleAddIngredient(data), getRecommendationResult(data)]);
     login && tags.length > 0 && alert("냉장고에 재료를 넣었습니다!");
   };
 
   const handleClickNoLogin = () => {
-    const getData = async () => {
-      await getRecommendation(data);
-      await getRankRecipe();
-    };
-    getData();
+    getRecommendationResult(data);
   };
 
   const hanldeAddIngredient = () => {
