@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { media } from "../../styles/theme";
+import { useRecoilValue } from "recoil";
+import { ingredientState } from "../../store/atom";
 import { RecipeDetailContent } from "../../components/recommend/RecipeDetailContent";
 import { RecipeDetailInfo } from "../../components/recommend/RecipeDetailInfo";
 import { detailRecipe, addLike } from "../../api/receipe";
@@ -12,13 +14,16 @@ const RecipeDetail = () => {
   const [detailData, setDetailData] = useState();
   const [login, setLogin] = useState(true);
 
+  const ingredients = useRecoilValue(ingredientState);
+
   const getDetailRecipe = async () => {
-    const response = await detailRecipe(id);
+    const response = await detailRecipe(id, ingredients);
     if (response.status === 200) {
       setDetailData(response.data);
     }
   };
 
+  console.log(detailData);
   const clickLike = async () => {
     await addLike(detailData.id);
   };

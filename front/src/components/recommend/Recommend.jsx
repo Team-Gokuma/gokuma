@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { media } from "../../styles/theme";
 import { useEffect, useMemo, useState } from "react";
 import { useSetRecoilState, useRecoilState } from "recoil";
-import { modalState, mainRecipesState, relatedRecipesState } from "../../store/atom";
+import { modalState, mainRecipesState, relatedRecipesState, ingredientState } from "../../store/atom";
 import { ImageFileUpload } from "../common/ImageFileUpload";
 import { Button } from "../common/Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
@@ -31,10 +31,10 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [onIcon, setOnIcon] = useState(false);
   const [tags, setTags] = useState([]);
   const [img, setImg] = useState("");
-  const [data, setData] = useState([]);
 
   const login = window.sessionStorage.getItem("isLogin");
   const [onModal, setOnModal] = useRecoilState(modalState);
+  const [ingredient, setIngredient] = useRecoilState(ingredientState);
   const setMainRecipe = useSetRecoilState(mainRecipesState);
   const setRelatedRecipe = useSetRecoilState(relatedRecipesState);
 
@@ -44,7 +44,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     const response = await recognition(img);
     if (response.status === 200) {
       setImg(img);
-      setData(response.data.data);
+      setIngredient(response.data.data);
       setAddToggle(false);
       setTags((cur) => {
         const newArr = [...cur];
@@ -84,17 +84,17 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
 
   const handleClick = () => {
     page && tags.length > 0 && !login && setOnModal(true);
-    login && handleAddIngredient(data) && getRecommendationResult(data);
+    login && handleAddIngredient(ingredient) && getRecommendationResult(ingredient);
     login && tags.length > 0 && alert("냉장고에 재료를 넣었습니다!");
   };
 
   const handleClickNoLogin = async () => {
-    await getRecommendationResult(data);
+    await getRecommendationResult(ingredient);
   };
 
   const hanldeAddIngredient = () => {
     const addIngredient = async () => {
-      await handleAddIngredient(data);
+      await handleAddIngredient(ingredient);
       await getIngredient();
       alert("냉장고에 재료를 넣었습니다!");
     };
@@ -114,7 +114,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
         const newTags = [...cur, inputValue];
         return newTags;
       });
-      setData((cur) => {
+      setIngredient((cur) => {
         const newData = [...cur];
         newData.push({ content: inputValue, categoty: 7 });
         return newData;

@@ -42,9 +42,10 @@ export const rankRecipe = async () => {
   }
 };
 
-export const detailRecipe = async (id) => {
+export const detailRecipe = async (id, ingredients) => {
   try {
-    const response = await axios.get(`/api/recipe/${id}`);
+    const response = await axios.post(`/api/recipe/${id}`, ingredients);
+    console.log(response);
     return response;
   } catch (error) {
     console.log(error);

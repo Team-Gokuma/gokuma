@@ -71,6 +71,9 @@ export const RecipeDetailInfo = ({ data, handleLike }) => {
           <p className="level">
             난이도 <span className="stars">{level[data.level - 1]}</span>
           </p>
+          <p>
+            조리시간 <span>{data.time}분</span>
+          </p>
           <p className="calories">
             칼로리 <span className="calorieContent">{data.calorie}kcal</span>
           </p>

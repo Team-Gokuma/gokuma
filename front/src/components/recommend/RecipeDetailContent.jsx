@@ -13,6 +13,17 @@ export const RecipeDetailContent = ({ data }) => {
           </div>
         );
       })}
+      <h4>관련 동영상</h4>
+      <div>
+        <iframe
+          width="400"
+          height="315"
+          src={`https://www.youtube.com/embed/${data.video}`}
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
     </div>
   );
 };
