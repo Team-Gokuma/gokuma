@@ -75,17 +75,8 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
       }
     };
 
-    const getCooktimeRecipes = async (recipes) => {
-      const response = await cooktimeRecipe(recipes);
-      if (response.status === 200) {
-        setRelatedRecipe(response.data.data);
-      } else {
-        alert("조리시간 관련 메뉴 추천에 실패하였습니다.");
-      }
-    };
-
     const getResult = async () => {
-      await getRecommendation();
+      await getRecommendation(ingredients);
       await getRankRecipe();
     };
     getResult();
@@ -93,13 +84,12 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
 
   const handleClick = () => {
     page && tags.length > 0 && !login && setOnModal(true);
-    login && handleAddIngredient(data);
-    login && Promise.all([handleAddIngredient(data), getRecommendationResult(data)]);
+    login && handleAddIngredient(data) && getRecommendationResult(data);
     login && tags.length > 0 && alert("냉장고에 재료를 넣었습니다!");
   };
 
-  const handleClickNoLogin = () => {
-    getRecommendationResult(data);
+  const handleClickNoLogin = async () => {
+    await getRecommendationResult(data);
   };
 
   const hanldeAddIngredient = () => {

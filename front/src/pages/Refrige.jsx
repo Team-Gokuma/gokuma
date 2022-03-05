@@ -89,7 +89,7 @@ const Refrige = () => {
     };
 
     const getResult = async () => {
-      await getRecommendation();
+      await getRecommendation(ingredients);
       await getRankRecipe();
     };
     getResult();

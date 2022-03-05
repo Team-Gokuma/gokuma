@@ -18,3 +18,8 @@ export const relatedRecipesState = atom({
   key: "relatedRecipesState",
   default: [],
 });
+
+export const ingredientState = atom({
+  key: "ingredientState",
+  default: [],
+});
