@@ -62,7 +62,8 @@ class UserLogin(Resource):
         email = params['email']
         password = params['password']
         message = None
-
+# 새로고침때마다 isLogin이라는 api호출 후 세션에 정보가 들어있다면
+# 이메일, 닉네임같은 정보를 리턴해준다-> 상태관리가 필요없다!
         user = User.query.filter(User.email == email).first()
         name = user.name
         if user is None:
@@ -173,4 +174,19 @@ class UserNameUpdate(Resource):
             message="닉네임변경 성공"
             value = {"status": 200,  "result": "success", "msg":message}
         db.session.commit()
-        return value
+        return jsonify(value)
+
+# 쿠키안에 로그인된 정보가 있다면 이메일과 닉네임을 리턴해준다
+@user_api.route('/islogin')  
+class UserIsLogin(Resource):
+    def get(self):
+        if session.get('email'):
+            email = session['email']
+            name = session['name']
+            message="현재 로그인 되어있습니다"
+            value = {"status": 200, "result": "success",
+                    "msg": message, "email": email, "name": name}
+        else:
+            message="로그아웃된 상태입니다"
+            value = {"status": 404, "result": "fail", "msg": message}
+        return jsonify(value)
