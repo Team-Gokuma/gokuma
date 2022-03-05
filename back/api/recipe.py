@@ -9,7 +9,6 @@ from recommendFunc.maxIngrds import maxIngrds
 @recipe_api.route('/recoginition')
 class Recoginition(Resource):
 
-    @recipe_api.expect(img_fields)
     @recipe_api.response(200, 'Success', response_success_ingrds_model)
     @recipe_api.response(400, 'Fail', response_fail_model)
     def post(self):
