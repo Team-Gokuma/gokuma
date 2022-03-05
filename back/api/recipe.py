@@ -15,8 +15,7 @@ class Recoginition(Resource):
     def post(self):
         """사진에서 재료를 인식합니다."""
 
-        data = request.get_json()
-        img = data['img']
+        f = request.files['file']
 
         # 재료인식 알고리즘 input = img, output = 재료
         # Model
@@ -25,8 +24,6 @@ class Recoginition(Resource):
 
         # ingrds에는 재료인식 model을 통과한 class명 들이 담겨져있다.
         ingrds = ['딸기', '당근', '닭가슴살']
-
-        # ingrds를 여기서 냉장고 db에 저장? 근데 텍스트까지 포함해서 저장해야함 얘는 사진 재료 인식일 뿐
 
         result = {'result_msg': "success", "data": []}
         for ingrd in ingrds:
@@ -95,9 +92,10 @@ class Recommend(Resource):
 class Detail(Resource):
 
     @recipe_api.doc(params={'id': '레시피 ID'})
+    @recipe_api.expect(ingrds_fields)
     @recipe_api.response(200, 'Success', response_success_detail_model)
     @recipe_api.response(400, 'Fail', response_fail_model)
-    def get(self, id):
+    def post(self, id):
         """레시피 디테일 정보를 알려줍니다"""
 
         user = None
@@ -156,6 +154,13 @@ class Detail(Resource):
                     Refrigerator.content == ingrd.name)).first()
                 if item is not None:
                     ingrd_data['inRefrige'] = True
+
+            else:
+                data = request.get_json()
+                my_ingrds = data['ingredients']
+                for my_ingrd in my_ingrds:
+                    if ingrd.name == my_ingrd['content']:
+                        ingrd_data['inRefrige'] = True
 
             result['ingredient'].append(ingrd_data)
 
