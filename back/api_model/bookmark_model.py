@@ -27,9 +27,11 @@ response_fail_model = bookmark_api.model('ResponseFail', {
 response_success_recipe_model = bookmark_api.inherit(
     'BookmarkRecipeSuccess', response_success_model, {
         'data': fields.List(fields.Nested(recipe_fields))
-    })
+    }
+)
 
 response_success_bookmark_model = bookmark_api.inherit(
     'BookmarkSuccess', response_success_model, {
         'data': fields.List(fields.Nested(bookmark_fields))
-    })
+    }
+)

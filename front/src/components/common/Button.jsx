@@ -1,23 +1,11 @@
 import styled from "styled-components";
+import { media } from "../../styles/theme";
 
 // 필수 props: text, bgcolor, txtcolor
 // 선택 props: width('원하는크기'), height('원하는크기'), round(boolean), txtstyle('bold'), padding('원하는크기')
 // <Button text={} bgcolor={} txtcolor={} width={} height={} round={} txtstyle={} padding={} border={} />
-export const Button = ({ width, height, text, round, bgcolor, txtcolor, txtstyle, padding, border, cursor }) => {
-  return (
-    <StyledButton
-      width={width}
-      height={height}
-      round={round}
-      bgcolor={bgcolor}
-      txtcolor={txtcolor}
-      txtstyle={txtstyle}
-      padding={padding}
-      border={border}
-      cursor={cursor}>
-      {text}
-    </StyledButton>
-  );
+export const Button = (props) => {
+  return <StyledButton {...props}>{props.text}</StyledButton>;
 };
 
 const StyledButton = styled.button`
@@ -33,6 +21,10 @@ const StyledButton = styled.button`
   color: ${(props) => props.theme.color[props.txtcolor]};
   ${(props) => props.txtstyle && props.theme.font[props.txtstyle]}
   cursor: ${(props) => (props.cursor ? props.cursor : "pointer")};
+  ${media.mobile} {
+    height: 40px;
+    top: 60px;
+  }
 `;
 
 export default Button;

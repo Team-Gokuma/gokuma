@@ -3,6 +3,17 @@ import { useState } from "react";
 import { Button } from "../common/Button";
 import { ReactComponent as IconCloseCircle } from "../../asset/icon/closeCircle.svg";
 
+const category = [
+  { value: "", title: "카테고리 선택" },
+  { value: "1", title: "과일" },
+  { value: "2", title: "채소" },
+  { value: "3", title: "육류 " },
+  { value: "4", title: "해산물" },
+  { value: "5", title: "유제품" },
+  { value: "6", title: "소스류" },
+  { value: "7", title: "기타" },
+];
+
 // 텍스트로 입력해서 재료 추가 모달창
 export const AddByText = ({ handleAddText, addIngredientByText }) => {
   const [textValue, setTextValue] = useState("");
@@ -28,17 +39,16 @@ export const AddByText = ({ handleAddText, addIngredientByText }) => {
                 onChange={(e) => {
                   setSelectValue(e.target.value);
                 }}>
-                <option value="">카테고리 선택</option>
-                <option value="1">과일</option>
-                <option value="2">채소</option>
-                <option value="3">육류</option>
-                <option value="4">해산물</option>
-                <option value="5">유제품</option>
-                <option value="6">소스류</option>
-                <option value="7">기타</option>
+                {category.map((item, idx) => {
+                  return (
+                    <option key={"category" + idx} value={item.value}>
+                      {item.title}
+                    </option>
+                  );
+                })}
               </select>
               <input
-                type={"text"}
+                type="text"
                 value={textValue}
                 onChange={(e) => {
                   setTextValue(e.target.value);
@@ -46,7 +56,7 @@ export const AddByText = ({ handleAddText, addIngredientByText }) => {
                 placeholder="재료명을 한글로 입력해주세요."
               />
               <span type="submit">
-                <Button text={"추가하기"} bgcolor={"orange"} txtcolor={"white"} round={true} width={"23rem"} />
+                <Button text="추가하기" bgcolor="orange" txtcolor="white" round={true} width="23rem" />
               </span>
             </form>
           </div>
@@ -79,24 +89,24 @@ const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  & .modalCloseIcon {
+  .modalCloseIcon {
     position: absolute;
     top: 1.2rem;
     right: 1.2rem;
     cursor: pointer;
   }
-  & h2 {
+  h2 {
     ${({ theme }) => theme.font.bold};
     ${({ theme }) => theme.font.large};
     margin-bottom: ${40 / 16}rem;
   }
-  & input {
+  input {
     margin-left: 1rem;
     width: ${240 / 16}rem;
     padding-left: 1rem;
     margin-bottom: 2rem;
   }
-  & input,
+  input,
   select {
     height: ${48 / 16}rem;
     color: #757575;

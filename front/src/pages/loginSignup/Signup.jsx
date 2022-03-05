@@ -1,12 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-// import { useSetRecoilState } from "recoil";
-// import { login } from "../api/user";
-
 import styled from "styled-components";
 import LoginInput from "../../components/common/LoginInput";
 import Button from "../../components/common/Button";
 import CommonTab from "../../components/common/CommonTab";
+import {isEmail} from "../../util/isEmail";
+import { media } from "../../styles/theme";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -15,10 +14,7 @@ const Signup = () => {
     const value = e.target.value;
     setEmail(value);
   };
-  function isEmail(asValue) {
-    var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-    return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
-  }
+ 
   const handleClick = (e) => {
     e.preventDefault();
     if (isEmail(email)) {
@@ -57,6 +53,7 @@ const Stbody = styled.div`
   ${({ theme }) => theme.font.bold};
 `;
 
+
 const StWrapper = styled.div`
   display: flex;
   margin: auto;
@@ -66,6 +63,13 @@ const StWrapper = styled.div`
   box-shadow: 3px 7px 14px rgba(0, 0, 0, 0.05);
   border-radius: ${10 / 16}rem;
   background: ${({ theme }) => theme.color.white};
+  ${media.mobile} {
+    width: 320px;
+    height: 360px;
+    left: 20px;
+    top: 58px;
+    text-align: center;
+    }
 `;
 
 const StInput = styled.div`

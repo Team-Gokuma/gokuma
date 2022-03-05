@@ -6,10 +6,10 @@ from api_model.shoppingList_model import shopping_api, response_success_shopping
 
 
 @shopping_api.route('/list')
+@shopping_api.response(200, 'Success', response_success_shopping_item_model)
+@shopping_api.response(400, 'Fail', response_fail_model)
 class shoppingLists(Resource):
 
-    @shopping_api.response(200, 'Success', response_success_shopping_item_model)
-    @shopping_api.response(400, 'Fail', response_fail_model)
     def get(self):
         '''장보기 리스트를 보여줍니다.'''
 
@@ -35,11 +35,41 @@ class shoppingLists(Resource):
             result['data'].append(ret_item)
         return jsonify(result)
 
+    def delete(self):
+        '''장보기 리스트 전체 항목을 삭제합니다'''
+
+        user = None
+        result = {"result_msg": "success", "data": []}
+
+        # session['email'] = "admin@gokuma.com"
+        # session['email'] = None
+
+        if session.get('email'):
+            email = session['email']
+            user = User.query.filter(User.email == email).first()
+            items = ShoppingList.query.filter(
+                ShoppingList.user_id == user.id).all()
+        else:
+            result = {"result_msg": "No User"}
+            return result, 400
+
+        for item in items:
+            db.session.delete(item)
+            db.session.commit()
+            ret_item = {
+                "id": item.id,
+                "content": item.content,
+                "checked": item.checked
+            }
+            result['data'].append(ret_item)
+
+        return result
+
 
 @shopping_api.route('/')
 @shopping_api.response(200, 'Success', response_success_shopping_item_model)
 @shopping_api.response(400, 'Fail', response_fail_model)
-class shoppingLists(Resource):
+class shoppingListItem(Resource):
 
     def _get_items(self):
         # session['email'] = "admin@gokuma.com"

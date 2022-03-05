@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as IconCloseCircle } from "../../asset/icon/closeCircle.svg";
 import { useSetRecoilState } from "recoil";
 import { modalState } from "../../store/atom";
@@ -26,19 +26,22 @@ export const AlertLoginModal = ({ text, page, btnText, handleClick }) => {
                 <br /> 레시피를 추천받을 수 있어요!
               </p>
               <div className="loginModalBtn">
-                <Link to="/login" style={{ textDecoration: "none" }}>
+                <span
+                  onClick={() => {
+                    setModal(false);
+                    navigate("/login");
+                  }}>
                   <Button
-                    text={"로그인 하러가기"}
-                    bgcolor={"orange"}
-                    txtcolor={"white"}
+                    text="로그인 하러가기"
+                    bgcolor="orange"
+                    txtcolor="white"
                     round={true}
-                    width={"280px"}
-                    height={"48px"}
+                    width="280px"
+                    height="48px"
                   />
-                </Link>
+                </span>
                 <br />
                 <span
-                  style={{ textDecoration: "none" }}
                   onClick={() => {
                     setModal(false);
                     handleClick && handleClick();

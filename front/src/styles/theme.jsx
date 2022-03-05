@@ -15,6 +15,9 @@ const color = {
 
 const font = {
   // size
+  normal: `
+  font-size: ${calcRem(16)}
+  `,
   medium: `
   font-size: ${calcRem(18)}
   `,
@@ -43,6 +46,14 @@ const theme = {
   color,
   font,
   calcRem,
+};
+
+const customMediaQuery = (maxWidth) => `@media (max-width: ${maxWidth}px)`;
+
+export const media = {
+  custom: customMediaQuery,
+  tablet: customMediaQuery(1024),
+  mobile: customMediaQuery(768),
 };
 
 export default theme;
