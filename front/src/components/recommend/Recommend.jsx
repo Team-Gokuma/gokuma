@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { media } from "../../styles/theme";
-import { useMemo, useState, useReducer } from "react";
+import { useMemo, useState } from "react";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { modalState, mainRecipesState, relatedRecipesState } from "../../store/atom";
 import { ImageFileUpload } from "../common/ImageFileUpload";
@@ -86,7 +86,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const handleClick = () => {
     page && tags.length > 0 && !login && setOnModal(true);
     login && Promise.all([handleAddIngredient(data), getRecommendation(data), getRankRecipe()]);
-    login && alert("냉장고에 재료를 넣었습니다!");
+    login && tags.length > 0 && alert("냉장고에 재료를 넣었습니다!");
   };
 
   const handleClickNoLogin = () => {
@@ -101,10 +101,9 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     const addIngredient = async () => {
       await handleAddIngredient(data);
       await getIngredient();
-      login && alert("냉장고에 재료를 넣었습니다!");
+      alert("냉장고에 재료를 넣었습니다!");
     };
-    addIngredient();
-    handleAddImage();
+    login && tags.length > 0 && addIngredient() && handleAddImage();
   };
 
   const handleToggle = () => {

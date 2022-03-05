@@ -318,6 +318,7 @@ const RefrigeBox = styled.div`
     border-bottom-left-radius: 999rem;
   }
   /* ${media.mobile} {
+    // TO DO: 반응형 원래 계획된 디자인으로 마무리 하기
     display: block;
     position: relative;
     background-color: white;
