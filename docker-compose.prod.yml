@@ -13,29 +13,29 @@ services:
   back:
     depends_on:
       - db
-    build: ./back
+    build: 
+      context: ./back
+      dockerfile: dockerfile.prod
     ports:
       - "5000:5000"
     volumes:
       - ./back:/app
     environment:
-      FLASK_ENV: development
+      FLASK_ENV: production
   front:
-    build: ./front
+    build: 
+      context: ./front
+      dockerfile: dockerfile.prod
     ports:
       - "80:80"
-    volumes:
-      - ./front:/usr/src/app
     environment:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
       - back
-  ai:
-    build: ./ai
-    ports:
-      - "8080:5000"
-    volumes:
-      - ./ai:/app
-    environment:
-      FLASK_ENV: development
-    
+  # ai:
+  #   build:
+  #     context: ./ai
+  #     dockerfile: ./Dockerfile
+  #   environment:
+  #     - NVIDIA_VISIBLE_DEVICE=0
+  #   restart: always

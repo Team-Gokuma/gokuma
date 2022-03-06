@@ -1,15 +1,60 @@
-import torch
+import io
+import json
+import config
 
-# Model
-# or yolov5m, yolov5l, yolov5x, custom
-model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
+from torchvision import models
+import torchvision.transforms as transforms
+from PIL import Image
+from flask import Flask, jsonify, request
 
-# Images
-# or file, Path, PIL, OpenCV, numpy, list
-img = 'https://ultralytics.com/images/zidane.jpg'
 
-# Inference
-results = model(img)
+def create_app(test_config=None):
+    app = Flask(__name__)
+    app.config.from_object(config)
+    return app
 
-# Results
-results.print()  # or .show(), .save(), .crop(), .pandas(), etc.
+
+imagenet_class_index = json.load(
+    open('./imagenet_class_index.json'))
+model = models.densenet121(pretrained=True)
+model.eval()
+
+
+def transform_image(image_bytes):
+    my_transforms = transforms.Compose([transforms.Resize(255),
+                                        transforms.CenterCrop(224),
+                                        transforms.ToTensor(),
+                                        transforms.Normalize(
+                                            [0.485, 0.456, 0.406],
+                                            [0.229, 0.224, 0.225])])
+    image = Image.open(io.BytesIO(image_bytes))
+    return my_transforms(image).unsqueeze(0)
+
+
+def get_prediction(image_bytes):
+    tensor = transform_image(image_bytes=image_bytes)
+    outputs = model.forward(tensor)
+    _, y_hat = outputs.max(1)
+    predicted_idx = str(y_hat.item())
+    return imagenet_class_index[predicted_idx]
+
+
+app = create_app()
+
+
+@app.route('/', methods=['GET'])
+def home():
+    return "home"
+
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    if request.method == 'POST':
+        file = request.files['file']
+        img_bytes = file.read()
+        class_id, class_name = get_prediction(image_bytes=img_bytes)
+        return jsonify({'class_id': class_id, 'class_name': class_name})
+
+
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0')

@@ -1,5 +1,8 @@
 # pip install -r requirements.txt
 
+Flask==2.0.2
+Flask-Cors==3.0.10
+
 # Base ----------------------------------------
 matplotlib>=3.2.2
 numpy>=1.18.5
