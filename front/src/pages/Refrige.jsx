@@ -334,6 +334,7 @@ const RefrigeBox = styled.div`
       background-color: ${({ theme }) => theme.color.white};
       border-top-right-radius: ${10 / 16}rem;
       border-bottom-right-radius: ${10 / 16}rem;
+      overflow-y: scroll;
     }
 
     .deleteIconBox {
