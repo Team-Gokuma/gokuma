@@ -33,9 +33,10 @@ services:
   ai:
     build: ./ai
     ports:
-      - "8080:5000"
+      - "8080:8080"
     volumes:
       - ./ai:/app
     environment:
       FLASK_ENV: development
-    
+    depends_on:
+      - back

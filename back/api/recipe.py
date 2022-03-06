@@ -1,3 +1,4 @@
+import time
 from flask import session, request
 from flask_restx import Resource
 from models import User, Recipe, RecipeIngrd, RecipeProcess, Ingredients, Refrigerator, Bookmark, UserLike
@@ -5,6 +6,7 @@ from db_connect import db
 from api_model.recipe_model import recipe_api, ingrds_fields, img_fields, response_fail_model, response_success_ingrds_model, response_success_detail_model, response_success_recipe_ingrdnum_model
 from recommendFunc.maxIngrds import maxIngrds
 from werkzeug.datastructures import FileStorage
+import requests
 
 
 upload_parser = recipe_api.parser()
@@ -25,8 +27,12 @@ class Recoginition(Resource):
         uploaded_file = args['file']
         print("u", uploaded_file)
 
-        f = request.files['file']
-        print("f", f)
+        url = 'https://github.com/RasaHQ/rasa/issues/3534'
+        response = requests.get(url)
+        print("2", response)
+
+        # f = request.files['file']
+        # print("f", f)
 
         # 재료인식 알고리즘 input = img, output = 재료
         # Model
