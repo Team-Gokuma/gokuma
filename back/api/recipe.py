@@ -21,7 +21,12 @@ class Recoginition(Resource):
     def post(self):
         """사진에서 재료를 인식합니다."""
 
+        args = upload_parser.parse_args()
+        uploaded_file = args['file']
+        print("u", uploaded_file)
+
         f = request.files['file']
+        print("f", f)
 
         # 재료인식 알고리즘 input = img, output = 재료
         # Model
