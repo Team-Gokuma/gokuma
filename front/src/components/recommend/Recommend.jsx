@@ -54,6 +54,8 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const setEditorpickRecipe = useSetRecoilState(editorpickRecipesState);
   const setBookmarkRecipe = useSetRecoilState(bookmarkRecipesState);
 
+  console.log(ingredient);
+
   const requestRecognition = async (img) => {
     setMainRecipe([]);
     const response = await recognition(img);

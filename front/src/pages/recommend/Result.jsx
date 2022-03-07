@@ -106,14 +106,14 @@ export default Result;
 
 const ResultContainer = styled.section`
   width: 1200px;
-  margin: 0 auto;
-  margin-top: 80px;
+  margin: 80px auto;
   overflow: hidden;
 
   h3 {
     ${({ theme }) => theme.font.large};
     ${({ theme }) => theme.font.bold};
-    margin-top: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   .relative {
     margin-top: 80px;
@@ -123,11 +123,12 @@ const ResultContainer = styled.section`
   }
 
   ${media.tablet} {
-    width: 768px;
+    width: 90vw;
+    margin: 40px auto;
   }
   ${media.mobile} {
-    width: 320px;
-    margin-top: 40px;
+    width: 90vw;
+    margin: 0px auto;
 
     h3 {
       ${({ theme }) => theme.font.medium};

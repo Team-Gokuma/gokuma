@@ -60,8 +60,6 @@ const RecipeDiv = styled(Link)`
   border: 1px solid ${({ theme }) => theme.color.lightgray};
   transition-duration: 0.3s;
   transition-property: transform;
-  /* margin-right: 5%; */
-  margin-bottom: 3%;
   flex-shrink: 0;
 
   :hover {
