@@ -42,8 +42,8 @@ const Bookmark = () => {
                 <Recipe
                   key={"recipe" + idx}
                   className="recipe"
-                  width={`240px`}
-                  height={`240px`}
+                  width={`300px`}
+                  height={`300px`}
                   text={item.name}
                   image={item.img}
                   margin="1rem 1.8rem"
@@ -85,7 +85,7 @@ const BookmarkContainer = styled.div`
     line-height: 1.5;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
   .noBookmark {
     margin-top: 5rem;
@@ -125,7 +125,7 @@ const BookmarkContainer = styled.div`
     width: 768px;
   }
   ${media.mobile} {
-    width: 320px;
+    width: 100vw;
     margin-top: 20px;
 
     h3 {

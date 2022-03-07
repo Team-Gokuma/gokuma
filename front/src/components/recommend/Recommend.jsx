@@ -54,6 +54,8 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const setEditorpickRecipe = useSetRecoilState(editorpickRecipesState);
   const setBookmarkRecipe = useSetRecoilState(bookmarkRecipesState);
 
+  console.log(ingredient);
+
   const requestRecognition = async (img) => {
     setMainRecipe([]);
     const response = await recognition(img);
@@ -92,7 +94,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
 
     const getEditorpick = async () => {
       const response = await editorpick();
-      console.log(response);
       if (response.status === 200) {
         setEditorpickRecipe(response.data.data);
       }
@@ -111,10 +112,16 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     getResult();
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    const handleResult = async () => {
+      await handleAddIngredient(ingredient);
+      await getRecommendationResult(ingredient);
+    };
     page && tags.length > 0 && !login && setOnModal(true);
-    login && handleAddIngredient(ingredient) && getRecommendationResult(ingredient);
+    !login && tags.length === 0 && alert("사진을 찍거나 텍스트로 글을 추가해보세요!");
     login && tags.length > 0 && alert("냉장고에 재료를 넣었습니다!");
+    login && tags.length === 0 && alert("새로운 재료가 없다면 냉장고로 가서 레시피 추천받기를 눌러보세요!");
+    login && handleResult();
   };
 
   const handleClickNoLogin = async () => {
