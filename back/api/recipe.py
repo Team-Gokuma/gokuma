@@ -1,7 +1,7 @@
 import time
 from flask import session, request
 from flask_restx import Resource
-from models import User, Recipe, RecipeIngrd, RecipeProcess, Ingredients, Refrigerator, Bookmark, UserLike
+from models_db import User, Recipe, RecipeIngrd, RecipeProcess, Ingredients, Refrigerator, Bookmark, UserLike
 from db_connect import db
 from api_model.recipe_model import recipe_api, ingrds_fields, img_fields, response_fail_model, response_success_ingrds_model, response_success_detail_model, response_success_recipe_ingrdnum_model
 from recommendFunc.maxIngrds import maxIngrds

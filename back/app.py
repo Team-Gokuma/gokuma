@@ -8,7 +8,7 @@ from api.recipe_related import recipe_api
 from api.refrigerator import refrigerator_api
 from api.bookmark import bookmark_api
 from api.userlike import userlike_api
-from ai.detect import detect_api
+from ai.test import detect_api
 from flask_restx import Api
 import config
 
