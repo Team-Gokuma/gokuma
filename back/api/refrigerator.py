@@ -84,7 +84,7 @@ class Save(Resource):
         user = None
         result = {"result_msg": "success"}
 
-        # session['email'] = "admin@gokuma.com"
+        session['email'] = "admin@gokuma.com"
 
         if session.get('email'):
             email = session['email']
@@ -118,7 +118,8 @@ class Save(Resource):
                                    datetime.now(timezone('Asia/Seoul')))
                 db.session.add(new)
                 db.session.commit()
-                new_ingrd = Ingredients(ingrd["content"], ingrd["category"])
+                new_ingrd = Ingredients(
+                    {"name": ingrd["content"], "category": ingrd["category"]})
                 db.session.add(new_ingrd)
                 db.session.commit()
 

@@ -78,5 +78,5 @@ def bookmarkTaste(names):
     return Recommendation(names, cosine_sim, name_to_index, df)
 
 
-names = ['나물비빔밥']
-print(bookmarkTaste(names))
+# names = ['나물비빔밥']
+# print(bookmarkTaste(names))

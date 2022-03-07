@@ -71,7 +71,8 @@ export const levelRecipe = async (level) => {
 
 export const detailRecipe = async (id, ingredients) => {
   try {
-    const response = await axios.post(`/api/recipe/${id}`, ingredients);
+    const data = { ingredients: ingredients };
+    const response = await axios.post(`/api/recipe/${id}`, data);
     return response;
   } catch (error) {
     console.log(error);

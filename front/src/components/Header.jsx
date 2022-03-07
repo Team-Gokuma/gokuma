@@ -1,10 +1,10 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CommonNav } from "./";
 import { useSetRecoilState } from "recoil";
-import { logout } from "../api/user";
-import { mainRecipesState, rankRecipesState } from "../store/atom";
+import { logout, islogin } from "../api/user";
+import { mainRecipesState, relatedRecipesState } from "../store/atom";
 import { ReactComponent as Logo } from "../asset/icon/header/logo.svg";
 import { ReactComponent as Profile } from "../asset/icon/profile.svg";
 import menu from "../asset/icon/mobile/menu.svg";
@@ -16,13 +16,12 @@ const Header = () => {
   const [menuToggle, setMenutoggle] = useState(false);
   const navigate = useNavigate();
   const mainRecipes = useSetRecoilState(mainRecipesState);
-  const rankRecipes = useSetRecoilState(rankRecipesState);
-
-  const isLogin = window.sessionStorage.getItem("isLogin");
+  const relatedRecipes = useSetRecoilState(relatedRecipesState);
+  let name = "";
+  let LoginCheck = false;
   const handleLogout = async () => {
     await logout().then((res) => {
       if (res.status !== 404) {
-        window.sessionStorage.clear();
         mainRecipes([]);
         rankRecipes([]);
         navigate("/");
@@ -33,14 +32,32 @@ const Header = () => {
       }
     });
   };
-
+  
+  const handleIsLogin = async () => {
+    await islogin().then((res) => {
+      if(res.status === 200){
+        LoginCheck=true;
+        name = res.name;
+        console.log(name, LoginCheck);
+      }
+      else if(res.status===404){
+        LoginCheck=false;
+      }
+    });
+  };
+  
+  useEffect(() => {
+    console.log(name, LoginCheck);
+    handleIsLogin();
+  });
+  
   const mobileMenuToggle = () => {
     setMenutoggle((menuToggle) => !menuToggle);
   };
 
   const mobilemenu = useRef();
 
-  const name = window.sessionStorage.getItem("name");
+  
   return (
     <>
       <StWrapper>
@@ -59,7 +76,7 @@ const Header = () => {
           <CommonNav />
         </div>
         <ProfileWrapper>
-          {isLogin ? (
+          {{LoginCheck} ? (
             <>
               <div className="auth" onClick={handleLogout}>
                 <Button width="104px" height="45px" text="Logout" bgcolor="yellow" txtcolor="black" round="round" />
