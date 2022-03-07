@@ -1,17 +1,17 @@
 import axios from "axios";
 
-export const isLogin = async () => {
+export const logout = async () => {
   try {
-    const { data } = await axios.get("/api/user/isSignin");
+    const { data } = await axios.get("/api/user/logout");
     return data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const logout = async () => {
+export const islogin = async () => {
   try {
-    const { data } = await axios.get("/api/user/logout");
+    const { data } = await axios.get("/api/user/islogin");
     return data;
   } catch (error) {
     console.log(error);

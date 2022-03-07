@@ -31,9 +31,8 @@ export const UpdateNameModal = ({ handleCloseName }) => {
   const requestUpdateName = async (body) => {
     await nameupdate(body).then((res) => {
       if (res && res.status === 200) {
-        window.sessionStorage.setItem("name", newname);
         alert("성공적으로 변경되었습니다.");
-        navigate("/");
+        navigate("/mypage");
       } else if (res && res.status !== 200) {
         alert("이름변경에 실패하였습니다!");
       }

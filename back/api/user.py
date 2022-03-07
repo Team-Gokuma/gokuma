@@ -182,7 +182,8 @@ class UserIsLogin(Resource):
     def get(self):
         if session.get('email'):
             email = session['email']
-            name = session['name']
+            user = User.query.filter(User.email == email).first()
+            name = user.name
             message="현재 로그인 되어있습니다"
             value = {"status": 200, "result": "success",
                     "msg": message, "email": email, "name": name}

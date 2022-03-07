@@ -18,7 +18,7 @@ const Mypage = () => {
   const mainRecipes = useSetRecoilState(mainRecipesState);
   const relatedRecipes = useSetRecoilState(relatedRecipesState);
   const navigate = useNavigate();
-
+  
   const handleCloseName = () => {
     setUpdateName(false);
   };
@@ -34,7 +34,6 @@ const Mypage = () => {
   const requestDelete = async (body) => {
     await userdelete(body).then((res) => {
       if (res && res.status === 200) {
-        window.sessionStorage.clear();
         mainRecipes([]);
         relatedRecipes([]);
         navigate("/");
@@ -47,7 +46,6 @@ const Mypage = () => {
   const handleLogout = async () => {
     await logout().then((res) => {
       if (res.status === 200) {
-        window.sessionStorage.clear();
         mainRecipes([]);
         relatedRecipes([]);
         // setIsLogin(false);
