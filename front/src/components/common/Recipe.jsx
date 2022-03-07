@@ -86,11 +86,14 @@ const RecipeDiv = styled(Link)`
     cursor: pointer;
   }
   ${media.tablet} {
-    margin-right: 2%;
+    margin: 0 2%;
+    width: 220px;
+    height: 220px;
   }
   ${media.mobile} {
-    width: 140px;
-    height: 140px;
+    width: 50%;
+    height: 50vw;
+    margin: 0;
 
     div {
       padding: 4px;
