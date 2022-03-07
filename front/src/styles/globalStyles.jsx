@@ -31,6 +31,7 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
   }
   html,body{
+    height: 100vh;
     font-family: 'MinSans-Regular', 'sans-serif';
     font-size: 16px;
     font-style: normal;
