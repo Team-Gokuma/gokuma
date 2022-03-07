@@ -2,10 +2,11 @@ from flask import request, session, jsonify, redirect, make_response
 from werkzeug.security import check_password_hash
 from werkzeug.security import generate_password_hash
 from flask_restx import Api, Resource, reqparse, Namespace
-from models import User
+from models_db import User
 from db_connect import db
-from api_model.user_model import user_api, user_signup_model , user_login_model, response_success_model, response_fail_model, user_delete_model, user_update_password_model, user_update_name_model 
+from api_model.user_model import user_api, user_signup_model, user_login_model, response_success_model, response_fail_model, user_delete_model, user_update_password_model, user_update_name_model
 from urllib import parse
+
 
 @user_api.route('/temp', doc=False)
 class testUserApi(Resource):
@@ -27,14 +28,14 @@ class UserSignup(Resource):
         password = params['password']
 
         message = None
-        if name==None:
+        if name == None:
             message = "닉네임을 작성해주세요"
-        elif email==None:
+        elif email == None:
             message = "이메일을 작성해주세요"
-        elif password==None:
+        elif password == None:
             message = "비밀번호를 작성해주세요"
         else:
-            message=None
+            message = None
 
         user = User.query.filter(User.email == email).first()
         if user is not None:
@@ -101,10 +102,10 @@ class UserLogin(Resource):
             # resp.delete_cookie('email')
             # resp.delete_cookie('name')
             # return resp
-            value = {"status": 200, "result": "success", "msg":message}
+            value = {"status": 200, "result": "success", "msg": message}
         else:
             message = "로그아웃에 실패하였습니다."
-            value = {"status": 404, "result": "fail", "msg":message}
+            value = {"status": 404, "result": "fail", "msg": message}
         return jsonify(value)
 
 
@@ -124,10 +125,10 @@ class UserDelete(Resource):
             User.query.filter(User.email == email).delete()
             db.session.commit()
             message = "회원탈퇴에 성공하였습니다."
-            value = {"status": 200, "result": "success", "msg":message}
+            value = {"status": 200, "result": "success", "msg": message}
         else:
             message = "회원탈퇴에 실패하였습니다."
-            value = {"status": 400, "result": "fail", "msg":message}
+            value = {"status": 400, "result": "fail", "msg": message}
         return jsonify(value)
 
 
@@ -143,14 +144,14 @@ class UserPassUpdate(Resource):
         newpassword = params['newpassword']
         message = None
         if session['email'] == None:
-            message="비밀번호변경 실패"
-            value = {"status": 400,  "result": "fail", "msg":message}
+            message = "비밀번호변경 실패"
+            value = {"status": 400,  "result": "fail", "msg": message}
         else:
             user = User.query.filter(User.email == session['email']).first()
             if check_password_hash(user.password, password):
                 user.password = generate_password_hash(newpassword)
-            message="비밀번호변경 성공"
-            value = {"status": 200,  "result": "success", "msg":message}
+            message = "비밀번호변경 성공"
+            value = {"status": 200,  "result": "success", "msg": message}
         db.session.commit()
         return jsonify(value)
 
@@ -164,29 +165,31 @@ class UserNameUpdate(Resource):
         '''유저 닉네임 변경'''
         params = request.get_json()
         newname = params['newname']
-        message=None
+        message = None
         if session['email'] == None:
-            message="닉네임변경 실패"
-            value = {"status": 400,  "result": "fail", "msg":message}
+            message = "닉네임변경 실패"
+            value = {"status": 400,  "result": "fail", "msg": message}
         else:
             user = User.query.filter(User.email == session['email']).first()
             user.name = newname
-            message="닉네임변경 성공"
-            value = {"status": 200,  "result": "success", "msg":message}
+            message = "닉네임변경 성공"
+            value = {"status": 200,  "result": "success", "msg": message}
         db.session.commit()
         return jsonify(value)
 
 # 쿠키안에 로그인된 정보가 있다면 이메일과 닉네임을 리턴해준다
-@user_api.route('/islogin')  
+
+
+@user_api.route('/islogin')
 class UserIsLogin(Resource):
     def get(self):
         if session.get('email'):
             email = session['email']
             name = session['name']
-            message="현재 로그인 되어있습니다"
+            message = "현재 로그인 되어있습니다"
             value = {"status": 200, "result": "success",
-                    "msg": message, "email": email, "name": name}
+                     "msg": message, "email": email, "name": name}
         else:
-            message="로그아웃된 상태입니다"
+            message = "로그아웃된 상태입니다"
             value = {"status": 404, "result": "fail", "msg": message}
         return jsonify(value)

@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from flask_restx import Resource, Namespace
 from pyrsistent import CheckedKeyTypeError
-from models import User, UserLike, Recipe
+from models_db import User, UserLike, Recipe
 from db_connect import db
 from api_model.userlike_model import userlike_api, recipe_id_fields
 import json
