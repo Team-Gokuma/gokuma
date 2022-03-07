@@ -14,17 +14,19 @@ import { StyledLink } from "../styles/commonStyle";
 
 const Header = () => {
   const [menuToggle, setMenutoggle] = useState(false);
+  const [loginCheck, setLoginCheck] = useState(false);
   const navigate = useNavigate();
   const mainRecipes = useSetRecoilState(mainRecipesState);
   const rankRecipes = useSetRecoilState(rankRecipesState);
   let name = "";
-  let LoginCheck = false;
+  // let LoginCheck = 0;
   const handleLogout = async () => {
     await logout().then((res) => {
       if (res.status !== 404) {
         mainRecipes([]);
         rankRecipes([]);
         navigate("/");
+        setLoginCheck(false);
         setMenutoggle(false);
       } else {
         alert("error");
@@ -33,29 +35,30 @@ const Header = () => {
     });
   };
 
+  // useEffect(() => {
+  //   console.log(name, LoginCheck);
+  //   handleIsLogin();
+  // }, [LoginCheck]);
+
+
   const handleIsLogin = async () => {
     await islogin().then((res) => {
       if (res.status === 200) {
-        LoginCheck = true;
+        setLoginCheck(true);
         name = res.name;
         console.log(name, LoginCheck);
       } else if (res.status === 404) {
-        LoginCheck = false;
+        setLoginCheck(false);
       }
     });
   };
-
-  useEffect(() => {
-    console.log(name, LoginCheck);
-    handleIsLogin();
-  });
 
   const mobileMenuToggle = () => {
     setMenutoggle((menuToggle) => !menuToggle);
   };
 
   const mobilemenu = useRef();
-
+  // handleIsLogin();
   return (
     <>
       <StWrapper>
@@ -74,7 +77,7 @@ const Header = () => {
           <CommonNav />
         </div>
         <ProfileWrapper>
-          {{ LoginCheck } ? (
+          {loginCheck ? (
             <>
               <div className="auth" onClick={handleLogout}>
                 <Button width="104px" height="45px" text="Logout" bgcolor="yellow" txtcolor="black" round="round" />
