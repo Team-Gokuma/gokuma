@@ -1,6 +1,6 @@
 from flask import session, request
 from flask_restx import Resource
-from models import User, Ingredients, Refrigerator
+from models_db import User, Ingredients, Refrigerator
 from db_connect import db
 from datetime import datetime
 from pytz import timezone
