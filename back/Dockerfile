@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.6
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ ENV FLASK_ENV=development
 
 COPY ./requirements.txt .
 
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY . .
 

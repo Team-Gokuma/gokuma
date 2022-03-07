@@ -6,6 +6,7 @@ from db_connect import db
 from api_model.recipe_model import recipe_api, ingrds_fields, img_fields, response_fail_model, response_success_ingrds_model, response_success_detail_model, response_success_recipe_ingrdnum_model
 from recommendFunc.maxIngrds import maxIngrds
 from werkzeug.datastructures import FileStorage
+from werkzeug.utils import secure_filename
 import requests
 
 
@@ -24,12 +25,12 @@ class Recoginition(Resource):
         """사진에서 재료를 인식합니다."""
 
         args = upload_parser.parse_args()
-        uploaded_file = args['file']
-        print("u", uploaded_file)
+        f = args['file']
+        sendFile = {"file": (f.filename, f.stream, f.mimetype)}
 
-        url = 'https://github.com/RasaHQ/rasa/issues/3534'
-        response = requests.get(url)
-        print("2", response)
+        response = requests.post(
+            'http://localhost:5000/api/detect/', files=sendFile)
+        print("2", response.json())
 
         # f = request.files['file']
         # print("f", f)
