@@ -13,6 +13,14 @@ shopping_item_id_fields = shopping_api.inherit('ShoppingItem with ID', shopping_
     'id': fields.Integer(description='장보기 리스트 ID', required=True, example=1)
 })
 
+ingrd_fields = shopping_api.model('IngredientShoppingList', {
+    'content': fields.String(description='재료 이름', required=True, example='고추장')
+})
+
+ingrds_fields = shopping_api.model('IngredientsShoppingList', {
+    'ingredients': fields.List(fields.Nested(ingrd_fields))
+})
+
 response_success_model = shopping_api.model('ResponseSuccess', {
     'result_msg': fields.String(description='응답 상태', required=True, example='success')
 })

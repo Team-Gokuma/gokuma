@@ -2,7 +2,7 @@ from flask import jsonify, session, request
 from flask_restx import Resource
 from models import User, ShoppingList
 from db_connect import db
-from api_model.shoppingList_model import shopping_api, response_success_shopping_item_model, response_fail_model, shopping_item_fields, shopping_item_id_fields
+from api_model.shoppingList_model import shopping_api, response_success_shopping_item_model, response_fail_model, shopping_item_fields, shopping_item_id_fields, ingrds_fields
 
 
 @shopping_api.route('/list')
@@ -210,6 +210,42 @@ class shoppingListItem(Resource):
             return result, 400
 
         return result
+
+
+@shopping_api.route('/lackingrds')
+class shoppingListPush(Resource):
+
+    @shopping_api.expect(ingrds_fields)
+    def post(self):
+        '''레시피 디테일 페이지에서 없는 재료를 장보기 리스트에 넣어줍니다'''
+
+        user = None
+        result = {"result_msg": "success"}
+
+        if session.get('email'):
+            email = session['email']
+            user = User.query.filter(User.email == email).first()
+        else:
+            result = {"result_msg": "No User"}
+            return result, 400
+
+        data = request.get_json()
+        contents = data['ingredients']
+        items = ShoppingList.query.filter(
+            ShoppingList.user_id == user.id).all()
+
+        for item in items:
+            for content in contents:
+                # 이미 리스트에 존재하는지 확인
+                if item.content == content['content']:
+                    continue
+                else:
+                    new_item = ShoppingList(
+                        user.id, content['content'], False)
+                    db.session.add(new_item)
+                    db.session.commit()
+
+        return result, 200
 
 
 @shopping_api.route('/<id>', doc=False)
