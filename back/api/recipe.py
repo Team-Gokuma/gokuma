@@ -1,26 +1,36 @@
+import time
 from flask import session, request
 from flask_restx import Resource
 from models import User, Recipe, RecipeIngrd, RecipeProcess, Ingredients, Refrigerator, Bookmark, UserLike
 from db_connect import db
 from api_model.recipe_model import recipe_api, ingrds_fields, img_fields, response_fail_model, response_success_ingrds_model, response_success_detail_model, response_success_recipe_ingrdnum_model
 from recommendFunc.maxIngrds import maxIngrds
+from werkzeug.datastructures import FileStorage
+from werkzeug.utils import secure_filename
+import requests
+
+
+upload_parser = recipe_api.parser()
+upload_parser.add_argument('file', location='files',
+                           type=FileStorage, required=True)
 
 
 @recipe_api.route('/recoginition')
 class Recoginition(Resource):
 
-    @recipe_api.expect(img_fields)
+    @recipe_api.expect(upload_parser)
     @recipe_api.response(200, 'Success', response_success_ingrds_model)
     @recipe_api.response(400, 'Fail', response_fail_model)
     def post(self):
         """사진에서 재료를 인식합니다."""
 
-        f = request.files['file']
+        args = upload_parser.parse_args()
+        f = args['file']
+        sendFile = {"file": (f.filename, f.stream, f.mimetype)}
 
-        # 재료인식 알고리즘 input = img, output = 재료
-        # Model
-
-        # img -> model -> ingrds?
+        response = requests.post(
+            'http://localhost:5000/api/detect/', files=sendFile)
+        print("2", response.json())
 
         # ingrds에는 재료인식 model을 통과한 class명 들이 담겨져있다.
         ingrds = ['딸기', '당근', '닭가슴살']

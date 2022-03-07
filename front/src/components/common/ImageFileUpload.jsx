@@ -5,6 +5,7 @@ import { media } from "../../styles/theme";
 export const ImageFileUpload = ({ width, height, requestRecognition }) => {
   const [isFile, setIsFile] = useState(false);
   const [image, setImage] = useState("");
+  const [file, setFile] = useState("");
 
   function readURL(fileBlob) {
     setIsFile(true);
@@ -31,7 +32,9 @@ export const ImageFileUpload = ({ width, height, requestRecognition }) => {
             className="fileUploadInput"
             type="file"
             onChange={(e) => {
-              readURL(e.target.files[0]).then(() => requestRecognition("image url"));
+              const formData = new FormData();
+              formData.append("file", e.target.files[0]);
+              readURL(e.target.files[0]).then(() => requestRecognition(formData));
             }}
             value={image}
             accept="image/*"

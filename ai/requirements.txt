@@ -1,5 +1,0 @@
-albumentations
-flask
-pretrainedmodels
-torch==1.10.2
-wtfml==0.0.2

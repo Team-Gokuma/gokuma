@@ -1,14 +1,28 @@
 import styled from "styled-components";
 import { media } from "../../styles/theme";
-import { useMemo, useState, useReducer } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSetRecoilState, useRecoilState } from "recoil";
-import { modalState, mainRecipesState, relatedRecipesState } from "../../store/atom";
+import {
+  modalState,
+  mainRecipesState,
+  rankRecipesState,
+  editorpickRecipesState,
+  ingredientState,
+  bookmarkRecipesState,
+} from "../../store/atom";
 import { ImageFileUpload } from "../common/ImageFileUpload";
 import { Button } from "../common/Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
 import { AlertLoginModal } from "../common/AlertLoginModal";
-import { recognition, recommendRecipe, cooktimeRecipe, rankRecipe } from "../../api/receipe";
+import {
+  recognition,
+  recommendRecipe,
+  cooktimeRecipe,
+  rankRecipe,
+  editorpick,
+  bookmarkRecipe,
+} from "../../api/receipe";
 import { addIngredient } from "../../api/refrige";
 import { StyledLink } from "../../styles/commonStyle";
 import { MobileTitle } from "../mobile/MobileTitle";
@@ -31,20 +45,21 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [onIcon, setOnIcon] = useState(false);
   const [tags, setTags] = useState([]);
   const [img, setImg] = useState("");
-  const [data, setData] = useState([]);
 
   const login = window.sessionStorage.getItem("isLogin");
   const [onModal, setOnModal] = useRecoilState(modalState);
+  const [ingredient, setIngredient] = useRecoilState(ingredientState);
   const setMainRecipe = useSetRecoilState(mainRecipesState);
-  const setRelatedRecipe = useSetRecoilState(relatedRecipesState);
+  const setRankRecipe = useSetRecoilState(rankRecipesState);
+  const setEditorpickRecipe = useSetRecoilState(editorpickRecipesState);
+  const setBookmarkRecipe = useSetRecoilState(bookmarkRecipesState);
 
   const requestRecognition = async (img) => {
     setMainRecipe([]);
-    setRelatedRecipe([]);
     const response = await recognition(img);
     if (response.status === 200) {
       setImg(img);
-      setData(response.data.data);
+      setIngredient(response.data.data);
       setAddToggle(false);
       setTags((cur) => {
         const newArr = [...cur];
@@ -58,59 +73,67 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     }
   };
 
-  const getRecommendation = async (ingredients) => {
-    const response = await recommendRecipe(ingredients);
-    if (response.status === 200) {
-      setMainRecipe(response.data.data);
-    } else {
-      alert("메뉴 추천에 실패하였습니다.");
-    }
-  };
+  const getRecommendationResult = (ingredients) => {
+    const getRecommendation = async (ingredients) => {
+      const response = await recommendRecipe(ingredients);
+      if (response.status === 200) {
+        setMainRecipe(response.data.data);
+      } else {
+        alert("메뉴 추천에 실패하였습니다.");
+      }
+    };
 
-  const getCooktimeRecipes = async (recipes) => {
-    const response = await cooktimeRecipe(recipes);
-    if (response.status === 200) {
-      setRelatedRecipe(response.data.data);
-    } else {
-      alert("조리시간 관련 메뉴 추천에 실패하였습니다.");
-    }
-  };
+    const getRankRecipe = async () => {
+      const response = await rankRecipe();
+      if (response.status === 200) {
+        setRankRecipe(response.data.data);
+      }
+    };
 
-  const getRankRecipe = async () => {
-    const response = await rankRecipe();
-    if (response.status === 200) {
-      setRelatedRecipe(response.data.data);
-    }
+    const getEditorpick = async () => {
+      const response = await editorpick();
+      console.log(response);
+      if (response.status === 200) {
+        setEditorpickRecipe(response.data.data);
+      }
+    };
+
+    const getBookmarkRecipe = async () => {
+      const response = await bookmarkRecipe();
+      if (response.status === 200) {
+        setBookmarkRecipe(response.data.data);
+      }
+    };
+
+    const getResult = async () => {
+      Promise.all([getRecommendation(ingredients), getRankRecipe(), getEditorpick(), getBookmarkRecipe()]);
+    };
+    getResult();
   };
 
   const handleClick = () => {
     page && tags.length > 0 && !login && setOnModal(true);
-    login && Promise.all([handleAddIngredient(data), getRecommendation(data), getRankRecipe()]);
-    login && alert("냉장고에 재료를 넣었습니다!");
+    login && handleAddIngredient(ingredient) && getRecommendationResult(ingredient);
+    login && tags.length > 0 && alert("냉장고에 재료를 넣었습니다!");
   };
 
-  const handleClickNoLogin = () => {
-    const getData = async () => {
-      await getRecommendation(data);
-      await getRankRecipe();
-    };
-    getData();
+  const handleClickNoLogin = async () => {
+    await getRecommendationResult(ingredient);
   };
 
   const hanldeAddIngredient = () => {
     const addIngredient = async () => {
-      await handleAddIngredient(data);
+      await handleAddIngredient(ingredient);
       await getIngredient();
-      login && alert("냉장고에 재료를 넣었습니다!");
+      alert("냉장고에 재료를 넣었습니다!");
     };
-    addIngredient();
-    handleAddImage();
+    login && tags.length > 0 && addIngredient() && handleAddImage();
   };
 
   const handleToggle = () => {
     setAddToggle(false);
     setMainRecipe([]);
-    setRelatedRecipe([]);
+    setRankRecipe([]);
   };
 
   const saveTags = (e) => {
@@ -120,7 +143,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
         const newTags = [...cur, inputValue];
         return newTags;
       });
-      setData((cur) => {
+      setIngredient((cur) => {
         const newData = [...cur];
         newData.push({ content: inputValue, categoty: 7 });
         return newData;

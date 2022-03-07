@@ -2,9 +2,7 @@ version: "3"
 
 services:
   db:
-    build:
-      context: ./db
-      dockerfile: ./Dockerfile
+    build: ./db
     environment:
       MYSQL_ROOT_PASSWORD: "password"
       MYSQL_DATABASE: Gokuma
@@ -32,10 +30,3 @@ services:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
       - back
-  # ai:
-  #   build:
-  #     context: ./ai
-  #     dockerfile: ./Dockerfile
-  #   environment:
-  #     - NVIDIA_VISIBLE_DEVICE=0
-  #   restart: always

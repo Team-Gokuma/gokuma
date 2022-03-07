@@ -30,14 +30,17 @@ def maxIngrds(items):
     df_ingrd = pd.read_csv('./data/recipe_ingrd.csv', encoding='cp949')
 
     temp = []
-    for i in range(1, 537):
+    recipe_data = df["RECIPE_ID"].values[:]
+    for i in recipe_data:
         indnt_nm = list(df_ingrd[df_ingrd["RECIPE_ID"] == i]["IRDNT_NM"])
         temp.append(indnt_nm)
     ing_dataframe = pd.Series(temp)
     df["재료목록"] = ing_dataframe
 
+    # df.to_csv('df_ingrd.csv', encoding='utf-8-sig')
+
     return includedRecipe(items, df)
 
 
-items = ['밥', '달걀', '돼지고기', '표고버섯', '양파', '당근', '대파']
-print(maxIngrds(items))
+# items = ['밥', '달걀', '돼지고기', '표고버섯', '양파', '당근', '대파']
+# print(maxIngrds(items))

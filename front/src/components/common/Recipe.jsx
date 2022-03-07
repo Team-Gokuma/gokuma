@@ -62,6 +62,7 @@ const RecipeDiv = styled(Link)`
   transition-property: transform;
   /* margin-right: 5%; */
   margin-bottom: 3%;
+  flex-shrink: 0;
 
   :hover {
     transform: translateY(-8px);

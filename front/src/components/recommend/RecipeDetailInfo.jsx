@@ -35,7 +35,7 @@ export const RecipeDetailInfo = ({ data, handleLike }) => {
   };
 
   return (
-    <div className="recipeInfo">
+    <RecipeInfo>
       <div className="detailImgBox">
         <img src={data.img} alt="food" />
       </div>
@@ -71,6 +71,9 @@ export const RecipeDetailInfo = ({ data, handleLike }) => {
           <p className="level">
             난이도 <span className="stars">{level[data.level - 1]}</span>
           </p>
+          <p>
+            조리시간 <span>{data.time}분</span>
+          </p>
           <p className="calories">
             칼로리 <span className="calorieContent">{data.calorie}kcal</span>
           </p>
@@ -90,9 +93,94 @@ export const RecipeDetailInfo = ({ data, handleLike }) => {
           })}
         </Ingredient>
       </div>
-    </div>
+    </RecipeInfo>
   );
 };
+
+const RecipeInfo = styled.div`
+  display: flex;
+  .detailImgBox {
+    width: 400px;
+    height: 400px;
+    margin-left: 30px;
+    position: relative;
+  }
+  .detailInfoBox {
+    margin-top: 1rem;
+    width: 450px;
+    margin-left: 80px;
+    p {
+      margin-bottom: ${12 / 16}rem;
+    }
+    h3 {
+      display: inline-block;
+      ${({ theme }) => theme.font.bold};
+      ${({ theme }) => theme.font.large};
+      margin-bottom: 1.2rem;
+      position: relative;
+      .bookmarkIcon {
+        position: absolute;
+        top: ${-3 / 16}rem;
+        right: -2.3rem;
+        cursor: pointer;
+      }
+    }
+    .summary {
+      margin-bottom: 1.4rem;
+      line-height: 1.4;
+    }
+
+    .stars {
+      margin-left: 4px;
+    }
+    .calorieContent {
+      margin-left: 4px;
+    }
+    .servings {
+      margin-bottom: ${24 / 16}rem;
+      & .servingsContent {
+        margin-left: 0.7rem;
+      }
+    }
+  }
+  .infoBox {
+    p {
+      margin-right: 4%;
+      ${({ theme }) => theme.font.bold};
+      span {
+        ${({ theme }) => theme.font.normal};
+        margin-left: 8px;
+      }
+    }
+  }
+  ${media.tablet} {
+    .detailImgBox {
+      width: 360px;
+      height: 360px;
+      margin-left: 0;
+    }
+    .detailInfoBox {
+      margin-left: 40px;
+    }
+  }
+  ${media.mobile} {
+    display: block;
+    .detailImgBox {
+      width: 80vw;
+      height: 80vw;
+      margin: 0 auto;
+    }
+    .detailInfoBox {
+      width: 100%;
+      margin-top: 20px;
+      margin-left: 0;
+      padding: 0 10px;
+    }
+    .infoBox {
+      width: 90vw;
+    }
+  }
+`;
 
 const LikeBox = styled.span`
   display: inline-block;

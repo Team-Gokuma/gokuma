@@ -1,20 +1,26 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { media } from "../styles/theme";
-import { Button } from "../components/common/Button";
 import { ReactComponent as IconClose } from "../asset/icon/close.svg";
 import { ReactComponent as IconDelete } from "../asset/icon/delete.svg";
 import addByPhotoIcon from "../asset/icon/addByPhoto.svg";
 import addByTextIcon from "../asset/icon/addByText.svg";
 import menuBook from "../asset/icon/menuBook.svg";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { loginState, modalState } from "../store/atom";
+import {
+  modalState,
+  mainRecipesState,
+  rankRecipesState,
+  editorpickRecipesState,
+  bookmarkRecipesState,
+} from "../store/atom";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { MobileTitle } from "../components/mobile/MobileTitle";
 import { AddByText } from "../components/refrige/AddByText";
 import { AddByImage } from "../components/refrige/AddByImage";
 import { ingredientList, deleteAllIngredient, deleteIngredient, addIngredient } from "../api/refrige";
+import { recommendRecipe, rankRecipe, editorpick, bookmarkRecipe } from "../api/receipe";
 import { Toast } from "../components/common/Toast";
 
 const category = ["전체 식재료", "과일", "채소", "육류", "해산물", "유제품", "소스류", "기타"];
@@ -22,16 +28,15 @@ const category = ["전체 식재료", "과일", "채소", "육류", "해산물",
 const addtInRefrigeByText = async (textValue, category) => {
   const data = [{ content: textValue, category: Number(category) }];
   const response = await addIngredient(data);
-  if (response.status === 200) {
+  if (response && response.status === 200) {
     alert("재료를 냉장고에 추가했습니다!");
   } else {
     alert("텍스트로 재료 추가를 실패했습니다.");
   }
 };
-
 const deleteAllIngredientInRefrige = async () => {
   const response = await deleteAllIngredient();
-  if (response.status === 200) {
+  if (response && response.status === 200) {
     alert("재료가 전부 삭제되었습니다.");
   } else {
     alert("재료 전체 삭제를 실패하였습니다.");
@@ -40,7 +45,7 @@ const deleteAllIngredientInRefrige = async () => {
 
 const deleteIngredientInRefrige = async (id) => {
   const response = await deleteIngredient(id);
-  if (response.status === 200) {
+  if (response && response.status === 200) {
     alert("재료가 삭제되었습니다!");
   } else {
     alert("재료 삭제를 실패했습니다.");
@@ -56,6 +61,12 @@ const Refrige = () => {
 
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
+  const setMainRecipe = useSetRecoilState(mainRecipesState);
+  const setRankRecipe = useSetRecoilState(rankRecipesState);
+  const setEditorpickRecipe = useSetRecoilState(editorpickRecipesState);
+  const setBookmarkRecipe = useSetRecoilState(bookmarkRecipesState);
+
+  const navigate = useNavigate();
 
   const login = window.sessionStorage.getItem("isLogin");
 
@@ -66,6 +77,43 @@ const Refrige = () => {
     } else {
       setModal(true);
     }
+  };
+
+  const getRecommendationResult = (ingredients) => {
+    const getRecommendation = async (ingredients) => {
+      const response = await recommendRecipe(ingredients);
+      if (response.status === 200) {
+        setMainRecipe(response.data.data);
+      } else {
+        alert("메뉴 추천에 실패하였습니다.");
+      }
+    };
+
+    const getRankRecipe = async () => {
+      const response = await rankRecipe();
+      if (response.status === 200) {
+        setRankRecipe(response.data.data);
+      }
+    };
+
+    const getEditorpick = async () => {
+      const response = await editorpick();
+      if (response.status === 200) {
+        setEditorpickRecipe(response.data.data);
+      }
+    };
+
+    const getBookmarkRecipe = async () => {
+      const response = await bookmarkRecipe();
+      if (response.status === 200) {
+        setBookmarkRecipe(response.data.data);
+      }
+    };
+
+    const getResult = async () => {
+      Promise.all([getRecommendation(ingredients), getRankRecipe(), getEditorpick(), getBookmarkRecipe()]);
+    };
+    getResult();
   };
 
   const addIngredientText = (textValue, category) => {
@@ -117,6 +165,15 @@ const Refrige = () => {
     setIsActive(false);
   };
 
+  const handleFindRecipe = async () => {
+    const data = ingredient.map((item) => {
+      return { content: item.content, category: item.category };
+    });
+    login && (await getRecommendationResult(data));
+    login && navigate("/result");
+    !login && onToast();
+  };
+
   useEffect(() => {
     const getlist = async () => {
       await getIngredient();
@@ -137,10 +194,10 @@ const Refrige = () => {
             OffToast();
           }}
         />
-        {/* TO DO: 냉장고 재료로 추천받기 추가하기 */}
-        {/* <div className="findRecipe">
-        <img src={menuBook} alt="menuBook" />
-      </div> */}
+        <FindRecipe onClick={handleFindRecipe}>
+          <img src={menuBook} alt="menuBook" />
+          <div className="findRecipeText">레시피 추천받기</div>
+        </FindRecipe>
         <RefrigeTitle>
           <h2>나의 냉장고</h2>
           <div>
@@ -150,7 +207,6 @@ const Refrige = () => {
                 !login && onToast();
               }}>
               <img className="addIcon" src={addByPhotoIcon} alt="addByPhotoIcon" />
-              {/* <Button text="사진으로 추가" bgcolor="orange" txtcolor="white" /> */}
             </span>
             <span
               onClick={() => {
@@ -158,7 +214,6 @@ const Refrige = () => {
                 !login && onToast();
               }}>
               <img className="addIcon" src={addByTextIcon} alt="addByPhotoIcon" />
-              {/* <Button text="직접 입력해서 추가" bgcolor="orange" txtcolor="white" /> */}
             </span>
           </div>
         </RefrigeTitle>
@@ -221,21 +276,7 @@ const RefrigeContainer = styled.section`
   margin: 0 auto;
   margin-top: ${88 / 16}rem;
   position: relative;
-  .findRecipe {
-    width: 60px;
-    height: 60px;
-    border-radius: 9999px;
-    position: absolute;
-    top: 480px;
-    right: 0;
-    z-index: 1;
-    cursor: pointer;
-    transition-duration: 0.3s;
-    transition-property: transform;
-    :hover {
-      transform: translateY(-8px);
-    }
-  }
+
   ${media.mobile} {
     width: 90vw;
     margin-top: 0;
@@ -318,6 +359,7 @@ const RefrigeBox = styled.div`
     border-bottom-left-radius: 999rem;
   }
   /* ${media.mobile} {
+    // TO DO: 반응형 원래 계획된 디자인으로 마무리 하기
     display: block;
     position: relative;
     background-color: white;
@@ -353,6 +395,39 @@ const RefrigeBox = styled.div`
       margin: 0;
       margin: 12px;
       word-break: keep-all;
+    }
+  }
+`;
+
+const FindRecipe = styled.div`
+  width: 60px;
+  height: 60px;
+  background-color: ${({ theme }) => theme.color.lightgray};
+  border-radius: 9999px;
+  position: absolute;
+  top: 480px;
+  right: 0;
+  z-index: 1;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  .findRecipeText {
+    display: none;
+  }
+  :hover {
+    transform: translateY(-8px);
+    .findRecipeText {
+      display: block;
+    }
+  }
+  ${media.mobile} {
+    width: 52px;
+    height: 52px;
+    top: 360px;
+    .findRecipeText {
+      word-break: keep-all;
+
+      font-size: 14px;
     }
   }
 `;

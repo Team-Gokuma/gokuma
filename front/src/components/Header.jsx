@@ -23,8 +23,7 @@ const Header = () => {
     await logout().then((res) => {
       if (res.status !== 404) {
         mainRecipes([]);
-        relatedRecipes([]);
-        // setIsLogin(false);
+        rankRecipes([]);
         navigate("/");
         setMenutoggle(false);
       } else {
