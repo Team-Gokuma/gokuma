@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { media } from "../../styles/theme";
 import right from "../../asset/icon/recipe/result/right.svg";
