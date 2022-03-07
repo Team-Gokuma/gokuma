@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { CommonNav } from "./";
 import { useSetRecoilState } from "recoil";
 import { logout, islogin } from "../api/user";
-import { mainRecipesState, relatedRecipesState } from "../store/atom";
+import { mainRecipesState, rankRecipesState } from "../store/atom";
 import { ReactComponent as Logo } from "../asset/icon/header/logo.svg";
 import { ReactComponent as Profile } from "../asset/icon/profile.svg";
 import menu from "../asset/icon/mobile/menu.svg";
@@ -16,7 +16,7 @@ const Header = () => {
   const [menuToggle, setMenutoggle] = useState(false);
   const navigate = useNavigate();
   const mainRecipes = useSetRecoilState(mainRecipesState);
-  const relatedRecipes = useSetRecoilState(relatedRecipesState);
+  const rankRecipes = useSetRecoilState(rankRecipesState);
   let name = "";
   let LoginCheck = false;
   const handleLogout = async () => {
@@ -32,32 +32,30 @@ const Header = () => {
       }
     });
   };
-  
+
   const handleIsLogin = async () => {
     await islogin().then((res) => {
-      if(res.status === 200){
-        LoginCheck=true;
+      if (res.status === 200) {
+        LoginCheck = true;
         name = res.name;
         console.log(name, LoginCheck);
-      }
-      else if(res.status===404){
-        LoginCheck=false;
+      } else if (res.status === 404) {
+        LoginCheck = false;
       }
     });
   };
-  
+
   useEffect(() => {
     console.log(name, LoginCheck);
     handleIsLogin();
   });
-  
+
   const mobileMenuToggle = () => {
     setMenutoggle((menuToggle) => !menuToggle);
   };
 
   const mobilemenu = useRef();
 
-  
   return (
     <>
       <StWrapper>
@@ -76,7 +74,7 @@ const Header = () => {
           <CommonNav />
         </div>
         <ProfileWrapper>
-          {{LoginCheck} ? (
+          {{ LoginCheck } ? (
             <>
               <div className="auth" onClick={handleLogout}>
                 <Button width="104px" height="45px" text="Logout" bgcolor="yellow" txtcolor="black" round="round" />
