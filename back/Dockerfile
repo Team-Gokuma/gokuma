@@ -9,6 +9,7 @@ ENV FLASK_ENV=development
 COPY ./requirements.txt .
 
 RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN apt-get update && apt-get -y install libgl1-mesa-glx
 
 COPY . .
 

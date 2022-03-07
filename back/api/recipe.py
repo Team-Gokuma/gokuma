@@ -32,14 +32,6 @@ class Recoginition(Resource):
             'http://localhost:5000/api/detect/', files=sendFile)
         print("2", response.json())
 
-        # f = request.files['file']
-        # print("f", f)
-
-        # 재료인식 알고리즘 input = img, output = 재료
-        # Model
-
-        # img -> model -> ingrds?
-
         # ingrds에는 재료인식 model을 통과한 class명 들이 담겨져있다.
         ingrds = ['딸기', '당근', '닭가슴살']
 
