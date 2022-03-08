@@ -21,24 +21,18 @@ upload_parser.add_argument('file', location='files',
 @detect_api.route('/')
 class Detection(Resource):
 
-    def get(self):
-        """테스트 용"""
-        return "detection get"
-
     @detect_api.expect(upload_parser)
     def post(self):
-        """테스트 용"""
+        """yolo model을 통과시킨 결과를 반환합니다"""
 
         args = upload_parser.parse_args()
-        uploaded_file = args['file']
-        # uploaded_file = request.get_json()
-        print("u", uploaded_file)
+        file = args['file']
 
         model = torch.hub.load('./ai/yolov5', 'custom',
                                path='./ai/best.pt', source='local')
-        img_path = f"ai/images/20220304_134646.png"
+        img_path = f"ai/images/{file.filename}"
         img = Image.open(img_path)
 
         result = model(img).pandas().xyxy[0]['name'].unique()
 
-        return {"data": [dic[x] for x in result]}
+        return {"ingredients": [dic[x] for x in result]}
