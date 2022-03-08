@@ -152,7 +152,7 @@ const MainBackground = styled.div`
 `;
 const MainSection = styled.section`
   width: 1200px;
-  height: 80vh;
+  height: 800px;
   margin: 0 auto;
   display: flex;
 `;
@@ -193,7 +193,7 @@ const MainImage = styled.div`
 // CAPTURE
 const CaptureSection = styled.div`
   width: 1200px;
-  height: 60vh;
+  height: 600px;
   margin: 0 auto;
   display: flex;
 `;
@@ -226,7 +226,7 @@ const CaptureContent = styled.div`
 
 // REFRIGE
 const RefrigeSection = styled.section`
-  height: 50vh;
+  height: 500px;
   position: relative;
 
   img {
@@ -310,7 +310,7 @@ const ShoppingListImage = styled.div`
     height: 248px;
     position: absolute;
     top: 15%;
-    left: 70%;
+    left: 65%;
   }
 `;
 
@@ -350,7 +350,7 @@ const BookmarkContent = styled.div`
 
 // TEAMINTRO
 const TeamIntroSection = styled.div`
-  height: 30vh;
+  height: 300px;
   height: 140px;
   display: flex;
   margin-top: 200px;
