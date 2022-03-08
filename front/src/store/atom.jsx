@@ -11,7 +11,11 @@ export const modalState = atom({
 
 export const mainRecipesState = atom({
   key: "mainRecipesState",
-  default: [],
+  default: {
+    loading: false,
+    error: undefined,
+    data: undefined,
+  },
 });
 
 export const rankRecipesState = atom({
