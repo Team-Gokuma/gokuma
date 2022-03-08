@@ -1,7 +1,7 @@
 from flask import session
 from flask_restx import Resource
-from models import User, Bookmark, Recipe
 from db_connect import db
+from models_db import User, Bookmark, Recipe
 from api_model.bookmark_model import bookmark_api, response_success_recipe_model, response_fail_model, response_success_model
 
 

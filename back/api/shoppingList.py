@@ -1,7 +1,7 @@
 from flask import jsonify, session, request
 from flask_restx import Resource
-from models import User, ShoppingList
 from db_connect import db
+from models_db import User, ShoppingList
 from api_model.shoppingList_model import shopping_api, response_success_shopping_item_model, response_fail_model, shopping_item_fields, shopping_item_id_fields, ingrds_fields
 
 

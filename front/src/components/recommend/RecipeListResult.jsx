@@ -1,30 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
+import { media } from "../../styles/theme";
 import right from "../../asset/icon/recipe/result/right.svg";
 import left from "../../asset/icon/recipe/result/left.svg";
 
 export const RecipeListResult = ({ Recipes, main }) => {
   return (
     <RecipeList main={main}>
-      <img src={left} alt="left" className="left" />
-      <div className="recipeListContent">
-        <div className="recipeList">{Recipes}</div>
-      </div>
-      <img src={right} alt="right" className="right" />
+      {/* <img src={left} alt="left" className="left" /> */}
+      <div className="recipeList">{Recipes}</div>
+      {/* <img src={right} alt="right" className="right" /> */}
     </RecipeList>
   );
 };
 
 const RecipeList = styled.div`
-  width: 1200px;
-  height: ${(props) => (props.main && props.main ? "360px" : "270px")};
+  width: 100%;
+  height: 100%;
   margin-top: 36px;
   position: relative;
-
-  .recipeListContent {
-    width: 1080px;
-    margin: 0 auto;
-    overflow: hidden;
+  white-space: nowrap;
+  overflow-x: scroll;
+  margin: 0 auto;
+  &::-webkit-scrollbar {
+    height: 8px;
+    background: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.color.darkgray};
+    opacity: 0.4;
+    border-radius: 30px;
+  }
+  .recipeList {
+    height: 100%;
+    position: relative;
+    vertical-align: middle;
   }
 
   img {
@@ -47,10 +57,14 @@ const RecipeList = styled.div`
     right: 0;
     transform: translateY(-50%);
   }
-
-  .recipeList {
-    width: 3600px;
-    display: flex;
-    flex-wrap: wrap;
+  ${media.tablet} {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  ${media.mobile} {
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;

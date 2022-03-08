@@ -1,4 +1,4 @@
-from flask_restx import Resource, Namespace, reqparse, fields
+from flask_restx import Namespace, fields
 
 refrigerator_api = Namespace(
     "Refrigerator", description='냉장고 API', path="/api/refrigerator")

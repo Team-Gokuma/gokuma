@@ -8,6 +8,7 @@ from api.recipe_related import recipe_api
 from api.refrigerator import refrigerator_api
 from api.bookmark import bookmark_api
 from api.userlike import userlike_api
+from ai.ingrds_detect import detect_api
 from flask_restx import Api
 import config
 
@@ -22,6 +23,7 @@ def create_app(test_config=None):
     api.add_namespace(refrigerator_api)
     api.add_namespace(bookmark_api)
     api.add_namespace(userlike_api)
+    api.add_namespace(detect_api)
     app.config.from_object(config)
 
     db.init_app(app)

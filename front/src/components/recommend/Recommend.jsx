@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { media } from "../../styles/theme";
 import { useEffect, useMemo, useState } from "react";
-import { useSetRecoilState, useRecoilState } from "recoil";
+import { useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
 import {
   modalState,
   mainRecipesState,
@@ -9,6 +9,7 @@ import {
   editorpickRecipesState,
   ingredientState,
   bookmarkRecipesState,
+  loginState,
 } from "../../store/atom";
 import { ImageFileUpload } from "../common/ImageFileUpload";
 import { Button } from "../common/Button";
@@ -46,7 +47,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [tags, setTags] = useState([]);
   const [img, setImg] = useState("");
 
-  const login = window.sessionStorage.getItem("isLogin");
+  const login = useRecoilValue(loginState);
   const [onModal, setOnModal] = useRecoilState(modalState);
   const [ingredient, setIngredient] = useRecoilState(ingredientState);
   const setMainRecipe = useSetRecoilState(mainRecipesState);
@@ -105,7 +106,8 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     };
 
     const getResult = async () => {
-      Promise.all([getRecommendation(ingredients), getRankRecipe(), getEditorpick(), getBookmarkRecipe()]);
+      Promise.all([getRecommendation(ingredients), getRankRecipe(), getEditorpick()]);
+      login && (await getBookmarkRecipe());
     };
     getResult();
   };

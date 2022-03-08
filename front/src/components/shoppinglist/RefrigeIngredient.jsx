@@ -59,6 +59,15 @@ const InRefrigeIngredient = styled.div`
     padding: 12px;
     height: 88.55%;
     overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 8px;
+      background: none;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: ${({ theme }) => theme.color.gray};
+      opacity: 0.4;
+      border-radius: 30px;
+    }
   }
   .tag {
     display: inline-block;

@@ -30,12 +30,3 @@ services:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
       - back
-  ai:
-    build: ./ai
-    ports:
-      - "8080:5000"
-    volumes:
-      - ./ai:/app
-    environment:
-      FLASK_ENV: development
-    

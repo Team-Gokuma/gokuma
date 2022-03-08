@@ -32,10 +32,3 @@ services:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
       - back
-  # ai:
-  #   build:
-  #     context: ./ai
-  #     dockerfile: ./Dockerfile
-  #   environment:
-  #     - NVIDIA_VISIBLE_DEVICE=0
-  #   restart: always

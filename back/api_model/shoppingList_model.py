@@ -1,4 +1,4 @@
-from flask_restx import Resource, Namespace, fields
+from flask_restx import Namespace, fields
 
 shopping_api = Namespace(
     "Shopping List", description='장보기 리스트 API', path="/api/shoppingList")

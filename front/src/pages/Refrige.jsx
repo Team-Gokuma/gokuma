@@ -14,6 +14,7 @@ import {
   rankRecipesState,
   editorpickRecipesState,
   bookmarkRecipesState,
+  loginState,
 } from "../store/atom";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { MobileTitle } from "../components/mobile/MobileTitle";
@@ -59,6 +60,7 @@ const Refrige = () => {
   const [ingredient, setIngredient] = useState([]);
   const [isActive, setIsActive] = useState(false);
 
+  const login = useRecoilValue(loginState);
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
   const setMainRecipe = useSetRecoilState(mainRecipesState);
@@ -67,8 +69,6 @@ const Refrige = () => {
   const setBookmarkRecipe = useSetRecoilState(bookmarkRecipesState);
 
   const navigate = useNavigate();
-
-  const login = window.sessionStorage.getItem("isLogin");
 
   const getIngredient = async () => {
     const response = await ingredientList();
@@ -335,6 +335,15 @@ const RefrigeBox = styled.div`
       border-top-right-radius: ${10 / 16}rem;
       border-bottom-right-radius: ${10 / 16}rem;
       overflow-y: scroll;
+      &::-webkit-scrollbar {
+        width: 8px;
+        background: none;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: ${({ theme }) => theme.color.gray};
+        opacity: 0.4;
+        border-radius: 30px;
+      }
     }
 
     .deleteIconBox {
@@ -419,6 +428,7 @@ const FindRecipe = styled.div`
     transform: translateY(-8px);
     .findRecipeText {
       display: block;
+      word-break: keep-all;
     }
   }
   ${media.mobile} {
@@ -426,8 +436,6 @@ const FindRecipe = styled.div`
     height: 52px;
     top: 360px;
     .findRecipeText {
-      word-break: keep-all;
-
       font-size: 14px;
     }
   }

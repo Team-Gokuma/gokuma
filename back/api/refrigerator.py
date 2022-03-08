@@ -1,10 +1,10 @@
 from flask import session, request
 from flask_restx import Resource
-from models import User, Ingredients, Refrigerator
 from db_connect import db
+from models_db import User, Ingredients, Refrigerator
+from api_model.refrigerator_model import refrigerator_api, response_fail_model, response_success_ingrds_model, ingrds_fields, response_success_model
 from datetime import datetime
 from pytz import timezone
-from api_model.refrigerator_model import refrigerator_api, response_fail_model, response_success_ingrds_model, img_fields, ingrd_fields, ingrds_fields, response_success_model
 
 
 @refrigerator_api.route('/list')
@@ -118,7 +118,8 @@ class Save(Resource):
                                    datetime.now(timezone('Asia/Seoul')))
                 db.session.add(new)
                 db.session.commit()
-                new_ingrd = Ingredients(ingrd["content"], ingrd["category"])
+                new_ingrd = Ingredients(
+                    {"name": ingrd["content"], "category": ingrd["category"]})
                 db.session.add(new_ingrd)
                 db.session.commit()
 

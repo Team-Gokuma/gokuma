@@ -42,5 +42,5 @@ def maxIngrds(items):
     return includedRecipe(items, df)
 
 
-items = ['밥', '달걀', '돼지고기', '표고버섯', '양파', '당근', '대파']
-print(maxIngrds(items))
+# items = ['밥', '달걀', '돼지고기', '표고버섯', '양파', '당근', '대파']
+# print(maxIngrds(items))

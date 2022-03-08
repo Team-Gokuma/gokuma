@@ -1,10 +1,8 @@
-from flask import Blueprint, jsonify, session, request
-from flask_restx import Resource, Namespace
-from pyrsistent import CheckedKeyTypeError
-from models import User, UserLike, Recipe
+from flask import session
+from flask_restx import Resource
+from models_db import User, UserLike, Recipe
 from db_connect import db
-from api_model.userlike_model import userlike_api, recipe_id_fields
-import json
+from api_model.userlike_model import userlike_api
 
 
 @userlike_api.route('/check/<int:id>')
@@ -14,7 +12,7 @@ class LikeCheck(Resource):
     @userlike_api.doc(responses={400: 'No User'})
     def get(self, id):
         """유저가 레시피에 좋아요를 눌렀을때 좋아요 개수 저장"""
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
         user = None
         result = {"result_msg": "success", "data": []}
 
