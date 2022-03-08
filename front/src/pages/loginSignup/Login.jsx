@@ -54,9 +54,6 @@ const Login = () => {
   const requestLogin = async (inputs) => {
     await login(inputs).then((res) => {
       if (res && res.status !== 404) {
-        // window.sessionStorage.setItem("name", res.name);
-        // window.sessionStorage.setItem("email", res.email);
-        // window.sessionStorage.setItem("isLogin", true);
         navigate('/');
       } else if (res && res.status === 404) {
         alert("로그인에 실패하였습니다!");
@@ -173,11 +170,8 @@ const StAppBar = styled(Tabs)`
     font-weight: 800;
   }
   ${media.mobile} {
-    position: absolute;
-    width: 250px;
-    height: 0px;
-    left: 40px; 
-    top: 50px;
+    width: 220px;
+    margin:5px 0px 0px 55px;
     .disabled{
       display:none;
     }
