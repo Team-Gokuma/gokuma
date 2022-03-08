@@ -273,6 +273,7 @@ export default Refrige;
 
 const RefrigeContainer = styled.section`
   width: ${740 / 16}rem;
+  height: 90vh;
   margin: 0 auto;
   margin-top: ${88 / 16}rem;
   position: relative;

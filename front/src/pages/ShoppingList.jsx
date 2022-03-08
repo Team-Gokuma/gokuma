@@ -80,6 +80,7 @@ export default ShoppingList;
 
 const ShoppingListContainer = styled.section`
   width: 740px;
+  height: 90vh;
   margin: 0 auto;
   margin-top: 88px;
   position: relative;

@@ -110,7 +110,6 @@ export default Result;
 const ResultContainer = styled.section`
   width: 1200px;
   margin: 80px auto;
-  overflow: hidden;
 
   h3 {
     ${({ theme }) => theme.font.large};
