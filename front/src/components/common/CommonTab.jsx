@@ -32,11 +32,12 @@ const CommonTab = () => {
         <StAppBar
           onChange={handleChangeTab}
           aria-label="disabled tabs example"
-          style={{ backgroundColor: "white" }}
+          style={{ backgroundColor: "white"}}
           TabIndicatorProps={{ style: { background: "orange" } }}
           classes={{ indicator: classes.customStyleOnTab }}
           value={value}
-          centered>
+          centered
+          >
           <Tab label= {
           <span
             className={value === 0 ? classes.activeTab : classes.customStyleOnTab}
@@ -46,8 +47,9 @@ const CommonTab = () => {
             </span>
             }
             to='/login' component={Link}
+
           />
-          <Tab className="disabled" abel="" disabled value="disabled" display="none"/>
+          <Tab className="disabled" label="" disabled value="disabled" display="none"/>
           <Tab label={
           <span
             className={value === 2 ? classes.activeTab : classes.customStyleOnTab}
@@ -75,12 +77,8 @@ const StAppBar = styled(Tabs)`
 
 
   ${media.mobile} {
-    position: absolute;
-    width: 190px;
-    height: 0px;
-    left: 100px; 
-    top: 50px;
-    background-color:red;
+    width: 220px;
+    margin:5px 0px 0px 55px;
     .disabled{
       display:none;
     }
