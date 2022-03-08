@@ -84,7 +84,7 @@ class Save(Resource):
         user = None
         result = {"result_msg": "success"}
 
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
 
         if session.get('email'):
             email = session['email']
