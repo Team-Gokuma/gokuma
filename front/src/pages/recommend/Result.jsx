@@ -62,7 +62,7 @@ const Result = () => {
       />
     );
   });
-  console.log(mainRecipePayload);
+
   if (loading) {
     return <Loading />;
   }

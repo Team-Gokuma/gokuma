@@ -81,11 +81,12 @@ const Refrige = () => {
 
   const getRecommendationResult = (ingredients) => {
     const getRecommendation = async (ingredients) => {
+      setMainRecipe({ loading: true, data: undefined, error: undefined });
       const response = await recommendRecipe(ingredients);
       if (response.status === 200) {
-        setMainRecipe(response.data.data);
+        setMainRecipe({ loading: false, data: response.data.data, error: undefined });
       } else {
-        alert("메뉴 추천에 실패하였습니다.");
+        setMainRecipe({ loading: false, data: undefined, error: new Error("메뉴 추천에 실패하였습니다.") });
       }
     };
 
