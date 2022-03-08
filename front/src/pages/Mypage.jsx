@@ -37,6 +37,8 @@ const Mypage = () => {
       if (res && res.status === 200) {
         mainRecipes([]);
         rankRecipes([]);
+        setUsername("");
+        setUseremail("");
         navigate("/");
       } else if (res && res.status !== 200) {
         alert(res.msg);
@@ -64,7 +66,7 @@ const Mypage = () => {
         setUsername(res.name);
         setUseremail(res.email);
       } else if (res.status === 404) {
-        alert("불러오기 실패");
+        alert(res.msg);
       }
     });
   };
