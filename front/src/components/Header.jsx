@@ -15,11 +15,11 @@ import { StyledLink } from "../styles/commonStyle";
 const Header = () => {
   const [menuToggle, setMenutoggle] = useState(false);
   const [loginCheck, setLoginCheck] = useState(false);
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
   const mainRecipes = useSetRecoilState(mainRecipesState);
   const rankRecipes = useSetRecoilState(rankRecipesState);
-  let name = "";
-  // let LoginCheck = 0;
+  
   const handleLogout = async () => {
     await logout().then((res) => {
       if (res.status !== 404) {
@@ -35,18 +35,16 @@ const Header = () => {
     });
   };
 
-  // useEffect(() => {
-  //   console.log(name, LoginCheck);
-  //   handleIsLogin();
-  // }, [LoginCheck]);
+  useEffect(() => {
+    handleIsLogin();
+  });
 
 
   const handleIsLogin = async () => {
     await islogin().then((res) => {
       if (res.status === 200) {
         setLoginCheck(true);
-        name = res.name;
-        console.log(name, LoginCheck);
+        setUsername(res.name);
       } else if (res.status === 404) {
         setLoginCheck(false);
       }
@@ -58,7 +56,8 @@ const Header = () => {
   };
 
   const mobilemenu = useRef();
-  // handleIsLogin();
+
+
   return (
     <>
       <StWrapper>
@@ -89,7 +88,7 @@ const Header = () => {
                   setMenutoggle(false);
                 }}>
                 <div className="name" style={{ float: "left", marginTop: "14px", marginRight: "10px" }}>
-                  {name}님
+                  {username}님
                 </div>
                 <Profile />
               </StyledLink>
