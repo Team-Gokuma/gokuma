@@ -14,6 +14,7 @@ import {
   rankRecipesState,
   editorpickRecipesState,
   bookmarkRecipesState,
+  loginState,
 } from "../store/atom";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { MobileTitle } from "../components/mobile/MobileTitle";
@@ -59,6 +60,7 @@ const Refrige = () => {
   const [ingredient, setIngredient] = useState([]);
   const [isActive, setIsActive] = useState(false);
 
+  const login = useRecoilValue(loginState);
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
   const setMainRecipe = useSetRecoilState(mainRecipesState);
@@ -67,8 +69,6 @@ const Refrige = () => {
   const setBookmarkRecipe = useSetRecoilState(bookmarkRecipesState);
 
   const navigate = useNavigate();
-
-  const login = window.sessionStorage.getItem("isLogin");
 
   const getIngredient = async () => {
     const response = await ingredientList();

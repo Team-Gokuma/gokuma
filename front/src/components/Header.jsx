@@ -2,9 +2,9 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CommonNav } from "./";
-import { useSetRecoilState } from "recoil";
+import { useSetRecoilState, useRecoilState } from "recoil";
 import { logout, islogin } from "../api/user";
-import { mainRecipesState, rankRecipesState } from "../store/atom";
+import { mainRecipesState, rankRecipesState, loginState } from "../store/atom";
 import { ReactComponent as Logo } from "../asset/icon/header/logo.svg";
 import { ReactComponent as Profile } from "../asset/icon/profile.svg";
 import menu from "../asset/icon/mobile/menu.svg";
@@ -14,9 +14,10 @@ import { StyledLink } from "../styles/commonStyle";
 
 const Header = () => {
   const [menuToggle, setMenutoggle] = useState(false);
-  const [loginCheck, setLoginCheck] = useState(false);
+  const [loginCheck, setLoginCheck] = useRecoilState(loginState);
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
+
   const mainRecipes = useSetRecoilState(mainRecipesState);
   const rankRecipes = useSetRecoilState(rankRecipesState);
 
