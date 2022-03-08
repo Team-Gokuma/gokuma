@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { media } from "../../styles/theme";
 import { useEffect, useMemo, useState } from "react";
-import { useSetRecoilState, useRecoilState } from "recoil";
+import { useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
 import {
   modalState,
   mainRecipesState,
@@ -9,6 +9,7 @@ import {
   editorpickRecipesState,
   ingredientState,
   bookmarkRecipesState,
+  loginState,
 } from "../../store/atom";
 import { ImageFileUpload } from "../common/ImageFileUpload";
 import { Button } from "../common/Button";
@@ -46,7 +47,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [tags, setTags] = useState([]);
   const [img, setImg] = useState("");
 
-  const login = window.sessionStorage.getItem("isLogin");
+  const login = useRecoilValue(loginState);
   const [onModal, setOnModal] = useRecoilState(modalState);
   const [ingredient, setIngredient] = useRecoilState(ingredientState);
   const setMainRecipe = useSetRecoilState(mainRecipesState);
@@ -92,7 +93,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
 
     const getEditorpick = async () => {
       const response = await editorpick();
-      console.log(response);
       if (response.status === 200) {
         setEditorpickRecipe(response.data.data);
       }
@@ -106,15 +106,22 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     };
 
     const getResult = async () => {
-      Promise.all([getRecommendation(ingredients), getRankRecipe(), getEditorpick(), getBookmarkRecipe()]);
+      Promise.all([getRecommendation(ingredients), getRankRecipe(), getEditorpick()]);
+      login && (await getBookmarkRecipe());
     };
     getResult();
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    const handleResult = async () => {
+      await handleAddIngredient(ingredient);
+      await getRecommendationResult(ingredient);
+    };
     page && tags.length > 0 && !login && setOnModal(true);
-    login && handleAddIngredient(ingredient) && getRecommendationResult(ingredient);
+    !login && tags.length === 0 && alert("사진을 찍거나 텍스트로 글을 추가해보세요!");
     login && tags.length > 0 && alert("냉장고에 재료를 넣었습니다!");
+    login && tags.length === 0 && alert("새로운 재료가 없다면 냉장고로 가서 레시피 추천받기를 눌러보세요!");
+    login && handleResult();
   };
 
   const handleClickNoLogin = async () => {

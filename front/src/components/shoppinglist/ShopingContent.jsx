@@ -14,6 +14,8 @@ import {
   deleteShoppinglist,
   deleteAllShoppinglist,
 } from "../../api/shoppinglist";
+import { useRecoilValue } from "recoil";
+import { loginState } from "../../store/atom";
 
 export const ShopingContent = ({ handleToast, handleTap2 }) => {
   const [edit, setEdit] = useState("");
@@ -21,7 +23,8 @@ export const ShopingContent = ({ handleToast, handleTap2 }) => {
   const [add, setAdd] = useState(false);
   const [addValue, setAddValue] = useState("");
   const [shoppintlist, setShoppinglist] = useState([]);
-  const [login, setLogin] = useState(true);
+
+  const login = useRecoilValue(loginState);
 
   const requestGet = async () => {
     const response = await getShoppinglist();
@@ -117,7 +120,6 @@ export const ShopingContent = ({ handleToast, handleTap2 }) => {
   };
 
   useEffect(() => {
-    setLogin(window.sessionStorage.getItem("isLogin"));
     login && requestGet();
   }, []);
 
@@ -224,6 +226,15 @@ const ShoppingListContent = styled.div`
   .shoppinglistBox {
     height: 88.55%;
     overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 8px;
+      background: none;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: ${({ theme }) => theme.color.gray};
+      opacity: 0.4;
+      border-radius: 30px;
+    }
   }
 
   .listcontent {

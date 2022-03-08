@@ -75,9 +75,6 @@ class UserLogin(Resource):
 # 세션은 서버에서 쿠키역할 -> 주기를 정할수있지만 지금은 무한,
         if message is None:
             session['email'] = user.email
-            # resp = make_response("Create Cookie!")
-            # resp.set_cookie('email', email, httponly = True)
-            # resp.set_cookie('name', name, httponly = True)
             message = '로그인에 성공하였습니다.'
             value = {"status": 200, "result": "success",
                      "msg": message, "email": email, "password": password, "name": name}
@@ -97,10 +94,6 @@ class UserLogin(Resource):
         if session.get('email'):
             session.pop('email')
             message = "로그아웃에 성공하였습니다."
-            # resp = make_response(redirect('/'))
-            # resp.delete_cookie('email')
-            # resp.delete_cookie('name')
-            # return resp
             value = {"status": 200, "result": "success", "msg": message}
         else:
             message = "로그아웃에 실패하였습니다."
@@ -121,6 +114,7 @@ class UserDelete(Resource):
         message = None
         user = User.query.filter(User.email == email).first()
         if user != None:
+            session.pop('email')
             User.query.filter(User.email == email).delete()
             db.session.commit()
             message = "회원탈퇴에 성공하였습니다."
@@ -184,8 +178,9 @@ class UserIsLogin(Resource):
     def get(self):
         if session.get('email'):
             email = session['email']
-            name = session['name']
-            message = "현재 로그인 되어있습니다"
+            user = User.query.filter(User.email == email).first()
+            name = user.name
+            message="현재 로그인 되어있습니다"
             value = {"status": 200, "result": "success",
                      "msg": message, "email": email, "name": name}
         else:

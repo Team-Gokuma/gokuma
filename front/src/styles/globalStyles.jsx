@@ -9,11 +9,8 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     word-wrap: break-word;
     word-break: break-all;
-    -ms-overflow-style: none;
     font-size: 16px;  
   }
-  ::-webkit-scrollbar {
-  display: none;
 }
   @font-face {
   font-family: 'BMHANNAPro';
@@ -34,6 +31,7 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
   }
   html,body{
+    height: 100vh;
     font-family: 'MinSans-Regular', 'sans-serif';
     font-size: 16px;
     font-style: normal;

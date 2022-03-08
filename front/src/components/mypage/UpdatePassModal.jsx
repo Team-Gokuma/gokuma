@@ -26,9 +26,9 @@ export const UpdatePassModal = ({ handleClosePass }) => {
   let checkEng = /[a-zA-Z]/;
   let checkSpc = /[~!@#$%^&*()_+|<>?:{}]/;
 
-  const ckEng = checkEng.test(password) ? true : false;
-  const ckNum = checkNum.test(password) ? true : false;
-  const ckSpc = checkSpc.test(password) ? true : false;
+  const ckEng = checkEng.test(newpassword) ? true : false;
+  const ckNum = checkNum.test(newpassword) ? true : false;
+  const ckSpc = checkSpc.test(newpassword) ? true : false;
   const ckLen = newpassword.length >= 8 ? true : false;
   const ckCorrect = newpassword.length !== 0 && newpassword === cknewpassword ? true : false;
 
@@ -51,7 +51,8 @@ export const UpdatePassModal = ({ handleClosePass }) => {
     await passupdate(body).then((res) => {
       if (res && res.status === 200) {
         alert("성공적으로 변경되었습니다.");
-        navigate("/");
+        handleClosePass()
+        navigate("/mypage");
       } else if (res && res.status !== 200) {
         alert("비밀번호 변경에 실패하였습니다!");
       }

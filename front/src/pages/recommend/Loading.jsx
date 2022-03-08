@@ -1,9 +1,9 @@
 import styled from "styled-components";
-const FindRecipe = () => {
+const Loading = () => {
   return (
     <>
       <LoadingContainer>
-        <h3 className="findRecipe">레시피를 찾고 있습니다</h3>
+        <h3 className="findRecipe">Loading...</h3>
         <div className="imgBox">
           <img className="chef" src={`${process.env.PUBLIC_URL}/img/chef.png`} alt="chef" />
           <img src={`${process.env.PUBLIC_URL}/img/refrige.png`} alt="refrige" />
@@ -48,4 +48,4 @@ const LoadingContainer = styled.div`
   }
 `;
 
-export default FindRecipe;
+export default Loading;

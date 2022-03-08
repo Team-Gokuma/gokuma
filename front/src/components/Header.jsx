@@ -1,10 +1,10 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CommonNav } from "./";
-import { useSetRecoilState } from "recoil";
-import { logout } from "../api/user";
-import { mainRecipesState, rankRecipesState } from "../store/atom";
+import { useSetRecoilState, useRecoilState } from "recoil";
+import { logout, islogin } from "../api/user";
+import { mainRecipesState, rankRecipesState, loginState } from "../store/atom";
 import { ReactComponent as Logo } from "../asset/icon/header/logo.svg";
 import { ReactComponent as Profile } from "../asset/icon/profile.svg";
 import menu from "../asset/icon/mobile/menu.svg";
@@ -14,22 +14,39 @@ import { StyledLink } from "../styles/commonStyle";
 
 const Header = () => {
   const [menuToggle, setMenutoggle] = useState(false);
+  const [loginCheck, setLoginCheck] = useRecoilState(loginState);
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
+
   const mainRecipes = useSetRecoilState(mainRecipesState);
   const rankRecipes = useSetRecoilState(rankRecipesState);
 
-  const isLogin = window.sessionStorage.getItem("isLogin");
   const handleLogout = async () => {
     await logout().then((res) => {
       if (res.status !== 404) {
-        window.sessionStorage.clear();
         mainRecipes([]);
         rankRecipes([]);
         navigate("/");
+        setLoginCheck(false);
         setMenutoggle(false);
       } else {
         alert("error");
         return res.msg;
+      }
+    });
+  };
+
+  useEffect(() => {
+    handleIsLogin();
+  });
+
+  const handleIsLogin = async () => {
+    await islogin().then((res) => {
+      if (res.status === 200) {
+        setLoginCheck(true);
+        setUsername(res.name);
+      } else if (res.status === 404) {
+        setLoginCheck(false);
       }
     });
   };
@@ -40,7 +57,6 @@ const Header = () => {
 
   const mobilemenu = useRef();
 
-  const name = window.sessionStorage.getItem("name");
   return (
     <>
       <StWrapper>
@@ -59,7 +75,7 @@ const Header = () => {
           <CommonNav />
         </div>
         <ProfileWrapper>
-          {isLogin ? (
+          {loginCheck ? (
             <>
               <div className="auth" onClick={handleLogout}>
                 <Button width="104px" height="45px" text="Logout" bgcolor="yellow" txtcolor="black" round="round" />
@@ -71,7 +87,7 @@ const Header = () => {
                   setMenutoggle(false);
                 }}>
                 <div className="name" style={{ float: "left", marginTop: "14px", marginRight: "10px" }}>
-                  {name}님
+                  {username}님
                 </div>
                 <Profile />
               </StyledLink>
