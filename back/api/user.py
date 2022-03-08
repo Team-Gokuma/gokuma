@@ -1,11 +1,10 @@
-from flask import request, session, jsonify, redirect, make_response
+from flask import request, session, jsonify
 from werkzeug.security import check_password_hash
 from werkzeug.security import generate_password_hash
-from flask_restx import Api, Resource, reqparse, Namespace
-from models_db import User
+from flask_restx import Resource
 from db_connect import db
+from models_db import User
 from api_model.user_model import user_api, user_signup_model, user_login_model, response_success_model, response_fail_model, user_delete_model, user_update_password_model, user_update_name_model
-from urllib import parse
 
 
 @user_api.route('/temp', doc=False)

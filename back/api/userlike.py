@@ -1,10 +1,8 @@
-from flask import Blueprint, jsonify, session, request
-from flask_restx import Resource, Namespace
-from pyrsistent import CheckedKeyTypeError
+from flask import session
+from flask_restx import Resource
 from models_db import User, UserLike, Recipe
 from db_connect import db
-from api_model.userlike_model import userlike_api, recipe_id_fields
-import json
+from api_model.userlike_model import userlike_api
 
 
 @userlike_api.route('/check/<int:id>')

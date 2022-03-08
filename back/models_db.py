@@ -1,5 +1,3 @@
-from sqlalchemy.sql import func
-from datetime import datetime
 from db_connect import db
 
 # User
