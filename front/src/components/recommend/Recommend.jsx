@@ -112,6 +112,8 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     getResult();
   };
 
+  console.log(ingredient);
+
   const handleClick = async () => {
     const handleResult = async () => {
       await handleAddIngredient(ingredient);
@@ -152,7 +154,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
       });
       setIngredient((cur) => {
         const newData = [...cur];
-        newData.push({ content: inputValue, categoty: 7 });
+        newData.push({ content: inputValue, category: 7 });
         return newData;
       });
       setInputValue("");
