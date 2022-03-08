@@ -1,8 +1,8 @@
-FROM python:3
+FROM python:3.8
 
 WORKDIR /app
 
-ENV FLASK_APP=main.py
+ENV FLASK_APP=app.py
 
 ENV FLASK_ENV=production
 
