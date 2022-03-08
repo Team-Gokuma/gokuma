@@ -1,10 +1,10 @@
-import random
-from flask import session, request
+from flask import session
 from flask_restx import Resource
-from models_db import User, Recipe, RecipeIngrd, RecipeProcess, Ingredients, Refrigerator, Bookmark, UserLike
 from db_connect import db
-from api_model.recipe_model import recipe_api, recipes_fields, response_success_recipe_model, response_fail_model
+from models_db import User, Recipe, Bookmark
+from api_model.recipe_model import recipe_api, response_success_recipe_model, response_fail_model
 from recommendFunc.bookmarkTaste import bookmarkTaste
+import random
 
 
 @recipe_api.route('/related/bookmark')

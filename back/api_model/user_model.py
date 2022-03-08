@@ -1,4 +1,4 @@
-from flask_restx import Resource, Namespace, fields
+from flask_restx import Namespace, fields
 
 user_api = Namespace("User", description='유저 auth API', path="/api/user")
 

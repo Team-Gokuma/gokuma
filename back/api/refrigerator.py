@@ -1,10 +1,10 @@
 from flask import session, request
 from flask_restx import Resource
-from models_db import User, Ingredients, Refrigerator
 from db_connect import db
+from models_db import User, Ingredients, Refrigerator
+from api_model.refrigerator_model import refrigerator_api, response_fail_model, response_success_ingrds_model, ingrds_fields, response_success_model
 from datetime import datetime
 from pytz import timezone
-from api_model.refrigerator_model import refrigerator_api, response_fail_model, response_success_ingrds_model, img_fields, ingrd_fields, ingrds_fields, response_success_model
 
 
 @refrigerator_api.route('/list')
@@ -84,7 +84,7 @@ class Save(Resource):
         user = None
         result = {"result_msg": "success"}
 
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
 
         if session.get('email'):
             email = session['email']
