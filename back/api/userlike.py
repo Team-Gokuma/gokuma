@@ -12,7 +12,7 @@ class LikeCheck(Resource):
     @userlike_api.doc(responses={400: 'No User'})
     def get(self, id):
         """유저가 레시피에 좋아요를 눌렀을때 좋아요 개수 저장"""
-        session['email'] = "admin@gokuma.com"
+        # session['email'] = "admin@gokuma.com"
         user = None
         result = {"result_msg": "success", "data": []}
 

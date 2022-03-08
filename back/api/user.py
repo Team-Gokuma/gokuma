@@ -170,12 +170,11 @@ class UserNameUpdate(Resource):
         db.session.commit()
         return jsonify(value)
 
-# 쿠키안에 로그인된 정보가 있다면 이메일과 닉네임을 리턴해준다
-
 
 @user_api.route('/islogin')
 class UserIsLogin(Resource):
     def get(self):
+        '''로그인 여부를 판정하는 api'''
         if session.get('email'):
             email = session['email']
             user = User.query.filter(User.email == email).first()
