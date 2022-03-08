@@ -12,7 +12,7 @@
 
 ### back서버에 접속하기(초기 데이터베이스 설정 목적)
 
-`docker exec -it gokuma-back-1 /bin/bash` 또는 `docker exec -it gokuma-back-1 //bin//bash`
+`docker exec -it gokuma_back_1 /bin/bash` 또는 `docker exec -it gokuma_back_1 //bin//bash`
 
 ### 초기 데이터베이스에 값 넣기
 
