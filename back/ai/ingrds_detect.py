@@ -13,6 +13,10 @@ dic = {'0': '가리비', '1': '건포도', '2': '게맛살', '3': '고구마', '
 detect_api = Namespace(
     "Detection", description='AI YOLOv5', path="/api/detect")
 
+ingrds_fields = detect_api.model('DetectedIngredients', {
+    'ingredients': fields.List(fields.String())
+})
+
 upload_parser = detect_api.parser()
 upload_parser.add_argument('file', location='files',
                            type=FileStorage, required=True)
@@ -22,6 +26,7 @@ upload_parser.add_argument('file', location='files',
 class Detection(Resource):
 
     @detect_api.expect(upload_parser)
+    @detect_api.response(200, 'Success', ingrds_fields)
     def post(self):
         """yolo model을 통과시킨 결과를 반환합니다"""
 
