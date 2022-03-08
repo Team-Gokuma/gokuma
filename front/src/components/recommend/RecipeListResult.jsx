@@ -3,12 +3,29 @@ import styled from "styled-components";
 import { media } from "../../styles/theme";
 import right from "../../asset/icon/recipe/result/right.svg";
 import left from "../../asset/icon/recipe/result/left.svg";
+import { Recipe } from "../../components/common/Recipe";
 
-export const RecipeListResult = ({ Recipes, main }) => {
+export const RecipeListResult = ({ Recipes }) => {
+  const recipelist = Recipes.map(({ name, img, id, ingrdients }, idx) => {
+    console.log(ingrdients);
+    return (
+      <Recipe
+        key={"recipe" + idx}
+        className="recipe"
+        width="270px"
+        height="270px"
+        text={name}
+        image={img}
+        extratext={ingrdients}
+        recipeId={id}
+      />
+    );
+  });
+
   return (
-    <RecipeList main={main}>
+    <RecipeList>
       {/* <img src={left} alt="left" className="left" /> */}
-      <div className="recipeList">{Recipes}</div>
+      <div className="recipeList">{recipelist}</div>
       {/* <img src={right} alt="right" className="right" /> */}
     </RecipeList>
   );

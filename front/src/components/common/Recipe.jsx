@@ -41,7 +41,7 @@ export const Recipe = ({ width, height, text, extratext, margin, image, isFavori
             />
           )} */}
         <div>
-          <h4>{extratext}</h4>
+          {extratext && <h4>재료를 {extratext}개 사용하는 레시피 입니다!</h4>}
           <h4>{text}</h4>
         </div>
       </RecipeDiv>
@@ -72,7 +72,7 @@ const RecipeDiv = styled(Link)`
     bottom: 0;
     left: 0;
     background-color: ${({ theme }) => theme.color.white};
-    & :nth-child(2) {
+    & :last-child {
       ${({ theme }) => theme.font.bold};
       padding-top: 8px;
     }
