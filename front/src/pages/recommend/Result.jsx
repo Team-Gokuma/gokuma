@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { media } from "../../styles/theme";
-import { Recipe } from "../../components/common/Recipe";
 import { useRecoilValue } from "recoil";
 import { MobileTitle } from "../../components/mobile/MobileTitle";
 import Loading from "./Loading";

@@ -7,7 +7,6 @@ import { Recipe } from "../../components/common/Recipe";
 
 export const RecipeListResult = ({ Recipes }) => {
   const recipelist = Recipes.map(({ name, img, id, ingrdients }, idx) => {
-    console.log(ingrdients);
     return (
       <Recipe
         key={"recipe" + idx}
