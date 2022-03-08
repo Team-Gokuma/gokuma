@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { media } from "../../styles/theme";
 import { useRecoilValue } from "recoil";
-import { ingredientState } from "../../store/atom";
+import { ingredientState, loginState } from "../../store/atom";
 import { RecipeDetailContent } from "../../components/recommend/RecipeDetailContent";
 import { RecipeDetailInfo } from "../../components/recommend/RecipeDetailInfo";
 import { detailRecipe, addLike } from "../../api/receipe";
@@ -12,8 +12,8 @@ import { MobileTitle } from "../../components/mobile/MobileTitle";
 const RecipeDetail = () => {
   const { id } = useParams();
   const [detailData, setDetailData] = useState();
-  const [login, setLogin] = useState(true);
 
+  const login = useRecoilValue(loginState);
   const ingredients = useRecoilValue(ingredientState);
 
   const getDetailRecipe = async () => {
@@ -28,7 +28,6 @@ const RecipeDetail = () => {
   };
 
   useEffect(() => {
-    setLogin(window.sessionStorage.getItem("isLogin"));
     getDetailRecipe();
   }, []);
 

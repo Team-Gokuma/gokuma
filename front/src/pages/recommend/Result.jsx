@@ -5,16 +5,21 @@ import { Recipe } from "../../components/common/Recipe";
 import { useRecoilValue } from "recoil";
 import { MobileTitle } from "../../components/mobile/MobileTitle";
 import Loading from "./Loading";
-import { mainRecipesState, rankRecipesState, editorpickRecipesState, bookmarkRecipesState } from "../../store/atom";
+import {
+  mainRecipesState,
+  rankRecipesState,
+  editorpickRecipesState,
+  bookmarkRecipesState,
+  loginState,
+} from "../../store/atom";
 import { RecipeListResult } from "../../components/recommend/RecipeListResult";
 
 const Result = () => {
+  const login = useRecoilValue(loginState);
   const mainRecipes = useRecoilValue(mainRecipesState);
   const rankRecipes = useRecoilValue(rankRecipesState);
   const editorpickRecipes = useRecoilValue(editorpickRecipesState);
   const bookmarkRecipes = useRecoilValue(bookmarkRecipesState);
-
-  const login = window.sessionStorage.getItem("isLogin");
 
   const maxIngredientRecipe = mainRecipes.map((item, idx) => {
     return (

@@ -105,7 +105,8 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     };
 
     const getResult = async () => {
-      Promise.all([getRecommendation(ingredients), getRankRecipe(), getEditorpick(), getBookmarkRecipe()]);
+      Promise.all([getRecommendation(ingredients), getRankRecipe(), getEditorpick()]);
+      login && (await getBookmarkRecipe());
     };
     getResult();
   };
