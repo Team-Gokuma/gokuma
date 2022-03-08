@@ -19,7 +19,7 @@ const Header = () => {
   const navigate = useNavigate();
   const mainRecipes = useSetRecoilState(mainRecipesState);
   const rankRecipes = useSetRecoilState(rankRecipesState);
-  
+
   const handleLogout = async () => {
     await logout().then((res) => {
       if (res.status !== 404) {
@@ -39,7 +39,6 @@ const Header = () => {
     handleIsLogin();
   });
 
-
   const handleIsLogin = async () => {
     await islogin().then((res) => {
       if (res.status === 200) {
@@ -56,7 +55,6 @@ const Header = () => {
   };
 
   const mobilemenu = useRef();
-
 
   return (
     <>
