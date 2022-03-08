@@ -51,6 +51,7 @@ export const UpdatePassModal = ({ handleClosePass }) => {
     await passupdate(body).then((res) => {
       if (res && res.status === 200) {
         alert("성공적으로 변경되었습니다.");
+        handleClosePass()
         navigate("/mypage");
       } else if (res && res.status !== 200) {
         alert("비밀번호 변경에 실패하였습니다!");

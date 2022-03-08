@@ -32,6 +32,7 @@ export const UpdateNameModal = ({ handleCloseName }) => {
     await nameupdate(body).then((res) => {
       if (res && res.status === 200) {
         alert("성공적으로 변경되었습니다.");
+        handleCloseName()
         navigate("/mypage");
       } else if (res && res.status !== 200) {
         alert("이름변경에 실패하였습니다!");

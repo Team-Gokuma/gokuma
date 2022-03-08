@@ -4,17 +4,18 @@ import styled from "styled-components";
 import { Button } from "../components/common/Button";
 import { UpdateNameModal } from "../components/mypage/UpdateNameModal";
 import { UpdatePassModal } from "../components/mypage/UpdatePassModal";
-import { userdelete, logout } from "../api/user";
+import { userdelete, logout, islogin } from "../api/user";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { mainRecipesState, rankRecipesState } from "../store/atom";
 import { media } from "../styles/theme";
 
 const Mypage = () => {
-  const name = window.sessionStorage.getItem("name");
-  const email = window.sessionStorage.getItem("email");
   const [UpdateName, setUpdateName] = useState(false);
   const [UpdatePass, setUpdatePass] = useState(false);
+  const [username, setUsername] = useState("");
+  const [useremail, setUseremail] = useState("");
+
   const mainRecipes = useSetRecoilState(mainRecipesState);
   const rankRecipes = useSetRecoilState(rankRecipesState);
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const Mypage = () => {
   };
   const handleUserDelete = (e) => {
     e.preventDefault();
-    const body = { email: email };
+    const body = { email: useremail };
     requestDelete(body);
   };
 
@@ -57,6 +58,21 @@ const Mypage = () => {
     });
   };
 
+  const handleIsLogin = async () => {
+    await islogin().then((res) => {
+      if (res.status === 200) {
+        setUsername(res.name);
+        setUseremail(res.email);
+      } else if (res.status === 404) {
+        alert("불러오기 실패");
+      }
+    });
+  };
+  useEffect(() => {
+    handleIsLogin();
+  });
+
+
   return (
     <MypageContainer>
       {UpdateName && <UpdateNameModal handleCloseName={handleCloseName} />}
@@ -68,14 +84,14 @@ const Mypage = () => {
           </Link>
         </LogoutBtn>
         <h2>
-          <span>{name}</span> 님
+          <span>{username}</span> 님
         </h2>
         <div className="mypageContent">
           <div>
             <h3>회원정보</h3>
-            <p>이메일 : {email}</p>
+            <p>이메일 : {useremail}</p>
             <p>
-              닉네임 : {name}
+              닉네임 : {username}
               <span
                 className="editNameBtn"
                 onClick={() => {
