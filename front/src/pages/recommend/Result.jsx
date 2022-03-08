@@ -88,7 +88,7 @@ const Result = () => {
             <h3>재료를 최대한 많이 사용하는 레시피 입니다!</h3>
             <RecipeListResult Recipes={maxIngredientRecipe} main={true} />
             {/* TO DO: 추천 알고리즘 만들고 생성 */}
-            {login && (
+            {login && bookmarkRecipe.length > 0 && (
               <>
                 <h3 className="relative">회원님이 좋아할만한 레시피 입니다!</h3>
                 <RecipeListResult Recipes={bookmarkRecipe} />

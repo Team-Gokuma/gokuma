@@ -112,8 +112,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     getResult();
   };
 
-  console.log(ingredient);
-
   const handleClick = async () => {
     const handleResult = async () => {
       await handleAddIngredient(ingredient);
