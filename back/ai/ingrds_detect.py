@@ -1,6 +1,5 @@
 from flask_restx import Resource, Namespace, fields
 from werkzeug.datastructures import FileStorage
-import requests
 import torch
 from PIL import Image
 
