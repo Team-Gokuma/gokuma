@@ -3,14 +3,11 @@ import { Link } from "react-router-dom";
 import { media } from "../../styles/theme";
 import { ReactComponent as IconRefrige } from "../../asset/icon/refrige.svg";
 import { Button } from "../common/Button";
-import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { loginState } from "../../store/atom";
 
 export const RefrigeIngredient = ({ ingredient, handleTap1 }) => {
-  const [login, setLogin] = useState(true);
-
-  useEffect(() => {
-    setLogin(window.sessionStorage.getItem("isLogin"));
-  }, []);
+  const login = useRecoilValue(loginState);
 
   return (
     <InRefrigeIngredient handleTap1={handleTap1}>

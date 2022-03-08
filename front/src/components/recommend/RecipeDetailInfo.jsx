@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { media } from "../../styles/theme";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ReactComponent as IconOutlineFavorite } from "../../asset/icon/favoriteEmpty.svg";
 import { ReactComponent as IconFilledFavorite } from "../../asset/icon/favoriteBlack.svg";
 import { ReactComponent as IconThumbUp } from "../../asset/icon/thumbUp.svg";
 import { saveBookmark } from "../../api/bookmark";
+import { useRecoilValue } from "recoil";
+import { loginState } from "../../store/atom";
 
 const level = ["초보환영", "보통", "어려움"];
 
@@ -17,11 +19,7 @@ const requestSetBookmark = async (id) => {
 
 export const RecipeDetailInfo = ({ data, handleLike }) => {
   const [bookmark, setBookmark] = useState(data.bookmark);
-  const [login, setLogin] = useState(true);
-
-  useEffect(() => {
-    setLogin(window.sessionStorage.getItem("isLogin"));
-  }, []);
+  const login = useRecoilValue(loginState);
 
   const ingredient = data.ingredient.sort((a, b) => b.inRefrige - a.inRefrige);
 
