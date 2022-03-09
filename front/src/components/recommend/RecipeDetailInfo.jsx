@@ -4,7 +4,9 @@ import { useState } from "react";
 import { ReactComponent as IconOutlineFavorite } from "../../asset/icon/favoriteEmpty.svg";
 import { ReactComponent as IconFilledFavorite } from "../../asset/icon/favoriteBlack.svg";
 import { ReactComponent as IconThumbUp } from "../../asset/icon/thumbUp.svg";
+import { ReactComponent as Iconbasket } from "../../asset/icon/basket.svg";
 import { saveBookmark } from "../../api/bookmark";
+import { lackingrds } from "../../api/shoppinglist";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../../store/atom";
 
@@ -23,6 +25,13 @@ export const RecipeDetailInfo = ({ data, handleLike }) => {
 
   const ingredient = data.ingredient.sort((a, b) => b.inRefrige - a.inRefrige);
 
+  const addLackingrds = async (ingredients) => {
+    const response = await lackingrds(ingredients);
+    if (response.status === 200) {
+      return response;
+    }
+  };
+
   const handleBookmark = () => {
     if (!login) {
       alert("로그인 후 이용이 가능합니다!");
@@ -30,6 +39,15 @@ export const RecipeDetailInfo = ({ data, handleLike }) => {
     }
     setBookmark((bookmark) => !bookmark);
     requestSetBookmark(data.id);
+  };
+
+  const handleAddShoppinglist = () => {
+    if (!login) {
+      alert("로그인 후 이용이 가능합니다!");
+      return;
+    }
+    addLackingrds(data.ingredient);
+    alert("냉장고에 없는 재료를 장보기 리스트에 추가했습니다!");
   };
 
   return (
@@ -81,6 +99,15 @@ export const RecipeDetailInfo = ({ data, handleLike }) => {
         </div>
         <Ingredient>
           <p>재료</p>
+          <AddBtn>
+            <AddShoppinglist onClick={handleAddShoppinglist}>
+              <span className="img">
+                <Iconbasket fill="#7E83D2" />
+              </span>
+              <span>추가하기</span>
+            </AddShoppinglist>
+            <span className="description">클릭하면 바로 냉장고에 없는 재료를 장보기 리스트에 넣을 수 있어요! -></span>
+          </AddBtn>
           {ingredient.map((item, idx) => {
             return (
               <DetailIngredient key={"detailIngredient" + idx}>
@@ -154,7 +181,7 @@ const RecipeInfo = styled.div`
   ${media.tablet} {
     .detailImgBox {
       width: 360px;
-      height: 360px;
+      height: 280px;
       margin-left: 0;
     }
     .detailInfoBox {
@@ -209,6 +236,52 @@ const LikeBox = styled.span`
 const Ingredient = styled.div`
   p {
     ${({ theme }) => theme.font.bold};
+  }
+  position: relative;
+`;
+
+const AddBtn = styled.div`
+  position: absolute;
+  bottom: -50px;
+  left: 0px;
+  :hover {
+    .description {
+      display: block;
+    }
+  }
+
+  .description {
+    width: 240px;
+    line-height: 1.3;
+    padding: 4px;
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: -60px;
+    color: ${({ theme }) => theme.color.lightblack};
+    border-bottom: 1px solid ${({ theme }) => theme.color.purple};
+    background-color: ${({ theme }) => theme.color.white};
+    z-index: 1;
+  }
+`;
+
+const AddShoppinglist = styled.span`
+  display: inline-flex;
+  width: 120px;
+  height: 36px;
+  border: 1px solid ${({ theme }) => theme.color.lightblack};
+  border-radius: 999px;
+  padding: 2px 8px;
+  cursor: pointer;
+
+  .img {
+    width: 28px;
+  }
+  span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 7px;
   }
 `;
 
