@@ -370,29 +370,7 @@ const RefrigeBox = styled.div`
     line-height: 1.5;
     border-bottom-left-radius: 999rem;
   }
-  /* ${media.mobile} {
-    // TO DO: 반응형 원래 계획된 디자인으로 마무리 하기
-    display: block;
-    position: relative;
-    background-color: white;
-    width: 100%;
-    margin-top: 60px;
 
-    .refrigeboxes {
-      width: 100%;
-    }
-    .categorySide {
-      background-color: white;
-      display: flex;
-      position: absolute;
-      top: -40px;
-      right: 0;
-      border: 0;
-    }
-    .ingredientSide {
-      border-radius: 9999px;
-    }
-  } */
   ${media.mobile} {
     height: 400px;
     margin-top: 40px;
@@ -457,16 +435,6 @@ const Category = styled.span`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-
-  /* ${media.mobile} {
-    border: 0;
-    font-size: 12px;
-    flex-wrap: wrap;
-    border-right: 1px solid #bdbdbd;
-    &:last-child {
-      border: 0;
-    } */
-  }
 `;
 
 const RefrigeIngredientBox = styled.div`

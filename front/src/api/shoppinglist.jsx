@@ -47,3 +47,13 @@ export const deleteAllShoppinglist = async () => {
     console.log(error);
   }
 };
+
+export const lackingrds = async (ingredients) => {
+  try {
+    const data = { ingredients: ingredients };
+    const response = await axios.post("/api/shoppingList/lackingrds", data);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

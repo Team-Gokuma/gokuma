@@ -54,8 +54,8 @@ const Bookmark = () => {
             })
           ) : (
             <div className="noBookmark">
-              마음에드는 레시피를 즐겨찾기에 추가해서
-              <br /> 나만의 레시피북을 만들어 보세요!
+              마음에드는 레시피를 즐겨찾기에 추가해서 나만의 레시피북을 만들어 보세요!
+              <br /> 나에게 딱 맞는 레시피 추천을 받을 수 있어요!
               <br />
               <Link to="/recommend" style={{ textDecoration: "none" }} className="goRecommend">
                 <Button text="레시피 추천 받기 ->" bgcolor="orange" txtcolor="white" round={true} />
@@ -127,6 +127,8 @@ const BookmarkContainer = styled.div`
   ${media.mobile} {
     width: 100vw;
     margin-top: 20px;
+    padding: 10%;
+    word-break: keep-all;
 
     h3 {
       display: none;

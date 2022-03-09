@@ -39,7 +39,7 @@ const DetailRecipeBox = styled.div`
   width: 960px;
   padding: 60px;
   background-color: #f8f8f8;
-  margin-top: 100px;
+  margin-top: 120px;
   h4 {
     ${({ theme }) => theme.font.bold};
     ${({ theme }) => theme.font.large};
@@ -73,12 +73,12 @@ const DetailRecipeBox = styled.div`
   }
   ${media.tablet} {
     width: 620px;
-    margin-top: 60px;
+    margin-top: 100px;
   }
   ${media.mobile} {
     width: 100%;
     padding: 20px;
-    margin-top: 40px;
+    margin-top: 100px;
     .youtubeVideo {
       width: 100%;
       height: 42vw;
