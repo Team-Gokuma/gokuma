@@ -6,20 +6,22 @@ import left from "../../asset/icon/recipe/result/left.svg";
 import { Recipe } from "../../components/common/Recipe";
 
 export const RecipeListResult = ({ Recipes }) => {
-  const recipelist = Recipes.map(({ name, img, id, ingrdients }, idx) => {
-    return (
-      <Recipe
-        key={"recipe" + idx}
-        className="recipe"
-        width="270px"
-        height="270px"
-        text={name}
-        image={img}
-        extratext={ingrdients}
-        recipeId={id}
-      />
-    );
-  });
+  const recipelist =
+    Recipes &&
+    Recipes.map(({ name, img, id, ingrdients }, idx) => {
+      return (
+        <Recipe
+          key={"recipe" + idx}
+          className="recipe"
+          width="270px"
+          height="270px"
+          text={name}
+          image={img}
+          extratext={ingrdients}
+          recipeId={id}
+        />
+      );
+    });
 
   return (
     <RecipeList>

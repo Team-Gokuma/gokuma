@@ -180,6 +180,7 @@ const Refrige = () => {
       await getIngredient();
     };
     getlist();
+    setMainRecipe({ loading: false, data: undefined, error: undefined });
   }, []);
 
   return (
