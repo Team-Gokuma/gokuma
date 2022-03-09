@@ -101,7 +101,7 @@ export default SignupPass;
 
 const Stbody = styled.div`
   position: absolute;
-  top: 6rem;
+  top: 5rem;
   left: 0;
   width: 100%;
   height: 100%;
