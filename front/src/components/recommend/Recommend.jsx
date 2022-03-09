@@ -45,7 +45,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [msg, setMsg] = useState("");
   const [onIcon, setOnIcon] = useState(false);
   const [tags, setTags] = useState([]);
-  const [img, setImg] = useState("");
 
   const login = useRecoilValue(loginState);
   const [onModal, setOnModal] = useRecoilState(modalState);
@@ -58,7 +57,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const requestRecognition = async (img) => {
     const response = await recognition(img);
     if (response.status === 200) {
-      setImg(img);
       setIngredient(response.data.data);
       setAddToggle(false);
       setTags((cur) => {
@@ -171,6 +169,12 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
       const rmvIdx = newTags.indexOf(item);
       newTags.splice(rmvIdx, 1);
       return newTags;
+    });
+    setIngredient((cur) => {
+      const newData = [...cur];
+      const rmvIdx = newData.map((item) => item.content).indexOf(1);
+      newData.splice(rmvIdx, 1);
+      return newData;
     });
   };
 
