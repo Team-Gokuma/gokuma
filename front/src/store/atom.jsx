@@ -35,5 +35,9 @@ export const bookmarkRecipesState = atom({
 
 export const ingredientState = atom({
   key: "ingredientState",
-  default: [],
+  default: {
+    loading: false,
+    error: undefined,
+    data: [],
+  },
 });

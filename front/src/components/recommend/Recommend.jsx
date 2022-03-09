@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { media } from "../../styles/theme";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
 import {
   modalState,
@@ -27,6 +27,7 @@ import {
 import { addIngredient } from "../../api/refrige";
 import { StyledLink } from "../../styles/commonStyle";
 import { MobileTitle } from "../mobile/MobileTitle";
+import Loading from "../../pages/recommend/Loading";
 
 const regTag = /^[가-힣]+$/;
 
@@ -56,8 +57,17 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
 
   const requestRecognition = async (img) => {
     const response = await recognition(img);
+    setIngredient({
+      loading: true,
+      error: undefined,
+      data: [],
+    });
     if (response.status === 200) {
-      setIngredient(response.data.data);
+      setIngredient({
+        loading: false,
+        error: undefined,
+        data: response.data.data,
+      });
       setAddToggle(false);
       setTags((cur) => {
         const newArr = [...cur];
@@ -67,7 +77,11 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
         return newArr;
       });
     } else {
-      alert("인식에 실패하였습니다.");
+      setIngredient({
+        loading: true,
+        error: undefined,
+        data: new Error("인식에 실패하였습니다."),
+      });
     }
   };
 
@@ -112,23 +126,23 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
 
   const handleClick = () => {
     const handleResult = async () => {
-      await handleAddIngredient(ingredient);
-      await getRecommendationResult(ingredient);
+      await handleAddIngredient(ingredient.data);
+      await getRecommendationResult(ingredient.data);
     };
-    login && handleResult();
     page && tags.length > 0 && !login && setOnModal(true);
     !login && tags.length === 0 && alert("사진을 찍거나 텍스트로 글을 추가해보세요!");
     login && tags.length > 0 && alert("냉장고에 재료를 넣었습니다!");
     login && tags.length === 0 && alert("새로운 재료가 없다면 냉장고로 가서 레시피 추천받기를 눌러보세요!");
+    login && handleResult();
   };
 
   const handleClickNoLogin = async () => {
-    await getRecommendationResult(ingredient);
+    await getRecommendationResult(ingredient.data);
   };
 
   const hanldeAddIngredient = () => {
     const addIngredient = async () => {
-      await handleAddIngredient(ingredient);
+      await handleAddIngredient(ingredient.data);
       await getIngredient();
       alert("냉장고에 재료를 넣었습니다!");
     };
@@ -147,8 +161,8 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
         return newTags;
       });
       setIngredient((cur) => {
-        const newData = [...cur];
-        newData.push({ content: inputValue, category: 7 });
+        const newData = { ...cur };
+        newData.data = [...newData.data, { content: inputValue, category: 7 }];
         return newData;
       });
       setInputValue("");
@@ -169,9 +183,9 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
       return newTags;
     });
     setIngredient((cur) => {
-      const newData = [...cur];
-      const rmvIdx = newData.map((item) => item.content).indexOf(1);
-      newData.splice(rmvIdx, 1);
+      const newData = { ...cur };
+      const rmvIdx = newData.data.map((item) => item.content).indexOf(1);
+      newData.data.splice(rmvIdx, 1);
       return newData;
     });
   };

@@ -1,11 +1,16 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { media } from "../../styles/theme";
+import { ingredientState } from "../../store/atom";
+import { useRecoilValue } from "recoil";
 
 export const ImageFileUpload = ({ width, height, requestRecognition }) => {
   const [isFile, setIsFile] = useState(false);
   const [image, setImage] = useState("");
-  const [file, setFile] = useState("");
+
+  const ingredient = useRecoilValue(ingredientState);
+
+  console.log(ingredient.loading);
 
   function readURL(fileBlob) {
     setIsFile(true);
@@ -56,6 +61,7 @@ export const ImageFileUpload = ({ width, height, requestRecognition }) => {
           </div>
         </FileUploadContent>
       )}
+      {ingredient.loading && <LoadingMsg>재료를 인식하는중...</LoadingMsg>}
     </FileUpload>
   );
 };
@@ -149,4 +155,8 @@ const FileUploadContent = styled.div`
       height: 44px;
     }
   }
+`;
+
+const LoadingMsg = styled.div`
+  margin-top: 8px;
 `;
