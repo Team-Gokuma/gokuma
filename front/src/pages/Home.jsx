@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { media } from "../styles/theme";
 import styled from "styled-components";
 import bookmark from "../asset/img/home/bookmark.png";
 import flash from "../asset/img/home/flash.png";
@@ -139,11 +140,18 @@ const HomeContainer = styled.section`
   h2 {
     ${({ theme }) => theme.font.bold};
     ${({ theme }) => theme.font.xxlarge};
+    ${media.tablet} {
+      ${({ theme }) => theme.font.xlarge};
+    }
   }
   p {
     ${({ theme }) => theme.font.medium};
+    ${media.tablet} {
+      ${({ theme }) => theme.font.normal};
+    }
   }
   line-height: 1.5;
+  box-sizing: border-box;
 `;
 
 // MAIN
@@ -155,6 +163,12 @@ const MainSection = styled.section`
   height: 800px;
   margin: 0 auto;
   display: flex;
+  ${media.tablet} {
+    width: 768px;
+    height: 600px;
+  }
+  ${media.mobile} {
+  }
 `;
 const MainContent = styled.div`
   flex: 1;
@@ -180,6 +194,14 @@ const MainContent = styled.div`
       color: ${({ theme }) => theme.color.white};
     }
   }
+  ${media.tablet} {
+    flex: 1;
+    margin-top: 180px;
+    .mainLink {
+      width: 240px;
+      height: 46px;
+    }
+  }
 `;
 const MainImage = styled.div`
   margin-top: 100px;
@@ -187,6 +209,13 @@ const MainImage = styled.div`
   img {
     width: 526px;
     height: 584px;
+    ${media.tablet} {
+      width: 360px;
+      height: 407px;
+    }
+  }
+  ${media.tablet} {
+    flex: 0;
   }
 `;
 
@@ -196,6 +225,11 @@ const CaptureSection = styled.div`
   height: 600px;
   margin: 0 auto;
   display: flex;
+  ${media.tablet} {
+    width: 768px;
+    height: 450px;
+    box-sizing: border-box;
+  }
 `;
 const CaptureImage = styled.div`
   flex: 1;
@@ -215,12 +249,27 @@ const CaptureImage = styled.div`
     height: 378px;
     margin-top: 100px;
   }
+  ${media.tablet} {
+    .flash {
+      width: 40px;
+      height: 36px;
+      top: 160px;
+      left: 10px;
+    }
+    .ipad {
+      width: 380px;
+      height: 328px;
+    }
+  }
 `;
 const CaptureContent = styled.div`
   flex: 1;
   .captureTitle {
     margin-top: 180px;
     margin-bottom: 12px;
+  }
+  ${media.tablet} {
+    padding-left: 20px;
   }
 `;
 
@@ -233,6 +282,14 @@ const RefrigeSection = styled.section`
     width: 437px;
     height: 380px;
   }
+
+  ${media.tablet} {
+    height: 300px;
+    img {
+      width: 280px;
+      height: 220px;
+    }
+  }
 `;
 const RefrigeInner = styled.div`
   width: 1200px;
@@ -242,10 +299,15 @@ const RefrigeInner = styled.div`
   top: 25%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+
+  ${media.tablet} {
+    width: 768px;
+    top: 10%;
+    left: 50%;
+  }
 `;
 const RefrigeImage = styled.div`
   flex: 1;
-  position: relative;
   .webBack {
     position: relative;
   }
@@ -254,6 +316,17 @@ const RefrigeImage = styled.div`
     top: 30px;
     left: 40px;
   }
+  ${media.tablet} {
+    flex: 0.6;
+    .webBack {
+      top: 50px;
+      left: -15px;
+    }
+    .webFront {
+      top: 70px;
+      left: 0px;
+    }
+  }
 `;
 const RefrigeContent = styled.div`
   flex: 1;
@@ -261,12 +334,18 @@ const RefrigeContent = styled.div`
   .refrigeTitle {
     margin-bottom: 12px;
   }
+  ${media.tablet} {
+    flex: 1;
+  }
 `;
 const RefrigeBackground = styled.div`
   width: 100vw;
   height: 218px;
   margin-top: 240px;
   background-color: #f5f5f5;
+  ${media.tablet} {
+    height: 180px;
+  }
 `;
 
 // SHOPPINGLIST
@@ -275,6 +354,10 @@ const ShoppingListSection = styled.section`
   width: 1200px;
   height: 50vh;
   margin: 0 auto;
+  ${media.tablet} {
+    width: 768px;
+    height: 40vh;
+  }
 `;
 const ShoppingListContent = styled.div`
   flex: 1;
@@ -284,6 +367,9 @@ const ShoppingListContent = styled.div`
 
   h2 {
     margin-bottom: 12px;
+  }
+  ${media.tablet} {
+    flex: 1.1;
   }
 `;
 const ShoppingListImage = styled.div`
@@ -312,6 +398,26 @@ const ShoppingListImage = styled.div`
     top: 15%;
     left: 65%;
   }
+
+  ${media.tablet} {
+    .shoppinglist {
+      width: 305px;
+      height: 167px;
+      top: 35%;
+      left: 0;
+    }
+    .store {
+      width: 238px;
+      height: 106px;
+      top: 20%;
+      left: 10%;
+    }
+    .shoppingcart {
+      width: 122px;
+      height: 168px;
+      top: 20%;
+    }
+  }
 `;
 
 //BOOKMARK
@@ -320,6 +426,9 @@ const BookmarkSection = styled.section`
   margin: 0 auto;
   display: flex;
   margin-top: 160px;
+  ${media.tablet} {
+    width: 768px;
+  }
 `;
 const BookmarkImage = styled.div`
   flex: 1;
@@ -350,7 +459,6 @@ const BookmarkContent = styled.div`
 
 // TEAMINTRO
 const TeamIntroSection = styled.div`
-  height: 300px;
   height: 140px;
   display: flex;
   margin-top: 200px;
