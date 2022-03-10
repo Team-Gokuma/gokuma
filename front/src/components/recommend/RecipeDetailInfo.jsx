@@ -23,9 +23,12 @@ export const RecipeDetailInfo = ({ data, handleLike }) => {
   const [bookmark, setBookmark] = useState(data.bookmark);
   const login = useRecoilValue(loginState);
 
-  const lackIngredient = data.ingredient.map((item) => {
-    return { content: item.name };
-  });
+  const lackIngredient = data.ingredient
+    .filter((item) => !item.inRefrige)
+    .map((item) => {
+      return { content: item.name };
+    });
+
   const ingredient = data.ingredient.sort((a, b) => b.inRefrige - a.inRefrige);
 
   const addLackingrds = async (ingredients) => {
