@@ -10,8 +10,6 @@ export const ImageFileUpload = ({ width, height, requestRecognition }) => {
 
   const ingredient = useRecoilValue(ingredientState);
 
-  console.log(ingredient.loading);
-
   function readURL(fileBlob) {
     setIsFile(true);
     const reader = new FileReader();

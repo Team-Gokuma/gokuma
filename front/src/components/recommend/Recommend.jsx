@@ -69,6 +69,10 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
         data: response.data.data,
       });
       setAddToggle(false);
+      if (response.data.data.length === 0) {
+        alert("인식된 재료가 없습니다!");
+        return;
+      }
       setTags((cur) => {
         const newArr = [...cur];
         response.data.data.forEach((item) => {
