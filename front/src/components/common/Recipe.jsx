@@ -79,8 +79,8 @@ const RecipeDiv = styled(Link)`
   }
   .favoriteIcon {
     position: absolute;
-    top: 1rem;
-    left: 1rem;
+    top: 16px;
+    left: 16px;
     cursor: pointer;
   }
   ${media.tablet} {

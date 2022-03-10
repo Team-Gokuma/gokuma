@@ -19,7 +19,7 @@ const Mypage = () => {
   const mainRecipes = useSetRecoilState(mainRecipesState);
   const rankRecipes = useSetRecoilState(rankRecipesState);
   const navigate = useNavigate();
-  
+
   const handleCloseName = () => {
     setUpdateName(false);
   };
@@ -74,7 +74,6 @@ const Mypage = () => {
     handleIsLogin();
   });
 
-
   return (
     <MypageContainer>
       {UpdateName && <UpdateNameModal handleCloseName={handleCloseName} />}
@@ -127,47 +126,47 @@ const MypageContainer = styled.section`
   background-color: #f0f1f3;
 `;
 const MypageContent = styled.div`
-  width: ${600 / 16}rem;
+  width: 600px;
   margin: 0 auto;
-  padding-top: ${80 / 16}rem;
+  padding-top: 80px;
 
   h2 {
     ${({ theme }) => theme.font.xlarge};
-    margin-bottom: ${40 / 16}rem;
-    margin-left: 1rem;
+    margin-bottom: 40px;
+    margin-left: 16px;
 
     span {
       ${({ theme }) => theme.font.bold}
     }
   }
   .mypageContent {
-    width: ${600 / 16}rem;
-    height: ${400 / 16}rem;
+    width: 600px;
+    height: 400px;
     background-color: ${({ theme }) => theme.color.white};
-    border-radius: ${10 / 16}rem;
-    padding: ${60 / 16}rem;
+    border-radius: 10px;
+    padding: 60px;
     ${({ theme }) => theme.font.medium};
     box-shadow: 3px 7px 14px 0 rgba(0, 0, 0, 0.05);
 
     h3 {
       ${({ theme }) => theme.font.bold};
       ${({ theme }) => theme.font.xlarge};
-      padding-bottom: ${40 / 16}rem;
+      padding-bottom: 40px;
     }
     p {
-      margin-bottom: ${28 / 16}rem;
+      margin-bottom: 28px;
       width: 70%;
       position: relative;
     }
     .editNameBtn {
-      margin-left: ${60 / 16}rem;
+      margin-left: 60px;
       position: absolute;
       top: -12px;
       right: -40px;
     }
     .userInfoBtn {
       display: inline-block;
-      margin-top: ${40 / 16}rem;
+      margin-top: 40px;
       margin-right: 1.2rem;
     }
   }

@@ -80,8 +80,8 @@ const ModalContainer = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  min-width: ${440 / 16}rem;
-  height: ${380 / 16}rem;
+  min-width: 440px;
+  height: 380px;
   background-color: #fff;
   border-radius: 5%;
   text-align: center;
@@ -90,23 +90,23 @@ const ModalContainer = styled.div`
   align-items: center;
   & .modalCloseIcon {
     position: absolute;
-    top: 1.2rem;
-    right: 1.2rem;
+    top: 20px;
+    right: 20px;
     cursor: pointer;
   }
   & div.content {
     & h4 {
       ${({ theme }) => theme.font.bold};
       font-size: 20px;
-      margin-bottom: 1.5rem;
+      margin-bottom: 24px;
     }
     & p {
       font-size: 18px;
-      margin-bottom: ${32 / 16}rem;
+      margin-bottom: 32px;
       line-height: 1.2;
     }
     & .loginModalBtn :first-child {
-      margin-bottom: 1rem;
+      margin-bottom: 16px;
     }
   }
 `;

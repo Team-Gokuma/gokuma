@@ -332,8 +332,8 @@ const RecommendContainer = styled.div`
       }
     }
     .infoIcon {
-      width: ${18 / 16}rem;
-      height: ${18 / 16}rem;
+      width: 18px;
+      height: 18px;
       position: absolute;
       top: 2px;
       left: -24px;
@@ -341,7 +341,7 @@ const RecommendContainer = styled.div`
     }
     p {
       margin-bottom: 32px;
-      font-size: ${15 / 16}rem;
+      font-size: 15PX
       position: relative;
       color: #d23236;
     }

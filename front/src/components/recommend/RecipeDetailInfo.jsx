@@ -137,27 +137,27 @@ const RecipeInfo = styled.div`
     position: relative;
   }
   .detailInfoBox {
-    margin-top: 1rem;
+    margin-top: 16px;
     width: 450px;
     margin-left: 80px;
     p {
-      margin-bottom: ${12 / 16}rem;
+      margin-bottom: 12px;
     }
     h3 {
       display: inline-block;
       ${({ theme }) => theme.font.bold};
       ${({ theme }) => theme.font.large};
-      margin-bottom: 1.2rem;
+      margin-bottom: 20px;
       position: relative;
       .bookmarkIcon {
         position: absolute;
-        top: ${-3 / 16}rem;
-        right: -2.3rem;
+        top: -3px;
+        right: -36px;
         cursor: pointer;
       }
     }
     .summary {
-      margin-bottom: 1.4rem;
+      margin-bottom: 22px;
       line-height: 1.4;
     }
 
@@ -168,9 +168,9 @@ const RecipeInfo = styled.div`
       margin-left: 4px;
     }
     .servings {
-      margin-bottom: ${24 / 16}rem;
+      margin-bottom: 24px;
       & .servingsContent {
-        margin-left: 0.7rem;
+        margin-left: 12px;
       }
     }
   }
@@ -217,12 +217,12 @@ const LikeBox = styled.span`
   display: inline-block;
   background-color: ${(props) => (props.like ? "#FFB800" : props.theme.color.white)};
   color: ${(props) => (props.like ? props.theme.color.white : props.theme.color.black)};
-  margin-bottom: 1.4rem;
+  margin-bottom: 22px;
   border: 1px solid ${(props) => (props.like ? props.theme.color.white : props.theme.color.darkgray)};
   border-radius: 4px;
-  padding: ${6 / 16}rem ${12 / 16}rem;
-  padding-top: ${8 / 16}rem;
-  padding-left: ${32 / 16}rem;
+  padding: 6px 12px;
+  padding-top: 8px;
+  padding-left: 32px;
   position: relative;
   cursor: pointer;
 
@@ -235,7 +235,6 @@ const LikeBox = styled.span`
   span {
     margin-left: 12px;
     ${({ theme }) => theme.font.normal};
-    /* font-size: 1rem; */
   }
 `;
 
@@ -308,7 +307,7 @@ const IngredientName = styled.span`
   border-radius: 4px;
   display: inline-block;
   padding: 8px 12px;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
   margin-right: 8px;
   word-break: keep-all;
   ${media.mobile} {

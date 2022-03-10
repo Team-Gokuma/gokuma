@@ -42,9 +42,9 @@ const Wrapdiv = styled.div`
 const StWrapper = styled(StListWrapper)`
   display: flex;
   justify-content: space-between;
-  width: 30rem;
+  width: 480px;
   ${media.tablet} {
-    width: 28rem;
+    width: 448px;
   }
   ${media.mobile} {
     width: 130px;
@@ -64,7 +64,7 @@ const StWrapper = styled(StListWrapper)`
     ${({ theme }) => theme.font.medium};
     cursor: pointer;
     ${media.tablet} {
-      font-size: 1rem;
+      font-size: 16px;
     }
   }
 `;
