@@ -34,7 +34,6 @@ export const RecipeDetailInfo = ({ data, handleLike }) => {
   const addLackingrds = async (ingredients) => {
     const response = await lackingrds(ingredients);
     if (response.status === 200) {
-      console.log(response);
       return response;
     }
   };
