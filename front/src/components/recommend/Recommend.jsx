@@ -323,7 +323,7 @@ const RecommendContainer = styled.div`
     }
     p {
       margin-bottom: 32px;
-      font-size: 15PX
+      font-size: 15px;
       position: relative;
       color: #d23236;
     }
