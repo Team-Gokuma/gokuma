@@ -26,7 +26,7 @@ export const recommendRecipe = async (ingredients) => {
 
 export const cooktimeRecipe = async (time) => {
   try {
-    const response = await axios.get(`/api/recipe/related/cooktime?time${time}`);
+    const response = await axios.get(`/api/recipe/related/cooktime?time=${time}`);
     return response;
   } catch (error) {
     console.log(error);

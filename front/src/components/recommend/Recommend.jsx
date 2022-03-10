@@ -16,18 +16,10 @@ import { Button } from "../common/Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
 import { AlertLoginModal } from "../common/AlertLoginModal";
-import {
-  recognition,
-  recommendRecipe,
-  cooktimeRecipe,
-  rankRecipe,
-  editorpick,
-  bookmarkRecipe,
-} from "../../api/receipe";
+import { recognition, recommendRecipe, rankRecipe, editorpick, bookmarkRecipe } from "../../api/receipe";
 import { addIngredient } from "../../api/refrige";
 import { StyledLink } from "../../styles/commonStyle";
 import { MobileTitle } from "../mobile/MobileTitle";
-import Loading from "../../pages/recommend/Loading";
 
 const regTag = /^[가-힣]+$/;
 
@@ -89,8 +81,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
       });
     }
   };
-
-  console.log(ingredient);
 
   const getRecommendationResult = (ingredients) => {
     const getRecommendation = async (ingredients) => {
