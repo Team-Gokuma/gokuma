@@ -96,8 +96,5 @@ const RecipeDiv = styled(Link)`
     div {
       padding: 4px;
     }
-    h4:first-child {
-      display: none;
-    }
   }
 `;
