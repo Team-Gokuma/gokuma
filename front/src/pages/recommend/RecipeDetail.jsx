@@ -17,7 +17,7 @@ const RecipeDetail = () => {
   const ingredients = useRecoilValue(ingredientState);
 
   const getDetailRecipe = async () => {
-    const response = await detailRecipe(id, ingredients);
+    const response = await detailRecipe(id, ingredients.data);
     if (response.status === 200) {
       setDetailData(response.data);
     }
