@@ -231,19 +231,25 @@ class shoppingListPush(Resource):
 
         data = request.get_json()
         contents = data['ingredients']
+        print("contents: ", contents)
         items = ShoppingList.query.filter(
             ShoppingList.user_id == user.id).all()
 
-        for item in items:
-            for content in contents:
+        exist = False
+        for content in contents:
+            for item in items:
                 # 이미 리스트에 존재하는지 확인
                 if item.content == content['content']:
-                    continue
-                else:
-                    new_item = ShoppingList(
-                        user.id, content['content'], False)
-                    db.session.add(new_item)
-                    db.session.commit()
+                    exist = True
+                    break
+
+            if exist == False:
+                new_item = ShoppingList(
+                    user.id, content['content'], False)
+                db.session.add(new_item)
+                db.session.commit()
+            else:
+                exist = False
 
         return result, 200
 
