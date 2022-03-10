@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_migrate import Migrate
+from flask_cors import CORS
 from db_connect import db
 from api.user import user_api
 from api.shoppingList import shopping_api
@@ -28,6 +29,7 @@ def create_app(test_config=None):
 
     db.init_app(app)
     Migrate().init_app(app, db)
+    CORS(app, resources={r'/api/*': {'origins': '*'}})
 
     return app
 
