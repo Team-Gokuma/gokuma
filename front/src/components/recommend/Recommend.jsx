@@ -20,6 +20,7 @@ import { recognition, recommendRecipe, rankRecipe, editorpick, bookmarkRecipe } 
 import { addIngredient } from "../../api/refrige";
 import { StyledLink } from "../../styles/commonStyle";
 import { MobileTitle } from "../mobile/MobileTitle";
+import { useQuery } from "react-query";
 
 const regTag = /^[가-힣]+$/;
 
@@ -74,6 +75,14 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     }
   };
 
+  const { status, data, error } = useQuery("mainRecipes", recommendRecipe, { suspense: true });
+  if (status === "loading") {
+    console.log("loading");
+  }
+  if (status === "error") {
+    console.log(error.message);
+  }
+
   const getRecommendationResult = (ingredients) => {
     const getRecommendation = async (ingredients) => {
       setMainRecipe({ loading: true, data: undefined, error: undefined });
@@ -123,6 +132,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     login && ingredient.data.length > 0 && alert("냉장고에 재료를 넣었습니다!");
     login && ingredient.data.length === 0 && alert("새로운 재료가 없다면 냉장고로 가서 레시피 추천받기를 눌러보세요!");
     login && handleResult();
+    setIngredient({ loading: false, error: undefined, data: [] });
   };
 
   const handleClickNoLogin = async () => {

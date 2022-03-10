@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/globalStyles";
 import theme from "./styles/theme";
 import axios from "axios";
 import { RecoilRoot } from "recoil";
+import { QueryClient, QueryClientProvider } from "react-query";
 import {
   Home,
   RecommendMain,
@@ -18,6 +19,7 @@ import {
   ShoppingList,
   SignupNick,
   Mypage,
+  Loading,
   // UpdateNameModal,
   // UpdatePassModal,
 } from "./pages";
@@ -31,35 +33,46 @@ function App() {
       .catch(console.log);
   }, []);
 
-  return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        {/* <p>{msg}</p> */}
-        <RecoilRoot>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/recommend" element={<RecommendMain />} />
-            <Route path="/result" element={<Result />} />
-            <Route path="/detail/:id" element={<RecipeDetail />} />
-            <Route path="/refrige" element={<Refrige />} />
-            <Route path="/bookmark" element={<Bookmark />} />
-            <Route path="/shoppinglist" element={<ShoppingList />} />
-            <Route path="/teamIntro" element={<div>팀소개</div>} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/signupPass" element={<SignupPass />} />
-            <Route path="/signupNick" element={<SignupNick />} />
-            <Route path="/mypage" element={<Mypage />} />
-            {/* <Route path="/UpdateNameModal" element={<UpdateNameModal />} />
-            <Route path="/UpdatePassModal" element={<UpdatePassModal />} /> */}
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: 0,
+        suspense: true,
+      },
+    },
+  });
 
-            
-          </Routes>
-        </RecoilRoot>
-      </ThemeProvider>
-    </BrowserRouter>
+  return (
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          {/* <p>{msg}</p> */}
+          <Suspense fallback={<Loading />}>
+            <RecoilRoot>
+              <Header />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/recommend" element={<RecommendMain />} />
+                <Route path="/result" element={<Result />} />
+                <Route path="/detail/:id" element={<RecipeDetail />} />
+                <Route path="/refrige" element={<Refrige />} />
+                <Route path="/bookmark" element={<Bookmark />} />
+                <Route path="/shoppinglist" element={<ShoppingList />} />
+                <Route path="/teamIntro" element={<div>팀소개</div>} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/signupPass" element={<SignupPass />} />
+                <Route path="/signupNick" element={<SignupNick />} />
+                <Route path="/mypage" element={<Mypage />} />
+                {/* <Route path="/UpdateNameModal" element={<UpdateNameModal />} />
+                <Route path="/UpdatePassModal" element={<UpdatePassModal />} /> */}
+              </Routes>
+            </RecoilRoot>
+          </Suspense>
+        </ThemeProvider>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 
