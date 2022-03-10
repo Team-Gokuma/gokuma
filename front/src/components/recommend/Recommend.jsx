@@ -57,16 +57,17 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
 
   const requestRecognition = async (img) => {
     const response = await recognition(img);
-    setIngredient({
-      loading: true,
-      error: undefined,
-      data: [],
+    setIngredient((cur) => {
+      const newData = { ...cur };
+      newData.loading = true;
+      return newData;
     });
     if (response.status === 200) {
-      setIngredient({
-        loading: false,
-        error: undefined,
-        data: response.data.data,
+      setIngredient((cur) => {
+        const newData = { ...cur };
+        newData.loading = false;
+        newData.data = [...newData.data, ...response.data.data];
+        return newData;
       });
       setAddToggle(false);
       if (response.data.data.length === 0) {
@@ -88,6 +89,8 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
       });
     }
   };
+
+  console.log(ingredient);
 
   const getRecommendationResult = (ingredients) => {
     const getRecommendation = async (ingredients) => {
@@ -187,9 +190,10 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
       return newTags;
     });
     setIngredient((cur) => {
-      const newData = { ...cur };
-      const rmvIdx = newData.data.map((item) => item.content).indexOf(1);
-      newData.data.splice(rmvIdx, 1);
+      let newData = { ...cur };
+      newData.data = newData.data.filter((data) => {
+        if (data.content !== item) return data;
+      });
       return newData;
     });
   };
