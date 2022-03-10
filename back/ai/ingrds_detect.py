@@ -32,7 +32,7 @@ class Detection(Resource):
         file = args['file']
 
         model = torch.hub.load('./ai/yolov5', 'custom',
-                               path='./ai/best.pt', source='local')
+                               path='./ai/last.pt', source='local')
         img_path = f"ai/images/{file.filename}"
         img = Image.open(img_path)
 
