@@ -184,6 +184,10 @@ const Refrige = () => {
     const data = ingredient.map((item) => {
       return { content: item.content, category: item.category };
     });
+    if (ingredient.length === 0) {
+      alert("냉장고에 재료를 추가하고 레시피를 추천받아보세요!");
+      return;
+    }
     login && (await getRecommendationResult(data));
     login && navigate("/result");
     !login && onToast();
