@@ -23,11 +23,15 @@ export const RecipeDetailInfo = ({ data, handleLike }) => {
   const [bookmark, setBookmark] = useState(data.bookmark);
   const login = useRecoilValue(loginState);
 
+  const lackIngredient = data.ingredient.map((item) => {
+    return { content: item.name };
+  });
   const ingredient = data.ingredient.sort((a, b) => b.inRefrige - a.inRefrige);
 
   const addLackingrds = async (ingredients) => {
     const response = await lackingrds(ingredients);
     if (response.status === 200) {
+      console.log(response);
       return response;
     }
   };
@@ -46,7 +50,7 @@ export const RecipeDetailInfo = ({ data, handleLike }) => {
       alert("로그인 후 이용이 가능합니다!");
       return;
     }
-    addLackingrds(data.ingredient);
+    addLackingrds(lackIngredient);
     alert("냉장고에 없는 재료를 장보기 리스트에 추가했습니다!");
   };
 
@@ -106,7 +110,7 @@ export const RecipeDetailInfo = ({ data, handleLike }) => {
               </span>
               <span>추가하기</span>
             </AddShoppinglist>
-            <span className="description">클릭하면 바로 냉장고에 없는 재료를 장보기 리스트에 넣을 수 있어요! -></span>
+            <span className="description">클릭하면 냉장고에 없는 재료를 장보기 리스트에 넣을 수 있어요! -></span>
           </AddBtn>
           {ingredient.map((item, idx) => {
             return (
@@ -251,13 +255,15 @@ const AddBtn = styled.div`
   }
 
   .description {
+    font-size: 14px;
+    word-break: keep-all;
     width: 240px;
     line-height: 1.3;
     padding: 4px;
     display: none;
     position: absolute;
     left: 0;
-    bottom: -60px;
+    bottom: -54px;
     color: ${({ theme }) => theme.color.lightblack};
     border-bottom: 1px solid ${({ theme }) => theme.color.purple};
     background-color: ${({ theme }) => theme.color.white};
