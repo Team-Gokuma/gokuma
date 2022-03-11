@@ -10,6 +10,7 @@ export default function CommonNav({ mobileMenuToggle }) {
     { id: 1, navText: "나의 냉장고", navigate: () => navigate("refrige") },
     { id: 2, navText: "즐겨찾는 레시피", navigate: () => navigate("bookmark") },
     { id: 3, navText: "장보기 리스트", navigate: () => navigate("shoppinglist") },
+    { id: 4, navText: "팀 소개", navigate: () => navigate("teamIntro") },
   ];
 
   return (
@@ -42,7 +43,7 @@ const Wrapdiv = styled.div`
 const StWrapper = styled(StListWrapper)`
   display: flex;
   justify-content: space-between;
-  width: 30rem;
+  width: 40rem;
   ${media.tablet} {
     width: 28rem;
   }
