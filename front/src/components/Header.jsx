@@ -237,7 +237,7 @@ const MobileMenu = styled.div`
   display: none;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
   width: 100vw;
-  height: 240px;
+  height: 300px;
   animation: toggleMenu 0.5s ease forwards;
   position: absolute;
   top: 60px;
