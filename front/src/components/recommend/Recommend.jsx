@@ -16,18 +16,10 @@ import { Button } from "../common/Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
 import { AlertLoginModal } from "../common/AlertLoginModal";
-import {
-  recognition,
-  recommendRecipe,
-  cooktimeRecipe,
-  rankRecipe,
-  editorpick,
-  bookmarkRecipe,
-} from "../../api/receipe";
+import { recognition, recommendRecipe, rankRecipe, editorpick, bookmarkRecipe } from "../../api/receipe";
 import { addIngredient } from "../../api/refrige";
 import { StyledLink } from "../../styles/commonStyle";
 import { MobileTitle } from "../mobile/MobileTitle";
-import Loading from "../../pages/recommend/Loading";
 
 const regTag = /^[가-힣]+$/;
 
@@ -45,7 +37,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [inputValue, setInputValue] = useState("");
   const [msg, setMsg] = useState("");
   const [onIcon, setOnIcon] = useState(false);
-  const [tags, setTags] = useState([]);
 
   const login = useRecoilValue(loginState);
   const [onModal, setOnModal] = useRecoilState(modalState);
@@ -74,13 +65,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
         alert("인식된 재료가 없습니다!");
         return;
       }
-      setTags((cur) => {
-        const newArr = [...cur];
-        response.data.data.forEach((item) => {
-          newArr.push(item.content);
-        });
-        return newArr;
-      });
     } else {
       setIngredient({
         loading: true,
@@ -89,8 +73,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
       });
     }
   };
-
-  console.log(ingredient);
 
   const getRecommendationResult = (ingredients) => {
     const getRecommendation = async (ingredients) => {
@@ -136,10 +118,10 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
       await handleAddIngredient(ingredient.data);
       await getRecommendationResult(ingredient.data);
     };
-    page && tags.length > 0 && !login && setOnModal(true);
-    !login && tags.length === 0 && alert("사진을 찍거나 텍스트로 글을 추가해보세요!");
-    login && tags.length > 0 && alert("냉장고에 재료를 넣었습니다!");
-    login && tags.length === 0 && alert("새로운 재료가 없다면 냉장고로 가서 레시피 추천받기를 눌러보세요!");
+    page && ingredient.data.length > 0 && !login && setOnModal(true);
+    !login && ingredient.data.length === 0 && alert("사진을 찍거나 텍스트로 글을 추가해보세요!");
+    login && ingredient.data.length > 0 && alert("냉장고에 재료를 넣었습니다!");
+    login && ingredient.data.length === 0 && alert("새로운 재료가 없다면 냉장고로 가서 레시피 추천받기를 눌러보세요!");
     login && handleResult();
   };
 
@@ -153,7 +135,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
       await getIngredient();
       alert("냉장고에 재료를 넣었습니다!");
     };
-    login && tags.length > 0 && addIngredient() && handleAddImage();
+    login && ingredient.data.length > 0 && addIngredient() && handleAddImage();
   };
 
   const handleToggle = () => {
@@ -163,10 +145,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const saveTags = (e) => {
     e.preventDefault();
     if (regTag.test(inputValue)) {
-      setTags((cur) => {
-        const newTags = [...cur, inputValue];
-        return newTags;
-      });
       setIngredient((cur) => {
         const newData = { ...cur };
         newData.data = [...newData.data, { content: inputValue, category: 7 }];
@@ -183,12 +161,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   };
 
   const removeTag = (item) => {
-    setTags((cur) => {
-      const newTags = [...cur];
-      const rmvIdx = newTags.indexOf(item);
-      newTags.splice(rmvIdx, 1);
-      return newTags;
-    });
     setIngredient((cur) => {
       let newData = { ...cur };
       newData.data = newData.data.filter((data) => {
@@ -199,26 +171,26 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   };
 
   const tagList = useMemo(() => {
-    if (!tags.length) {
+    if (!ingredient.data.length) {
       setAddToggle(true);
       return null;
     }
-    if (tags.length > 0) {
-      return tags.map((item, idx) => {
+    if (ingredient.data.length > 0) {
+      return ingredient.data.map((item, idx) => {
         return (
           <div className="tag" key={idx}>
-            <Button text={item} bgcolor="orange" txtcolor="white" round={true} padding="0 40px 0 20px" />
+            <Button text={item.content} bgcolor="orange" txtcolor="white" round={true} padding="0 40px 0 20px" />
             <IconClose
               className="closeIcon"
               onClick={() => {
-                removeTag(item);
+                removeTag(item.content);
               }}
             />
           </div>
         );
       });
     }
-  }, [tags]);
+  }, [ingredient.data]);
 
   return (
     <section>
@@ -264,7 +236,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
             )}
           </div>
           {page ? (
-            <StyledLink to={tags.length > 0 && login ? "/result" : "/recommend"} onClick={handleClick}>
+            <StyledLink to={ingredient.data.length > 0 && login ? "/result" : "/recommend"} onClick={handleClick}>
               <Button text="레시피 찾기" bgcolor="yellow" txtcolor="black" width="180px" />
             </StyledLink>
           ) : (
@@ -342,8 +314,8 @@ const RecommendContainer = styled.div`
       }
     }
     .infoIcon {
-      width: ${18 / 16}rem;
-      height: ${18 / 16}rem;
+      width: 18px;
+      height: 18px;
       position: absolute;
       top: 2px;
       left: -24px;
@@ -351,7 +323,7 @@ const RecommendContainer = styled.div`
     }
     p {
       margin-bottom: 32px;
-      font-size: ${15 / 16}rem;
+      font-size: 15px;
       position: relative;
       color: #d23236;
     }

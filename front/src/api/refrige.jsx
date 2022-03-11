@@ -36,3 +36,12 @@ export const deleteAllIngredient = async () => {
     console.log(error);
   }
 };
+
+export const timeoverIngredient = async () => {
+  try {
+    const response = await axios.get("/api/refrigerator/time");
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

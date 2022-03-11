@@ -156,8 +156,8 @@ const StWrapper = styled.header`
 `;
 
 const LogoWrapper = styled.h1`
-  margin-right: ${36 / 16}rem;
-  margin-left: ${25 / 16}rem;
+  margin-right: 36px;
+  margin-left: 25px;
   text-decoration: none;
   align-items: center;
   display: flex;
@@ -189,8 +189,8 @@ const LogoWrapper = styled.h1`
 `;
 
 const Img = styled(Logo)`
-  width: ${36 / 16}rem;
-  height: ${36 / 16}rem;
+  width: 36px;
+  height: 36px;
   margin-right: 1rem;
   ${media.tablet} {
     width: 32px;

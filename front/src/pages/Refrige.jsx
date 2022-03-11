@@ -20,7 +20,13 @@ import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { MobileTitle } from "../components/mobile/MobileTitle";
 import { AddByText } from "../components/refrige/AddByText";
 import { AddByImage } from "../components/refrige/AddByImage";
-import { ingredientList, deleteAllIngredient, deleteIngredient, addIngredient } from "../api/refrige";
+import {
+  ingredientList,
+  deleteAllIngredient,
+  deleteIngredient,
+  addIngredient,
+  timeoverIngredient,
+} from "../api/refrige";
 import { recommendRecipe, rankRecipe, editorpick, bookmarkRecipe } from "../api/receipe";
 import { Toast } from "../components/common/Toast";
 
@@ -59,6 +65,7 @@ const Refrige = () => {
   const [isClicked, setIsClicked] = useState("전체 식재료");
   const [ingredient, setIngredient] = useState([]);
   const [isActive, setIsActive] = useState(false);
+  const [timeoverIngredientList, setTimeoverIngredientList] = useState([]);
 
   const login = useRecoilValue(loginState);
   const onModal = useRecoilValue(modalState);
@@ -76,6 +83,13 @@ const Refrige = () => {
       setIngredient(response.data.data);
     } else {
       setModal(true);
+    }
+  };
+
+  const getTimeoverIngredient = async () => {
+    const response = await timeoverIngredient();
+    if (response.status === 200) {
+      setTimeoverIngredientList(response.data.data);
     }
   };
 
@@ -170,6 +184,10 @@ const Refrige = () => {
     const data = ingredient.map((item) => {
       return { content: item.content, category: item.category };
     });
+    if (ingredient.length === 0) {
+      alert("냉장고에 재료를 추가하고 레시피를 추천받아보세요!");
+      return;
+    }
     login && (await getRecommendationResult(data));
     login && navigate("/result");
     !login && onToast();
@@ -178,6 +196,7 @@ const Refrige = () => {
   useEffect(() => {
     const getlist = async () => {
       await getIngredient();
+      await getTimeoverIngredient();
     };
     getlist();
     setMainRecipe({ loading: false, data: undefined, error: undefined });
@@ -220,7 +239,7 @@ const Refrige = () => {
           </div>
         </RefrigeTitle>
         <RefrigeBox>
-          <div className="refrigeboxes categorySide">
+          <Refrigeboxes className="categorySide">
             {category.map((item, idx) => {
               return (
                 <Category
@@ -234,8 +253,8 @@ const Refrige = () => {
                 </Category>
               );
             })}
-          </div>
-          <div className="refrigeboxes ingredientSide">
+          </Refrigeboxes>
+          <Refrigeboxes className="ingredientSide">
             <div className="deleteIconBox">
               <IconDelete className="deleteIcon" onClick={removeAllIngredient} />
             </div>
@@ -244,6 +263,13 @@ const Refrige = () => {
                 if (isClicked === category[item.category] || isClicked === category[0])
                   return (
                     <RefrigeIngredientBox key={item + idx}>
+                      {timeoverIngredientList.filter((data) => {
+                        if (data.content === item.content) return data;
+                      }).length > 0 && (
+                        <TimeoverAlert>
+                          <span className="alertText">냉장고에 넣은지 5일이 지났습니다!</span>
+                        </TimeoverAlert>
+                      )}
                       <span className="refrigeIngredient">
                         {item.content}
                         <IconClose
@@ -257,14 +283,14 @@ const Refrige = () => {
                   );
               })}
             {ingredient.length === 0 && (
-              <Link to="/recommend" className="noIngredient">
+              <NoIngredient to="/recommend">
                 재료를 저장하고, 냉장고의 재료를 최대한 이용한 레시피를 추천받을 수 있습니다!
                 <br />
                 <br />
                 추천 받으러 가기 ->
-              </Link>
+              </NoIngredient>
             )}
-          </div>
+          </Refrigeboxes>
         </RefrigeBox>
       </RefrigeContainer>
     </>
@@ -274,10 +300,10 @@ const Refrige = () => {
 export default Refrige;
 
 const RefrigeContainer = styled.section`
-  width: ${740 / 16}rem;
+  width: 740px;
   height: 90vh;
   margin: 0 auto;
-  margin-top: ${88 / 16}rem;
+  margin-top: 88px;
   position: relative;
 
   ${media.mobile} {
@@ -295,9 +321,7 @@ const RefrigeTitle = styled.div`
   h2 {
     ${({ theme }) => theme.font.xlarge}
   }
-  span:first-child {
-    margin-right: ${12 / 16}rem;
-  }
+
   .addIcon {
     width: 36px;
     height: 36px;
@@ -308,9 +332,6 @@ const RefrigeTitle = styled.div`
   ${media.mobile} {
     h2 {
       display: none;
-    }
-    span:first-child {
-      margin-right: 0;
     }
     div {
       position: absolute;
@@ -330,63 +351,85 @@ const RefrigeBox = styled.div`
   display: flex;
   position: relative;
 
-  .refrigeboxes {
-    width: 50%;
-
-    &.ingredientSide {
-      background-color: ${({ theme }) => theme.color.white};
-      border-top-right-radius: ${10 / 16}rem;
-      border-bottom-right-radius: ${10 / 16}rem;
-      overflow-y: scroll;
-      &::-webkit-scrollbar {
-        width: 8px;
-        background: none;
-      }
-      &::-webkit-scrollbar-thumb {
-        background-color: ${({ theme }) => theme.color.gray};
-        opacity: 0.4;
-        border-radius: 30px;
-      }
-    }
-
-    .deleteIconBox {
-      text-align: end;
-      margin: 16px 16px 0 0;
-    }
-    .deleteIcon {
-      cursor: pointer;
-    }
-    & :first-child {
-      border-top-left-radius: 10px;
-    }
-    & :last-child {
-      border-bottom: none;
-      border-bottom-left-radius: 10px;
-    }
-  }
-  .noIngredient {
-    color: ${({ theme }) => theme.color.black};
-    display: inline-block;
-    margin: 3.5rem;
-    line-height: 1.5;
-    border-bottom-left-radius: 999rem;
-  }
-
   ${media.mobile} {
     height: 400px;
     margin-top: 40px;
+  }
+`;
 
-    .refrigeboxes {
-      width: 100%;
+const Refrigeboxes = styled.div`
+  width: 50%;
+
+  &.ingredientSide {
+    background-color: ${({ theme }) => theme.color.white};
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 8px;
+      background: none;
     }
-    .categorySide {
+    &::-webkit-scrollbar-thumb {
+      background-color: ${({ theme }) => theme.color.gray};
+      opacity: 0.4;
+      border-radius: 30px;
+    }
+  }
+
+  .deleteIconBox {
+    text-align: end;
+    margin: 16px 16px 0 0;
+  }
+  .deleteIcon {
+    cursor: pointer;
+  }
+
+  ${media.mobile} {
+    width: 100%;
+    &.categorySide {
       width: 80%;
     }
-    .noIngredient {
-      margin: 0;
-      margin: 12px;
-      word-break: keep-all;
+  }
+`;
+
+const NoIngredient = styled(Link)`
+  color: ${({ theme }) => theme.color.black};
+  display: inline-block;
+  margin: 56px;
+  line-height: 1.5;
+  border-bottom-left-radius: 999rem;
+
+  ${media.mobile} {
+    margin: 0;
+    margin: 12px;
+    word-break: keep-all;
+  }
+`;
+
+const TimeoverAlert = styled.span`
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background-color: #ff4444;
+  margin-right: 8px;
+  position: relative;
+  :hover {
+    .alertText {
+      display: inline-block;
     }
+  }
+
+  .alertText {
+    display: none;
+    width: 140px;
+    word-break: keep-all;
+    background-color: ${({ theme }) => theme.color.yellow};
+    padding: 4px;
+    position: absolute;
+    bottom: -56px;
+    left: 0;
+    z-index: 1;
   }
 `;
 
@@ -397,7 +440,7 @@ const FindRecipe = styled.div`
   border-radius: 9999px;
   position: absolute;
   top: 480px;
-  right: 0;
+  right: 12px;
   z-index: 1;
   cursor: pointer;
   transition-duration: 0.3s;
@@ -436,6 +479,12 @@ const Category = styled.span`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  &:first-child {
+    border-top-left-radius: 10px;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 const RefrigeIngredientBox = styled.div`
@@ -446,15 +495,15 @@ const RefrigeIngredientBox = styled.div`
     display: inline-block;
     text-decoration: underline;
     position: relative;
-    margin-bottom: 1.2rem;
+    margin-bottom: 20px;
 
     .refrigeIngredientCloseBtn {
-      width: 1.2rem;
-      height: 1.2rem;
+      width: 20px;
+      height: 20px;
       cursor: pointer;
       position: absolute;
       top: 0;
-      right: -1.4rem;
+      right: -24px;
     }
   }
 `;

@@ -35,12 +35,11 @@ const SignupNick = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    if(nickname === ""){
+    if (nickname === "") {
       alert("닉네임을 입력해주세요!");
-    }
-    else{
-    const body = { email: email, password: password, nickname: nickname };
-    requestSignup(body);
+    } else {
+      const body = { email: email, password: password, nickname: nickname };
+      requestSignup(body);
     }
   };
 
@@ -64,7 +63,7 @@ export default SignupNick;
 
 const Stbody = styled.div`
   position: absolute;
-  top: 5rem;
+  top: 80px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -75,18 +74,18 @@ const Stbody = styled.div`
 const StWrapper = styled.div`
   display: flex;
   margin: auto;
-  margin-top: ${100 / 16}rem;
-  width: ${600 / 16}rem;
-  height: ${546 / 16}rem;
+  margin-top: 100px;
+  width: 600px;
+  height: 546px;
   box-shadow: 3px 7px 14px rgba(0, 0, 0, 0.05);
-  border-radius: ${10 / 16}rem;
+  border-radius: 10px;
   background: ${({ theme }) => theme.color.white};
   ${media.mobile} {
     width: 320px;
     height: 360px;
     left: 20px;
     top: 58px;
-    }
+  }
 `;
 
 const StInput = styled.div`
@@ -95,8 +94,8 @@ const StInput = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: row wrap;
-  margin-bottom: 10rem;
+  margin-bottom: 160px;
   & span {
-    margin-top: 8.5rem;
+    margin-top: 136px;
   }
 `;

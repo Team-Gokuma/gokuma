@@ -27,7 +27,6 @@ const useStyles = makeStyles(() => ({
   },
 }));
 const Login = () => {
-
   const setIsLogin = useSetRecoilState(loginState);
   const classes = useStyles();
   const navigate = useNavigate();
@@ -54,13 +53,13 @@ const Login = () => {
   const requestLogin = async (inputs) => {
     await login(inputs).then((res) => {
       if (res && res.status !== 404) {
-        navigate('/');
+        navigate("/");
       } else if (res && res.status === 404) {
         alert("로그인에 실패하였습니다!");
       }
     });
   };
-  
+
   const onSubmit = (e) => {
     e.preventDefault();
     let body = {
@@ -99,7 +98,14 @@ const Login = () => {
         </StAppBar>
         <StInput>
           <form onSubmit={onSubmit} style={{ textAlign: "center" }}>
-            <LoginInput className="login" type="text" name="email" placeholder="이메일" onChange={handleChange} value={email} />
+            <LoginInput
+              className="login"
+              type="text"
+              name="email"
+              placeholder="이메일"
+              onChange={handleChange}
+              value={email}
+            />
             <LoginInput
               type="password"
               name="password"
@@ -116,9 +122,7 @@ const Login = () => {
               round="round"
               type="submit"
             />
-            <Error display={error}>
-            *이메일 또는 비밀번호가 일치하지않습니다.
-        </Error>
+            <Error display={error}>*이메일 또는 비밀번호가 일치하지않습니다.</Error>
           </form>
         </StInput>
       </StWrapper>
@@ -129,7 +133,7 @@ const Login = () => {
 export default Login;
 const Stbody = styled.div`
   position: absolute;
-  top: 5rem;
+  top: 80px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -139,11 +143,11 @@ const Stbody = styled.div`
 const StWrapper = styled.div`
   display: flex;
   margin: auto;
-  margin-top: ${100 / 16}rem;
-  width: ${600 / 16}rem;
-  height: ${546 / 16}rem;
+  margin-top: 100px;
+  width: 600px;
+  height: 546px;
   box-shadow: 3px 7px 14px rgba(0, 0, 0, 0.05);
-  border-radius: ${10 / 16}rem;
+  border-radius: 10px;
   background: ${({ theme }) => theme.color.white};
   text-align: center;
   ${media.mobile} {
@@ -166,14 +170,14 @@ const StAppBar = styled(Tabs)`
   && {
     // background-color: rgba(0, 0, 0, 0.5);
     color: #ff99a0;
-    font-size: 5rem;
+    font-size: 80px;
     font-weight: 800;
   }
   ${media.mobile} {
     width: 220px;
-    margin:5px 0px 0px 55px;
-    .disabled{
-      display:none;
+    margin: 5px 0px 0px 55px;
+    .disabled {
+      display: none;
     }
   }
 `;
@@ -184,9 +188,8 @@ const StInput = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: row wrap;
-
 `;
 const Error = styled.strong`
   margin-top: 20px;
-  display: ${(props) => (props.display ? 'block' : 'none')};
+  display: ${(props) => (props.display ? "block" : "none")};
 `;

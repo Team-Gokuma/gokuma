@@ -6,6 +6,8 @@ import { Button } from "../common/Button";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../../store/atom";
 
+const categoryColor = ["#DD95A1", "#FFC750", "#F7941E", "#79B3DA", "#8CC1AC", "#7E77AD", "#587297"];
+
 export const RefrigeIngredient = ({ ingredient, handleTap1 }) => {
   const login = useRecoilValue(loginState);
 
@@ -33,11 +35,11 @@ export const RefrigeIngredient = ({ ingredient, handleTap1 }) => {
                 <Button
                   text={item.content}
                   bgcolor="white"
-                  txtcolor="lightblack"
+                  txtcolor="black"
                   height="32px"
                   cursor="default"
                   round={true}
-                  border="1.9px solid #757575"
+                  border={`1.9px solid ${categoryColor[item.category - 1]}`}
                   padding="16px 16px"
                 />
               </span>
