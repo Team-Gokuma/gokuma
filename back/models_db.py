@@ -23,7 +23,8 @@ class ShoppingList(db.Model):
     __tablename__ = "ShoppingList"
     id = db.Column(db.Integer, nullable=False,
                    primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'User.id', ondelete='CASCADE'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     checked = db.Column(db.Boolean(), nullable=False)
 
@@ -146,7 +147,8 @@ class Refrigerator(db.Model):
     __tablename__ = 'Refrigerator'
     id = db.Column(db.Integer, nullable=False,
                    primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'User.id', ondelete='CASCADE'))
     content = db.Column(db.VARCHAR(255), nullable=False)
     category = db.Column(db.Integer,  db.ForeignKey(
         'IngrdCategory.category'), nullable=True)
@@ -165,7 +167,8 @@ class Bookmark(db.Model):
     __tablename__ = 'Bookmark'
     id = db.Column(db.Integer, nullable=False,
                    primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'User.id', ondelete='CASCADE'), nullable=False)
     recipe_id = db.Column(db.Integer, db.ForeignKey(
         'Recipe.recipe_id'), nullable=False)
     checked = db.Column(db.Boolean())
@@ -180,7 +183,8 @@ class UserLike(db.Model):
     __tablename__ = 'UserLike'
     id = db.Column(db.Integer, nullable=False,
                    primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'User.id', ondelete='CASCADE'), nullable=False)
     recipe_id = db.Column(db.Integer, db.ForeignKey(
         'Recipe.recipe_id'), nullable=False)
     checked = db.Column(db.Boolean())
