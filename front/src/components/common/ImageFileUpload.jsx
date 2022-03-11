@@ -10,16 +10,18 @@ export const ImageFileUpload = ({ width, height, requestRecognition }) => {
 
   const ingredient = useRecoilValue(ingredientState);
 
-  function readURL(fileBlob) {
+  function readURL(file) {
+    const formData = new FormData();
+    formData.append("file", file);
     setIsFile(true);
     const reader = new FileReader();
-    reader.readAsDataURL(fileBlob);
+    reader.readAsDataURL(file);
     return new Promise((resolve) => {
       reader.onload = () => {
         setImage(reader.result);
         resolve();
       };
-    });
+    }).then(() => requestRecognition(formData));
   }
 
   function removeFile() {
@@ -35,9 +37,7 @@ export const ImageFileUpload = ({ width, height, requestRecognition }) => {
             className="fileUploadInput"
             type="file"
             onChange={(e) => {
-              const formData = new FormData();
-              formData.append("file", e.target.files[0]);
-              readURL(e.target.files[0]).then(() => requestRecognition(formData));
+              readURL(e.target.files[0]);
             }}
             value={image}
             accept="image/*"

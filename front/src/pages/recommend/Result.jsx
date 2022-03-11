@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { media } from "../../styles/theme";
 import { useRecoilValue } from "recoil";
@@ -20,29 +20,30 @@ const Result = () => {
   const login = useRecoilValue(loginState);
   const ingredients = useRecoilValue(ingredientState);
 
-  const [levelRecipes, setLevelRecipes] = useState();
-  const [cooktimeRecipes, setCooktimeRecipes] = useState();
+  const [mainRecipes, setMainRecipes] = useState();
+  const [bookmarkRecipes, setBookmarkRecipes] = useState();
   const [rankRecipes, setRankRecipes] = useState();
   const [editorpickRecipes, setEditorpickRecipes] = useState();
-  const [bookmarkRecipes, setBookmarkRecipes] = useState();
-  const [mainRecipes, setMainRecipes] = useState();
+  const [level, setLevel] = useState(1);
+  const [cooktime, setCooktime] = useState(1);
 
-  const levelRecipesList = useMemo(() => {
-    return levelRecipes;
-  }, [levelRecipes]);
+  const {
+    data: levelRecipes,
+    isLoading: isLevelRecipesLoading,
+    isFetching: isLevelRecipesFetching,
+  } = useQuery(["levelRecipes", level], () => levelRecipe(level), {
+    select: (payload) => payload.data.data,
+    staleTime: Infinity,
+  });
 
-  const cooktimeRecipesList = useMemo(() => {
-    return cooktimeRecipes;
-  }, [cooktimeRecipes]);
-
-  const requestLevelRecipe = async (level) => {
-    const response = await levelRecipe(level);
-    setLevelRecipes(response.data.data);
-  };
-  const requestCooktimeRecipe = async (cooktime) => {
-    const response = await cooktimeRecipe(cooktime);
-    setCooktimeRecipes(response.data.data);
-  };
+  const {
+    data: cooktimeRecipes,
+    isLoading: isCooktimeRecipesLoading,
+    isFetching: isCooktimeRecipesFetching,
+  } = useQuery(["cooktimeRecipes", cooktime], () => cooktimeRecipe(cooktime), {
+    select: (payload) => payload.data.data,
+    staleTime: Infinity,
+  });
 
   const mainRecipeResult = useMutation(recommendRecipe, {
     onSuccess: (data) => {
@@ -50,32 +51,35 @@ const Result = () => {
     },
   });
 
-  const recipeResult = useQueries([
+  const recipeResult = useQueries(
+    [
+      {
+        queryKey: "rankRecipe",
+        queryFn: () => rankRecipe(),
+      },
+      {
+        queryKey: "editorPick",
+        queryFn: () => editorpick(),
+      },
+      {
+        queryKey: "bookmarkRecipe",
+        queryFn: () => bookmarkRecipe(),
+      },
+    ],
     {
-      queryKey: "rankRecipe",
-      queryFn: () => rankRecipe(),
+      staleTime: Infinity,
     },
-    {
-      queryKey: "editorPick",
-      queryFn: () => editorpick(),
-    },
-    {
-      queryKey: "bookmarkRecipe",
-      queryFn: () => bookmarkRecipe(),
-    },
-  ]);
+  );
 
   const handleLevelList = (value) => {
-    requestLevelRecipe(value);
+    setLevel(value);
   };
   const handleCooktimeList = (value) => {
-    requestCooktimeRecipe(value);
+    setCooktime(value);
   };
 
   useEffect(() => {
-    requestLevelRecipe(1);
-    requestCooktimeRecipe(1);
-    mainRecipeResult.mutate(ingredients);
+    mainRecipeResult.mutate(ingredients.data);
   }, []);
 
   useEffect(() => {
@@ -117,7 +121,7 @@ const Result = () => {
             <option value={3}>어려움</option>
           </select>
         </h3>
-        <RecipeListResult Recipes={levelRecipesList} />
+        <RecipeListResult Recipes={levelRecipes} isLoading={isLevelRecipesLoading} />
         <h3 className="relative">
           조리시간별 추천 레시피입니다!
           <select
@@ -129,7 +133,7 @@ const Result = () => {
             <option value={3}>50분이상</option>
           </select>
         </h3>
-        <RecipeListResult Recipes={cooktimeRecipesList} />
+        <RecipeListResult Recipes={cooktimeRecipes} isLoading={isCooktimeRecipesLoading} />
       </ResultContainer>
     </>
   );

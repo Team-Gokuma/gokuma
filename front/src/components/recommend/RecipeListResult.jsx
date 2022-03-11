@@ -1,36 +1,39 @@
 import React from "react";
 import styled from "styled-components";
 import { media } from "../../styles/theme";
-import right from "../../asset/icon/recipe/result/right.svg";
-import left from "../../asset/icon/recipe/result/left.svg";
 import { Recipe } from "../../components/common/Recipe";
 
-export const RecipeListResult = ({ Recipes }) => {
-  const recipelist =
-    Recipes &&
-    Recipes.map(({ name, img, id, ingrdients }, idx) => {
-      return (
-        <Recipe
-          key={"recipe" + idx}
-          className="recipe"
-          width="270px"
-          height="270px"
-          text={name}
-          image={img}
-          extratext={ingrdients}
-          recipeId={id}
-        />
-      );
-    });
-
+export const RecipeListResult = React.memo(({ Recipes, isLoading = false }) => {
   return (
     <RecipeList>
-      {/* <img src={left} alt="left" className="left" /> */}
-      <div className="recipeList">{recipelist}</div>
-      {/* <img src={right} alt="right" className="right" /> */}
+      {!isLoading && (
+        <div className="recipeList">
+          {Recipes &&
+            Recipes.map(({ name, img, id, ingrdients }, idx) => {
+              return (
+                <Recipe
+                  key={"recipe" + idx}
+                  className="recipe"
+                  width="270px"
+                  height="270px"
+                  text={name}
+                  image={img}
+                  extratext={ingrdients}
+                  recipeId={id}
+                />
+              );
+            })}
+        </div>
+      )}
+      {isLoading && <RecipeListSkeleton />}
     </RecipeList>
   );
-};
+});
+
+const RecipeListSkeleton = styled.div`
+  height: 270px;
+  background-color: #f5f5f5;
+`;
 
 const RecipeList = styled.div`
   width: 100%;
@@ -53,27 +56,6 @@ const RecipeList = styled.div`
     height: 100%;
     position: relative;
     vertical-align: middle;
-  }
-
-  img {
-    width: 36px;
-    height: 36px;
-    position: absolute;
-    z-index: 1;
-    cursor: pointer;
-    :hover {
-      opacity: 0.8;
-    }
-  }
-  .left {
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-  }
-  .right {
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
   }
   ${media.tablet} {
     &::-webkit-scrollbar {

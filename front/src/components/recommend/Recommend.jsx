@@ -15,15 +15,6 @@ import { MobileTitle } from "../mobile/MobileTitle";
 
 const regTag = /^[가-힣]+$/;
 
-const handleAddIngredient = async (data) => {
-  const response = await addIngredient(data);
-  if (response.status === 200) {
-    return response;
-  } else {
-    alert("저장을 실패했습니다.");
-  }
-};
-
 export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [AddToggle, setAddToggle] = useState(true);
   const [inputValue, setInputValue] = useState("");
@@ -39,6 +30,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     setIngredient((cur) => {
       const newData = { ...cur };
       newData.loading = true;
+      newData.data = [];
       return newData;
     });
     if (response.status === 200) {
@@ -62,22 +54,17 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     }
   };
 
-  const handleClick = () => {
-    const handleResult = async () => {
-      await handleAddIngredient(ingredient.data);
-      // await getRecommendationResult(ingredient.data);
-    };
+  const handleClick = async () => {
+    login && (await addIngredient(ingredient.data));
     page && ingredient.data.length > 0 && !login && setOnModal(true);
     !login && ingredient.data.length === 0 && alert("사진을 찍거나 텍스트로 글을 추가해보세요!");
     login && ingredient.data.length > 0 && alert("냉장고에 재료를 넣었습니다!");
     login && ingredient.data.length === 0 && alert("새로운 재료가 없다면 냉장고로 가서 레시피 추천받기를 눌러보세요!");
-    login && handleResult();
-    setIngredient({ loading: false, error: undefined, data: [] });
   };
 
-  const hanldeAddIngredient = () => {
+  const handleAddIngredient = () => {
     const addIngredient = async () => {
-      await handleAddIngredient(ingredient.data);
+      await addIngredient(ingredient.data);
       await getIngredient();
       alert("냉장고에 재료를 넣었습니다!");
     };
@@ -86,6 +73,11 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
 
   const handleToggle = () => {
     setAddToggle(false);
+    // setIngredient({
+    //   loading: false,
+    //   error: undefined,
+    //   data: [],
+    // });
   };
 
   const saveTags = (e) => {
@@ -186,7 +178,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
               <Button text="레시피 찾기" bgcolor="yellow" txtcolor="black" width="180px" />
             </StyledLink>
           ) : (
-            <span onClick={hanldeAddIngredient}>
+            <span onClick={handleAddIngredient}>
               <Button text="식재료 추가하기" bgcolor="yellow" txtcolor="black" width="180px" />
             </span>
           )}

@@ -25,6 +25,15 @@ import {
 } from "./pages";
 import { Header } from "./components";
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 0,
+      suspense: false,
+    },
+  },
+});
+
 function App() {
   const [msg, setMsg] = useState("이 글자가 보인다면 api서버와 연결이 안된 겁니다.");
   useEffect(() => {
@@ -32,15 +41,6 @@ function App() {
       .then((res) => setMsg(res.data))
       .catch(console.log);
   }, []);
-
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: 0,
-        suspense: true,
-      },
-    },
-  });
 
   return (
     <BrowserRouter>

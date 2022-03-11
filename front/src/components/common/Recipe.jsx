@@ -1,19 +1,9 @@
+import React from "react";
 import styled from "styled-components";
-import { useEffect } from "react";
 import { media } from "../../styles/theme";
 import { Link } from "react-router-dom";
-import { ReactComponent as IconOutlineFavorite } from "../../asset/icon/favoriteEmpty.svg";
-import { ReactComponent as IconFilledFavorite } from "../../asset/icon/favoriteBlack.svg";
 
-export const Recipe = ({ width, height, text, extratext, margin, image, isFavorite, recipeId }) => {
-  // TO DO : 결과 리스트에서도 즐겨찾기에 등록했는지 확인하게 하기
-  // const [favorite, setFavorite] = useState(true);
-
-  //TO DO : 즐겨찾기 기능
-  useEffect(() => {
-    // setFavorite(isFavorite);
-  }, []);
-
+const RecipeUnmemoed = ({ width, height, text, extratext, margin, image, recipeId }) => {
   return (
     <>
       <RecipeDiv
@@ -22,24 +12,8 @@ export const Recipe = ({ width, height, text, extratext, margin, image, isFavori
         height={height}
         text={text}
         margin={margin}
-        extratext={extratext}
-        image={image}>
-        {/* {favorite ? (
-          <IconOutlineFavorite
-          className="favoriteIcon"
-          onClick={() => {
-            setFavorite(false);
-          }}
-          />
-          ) : (
-            <IconFilledFavorite
-            className="favoriteIcon"
-            fill="#EC6A60"
-            onClick={() => {
-              setFavorite(true);
-            }}
-            />
-          )} */}
+        extratext={extratext}>
+        <img src={image} alt="food" />
         <div>
           {extratext && <h4>재료를 {extratext}개 사용하는 레시피 입니다!</h4>}
           <h4>{text}</h4>
@@ -49,13 +23,14 @@ export const Recipe = ({ width, height, text, extratext, margin, image, isFavori
   );
 };
 
+export const Recipe = React.memo(RecipeUnmemoed);
+
 const RecipeDiv = styled(Link)`
   position: relative;
   display: inline-block;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   color: ${({ theme }) => theme.color.black};
-  background: ${({ theme }) => theme.color.lightgray} url(${(props) => props.image}) no-repeat;
   background-size: cover;
   border: 1px solid ${({ theme }) => theme.color.lightgray};
   transition-duration: 0.3s;
@@ -65,10 +40,17 @@ const RecipeDiv = styled(Link)`
   :hover {
     transform: translateY(-8px);
   }
+
+  img {
+    width: 100%;
+    height: 90%;
+  }
+
   div {
     position: absolute;
     width: 100%;
     padding: 16px;
+    z-index: 1;
     bottom: 0;
     left: 0;
     background-color: ${({ theme }) => theme.color.white};
