@@ -16,11 +16,10 @@ import { RecipeListResult } from "../../components/recommend/RecipeListResult";
 
 const Result = () => {
   const login = useRecoilValue(loginState);
-  const mainRecipePayload = useRecoilValue(mainRecipesState);
+  const { data: mainRecipes, loading, error } = useRecoilValue(mainRecipesState);
   const rankRecipes = useRecoilValue(rankRecipesState);
   const editorpickRecipes = useRecoilValue(editorpickRecipesState);
   const bookmarkRecipes = useRecoilValue(bookmarkRecipesState);
-  const { data: mainRecipes, loading, error } = mainRecipePayload;
 
   const [levelRecipes, setLevelRecipes] = useState();
   const [cooktimeRecipes, setCooktimeRecipes] = useState();
