@@ -9,30 +9,6 @@ export const modalState = atom({
   default: false,
 });
 
-export const mainRecipesState = atom({
-  key: "mainRecipesState",
-  default: {
-    loading: false,
-    error: undefined,
-    data: undefined,
-  },
-});
-
-export const rankRecipesState = atom({
-  key: "rankRecipesState",
-  default: [],
-});
-
-export const editorpickRecipesState = atom({
-  key: "editorpickRecipesState",
-  default: [],
-});
-
-export const bookmarkRecipesState = atom({
-  key: "bookmarkRecipesState",
-  default: [],
-});
-
 export const ingredientState = atom({
   key: "ingredientState",
   default: {

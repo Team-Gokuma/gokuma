@@ -1,4 +1,4 @@
-import { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/globalStyles";
@@ -43,13 +43,13 @@ function App() {
   });
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          {/* <p>{msg}</p> */}
-          <Suspense fallback={<Loading />}>
-            <RecoilRoot>
+    <BrowserRouter>
+      <RecoilRoot>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            {/* <p>{msg}</p> */}
+            <React.Suspense fallback={<Loading />}>
               <Header />
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -68,11 +68,11 @@ function App() {
                 {/* <Route path="/UpdateNameModal" element={<UpdateNameModal />} />
                 <Route path="/UpdatePassModal" element={<UpdatePassModal />} /> */}
               </Routes>
-            </RecoilRoot>
-          </Suspense>
-        </ThemeProvider>
-      </BrowserRouter>
-    </QueryClientProvider>
+            </React.Suspense>
+          </ThemeProvider>
+        </QueryClientProvider>
+      </RecoilRoot>
+    </BrowserRouter>
   );
 }
 

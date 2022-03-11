@@ -2,28 +2,30 @@ import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { media } from "../../styles/theme";
 import { useRecoilValue } from "recoil";
+import { useQuery, useMutation, useQueries } from "react-query";
 import { MobileTitle } from "../../components/mobile/MobileTitle";
-import { levelRecipe, cooktimeRecipe } from "../../api/receipe";
-import Loading from "./Loading";
 import {
-  mainRecipesState,
-  rankRecipesState,
-  editorpickRecipesState,
-  bookmarkRecipesState,
-  loginState,
-} from "../../store/atom";
+  recommendRecipe,
+  rankRecipe,
+  editorpick,
+  levelRecipe,
+  cooktimeRecipe,
+  bookmarkRecipe,
+} from "../../api/receipe";
+import Loading from "./Loading";
+import { ingredientState, loginState } from "../../store/atom";
 import { RecipeListResult } from "../../components/recommend/RecipeListResult";
 
 const Result = () => {
   const login = useRecoilValue(loginState);
-  const mainRecipePayload = useRecoilValue(mainRecipesState);
-  const rankRecipes = useRecoilValue(rankRecipesState);
-  const editorpickRecipes = useRecoilValue(editorpickRecipesState);
-  const bookmarkRecipes = useRecoilValue(bookmarkRecipesState);
-  const { data: mainRecipes, loading, error } = mainRecipePayload;
+  const ingredients = useRecoilValue(ingredientState);
 
   const [levelRecipes, setLevelRecipes] = useState();
   const [cooktimeRecipes, setCooktimeRecipes] = useState();
+  const [rankRecipes, setRankRecipes] = useState();
+  const [editorpickRecipes, setEditorpickRecipes] = useState();
+  const [bookmarkRecipes, setBookmarkRecipes] = useState();
+  const [mainRecipes, setMainRecipes] = useState();
 
   const levelRecipesList = useMemo(() => {
     return levelRecipes;
@@ -35,16 +37,33 @@ const Result = () => {
 
   const requestLevelRecipe = async (level) => {
     const response = await levelRecipe(level);
-    if (response.status === 200) {
-      setLevelRecipes(response.data.data);
-    }
+    setLevelRecipes(response.data.data);
   };
   const requestCooktimeRecipe = async (cooktime) => {
     const response = await cooktimeRecipe(cooktime);
-    if (response.status === 200) {
-      setCooktimeRecipes(response.data.data);
-    }
+    setCooktimeRecipes(response.data.data);
   };
+
+  const mainRecipeResult = useMutation(recommendRecipe, {
+    onSuccess: (data) => {
+      setMainRecipes(data.data.data);
+    },
+  });
+
+  const recipeResult = useQueries([
+    {
+      queryKey: "rankRecipe",
+      queryFn: () => rankRecipe(),
+    },
+    {
+      queryKey: "editorPick",
+      queryFn: () => editorpick(),
+    },
+    {
+      queryKey: "bookmarkRecipe",
+      queryFn: () => bookmarkRecipe(),
+    },
+  ]);
 
   const handleLevelList = (value) => {
     requestLevelRecipe(value);
@@ -56,13 +75,19 @@ const Result = () => {
   useEffect(() => {
     requestLevelRecipe(1);
     requestCooktimeRecipe(1);
+    mainRecipeResult.mutate(ingredients);
   }, []);
 
-  if (loading) {
+  useEffect(() => {
+    if (recipeResult.every((result) => result.isSuccess)) {
+      setRankRecipes(recipeResult[0].data.data.data);
+      setEditorpickRecipes(recipeResult[1].data.data.data);
+      login && recipeResult[2].data && setBookmarkRecipes(recipeResult[2].data.data.data);
+    }
+  }, [recipeResult]);
+
+  if (mainRecipeResult.isLoading || recipeResult.some((recipeResult) => recipeResult.isLoading)) {
     return <Loading />;
-  }
-  if (error) {
-    return <div>{error.message}</div>;
   }
 
   return (
@@ -71,7 +96,7 @@ const Result = () => {
       <ResultContainer>
         <h3>재료를 최대한 많이 사용하는 레시피 입니다!</h3>
         <RecipeListResult Recipes={mainRecipes} />
-        {login && bookmarkRecipes.length > 0 && (
+        {login && bookmarkRecipes && (
           <>
             <h3 className="relative">회원님이 좋아할만한 레시피 입니다!</h3>
             <RecipeListResult Recipes={bookmarkRecipes} />

@@ -8,18 +8,12 @@ import { ReactComponent as IconDelete } from "../asset/icon/delete.svg";
 import addByPhotoIcon from "../asset/icon/addByPhoto.svg";
 import addByTextIcon from "../asset/icon/addByText.svg";
 import menuBook from "../asset/icon/menuBook.svg";
-import {
-  modalState,
-  mainRecipesState,
-  rankRecipesState,
-  editorpickRecipesState,
-  bookmarkRecipesState,
-  loginState,
-} from "../store/atom";
 import { AlertLoginModal } from "../components/common/AlertLoginModal";
 import { MobileTitle } from "../components/mobile/MobileTitle";
 import { AddByText } from "../components/refrige/AddByText";
 import { AddByImage } from "../components/refrige/AddByImage";
+import { Toast } from "../components/common/Toast";
+import { modalState, loginState } from "../store/atom";
 import {
   ingredientList,
   deleteAllIngredient,
@@ -27,8 +21,6 @@ import {
   addIngredient,
   timeoverIngredient,
 } from "../api/refrige";
-import { recommendRecipe, rankRecipe, editorpick, bookmarkRecipe } from "../api/receipe";
-import { Toast } from "../components/common/Toast";
 
 const category = ["전체 식재료", "과일", "채소", "육류", "해산물", "유제품", "소스류", "기타"];
 
@@ -70,10 +62,6 @@ const Refrige = () => {
   const login = useRecoilValue(loginState);
   const onModal = useRecoilValue(modalState);
   const setModal = useSetRecoilState(modalState);
-  const setMainRecipe = useSetRecoilState(mainRecipesState);
-  const setRankRecipe = useSetRecoilState(rankRecipesState);
-  const setEditorpickRecipe = useSetRecoilState(editorpickRecipesState);
-  const setBookmarkRecipe = useSetRecoilState(bookmarkRecipesState);
 
   const navigate = useNavigate();
 
@@ -91,44 +79,6 @@ const Refrige = () => {
     if (response.status === 200) {
       setTimeoverIngredientList(response.data.data);
     }
-  };
-
-  const getRecommendationResult = (ingredients) => {
-    const getRecommendation = async (ingredients) => {
-      setMainRecipe({ loading: true, data: undefined, error: undefined });
-      const response = await recommendRecipe(ingredients);
-      if (response.status === 200) {
-        setMainRecipe({ loading: false, data: response.data.data, error: undefined });
-      } else {
-        setMainRecipe({ loading: false, data: undefined, error: new Error("메뉴 추천에 실패하였습니다.") });
-      }
-    };
-
-    const getRankRecipe = async () => {
-      const response = await rankRecipe();
-      if (response.status === 200) {
-        setRankRecipe(response.data.data);
-      }
-    };
-
-    const getEditorpick = async () => {
-      const response = await editorpick();
-      if (response.status === 200) {
-        setEditorpickRecipe(response.data.data);
-      }
-    };
-
-    const getBookmarkRecipe = async () => {
-      const response = await bookmarkRecipe();
-      if (response.status === 200) {
-        setBookmarkRecipe(response.data.data);
-      }
-    };
-
-    const getResult = async () => {
-      Promise.all([getRecommendation(ingredients), getRankRecipe(), getEditorpick(), getBookmarkRecipe()]);
-    };
-    getResult();
   };
 
   const addIngredientText = (textValue, category) => {
@@ -181,14 +131,10 @@ const Refrige = () => {
   };
 
   const handleFindRecipe = async () => {
-    const data = ingredient.map((item) => {
-      return { content: item.content, category: item.category };
-    });
     if (ingredient.length === 0) {
       alert("냉장고에 재료를 추가하고 레시피를 추천받아보세요!");
       return;
     }
-    login && (await getRecommendationResult(data));
     login && navigate("/result");
     !login && onToast();
   };
@@ -199,7 +145,6 @@ const Refrige = () => {
       await getTimeoverIngredient();
     };
     getlist();
-    setMainRecipe({ loading: false, data: undefined, error: undefined });
   }, []);
 
   return (

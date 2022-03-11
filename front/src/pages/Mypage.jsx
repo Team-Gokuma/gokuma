@@ -7,7 +7,6 @@ import { UpdatePassModal } from "../components/mypage/UpdatePassModal";
 import { userdelete, logout, islogin } from "../api/user";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { mainRecipesState, rankRecipesState } from "../store/atom";
 import { media } from "../styles/theme";
 
 const Mypage = () => {
@@ -16,8 +15,6 @@ const Mypage = () => {
   const [username, setUsername] = useState("");
   const [useremail, setUseremail] = useState("");
 
-  const mainRecipes = useSetRecoilState(mainRecipesState);
-  const rankRecipes = useSetRecoilState(rankRecipesState);
   const navigate = useNavigate();
 
   const handleCloseName = () => {
@@ -35,8 +32,6 @@ const Mypage = () => {
   const requestDelete = async (body) => {
     await userdelete(body).then((res) => {
       if (res && res.status === 200) {
-        mainRecipes([]);
-        rankRecipes([]);
         setUsername("");
         setUseremail("");
         navigate("/");
@@ -49,9 +44,6 @@ const Mypage = () => {
   const handleLogout = async () => {
     await logout().then((res) => {
       if (res.status === 200) {
-        mainRecipes([]);
-        rankRecipes([]);
-        // setIsLogin(false);
         navigate("/");
       } else {
         alert("error");

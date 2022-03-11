@@ -26,7 +26,7 @@ export const recommendRecipe = async (ingredients) => {
 
 export const cooktimeRecipe = async (time) => {
   try {
-    const response = await axios.get(`/api/recipe/related/cooktime?time=${time}`);
+    const response = await axios.get(`/api/recipe/related/cooktime?time=${time ? time : 1}`);
     return response;
   } catch (error) {
     console.log(error);
@@ -62,7 +62,7 @@ export const bookmarkRecipe = async () => {
 
 export const levelRecipe = async (level) => {
   try {
-    const response = await axios.get(`api/recipe/related/level?level=${level}`);
+    const response = await axios.get(`api/recipe/related/level?level=${level ? level : 1}`);
     return response;
   } catch (error) {
     console.log(error);

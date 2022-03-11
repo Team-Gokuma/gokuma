@@ -1,26 +1,17 @@
 import styled from "styled-components";
 import { media } from "../../styles/theme";
 import { useMemo, useState } from "react";
-import { useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
-import {
-  modalState,
-  mainRecipesState,
-  rankRecipesState,
-  editorpickRecipesState,
-  ingredientState,
-  bookmarkRecipesState,
-  loginState,
-} from "../../store/atom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { modalState, ingredientState, loginState } from "../../store/atom";
 import { ImageFileUpload } from "../common/ImageFileUpload";
 import { Button } from "../common/Button";
 import { ReactComponent as IconClose } from "../../asset/icon/close.svg";
 import { ReactComponent as IconInfo } from "../../asset/icon/info.svg";
 import { AlertLoginModal } from "../common/AlertLoginModal";
-import { recognition, recommendRecipe, rankRecipe, editorpick, bookmarkRecipe } from "../../api/receipe";
+import { recognition } from "../../api/receipe";
 import { addIngredient } from "../../api/refrige";
 import { StyledLink } from "../../styles/commonStyle";
 import { MobileTitle } from "../mobile/MobileTitle";
-import { useQuery } from "react-query";
 
 const regTag = /^[가-힣]+$/;
 
@@ -42,10 +33,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const login = useRecoilValue(loginState);
   const [onModal, setOnModal] = useRecoilState(modalState);
   const [ingredient, setIngredient] = useRecoilState(ingredientState);
-  const setMainRecipe = useSetRecoilState(mainRecipesState);
-  const setRankRecipe = useSetRecoilState(rankRecipesState);
-  const setEditorpickRecipe = useSetRecoilState(editorpickRecipesState);
-  const setBookmarkRecipe = useSetRecoilState(bookmarkRecipesState);
 
   const requestRecognition = async (img) => {
     const response = await recognition(img);
@@ -75,57 +62,10 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     }
   };
 
-  const { status, data, error } = useQuery("mainRecipes", recommendRecipe, { suspense: true });
-  if (status === "loading") {
-    console.log("loading");
-  }
-  if (status === "error") {
-    console.log(error.message);
-  }
-
-  const getRecommendationResult = (ingredients) => {
-    const getRecommendation = async (ingredients) => {
-      setMainRecipe({ loading: true, data: undefined, error: undefined });
-      const response = await recommendRecipe(ingredients);
-      if (response.status === 200) {
-        setMainRecipe({ loading: false, data: response.data.data, error: undefined });
-      } else {
-        setMainRecipe({ loading: false, data: undefined, error: new Error("메뉴 가져오기 실패하였습니다.") });
-      }
-    };
-
-    const getRankRecipe = async () => {
-      const response = await rankRecipe();
-      if (response.status === 200) {
-        setRankRecipe(response.data.data);
-      }
-    };
-
-    const getEditorpick = async () => {
-      const response = await editorpick();
-      if (response.status === 200) {
-        setEditorpickRecipe(response.data.data);
-      }
-    };
-
-    const getBookmarkRecipe = async () => {
-      const response = await bookmarkRecipe();
-      if (response.status === 200) {
-        setBookmarkRecipe(response.data.data);
-      } else return;
-    };
-
-    const getResult = async () => {
-      Promise.all([getRecommendation(ingredients), getRankRecipe(), getEditorpick()]);
-      login && (await getBookmarkRecipe());
-    };
-    getResult();
-  };
-
   const handleClick = () => {
     const handleResult = async () => {
       await handleAddIngredient(ingredient.data);
-      await getRecommendationResult(ingredient.data);
+      // await getRecommendationResult(ingredient.data);
     };
     page && ingredient.data.length > 0 && !login && setOnModal(true);
     !login && ingredient.data.length === 0 && alert("사진을 찍거나 텍스트로 글을 추가해보세요!");
@@ -133,10 +73,6 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     login && ingredient.data.length === 0 && alert("새로운 재료가 없다면 냉장고로 가서 레시피 추천받기를 눌러보세요!");
     login && handleResult();
     setIngredient({ loading: false, error: undefined, data: [] });
-  };
-
-  const handleClickNoLogin = async () => {
-    await getRecommendationResult(ingredient.data);
   };
 
   const hanldeAddIngredient = () => {
@@ -257,12 +193,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
         </div>
       </RecommendContainer>
       {onModal && (
-        <AlertLoginModal
-          page="/result"
-          text="로그인하고 냉장고에 추가 하시겠습니까?"
-          btnText="바로 추천받기"
-          handleClick={handleClickNoLogin}
-        />
+        <AlertLoginModal page="/result" text="로그인하고 냉장고에 추가 하시겠습니까?" btnText="바로 추천받기" />
       )}
     </section>
   );
