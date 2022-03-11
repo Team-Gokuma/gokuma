@@ -4,7 +4,7 @@ import { media } from "../../styles/theme";
 import { ingredientState } from "../../store/atom";
 import { useRecoilValue } from "recoil";
 
-export const ImageFileUpload = ({ width, height, requestRecognition }) => {
+export const ImageFileUpload = ({ width, height, requestRecognition, setIngredient }) => {
   const [isFile, setIsFile] = useState(false);
   const [image, setImage] = useState("");
 
@@ -25,6 +25,11 @@ export const ImageFileUpload = ({ width, height, requestRecognition }) => {
   function removeFile() {
     setIsFile(false);
     setImage("");
+    setIngredient({
+      loading: false,
+      error: undefined,
+      data: [],
+    });
   }
 
   return (
@@ -59,7 +64,7 @@ export const ImageFileUpload = ({ width, height, requestRecognition }) => {
           </div>
         </FileUploadContent>
       )}
-      {ingredient.loading && <LoadingMsg>재료를 인식하는중...</LoadingMsg>}
+      {ingredient.loading ? <LoadingMsg>재료를 인식하는중...</LoadingMsg> : undefined}
     </FileUpload>
   );
 };
