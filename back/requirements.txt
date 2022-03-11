@@ -40,3 +40,5 @@ seaborn>=0.11.0
 
 
 thop  # FLOPs computation
+
+gunicorn==20.1.0

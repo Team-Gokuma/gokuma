@@ -13,4 +13,4 @@ RUN apt-get update && apt-get -y install libgl1-mesa-glx
 
 COPY . .
 
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app", "-w 4"]
