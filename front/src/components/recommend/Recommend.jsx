@@ -75,7 +75,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
       });
     } else {
       setIngredient({
-        loading: true,
+        loading: false,
         error: undefined,
         data: new Error("인식에 실패하였습니다."),
       });
@@ -226,7 +226,12 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
         ) : (
           <h2>사진으로 추가하기</h2>
         )}
-        <ImageFileUpload width="600px" height="400PX" requestRecognition={requestRecognition} />
+        <ImageFileUpload
+          width="600px"
+          height="400PX"
+          requestRecognition={requestRecognition}
+          setIngredient={setIngredient}
+        />
         <div className="btnContainer">
           <div className="btnGroup">
             {AddToggle ? (
