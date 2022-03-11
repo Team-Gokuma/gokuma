@@ -1,6 +1,6 @@
-# (가제)고쿠마의 냉장고 레시피
+# 어쩔냉장고
 
-> ### 냉장고 비워야 하는데... 이 재료로 할 수 있는 요리가 뭐가 있을까?
+### 냉장고 비워야 하는데... 이 재료로 할 수 있는 요리가 뭐가 있을까?
 
 <br/>
 
@@ -49,26 +49,40 @@
 **서비스**
 **메인 기능**
 
-1. 냉장고에 있는 재료 사진을 기계학습, YOLO 객체 인식을 통해 재료를 인식하고 인식이 안된 재료들은 추가 입력하여 그 재료로 만들 수 있는 레시피를 추천해준다.
-2. 재료 사진 인식 결과를 바탕으로 나의 냉장고를 만들어 관리할 수 있다.
-3. 레시피 검색 기능을 만들고, 레시피를 검색했을 때 나의 냉장고에 있는 재료는 다른 색으로 표시한다.
+1. 재료의 조합으로 새로운 다양한 레시피를 추천해준다.  
+   1-1. 방대한 양의 재료라면 재료들의 사진을 기계학습, YOLO 객체 인식을 통해 재료를 인식하고 인식이 안된 재료들은 추가 입력하여 그 재료로 만들 수 있는 레시피를 추천해준다.  
+   1-2. 간단한 재료, 처리하고 싶은 재료가 특정한 경우는 타이핑을 해서 재료를 입력하여 그 재료로 만들 수 있는 레시피를 추천해준다.
 
 **서브 기능**
 
-1. 나의 레시피북(즐겨찾기 리스트)를 제공한다.
-2. 나의 장보기 리스트를 제공한다.
-
-**추가 기능**
-
-- 레시피 중 굳이 필요 없는 재료 표시해주기
-- 나의 냉장고 갤러리 공유하기
-- 장볼때 얼마가 필요할지 예상해주기
-- 추천된 레시피 외에 또 다른 추천 유튜브 영상 달아주기
-- 나의 냉장고에서 남은 재료 중 대체 재료 알려주기
+1. 재료 사진 인식 결과를 바탕으로 **나의 냉장고**를 만들어 한눈에 재료를 살펴볼 수 있다.  
+   1-1. 냉장고 칸별로 구분해서 볼 수 있다.  
+   1-2. 사진으로 재료 추가, 텍스트로 재료 추가 기능이 있다.  
+   1-3. 전체 삭제 기능이 있다.  
+   1-4. 내 냉장고에 있는 재료로 레시피 추천받기 기능이 있다.
+2. **레시피 디테일** 페이지  
+   2-1. 해당 레시피 재료 중 내 냉장고에 있는 재료들은 표시해준다.  
+   2-2. 해당 레시피 재료 중 내 냉장고에 없는 재료들을 장보기리스트에 담을 수 있도록 한다.  
+   2-3. 레시피에 대한 정보와 조리 방법과 해당 레시피 동영상을 제공한다.
+3. **나의 레시피북 (즐겨찾기 리스트)** 를 제공한다.
+4. **나의 장보기 리스트**를 제공한다.  
+   4-1. 냉장고에 있는 재료를 한눈에 같이 볼 수 있도록 한다.  
+   4-2. 체크리스트 형태로 CRUD가 가능하다.  
+   4-3. 전체 삭제 기능이 있다.  
+   4-4. 냉장고에 있는 재료들은 카테고리별로 색을 다르게 표시한다.
+5. 다양한 **추천 레시피**를 제공한다.  
+   5-1. 가장 재료가 많이 포함되는 레시피(추가 재료가 적은 순)  
+   5-2. (즐겨찾기한 레시피가 있을 경우) 유저 맞춤 레시피  
+   5-3. 인기가 많은 레시피  
+   5-4. 에디터가 추천하는 레시피  
+   5-5. 난이도별 추천 레시피  
+   5-6. 조리시간별 추천 레시피
 
 ## 4. 프로젝트 구성도
 
-- [와이어프레임]()
+- [와이어프레임](https://whimsical.com/gokuma-2bWmzF2MiVEBtbqBFh1YPb)
+- [스토리보드](https://www.figma.com/file/5TxILc8YNojHtdmLgdZVeI/%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-6%ED%8C%80?node-id=0%3A1)
+- [ER-Diagram](https://www.erdcloud.com/d/kX8tfifc4fd5HvGZt)
 
 ## 5. 프로젝트 팀원 역할 분담
 
@@ -110,6 +124,14 @@
 
 ## 8. 로컬에서 프로젝트 실행 방법
 
+### 깃 레포지토리 클론
+
+`$ git clone https://kdt-gitlab.elice.io/ai_track/class_03/ai_project/team6/gokuma.git`
+
+### 레포지토리 안으로 들어가기
+
+`$ cd gokuma`
+
 ### 리엑트 서드파티모듈 설치
 
 `$ cd front && npm install && cd ..`
@@ -122,21 +144,30 @@
 
 ### back서버에 접속하기(초기 데이터베이스 설정 목적)
 
-mac > `$ docker exec -it gokuma_back_1 /bin/bash`  
-window > `$ docker exec -it gokuma-back-1 //bin//bash`
+#### 생성된 컨테이너 확인
 
-### 초기 데이터베이스에 값 넣기
+`$ docker ps`
 
-`# flask db upgrade`  
-`# exit`
+#### 위에 생성된 컨테이너 중 back 컨테이너 cmd창 열기
+
+mac > `$ docker exec -it {back container 이름} /bin/bash`  
+window > `$ docker exec -it {back container 이름} //bin//bash`
+
+#### 초기 데이터베이스에 값 넣기
+
+`# flask db upgrade`
 
 - 위 명령어가 오류나면 아직 DB의 실행이 덜 끝나서 그러니, 잠시 뒤 한번 더 입력해주시면 됩니다.
 - 위 명령어는 최초 1회만 실행해주시고, 이후에는 자동으로 db/data 폴더 내 자료가 저장됩니다.
 
+#### back 컨테이너 cmd창 빠져나오기
+
+`# exit`
+
 ### 웹페이지 접속해서 확인하기(80번 포트)
 
-- localhost:80 에 접속해서 gokuma가 뜨는지 확인
-- localhost:5000 에 접속해서 gokuma is the best! 가 뜨는지 확인
+- localhost:80 에 접속해서 웹서비스가 잘 뜨는지 확인
+- localhost:5000/api-docs 에 접속해서 swagger 문서 확인
 
 ### 서버 종료 하기
 
@@ -154,8 +185,14 @@ window > `$ docker exec -it gokuma-back-1 //bin//bash`
 
 ### back(flask) 서버 cmd창 들어가기
 
-mac > `$ docker exec -it gokuma_back_1 /bin/bash`  
-window > `$ docker exec -it gokuma-back-1 //bin//bash`
+#### 생성된 컨테이너 확인
+
+`$ docker ps`
+
+#### 위에 생성된 컨테이너 중 back 컨테이너 cmd창 열기
+
+mac > `$ docker exec -it {back container 이름} /bin/bash`  
+window > `$ docker exec -it {back container 이름} //bin//bash`
 
 - #### 초기 데이터베이스에 값 넣기
 
@@ -171,8 +208,14 @@ window > `$ docker exec -it gokuma-back-1 //bin//bash`
 
 ### db 서버 cmd창 들어가기
 
-mac > `$ docker exec -it gokuma_db_1 /bin/bash`  
-window > `$ docker exec -it gokuma-db-1 //bin//bash`
+#### 생성된 컨테이너 확인
+
+`$ docker ps`
+
+#### 위에 생성된 컨테이너 중 db 컨테이너 cmd창 열기
+
+mac > `$ docker exec -it {db container 이름} /bin/bash`  
+window > `$ docker exec -it {db container 이름} //bin//bash`
 
 - #### mysql로 들어가기
   `# mysql -u root -p`  
@@ -182,4 +225,4 @@ window > `$ docker exec -it gokuma-db-1 //bin//bash`
 
 `$ docker-compose -f docker-compose.prod.yml up -d`
 
-- 개발 서버 도커 이미지가 있다면 상단 서버 삭제하기 명령어를 통해 삭제 후 실행
+- 개발 서버 도커 이미지가 있다면 상단 서버 삭제하기 명령어를 통해 삭제 후 실행

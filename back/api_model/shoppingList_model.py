@@ -9,7 +9,7 @@ shopping_item_fields = shopping_api.model('ShoppingItem', {
 })
 
 
-shopping_item_id_fields = shopping_api.inherit('ShoppingItem with ID', shopping_item_fields, {
+shopping_item_id_fields = shopping_api.inherit('ShoppingItemID', shopping_item_fields, {
     'id': fields.Integer(description='장보기 리스트 ID', required=True, example=1)
 })
 
