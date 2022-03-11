@@ -12,7 +12,7 @@ ingrds_fields = refrigerator_api.model('Ingredients', {
     'ingredients': fields.List(fields.Nested(ingrd_fields))
 })
 
-ingrd_time_fields = refrigerator_api.inherit('IngrgTime', ingrd_fields, {
+ingrd_time_fields = refrigerator_api.inherit('IngrdTime', ingrd_fields, {
     'id': fields.Integer(description='냉장고 DB ID', required=True, example=1),
     'time': fields.String(description='재료가 냉장고에 등록된 시간', required=True, example='2022-02-23')
 })
@@ -30,7 +30,7 @@ response_fail_model = refrigerator_api.model('ResponseFail', {
 })
 
 response_success_ingrds_model = refrigerator_api.inherit(
-    'IngrdSuccess(+Time)', response_success_model, {
+    'IngrdSuccess(Time)', response_success_model, {
         'data': fields.List(fields.Nested(ingrd_time_fields))
     }
 )
