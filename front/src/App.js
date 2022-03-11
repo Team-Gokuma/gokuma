@@ -18,8 +18,7 @@ import {
   ShoppingList,
   SignupNick,
   Mypage,
-  // UpdateNameModal,
-  // UpdatePassModal,
+  TeamIntro, 
 } from "./pages";
 import { Header } from "./components";
 
@@ -35,7 +34,6 @@ function App() {
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        {/* <p>{msg}</p> */}
         <RecoilRoot>
           <Header />
           <Routes>
@@ -46,16 +44,12 @@ function App() {
             <Route path="/refrige" element={<Refrige />} />
             <Route path="/bookmark" element={<Bookmark />} />
             <Route path="/shoppinglist" element={<ShoppingList />} />
-            <Route path="/teamIntro" element={<div>팀소개</div>} />
+            <Route path="/teamIntro" element={<TeamIntro />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/signupPass" element={<SignupPass />} />
             <Route path="/signupNick" element={<SignupNick />} />
             <Route path="/mypage" element={<Mypage />} />
-            {/* <Route path="/UpdateNameModal" element={<UpdateNameModal />} />
-            <Route path="/UpdatePassModal" element={<UpdatePassModal />} /> */}
-
-            
           </Routes>
         </RecoilRoot>
       </ThemeProvider>

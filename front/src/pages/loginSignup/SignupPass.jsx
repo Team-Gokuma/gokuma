@@ -13,7 +13,7 @@ const SignupPass = () => {
   const email = location.state.email;
   const [pass, setPass] = useState({
     password: "",
-    ckpassword:""
+    ckpassword: "",
   });
 
   const { password, ckpassword } = pass;
@@ -34,7 +34,7 @@ const SignupPass = () => {
   const ckNum = checkNum.test(password) ? true : false;
   const ckSpc = checkSpc.test(password) ? true : false;
   const ckLen = password.length >= 8 ? true : false;
-  const ckCorrect = (password.length !== 0 && password === ckpassword) ? true : false;
+  const ckCorrect = password.length !== 0 && password === ckpassword ? true : false;
 
   // 영어, 숫자, 특수문자, 8자리이상
   const handleSubmit = (e) => {
@@ -46,11 +46,11 @@ const SignupPass = () => {
     }
   };
   const list = [
-    { id:0, ck: ckEng, message: '영어 포함'},
-    { id:1, ck: ckNum, message: '숫자 포함'},
-    { id:2, ck: ckSpc, message: '특수문자 포함'},
-    { id:3, ck: ckLen, message: '8자리이상'}
-  ]
+    { id: 0, ck: ckEng, message: "영어 포함" },
+    { id: 1, ck: ckNum, message: "숫자 포함" },
+    { id: 2, ck: ckSpc, message: "특수문자 포함" },
+    { id: 3, ck: ckLen, message: "8자리이상" },
+  ];
 
   return (
     <Stbody>
@@ -68,8 +68,9 @@ const SignupPass = () => {
             />
             <StCheck>
               {list.map((nav) => (
-                <div key={`nav-${nav.id}`} 
-                style={nav.ck ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black"}}>
+                <div
+                  key={`nav-${nav.id}`}
+                  style={nav.ck ? { fill: "#4FAAFF", color: "#4FAAFF" } : { fill: "black", color: "black" }}>
                   <span>{nav.message}</span>
                   <Ckeckicon />
                 </div>
@@ -111,9 +112,9 @@ const Stbody = styled.div`
 const StWrapper = styled.div`
   display: flex;
   margin: auto;
-  margin-top: ${100 / 16}rem;
-  width: ${600 / 16}rem;
-  height: ${546 / 16}rem;
+  margin-top: 100px;
+  width: 600px;
+  height: 546px;
   box-shadow: 3px 7px 14px rgba(0, 0, 0, 0.05);
   border-radius: ${10 / 16}rem;
   background: ${({ theme }) => theme.color.white};
@@ -122,7 +123,7 @@ const StWrapper = styled.div`
     height: 360px;
     left: 20px;
     top: 58px;
-    }
+  }
 `;
 
 const StInput = styled.div`
@@ -131,9 +132,9 @@ const StInput = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: row wrap;
-  margin-bottom: 8.5rem;
+  margin-bottom: 136px;
   & span {
-    margin-top: 8.5rem;
+    margin-top: 136px;
   }
   ${media.mobile} {
     & span {
@@ -152,7 +153,7 @@ const SignInput = styled.input`
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.color.white};
   color: black;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
   /* 크기 */
   height: 44px;
   border: 1px solid #bdbdbd;
@@ -165,7 +166,6 @@ const SignInput = styled.input`
     top: 20px;
     margin-bottom: 5px;
   }
-
 `;
 
 const StCheck = styled.div`
@@ -177,7 +177,7 @@ const StCheck = styled.div`
   }
   ${media.tablet} {
     width: 320px;
-    }
+  }
   & span {
     font-size: 12px;
     ${media.mobile} {
@@ -210,7 +210,6 @@ const StCheckPass = styled.div`
     }
   }
 `;
-
 
 const PassButton = styled.button`
   width: 300px;

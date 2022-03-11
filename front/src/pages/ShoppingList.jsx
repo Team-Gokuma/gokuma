@@ -88,7 +88,7 @@ const ShoppingListContainer = styled.section`
   h2 {
     ${({ theme }) => theme.font.bold};
     ${({ theme }) => theme.font.xlarge};
-    margin-bottom: 2rem;
+    margin-bottom: 32px;
   }
   ${media.mobile} {
     width: 90%;
@@ -119,15 +119,15 @@ const ShoppingListBox = styled.div`
 
     .leftIcon {
       position: absolute;
-      top: 1rem;
-      left: 1rem;
+      top: 16px;
+      left: 16px;
       fill: ${({ theme }) => theme.color.orange};
     }
 
     .deleteIcon {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
+      top: 16px;
+      right: 16px;
       fill: ${({ theme }) => theme.color.lightblack};
       cursor: pointer;
     }

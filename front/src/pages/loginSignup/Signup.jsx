@@ -4,7 +4,7 @@ import styled from "styled-components";
 import LoginInput from "../../components/common/LoginInput";
 import Button from "../../components/common/Button";
 import CommonTab from "../../components/common/CommonTab";
-import {isEmail} from "../../util/isEmail";
+import { isEmail } from "../../util/isEmail";
 import { media } from "../../styles/theme";
 
 const Signup = () => {
@@ -14,7 +14,7 @@ const Signup = () => {
     const value = e.target.value;
     setEmail(value);
   };
- 
+
   const handleClick = (e) => {
     e.preventDefault();
     if (isEmail(email)) {
@@ -53,15 +53,14 @@ const Stbody = styled.div`
   ${({ theme }) => theme.font.bold};
 `;
 
-
 const StWrapper = styled.div`
   display: flex;
   margin: auto;
-  margin-top: ${100 / 16}rem;
-  width: ${600 / 16}rem;
-  height: ${546 / 16}rem;
+  margin-top: 100px;
+  width: 600px;
+  height: 546px;
   box-shadow: 3px 7px 14px rgba(0, 0, 0, 0.05);
-  border-radius: ${10 / 16}rem;
+  border-radius: 10px;
   background: ${({ theme }) => theme.color.white};
   ${media.mobile} {
     width: 320px;
@@ -69,7 +68,7 @@ const StWrapper = styled.div`
     left: 20px;
     top: 58px;
     text-align: center;
-    }
+  }
 `;
 
 const StInput = styled.div`
@@ -78,8 +77,8 @@ const StInput = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: row wrap;
-  margin-bottom: 8.5rem;
+  margin-bottom: 136px;
   & span {
-    margin-top: 8.5rem;
+    margin-top: 136px;
   }
 `;

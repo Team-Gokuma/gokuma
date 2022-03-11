@@ -67,7 +67,7 @@ const DetailRecipeBox = styled.div`
     left: 0;
   }
   p:nth-child(2) {
-    margin-left: ${32 / 16}rem;
+    margin-left: 32px;
     ${({ theme }) => theme.font.medium};
     line-height: 1.3;
   }

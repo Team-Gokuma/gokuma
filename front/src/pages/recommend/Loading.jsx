@@ -14,8 +14,8 @@ const Loading = () => {
 };
 
 const LoadingContainer = styled.div`
-  width: ${600 / 16}rem;
-  margin: 10rem auto;
+  width: 600px;
+  margin: 160px auto;
   text-align: center;
   position: relative;
   .findRecipe {
@@ -27,8 +27,8 @@ const LoadingContainer = styled.div`
     text-align: right;
   }
   img {
-    width: ${180 / 16}rem;
-    height: ${180 / 16}rem;
+    width: 180px;
+    height: 180px;
     margin-right: 120px;
   }
   .chef {

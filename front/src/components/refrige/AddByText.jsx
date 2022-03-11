@@ -81,35 +81,35 @@ const ModalContainer = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: ${440 / 16}rem;
-  height: ${300 / 16}rem;
+  width: 440px;
+  height: 300px;
   background-color: #fff;
-  border-radius: 1.5rem;
+  border-radius: 24px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   .modalCloseIcon {
     position: absolute;
-    top: 1.2rem;
-    right: 1.2rem;
+    top: 20px;
+    right: 20px;
     cursor: pointer;
   }
   h2 {
     ${({ theme }) => theme.font.bold};
     ${({ theme }) => theme.font.large};
-    margin-bottom: ${40 / 16}rem;
+    margin-bottom: 40px;
   }
   input {
     margin-left: 1rem;
-    width: ${240 / 16}rem;
-    padding-left: 1rem;
-    margin-bottom: 2rem;
+    width: 240px;
+    padding-left: 16px;
+    margin-bottom: 32px;
   }
   input,
   select {
-    height: ${48 / 16}rem;
+    height: 48px;
     color: #757575;
-    padding: 0 0.8rem;
+    padding: 0 12px;
   }
 `;

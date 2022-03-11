@@ -31,17 +31,17 @@ const ModalContainer = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  height: ${800 / 16}rem;
+  height: 800px;
   background-color: #fff;
-  border-radius: 1.5rem;
+  border-radius: 24px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   .modalCloseIcon {
     position: absolute;
-    top: 1.2rem;
-    right: 1.2rem;
+    top: 20px;
+    right: 20px;
     cursor: pointer;
   }
 `;

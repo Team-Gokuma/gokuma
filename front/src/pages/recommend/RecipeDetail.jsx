@@ -71,10 +71,10 @@ const RecipeDetailSection = styled.section`
   }
 `;
 const RecipeDetailContainer = styled.div`
-  width: ${1080 / 16}rem;
-  padding: ${56 / 16}rem ${60 / 16}rem;
+  width: 1080px;
+  padding: 56px 60px;
   background-color: ${({ theme }) => theme.color.white};
-  border-radius: 1.6rem;
+  border-radius: 26px;
   margin: 0 auto;
 
   ${media.tablet} {

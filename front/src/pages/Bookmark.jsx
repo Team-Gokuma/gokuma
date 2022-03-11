@@ -78,8 +78,8 @@ const BookmarkContainer = styled.div`
   h3 {
     ${({ theme }) => theme.font.xlarge};
     ${({ theme }) => theme.font.bold};
-    margin-bottom: ${48 / 16}rem;
-    margin-left: 1.8rem;
+    margin-bottom: 48px;
+    margin-left: 28px;
   }
   .bookmarkList {
     line-height: 1.5;
@@ -88,8 +88,8 @@ const BookmarkContainer = styled.div`
     justify-content: flex-start;
   }
   .noBookmark {
-    margin-top: 5rem;
-    margin-left: 4rem;
+    margin-top: 80px;
+    margin-left: 64px;
     ${({ theme }) => theme.font.large};
 
     .goRecommend {

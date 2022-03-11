@@ -184,6 +184,10 @@ const Refrige = () => {
     const data = ingredient.map((item) => {
       return { content: item.content, category: item.category };
     });
+    if (ingredient.length === 0) {
+      alert("냉장고에 재료를 추가하고 레시피를 추천받아보세요!");
+      return;
+    }
     login && (await getRecommendationResult(data));
     login && navigate("/result");
     !login && onToast();
@@ -391,7 +395,7 @@ const Refrigeboxes = styled.div`
 const NoIngredient = styled(Link)`
   color: ${({ theme }) => theme.color.black};
   display: inline-block;
-  margin: 3.5rem;
+  margin: 56px;
   line-height: 1.5;
   border-bottom-left-radius: 999rem;
 
@@ -491,7 +495,7 @@ const RefrigeIngredientBox = styled.div`
     display: inline-block;
     text-decoration: underline;
     position: relative;
-    margin-bottom: 1.2rem;
+    margin-bottom: 20px;
 
     .refrigeIngredientCloseBtn {
       width: 20px;

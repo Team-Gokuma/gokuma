@@ -242,10 +242,10 @@ const ShoppingListContent = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 0.8rem ${24 / 16}rem;
+    padding: 12px 24px;
 
     input {
-      margin-right: 1rem;
+      margin-right: 16px;
     }
 
     span {
@@ -309,8 +309,8 @@ const ShoppingListContent = styled.div`
       }
     }
     .ShoppingListAddIcon {
-      width: 1.4rem;
-      margin-right: 0.4rem;
+      width: 22px;
+      margin-right: 6px;
       &.add {
         position: absolute;
         top: -3px;
@@ -318,7 +318,7 @@ const ShoppingListContent = styled.div`
       }
     }
     .ShoppingListIcon {
-      width: 1.3rem;
+      width: 20px;
       cursor: pointer;
       fill: #757575;
       margin-left: 4px;
