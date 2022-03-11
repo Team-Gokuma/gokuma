@@ -1,4 +1,4 @@
-# (가제)고쿠마의 냉장고 레시피
+# 어쩔냉장고
 
 > ### 냉장고 비워야 하는데... 이 재료로 할 수 있는 요리가 뭐가 있을까?
 
@@ -122,21 +122,30 @@
 
 ### back서버에 접속하기(초기 데이터베이스 설정 목적)
 
-mac > `$ docker exec -it gokuma_back_1 /bin/bash`  
-window > `$ docker exec -it gokuma-back-1 //bin//bash`
+#### 생성된 컨테이너 확인
 
-### 초기 데이터베이스에 값 넣기
+`$ docker ps`
 
-`# flask db upgrade`  
-`# exit`
+#### 위에 생성된 컨테이너 중 back 컨테이너 cmd창 열기
+
+mac > `$ docker exec -it {back container 이름} /bin/bash`  
+window > `$ docker exec -it {back container 이름} //bin//bash`
+
+#### 초기 데이터베이스에 값 넣기
+
+`# flask db upgrade`
 
 - 위 명령어가 오류나면 아직 DB의 실행이 덜 끝나서 그러니, 잠시 뒤 한번 더 입력해주시면 됩니다.
 - 위 명령어는 최초 1회만 실행해주시고, 이후에는 자동으로 db/data 폴더 내 자료가 저장됩니다.
 
+#### back 컨테이너 cmd창 빠져나오기
+
+`# exit`
+
 ### 웹페이지 접속해서 확인하기(80번 포트)
 
-- localhost:80 에 접속해서 gokuma가 뜨는지 확인
-- localhost:5000 에 접속해서 gokuma is the best! 가 뜨는지 확인
+- localhost:80 에 접속해서 웹서비스가 잘 뜨는지 확인
+- localhost:5000/api-docs 에 접속해서 swagger 문서 확인
 
 ### 서버 종료 하기
 
@@ -154,8 +163,14 @@ window > `$ docker exec -it gokuma-back-1 //bin//bash`
 
 ### back(flask) 서버 cmd창 들어가기
 
-mac > `$ docker exec -it gokuma_back_1 /bin/bash`  
-window > `$ docker exec -it gokuma-back-1 //bin//bash`
+#### 생성된 컨테이너 확인
+
+`$ docker ps`
+
+#### 위에 생성된 컨테이너 중 back 컨테이너 cmd창 열기
+
+mac > `$ docker exec -it {back container 이름} /bin/bash`  
+window > `$ docker exec -it {back container 이름} //bin//bash`
 
 - #### 초기 데이터베이스에 값 넣기
 
@@ -171,8 +186,14 @@ window > `$ docker exec -it gokuma-back-1 //bin//bash`
 
 ### db 서버 cmd창 들어가기
 
-mac > `$ docker exec -it gokuma_db_1 /bin/bash`  
-window > `$ docker exec -it gokuma-db-1 //bin//bash`
+#### 생성된 컨테이너 확인
+
+`$ docker ps`
+
+#### 위에 생성된 컨테이너 중 db 컨테이너 cmd창 열기
+
+mac > `$ docker exec -it {db container 이름} /bin/bash`  
+window > `$ docker exec -it {db container 이름} //bin//bash`
 
 - #### mysql로 들어가기
   `# mysql -u root -p`  
@@ -182,4 +203,4 @@ window > `$ docker exec -it gokuma-db-1 //bin//bash`
 
 `$ docker-compose -f docker-compose.prod.yml up -d`
 
-- 개발 서버 도커 이미지가 있다면 상단 서버 삭제하기 명령어를 통해 삭제 후 실행
+- 개발 서버 도커 이미지가 있다면 상단 서버 삭제하기 명령어를 통해 삭제 후 실행
