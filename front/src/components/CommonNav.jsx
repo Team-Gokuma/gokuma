@@ -43,9 +43,9 @@ const Wrapdiv = styled.div`
 const StWrapper = styled(StListWrapper)`
   display: flex;
   justify-content: space-between;
-  width: 480px;
+  width: 550px;
   ${media.tablet} {
-    width: 448px;
+    width: 480px;
   }
   ${media.mobile} {
     width: 130px;
@@ -64,6 +64,7 @@ const StWrapper = styled(StListWrapper)`
   span {
     ${({ theme }) => theme.font.medium};
     cursor: pointer;
+
     ${media.tablet} {
       font-size: 16px;
     }
