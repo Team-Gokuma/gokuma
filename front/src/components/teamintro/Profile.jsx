@@ -67,10 +67,10 @@ const MemberPicture = styled.img`
 
 const Introduction = styled.p`
   color: ${({ theme }) => theme.color.black};
-  margin-top: 10px;
+  margin-top: 30px;
   height: 7rem;
   overflow: auto;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.2rem;
   ${media.mobile} {
     margin-top: 5px;
@@ -93,7 +93,10 @@ const Git = styled.img`
   width: 80px;
   height: 80px;
   display: block; 
-  margin: 0 auto; 
+  // margin: 0 auto; 
+  // margin-bottom:300px;
+  margin-top:-30px;
+  margin-left:50px;
   background-color: ${({ theme }) => theme.color.white};;
   border-radius: 20px;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
