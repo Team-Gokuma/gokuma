@@ -168,6 +168,7 @@ const Home = () => {
 
 // HOME
 const HomeContainer = styled.section`
+  overflow: hidden;
   h2 {
     ${({ theme }) => theme.font.bold};
     ${({ theme }) => theme.font.xxlarge};
