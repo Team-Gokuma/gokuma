@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { media } from "../../styles/theme";
+
 const Loading = () => {
   return (
     <>
@@ -42,7 +44,27 @@ const LoadingContainer = styled.div`
         left: 0;
       }
       to {
-        left: 170px;
+        left: 240px;
+      }
+    }
+  }
+  ${media.mobile} {
+    width: 100vw;
+    img {
+      width: 120px;
+      height: 120px;
+      margin-right: 40px;
+    }
+    .chef {
+      animation: changeplace 3s linear 1s infinite alternate;
+
+      @keyframes changeplace {
+        from {
+          left: 0;
+        }
+        to {
+          left: 170px;
+        }
       }
     }
   }
