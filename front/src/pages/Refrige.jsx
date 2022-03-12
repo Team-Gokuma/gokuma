@@ -447,6 +447,7 @@ const FindRecipe = styled.div`
   transition-property: transform;
   .findRecipeText {
     display: none;
+    text-align: center;
   }
   :hover {
     transform: translateY(-8px);
