@@ -13,14 +13,26 @@ import sticker from "../asset/img/home/sticker.png";
 import store from "../asset/img/home/store.png";
 import webBack from "../asset/img/home/webBack.png";
 import webFront from "../asset/img/home/webFront.png";
+import goToTop from "../asset/img/home/goToTop.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const Home = () => {
   AOS.init();
+  const handleGoTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <HomeContainer>
+        <GoTopButton onClick={handleGoTop}>
+          <img src={goToTop} alt="go to top" />
+          <p>Top</p>
+        </GoTopButton>
         <MainBackground>
           <MainSection>
             <MainContent>
@@ -183,6 +195,7 @@ const Home = () => {
 
 // HOME
 const HomeContainer = styled.section`
+  position: relative;
   overflow: hidden;
   h2 {
     ${({ theme }) => theme.font.bold};
@@ -257,6 +270,9 @@ const MainContent = styled.div`
       align-items: center;
       color: ${({ theme }) => theme.color.white};
     }
+    .mobile {
+      display: none;
+    }
   }
   ${media.tablet} {
     flex: 1;
@@ -277,6 +293,9 @@ const MainContent = styled.div`
       height: 40px;
       .main {
         display: none;
+      }
+      .mobile {
+        display: flex;
       }
     }
   }
@@ -333,18 +352,6 @@ const CaptureImage = styled.div`
     position: absolute;
     top: 140px;
     left: 70px;
-    /* animation: flashEffect 700ms cubic-bezier(0.5, -1, 0.5, 1) infinite alternate forwards;
-    @keyframes flashEffect {
-      from {
-        width: 40px;
-        height: 40px;
-        opacity: 0.6;
-      }
-      to {
-        width: 62px;
-        height: 58px;
-        opacity: 1;
-      } */
     }
   }
   .ipad {
@@ -703,6 +710,11 @@ const TeamIntroContent = styled.div`
     ${({ theme }) => theme.font.bold};
     text-decoration: none;
     color: ${({ theme }) => theme.color.black};
+    &:hover {
+      display: inline-block;
+      transform: translateY(-2px);
+      opacity: 0.7;
+    }
   }
   ${media.mobile} {
     p {
@@ -746,6 +758,65 @@ const TeanIntroImage = styled.div`
       width: 65vw;
       height: 50vw;
       right: 0%;
+    }
+  }
+`;
+
+const GoTopButton = styled.button`
+  position: fixed;
+  z-index: 2;
+  right: 3vw;
+  top: 80vh;
+  width: 48px;
+  height: 48px;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.4;
+
+  &:hover {
+    opacity: 1;
+    p {
+      display: block;
+    }
+  }
+
+  img {
+    width: 32px;
+    height: 32px;
+  }
+  p {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    display: none;
+    color: ${({ theme }) => theme.color.black};
+    ${({ theme }) => theme.font.bold};
+  }
+  ${media.tablet} {
+    width: 44px;
+    height: 44px;
+    top: 90vh;
+    p {
+      top: 48px;
+    }
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  ${media.tablet} {
+    width: 40px;
+    height: 40px;
+    img {
+      width: 22px;
+      height: 22px;
     }
   }
 `;
