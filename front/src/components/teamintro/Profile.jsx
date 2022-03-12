@@ -30,8 +30,8 @@ const MemberCard = styled.div`
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 
   ${media.mobile} {
-    width: 120px;
-    height: 240px;
+    width: 90px;
+    height: 190px;
     border-radius: 10px;
     padding: 60px 5px 5px;
     margin: 0px 0.5rem 0.5rem;
@@ -93,10 +93,7 @@ const Git = styled.img`
   width: 80px;
   height: 80px;
   display: block; 
-  // margin: 0 auto; 
-  // margin-bottom:300px;
-  margin-top:-30px;
-  margin-left:50px;
+  margin: -30px 0px 0px 52px; 
   background-color: ${({ theme }) => theme.color.white};;
   border-radius: 20px;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
@@ -104,5 +101,6 @@ const Git = styled.img`
   ${media.mobile} {
     width: 40px;
     height: 40px;
+    margin: -40px 0px 0px 20px;
     }
 `;

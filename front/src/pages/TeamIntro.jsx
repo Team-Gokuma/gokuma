@@ -87,7 +87,7 @@ const Members = styled.div`
   height:80vh;  
   margin: 0px auto;
   ${media.mobile} {
-    height:700px;
+    height:600px;
     flex-wrap: wrap;
     }
 `;
