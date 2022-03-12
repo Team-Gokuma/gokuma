@@ -51,6 +51,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
     setIngredient((cur) => {
       const newData = { ...cur };
       newData.loading = true;
+      newData.data = [];
       return newData;
     });
     if (response.status === 200) {
