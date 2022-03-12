@@ -1,22 +1,20 @@
-version: '3'
+version: "3"
 
 services:
   db:
-    build:
-      context: ./db
-      dockerfile: ./Dockerfile
+    build: ./db
     environment:
       MYSQL_ROOT_PASSWORD: "password"
       MYSQL_DATABASE: Gokuma
     command:
-      - --character-set-server=utf8 
+      - --character-set-server=utf8
       - --collation-server=utf8_unicode_ci
     restart: always
   back:
     depends_on:
       - db
     build: ./back
-    ports: 
+    ports:
       - "5000:5000"
     volumes:
       - ./back:/app
@@ -28,5 +26,7 @@ services:
       - "80:80"
     volumes:
       - ./front:/usr/src/app
+    environment:
+      - CHOKIDAR_USEPOLLING=true
     depends_on:
       - back

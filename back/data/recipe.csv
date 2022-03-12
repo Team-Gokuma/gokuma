@@ -1,0 +1,530 @@
+﻿RECIPE_ID,RECIPE_NM_KO,SUMRY,NATION_NM,TY_NM,COOKING_TIME,CALORIE,QNT,LEVEL_NM,IMG_URL,VIDEO_LINK
+1,나물비빔밥,육수로 지은 밥에 야채를 듬뿍 넣은 영양만점 나물비빔밥!,한식,밥,60,580,4,2,http://file.okdab.com/UserFiles/searching/recipe/000200.jpg,JSYw11Dg3eI
+2,오곡밥,정월대보름에 먹던 오곡밥! 영양을 한그릇에 담았습니다.,한식,밥,60,338,4,2,http://file.okdab.com/UserFiles/searching/recipe/000300.jpg,30CfpKaq6zI
+3,잡채밥,잡채밥 한 그릇이면 오늘 저녁 끝! 입 맛 없을 때 먹으면 그만이지요~,중국,밥,30,520,4,2,http://file.okdab.com/UserFiles/searching/recipe/000400.jpg,rrNfCVRFsvs
+4,콩나물밥,다이어트에 으뜸인 콩나물밥. 밥 물 넣을때 평소보다 적게 넣는거 잊지마세요!,한식,밥,40,401,4,1,http://file.okdab.com/UserFiles/searching/recipe/000600.jpg,CILQQsw1DbQ
+5,약식,집에서도 쉽게 만들어 맛있게 먹을 수 있답니다. 어려워 마시고 만들어 보세요~!,한식,떡/한과,60,259,4,2,http://file.okdab.com/UserFiles/searching/recipe/000800.jpg,y4ma5YV8cfA
+6,호박죽,호박죽 한 그릇이면 하루가 든든하답니다.,한식,밥,30,115,4,2,http://file.okdab.com/UserFiles/searching/recipe/001300.jpg,PzL4Y3LYBpU
+7,흑임자죽,검은깨를 갈아서 만든 고소함이 가득한 흑임자죽. 남녀노소 모두 사랑하는 맛!,한식,밥,25,450,4,2,http://file.okdab.com/UserFiles/searching/recipe/001400.jpg,ShS0_hxgtiE
+8,카레라이스,향긋한 카레향이 너무 좋지요. 누구나 좋아하는 만들기도 간편한 음식입니다.,동남아시아,밥,30,650,4,1,http://file.okdab.com/UserFiles/searching/recipe/001600.jpg,LTVxirHWvh8
+9,오므라이스,각종 채소를 계란 속에 꼭꼭 숨겨 편식하는 아이들도 맛있게 먹어요~,서양,밥,30,630,4,1,http://file.okdab.com/UserFiles/searching/recipe/001800.jpg,AlK2Gl6kHZI
+10,감자수제비,쫀득쫀득한 수제비와 담백한 맛의 감자가 이뤄내는 하모니!,한식,만두/면류,60,410,4,1,http://file.okdab.com/UserFiles/searching/recipe/001900.jpg,6qSuUWq0FR8
+11,냉면,"더운 여름, 살얼음 동동 띄운 시원한 냉면 한그릇 생각나시죠~",한식,만두/면류,50,630,4,2,http://file.okdab.com/UserFiles/searching/recipe/002100.jpg,gp-z2wmbKXM
+12,동치미막국수,시원한 동치미에 쫄깃한 국수를 말아서 만들어보세요.,한식,만두/면류,30,400,4,2,http://file.okdab.com/UserFiles/searching/recipe/002400.jpg,xvlykxghA7g
+13,열무김치냉면,맛있게 담근 열무김치에 냉면을 말아 먹어 보세요~ 새콤달콤 끝내줍니다!,한식,만두/면류,25,625,4,2,http://file.okdab.com/UserFiles/searching/recipe/002800.jpg,G2_KypfI-84
+14,채소국수,갖가지 야채를 듬뿍 넣어서 만든 요리로 출출할 때 간식거리로 아주 좋답니다.,한식,만두/면류,30,460,2,1,http://file.okdab.com/UserFiles/searching/recipe/002900.jpg,Gq9S0dJ3wHg
+15,해물국수,해물로 시원한 국물에 국수를 말아 드셔보세요~,한식,만두/면류,40,530,4,2,http://file.okdab.com/UserFiles/searching/recipe/003000.jpg,ChWIWwEHyog
+16,만둣국,만두를 예쁘게 만들면 이쁜 딸을 낳는다고 하죠? 가족들과 오손도손 맛있는 만두국 만들어 드셔보세요~,한식,만두/면류,40,540,4,2,http://file.okdab.com/UserFiles/searching/recipe/003500.jpg,At-u3lwsFtk
+17,다시마냉국,철분과 무기질이 풍부한 다시마로 피부건강을 지켜보세요~,한식,국,20,63,4,1,http://file.okdab.com/UserFiles/searching/recipe/003900.jpg,wCawBuOBzxM
+18,두부국,부드러운 두부로 맛나는 두부국을 끓여 단백함을 맛보세요.,한식,국,40,120,4,1,http://file.okdab.com/UserFiles/searching/recipe/004200.jpg,Opn4G1B0_DA
+19,두부조개탕,국물이 정말 시원해서 속풀이 식단으로도 안성맞춤!,한식,국,30,130,4,1,http://file.okdab.com/UserFiles/searching/recipe/004400.jpg,LvfKBgEb-7E
+20,무맑은국,고향의 맛을 느낄 수 있는 무국. 밥한그릇 뚝딱이죠!,한식,국,30,75,4,1,http://file.okdab.com/UserFiles/searching/recipe/004600.jpg,A9VugcMpgLE
+21,미역국,미역국은 철분이 풍부하게 함유된 음식이라 여자들에게 특히 좋은 음식이라 하지요.,한식,국,30,95,4,1,http://file.okdab.com/UserFiles/searching/recipe/004700.jpg,xsTFsunt6-8
+22,미역냉국,"더운 여름, 새콤달콤 시원한 미역냉국으로 입맛을 살려보세요~",한식,국,30,82,4,1,http://file.okdab.com/UserFiles/searching/recipe/004800.jpg,xexAbSUQzSw
+23,생태국,생태국에 콩나물을 넣어주면 시원함이 배가 됩니다.,한식,국,30,110,4,2,http://file.okdab.com/UserFiles/searching/recipe/005000.jpg,26wrpdF_Tvc
+24,연어까르파치오,독특한 바질향이 연어에 쏘옥~ 올리브오일로 한층 부드러운 연어회랍니다.,이탈리아,나물/생채/샐러드,30,120,2,1,http://file.okdab.com/UserFiles/searching/recipe/005100.jpg,tjfkYDVaJMs
+25,오이냉국,아삭아삭한 오이와 새콤달콤한 냉국의 조화!,한식,국,20,82,4,1,http://file.okdab.com/UserFiles/searching/recipe/005200.jpg,rBw0VdUaMFo
+26,해산물샐러드,시원한 해산물 샐러드~ 상큼한 레몬과 와인을 넣은 드레싱으로 깔끔하게~,이탈리아,나물/생채/샐러드,30,180,2,2,http://file.okdab.com/UserFiles/searching/recipe/005300.jpg,ggNuhJz1RNo
+27,재첩국,재첩은 해감을 잘 한다음 사용하셔야 해요. 그래야 깔끔한 맛을 낼 수 있어요.,한식,국,30,130,4,1,http://file.okdab.com/UserFiles/searching/recipe/005400.jpg,6rBsMy35EYs
+28,구운감자와도미구이,감자의 고소함과 도미의 담백함이 어울리는 너무나도 깔끔한 맛의 음식이예요.,이탈리아,구이,60,225,2,2,http://file.okdab.com/UserFiles/searching/recipe/005600.jpg,kjMIBHYOwXM
+29,쇠고기산적,고기와 버섯이 잘 어우러져 언제나 먹어도 질리지 않고 맛있어서 자주 생각나는 음식이죠~!,한식,구이,40,320,2,2,http://file.okdab.com/UserFiles/searching/recipe/005700.jpg,6vFKgijsDGo
+30,쇠고기양송이볶음,쫄깃하고 부드러운 쇠고기와 양송이의 만남! 향도 맛도 일품이예요~,한식,볶음,40,210,4,2,http://file.okdab.com/UserFiles/searching/recipe/005900.jpg,E-EW_H68r1Y
+31,팥국수,팥죽으로만 먹던 팥을 국수로 먹어보세요. 국수가 새롭게 느껴진답니다.,한식,만두/면류,30,692,4,2,http://file.okdab.com/UserFiles/searching/recipe/006000.jpg,R8_bgFdLfDY
+32,죽순표고버섯볶음나물,향이 좋은 죽순과 표고버섯을 같이 볶아 보세요. 입맛 살리는 음식이 될거에요.,중국,볶음,20,105,4,2,http://file.okdab.com/UserFiles/searching/recipe/006100.jpg,#NAME?
+33,부추표고버섯볶음,향긋한 부추와 표고버섯을 같이 볶아보세요.,중국,볶음,30,150,4,2,http://file.okdab.com/UserFiles/searching/recipe/006200.jpg,aBU3-qZ6f54
+34,두부드레싱과 채소샐러드,두부의 부드러운 촉감이 너무 좋네요. 물론 몸에도 좋은 추천건강드레싱이예요~,퓨전,나물/생채/샐러드,30,91,2,1,http://file.okdab.com/UserFiles/searching/recipe/006500.jpg,9OYciHKmgus
+35,콩나물무침,"아주 흔한 요리이지만,그 맛을 내는데도 비법이 있죠!",한식,밑반찬/김치,20,82,4,1,http://file.okdab.com/UserFiles/searching/recipe/006600.jpg,QzyLsfGjg4Q
+36,우엉조림,"아삭한 우엉을 맛깔스러운 간장 양념으로 조려보세요~ 맛깔스러운 간단한 반찬, 만들어볼까요?",한식,조림,30,75,4,1,http://file.okdab.com/UserFiles/searching/recipe/006900.jpg,22HPD7pKfaE
+37,바질토마토두부샐러드,샐러드를 더욱 상큼하게 만들어주는 참빛고운 포도씨유로 요리에 상큼함을 더해보세요~,서양,나물/생채/샐러드,20,147,2,1,http://file.okdab.com/UserFiles/searching/recipe/007100.jpg,P35YRE5nO4g
+38,멸치볶음,고소하고 짭잘한 멸치볶음 하나면 밥 한공기 뚝딱이죠.,한식,볶음,20,210,4,1,http://file.okdab.com/UserFiles/searching/recipe/007300.jpg,fm47aK3UtKM
+39,갈치무조림,구이가 지겨우시다면 조림으로 즐겨보세요~ 무를 넣어 더 맛있습니다!,한식,조림,40,220,4,1,http://file.okdab.com/UserFiles/searching/recipe/007600.jpg,mZ2C8gEw8Vk
+40,닭불고기,닭고기로 만든 불고기! 간장양념이 맛있어요~,한식,볶음,35,360,4,2,http://file.okdab.com/UserFiles/searching/recipe/007800.jpg,HI8DlDs1gko
+41,두부다시마말이,짭조롬하면서 단백한 두부다시다말이. 다이어트 음식으로 손색없지요.,한식,나물/생채/샐러드,30,110,2,2,http://file.okdab.com/UserFiles/searching/recipe/008300.jpg,elEKU9EwRtE
+42,팥칼국수,구수하고 담백한 팥칼국수~  걸쭉한 팥국물이 딱이예요!,한식,만두/면류,50,469,2,2,http://file.okdab.com/UserFiles/searching/recipe/008600.jpg,R8_bgFdLfDY
+43,콩나물잡채,당면 대신 콩나물로 잡채를 만들어볼까요~,한식,나물/생채/샐러드,30,175,4,2,http://file.okdab.com/UserFiles/searching/recipe/008800.jpg,qiTH195OCxM
+44,양배추말이찜,양배추에 다진고기와 두부를 으깨어 넣어 맛있게 쪄서 먹기좋은 크기로 썰어보세요~,한식,찜,50,180,4,2,http://file.okdab.com/UserFiles/searching/recipe/009000.jpg,gcoE_3AuG6c
+45,마늘장아찌,"마늘장아찌, 입맛 없을 때 드셔보세요~",한식,밑반찬/김치,20,44,4,1,http://file.okdab.com/UserFiles/searching/recipe/009100.jpg,7tWuwsV4BA8
+46,오징어불고기,오징어로 불고기를 만들어 맛있게 드셔보세요~ 간단하면서도 쉽게 맛낼 수 있답니다.,한식,볶음,40,320,4,2,http://file.okdab.com/UserFiles/searching/recipe/009200.jpg,YEG1UYY_1E4
+47,생선탕수,필수아미노산이 풍부한 생선을 탕수육에 응용해보세요. 생선을 못먹는 어린이들에게 더없이 좋답니다.,중국,튀김/커틀릿,40,540,4,2,http://file.okdab.com/UserFiles/searching/recipe/009400.jpg,j8sjP79vw-8
+48,갈비구이,영양 풍부한 갈비로 푸짐한 구이 한번 해볼까요?,한식,구이,60,324,4,2,http://file.okdab.com/UserFiles/searching/recipe/009900.jpg,37-BCf85bHk
+49,돈까스,가장 흔한 요리를 가장 특별하게 먹을때 처럼 기분좋은 마음으로 돈까스를 만들어보세요!,일본,튀김/커틀릿,60,560,2,2,http://file.okdab.com/UserFiles/searching/recipe/010400.jpg,037o6vxm0es
+50,갈비찜,잔칫상에 갈비찜이 빠질 수 없죠!,한식,찜,80,350,4,2,http://file.okdab.com/UserFiles/searching/recipe/010500.jpg,v32NjYn5pSc
+51,제육보쌈,돼지고기로 보쌈요리를 해보세요... 배추속도 맛있게 양념하여 준비하구요,한식,찜,60,300,4,2,http://file.okdab.com/UserFiles/searching/recipe/010700.jpg,rGAt5QS2ueU
+52,홍합꼬치구이,쫄깃한 홍합을 좀 더 맛있게 드시는 법~~ 항상 먹는 음식에도 살짝만 변형을 주면 새로움이 느껴진답니다.,한식,구이,30,130,4,2,http://file.okdab.com/UserFiles/searching/recipe/011000.jpg,lWAoEww38dw
+53,청국장찌개,한국인의 입맛에 딱 맞는 구수한 청국장입니다!,한식,찌개/전골/스튜,30,117,4,1,http://file.okdab.com/UserFiles/searching/recipe/011200.jpg,wezbeu4-C2s
+54,순두부찌개,순두부의 연한 질감과 개운한 국물이 입안에서 술~술~넘어갑니다.,한식,찌개/전골/스튜,25,133,4,1,http://file.okdab.com/UserFiles/searching/recipe/011300.jpg,nj-DjQFEZb0
+55,동태찌개,？끗이 손질한 생선을 넣어 시원한 동태찌개를 끓여보세요~,한식,찌개/전골/스튜,40,125,2,1,http://file.okdab.com/UserFiles/searching/recipe/011400.jpg,gUYeEasWU58
+56,김치찌개,냉장고에 있는 김치로 얼큰한 김치찌개 끓여보세요. 김치는 단순한 듯 하지만 조리법에 따라 다양한 맛을 낼 수 있답니다.,한식,찌개/전골/스튜,40,230,4,1,http://file.okdab.com/UserFiles/searching/recipe/011500.jpg,qWbHSOplcvY
+57,콩비지찌개,구수한 냄새가 고향의 맛을 전해주네요. 옛날 엄마의 맛을 기억하면서 정성스럽게 끓여보세요.,한식,찌개/전골/스튜,30,160,4,2,http://file.okdab.com/UserFiles/searching/recipe/011600.jpg,lDr6lNjUZ8w
+58,북어국,개운한 북어국은 해장용으로도~ 소화가 잘 안되 속을 진정시켜줄 때에도 모두 좋은 요리랍니다.,한식,국,30,123,4,1,http://file.okdab.com/UserFiles/searching/recipe/011800.jpg,fVKaR66n9B4
+59,유부초밥,맛있게 조린 유부에 밥을 넣어 만든 초밥종류입니다,일본,도시락/간식,20,560,1,2,http://file.okdab.com/UserFiles/searching/recipe/012000.jpg,g5XkYx6OSFs
+60,오색주먹밥도시락,오감만족 오색빛깔 주먹밥!,한식,도시락/간식,30,385,4,1,http://file.okdab.com/UserFiles/searching/recipe/012100.jpg,KHKA0uJWCxU
+61,해파리냉채,쫄깃한 해파리로 새콤한 냉채요리를 해보세요. 손님초대 요리로 손색없는 입맛 당기는 요리입니다.,한식,나물/생채/샐러드,40,82,4,1,http://file.okdab.com/UserFiles/searching/recipe/012400.jpg,XlddQklWuNo
+62,통배추김치,우리 식탁에서 꼭 빠져서는 안될 것이 바로 배추김치죠.,한식,밑반찬/김치,90,50,4,2,http://file.okdab.com/UserFiles/searching/recipe/012700.jpg,UuXCumG2QrQ
+63,열무김치,"아삭하게 씹히는 열무김치, 잘 익힌 국물 맛이 탄산음료에 버금간답니다.",한식,밑반찬/김치,40,45,4,2,http://file.okdab.com/UserFiles/searching/recipe/012800.jpg,MWSvJl4EQrc
+64,오이소박이,아삭하게 씹히는 오이와 맛있는 양념의 환상의 조화!,한식,밑반찬/김치,40,85,4,2,http://file.okdab.com/UserFiles/searching/recipe/012900.jpg,e2tFPOtZ990
+65,나박김치,향긋한 미나리를 나박김치에 넣어 향도좋고 맛도좋은 개운한 물김치 드셔보세요. 소화제가 필요없답니다.,한식,밑반찬/김치,35,45,4,2,http://file.okdab.com/UserFiles/searching/recipe/013000.jpg,xKLP0zXfAJg
+66,총각김치,뜨거운 밥과 총각김치가 너무 잘 어울리지요.,한식,밑반찬/김치,60,32,4,2,http://file.okdab.com/UserFiles/searching/recipe/013100.jpg,4KmwmpEoJKw
+67,굴깍두기,무에 굴을 넣어 김치를 담궈보세요. 굴의 풍부한 영양과 무의 개운한 맛이 함쳐져 굴깍두기 하나로 밥 한그릇 뚝딱입니다.,한식,밑반찬/김치,40,43,4,2,http://file.okdab.com/UserFiles/searching/recipe/013200.jpg,FepN4mD2AmE
+68,동치미,동치미로 시원한 국물 내어 겨울철 야식으로 이용해보세요. 이보다 더 맛있을 순 없을겁니다.,한식,밑반찬/김치,40,35,4,2,http://file.okdab.com/UserFiles/searching/recipe/013300.jpg,AdmdyOGou88
+69,갓김치,물에 밥을 말아 갓김치를 얹어 먹으면 밥도둑이 따로 없답니다. 씁쓸한 맛이 매력인 갓김치! 만들어 보세요~,한식,밑반찬/김치,30,41,4,2,http://file.okdab.com/UserFiles/searching/recipe/013400.jpg,vujQdLQNg44
+70,꽃게찌개,알이 가득 찬 꽃게로 얼큰하고 시원한 탕요리를 해보세요~,한식,찌개/전골/스튜,40,158,4,3,http://file.okdab.com/UserFiles/searching/recipe/013600.jpg,iY8diTfoOpY
+71,감자탕,얼큰한 국물에 양념이 잘 베인 감자와 돼지고기가 입에서 술술 넘어갑니다.,한식,찌개/전골/스튜,60,455,4,2,http://file.okdab.com/UserFiles/searching/recipe/013700.jpg,6hLnQ5c03L8
+72,아구탕,"아구찜과는 또다른 매력, 아구탕 대령이오~",한식,국,30,178,4,1,http://file.okdab.com/UserFiles/searching/recipe/013800.jpg,Zfou25J-TG8
+73,조기매운탕,조기로 구이요리만 하셨다구요? 이번에는 매운탕으로 끓여보세요. 조기의 또다른 맛을 느끼실 수 있답니다.,한식,찌개/전골/스튜,30,156,4,1,http://file.okdab.com/UserFiles/searching/recipe/014000.jpg,Kg_ETs0-bIM
+74,알탕,씹히는 맛이 독특한 알이 듬뿍 들어간 얼큰하고 시원한 알탕!,한식,찌개/전골/스튜,30,140,4,2,http://file.okdab.com/UserFiles/searching/recipe/014100.jpg,443wxP-v4ko
+75,우거지된장찌개,비타민이 듬뿍 들어있는 우거지를 이용한 구수한 찌개요리예요~,한식,찌개/전골/스튜,30,124,4,2,http://file.okdab.com/UserFiles/searching/recipe/014300.jpg,_LEpsi4TT5Y
+76,샤브샤브,"부담없이 먹을 수 있는 샤브샤브, 점심메뉴로도 좋습니다~",한식,찌개/전골/스튜,30,385,4,2,http://file.okdab.com/UserFiles/searching/recipe/014500.jpg,PSC0QvF2tzU
+77,국수전골,"입맛 없을 때, 전골냄비에 끓여낸 보글보글 국수전골! 서늘한 날씨에 좋습니다~",한식,찌개/전골/스튜,40,289,4,2,http://file.okdab.com/UserFiles/searching/recipe/014600.jpg,416s-__YuYE
+78,낙지전골,갖가지 재료를 듬뿍 넣은 시원한 전골요리로 저녁 식탁을 꾸며보세요~,한식,찌개/전골/스튜,40,236,2,2,http://file.okdab.com/UserFiles/searching/recipe/014700.jpg,T8tDl8mVP_k
+79,선지국,선지는 단백질이 풍부하고 철분이 많이 함유되 씹으면 고소한 맛과 영양이 그대로 전해진답니다.,한식,국,30,190,4,2,http://file.okdab.com/UserFiles/searching/recipe/015000.jpg,7uZQQYD5eZ0
+80,콩나물국밥,콩나물을 넣어 시원한 국밥 한뚝배기 하실래요~,한식,밥,30,367,4,1,http://file.okdab.com/UserFiles/searching/recipe/015100.jpg,Eu1z6ZnrLqw
+81,곰탕,"곰탕, 이제는 집에서 끓여 더욱 깊은 맛을 내보세요.",한식,국,120,360,4,2,http://file.okdab.com/UserFiles/searching/recipe/015500.jpg,hepw9gS8ZfU
+82,설렁탕,쇠뼈를 푹 고아낸 뽀얀 국물 한 대접 먹으면 기운이 솟아납니다.,한식,국,90,507,4,2,http://file.okdab.com/UserFiles/searching/recipe/015600.jpg,mXRMWqr_0c8
+83,도가니탕,몸이 허하다고 느껴질때 도가니탕 한그릇으로 기운 챙기세요.,한식,국,180,600,4,3,http://file.okdab.com/UserFiles/searching/recipe/015900.jpg,6F-Zdl97lFA
+84,꼬리곰탕,꼬리곰탕 한그릇이면 허했던 기력을 찾을 수 있죠.,한식,국,60,310,4,3,http://file.okdab.com/UserFiles/searching/recipe/016000.jpg,nBMQdlGfyAA
+85,갈비탕,갈비탕으로 속을 달래보세요. 든든해집니다!,한식,국,175,370,4,3,http://file.okdab.com/UserFiles/searching/recipe/016100.jpg,SBKRrJRCFu8
+86,부추김치,"부추는 향도 좋고 맛도 달아, 김치로 담그면 맛있습니다.",한식,밑반찬/김치,20,50,4,2,http://file.okdab.com/UserFiles/searching/recipe/016200.jpg,xNhzokKYVJY
+87,파김치,파김치는 익으면 젖갈과 맛이 잘 어울려 든든한 밑반찬이 된답니다.,한식,밑반찬/김치,30,40,4,2,http://file.okdab.com/UserFiles/searching/recipe/016300.jpg,0dCqYh0UZyA
+88,백김치,백김치를 담궈 시원한 김치를 맛보세요! 고춧가루를 넣은 김치와는 또다른 시원한 맛이랍니다.,한식,밑반찬/김치,60,50,4,2,http://file.okdab.com/UserFiles/searching/recipe/016400.jpg,khS1HlvjS7U
+89,깻잎장아찌,"깻잎장아찌는 만들기도 쉬우며, 입맛없을 때 먹기 좋은 밑반찬입니다.",한식,밑반찬/김치,30,30,4,2,http://file.okdab.com/UserFiles/searching/recipe/016500.jpg,NIIXofrOMoc
+90,오이지장아찌무침,아삭하게 씹히는 오이로 맛있는 오이장아찌 한번 만들어보세요.,한식,밑반찬/김치,20,30,4,2,http://file.okdab.com/UserFiles/searching/recipe/016600.jpg,koyzaqPQ7Ds
+91,콩자반,한 번 먹으면 고소한 맛과 톡톡터지는 씹는 맛이 입 안을 즐겁게 해준답니다.,한식,조림,20,55,4,2,http://file.okdab.com/UserFiles/searching/recipe/017500.jpg,UJ3e88XSp9Y
+92,쇠고기장조림,장조림 하나면 간단하게 식사 준비 할 수 있지요.,한식,조림,30,146,4,2,http://file.okdab.com/UserFiles/searching/recipe/017600.jpg,VDn_dcC88mc
+93,연근조림,연근이 아삭하게 씹혀요! 만들기도 아주 쉽지요~,한식,조림,30,66,4,2,http://file.okdab.com/UserFiles/searching/recipe/017700.jpg,#NAME?
+94,해물파전,각종 해산물이 들어간 해물파전! 바다향과 고소한 향이 그대로~,한식,부침,40,100,4,2,http://file.okdab.com/UserFiles/searching/recipe/017900.jpg,O2YSXyxCPDE
+95,오이나물,오이를 볶으면 아삭하면서도 고소한 맛이 나서 생채와는 또 다른 맛을 느낄수 있답니다.,한식,나물/생채/샐러드,15,85,4,1,http://file.okdab.com/UserFiles/searching/recipe/018200.jpg,#NAME?
+96,냉이된장찌개,"모시조개로 시원한 국물맛을 내고, 냉이로 향긋한 내음이 나는 냉이조갯국 만들어 보세요~",한식,찌개/전골/스튜,30,109,4,2,http://file.okdab.com/UserFiles/searching/recipe/018400.jpg,npC_fQchHww
+97,계란말이,도시락 반찬의 단골메뉴이자 훌륭한 안주인 계란말이입니다.,한식,부침,30,110,4,1,http://file.okdab.com/UserFiles/searching/recipe/018500.jpg,T7YJviWhquo
+98,닭강정,양념치킨보다 달콤하고 바삭한 닭강정. 손이 절로 가지요.,한식,튀김/커틀릿,40,110,2,2,http://file.okdab.com/UserFiles/searching/recipe/018600.jpg,mI-KFkfT1Tk
+99,배추겉절이,간단하면서도 입맛을 돋우는 반찬으로는 배추 겉절이가 최고지요!,한식,밑반찬/김치,30,55,4,1,http://file.okdab.com/UserFiles/searching/recipe/019100.jpg,9SM9Tgl04Y4
+100,더덕구이,더덕을 양념해 구우면 향이 솔솔~ 입안이 즐거운 식사가 되지요.,한식,구이,35,45,4,2,http://file.okdab.com/UserFiles/searching/recipe/019200.jpg,ir4Z2IyFIvM
+101,감자조림,감자는 간장에 조리면 유난히 더 달고 맛있는것 같아요~~,한식,조림,40,108,4,1,http://file.okdab.com/UserFiles/searching/recipe/019500.jpg,Rv4blu22n24
+102,마른오징어조림,마른 오징어를 맛있는 양념장에 버무리면 쫄깃함과 양념의 맛이 씹어도 씹어도 질리지 않아요~,한식,밑반찬/김치,30,140,4,1,http://file.okdab.com/UserFiles/searching/recipe/019700.jpg,Siog7cJWb6I
+103,죽순볶음,쇠고기와 죽순은 궁합이 잘 맞는 음식이지요. 향이 좋은 죽순을 볶아 드셔보세요.,한식,볶음,20,70,4,2,http://file.okdab.com/UserFiles/searching/recipe/019900.jpg,IQo-l1y7EwQ
+104,호박전,젊어서도 늙어서도 맛있는 호박! 애호박으로 고소한 전을 부쳐보아요~,한식,부침,30,105,4,1,http://file.okdab.com/UserFiles/searching/recipe/020000.jpg,EuHqMfsYq3s
+105,탕수육,가장 보편적인 요리방법으로 만든 탕수육입니다..달콤 새콤한 소스에 찍어먹는 고기튀김의 맛은..정말 언제나 맛있죠~,중국,튀김/커틀릿,30,616,2,2,http://file.okdab.com/UserFiles/searching/recipe/020100.jpg,WneiVYnZgHo
+106,콩국계란찜,"콩국물 베이스가 들어간 고소한 계란찜 한번 드셔보세요~ 영양도 듬뿍, 건강에도 OK!!",퓨전,찜,30,80,2,2,http://file.okdab.com/UserFiles/searching/recipe/020200.jpg,_H64Kz7Mgz4
+107,불고기,배에 재워 더 달콤하고 부드러운 불고기~ 오늘 저녁 어떠세요?,한식,볶음,20,172,4,2,http://file.okdab.com/UserFiles/searching/recipe/020500.jpg,nVzwOOJLt24
+108,부추전,피를 맑게 해준다는 부추! 부추를 밀가루 반죽과 함께 섞어 노릇하고 바삭하게 구워낸 전요리랍니다.,한식,부침,30,151,4,2,http://file.okdab.com/UserFiles/searching/recipe/020700.jpg,wfm951HEpGU
+109,돼지갈비구이,돼지갈비를 양념에 잘 재워 채소에 싸 드셔보세요. 입안 가득 넣어도 계속 계속 들어갈거에요.,한식,구이,50,1000,4,1,http://file.okdab.com/UserFiles/searching/recipe/021000.jpg,fdiVs1mNkM8
+110,모듬초밥,여러가지 해산물을 이용해 초밥을 만들어보세요. 입도 눈도 즐겁운 식사게 될거에요~,일본,밥,50,200,4,2,http://file.okdab.com/UserFiles/searching/recipe/021200.jpg,73oDKtmqMcg
+111,꽁치무조림,통조림으로 간단하고 맛있게 요리하는 법! 통조림은 무조건 맛없다는 고정관념을 깨드리는 요리가 있어요~,한식,조림,25,185,4,1,http://file.okdab.com/UserFiles/searching/recipe/021900.jpg,HLJcyU-APNA
+112,김치적,김치의 아삭함과 개운함을 산적에서 느끼는 새로움~ 산적의 맛이 새로워집니다,한식,부침,25,350,4,1,http://file.okdab.com/UserFiles/searching/recipe/022300.jpg,K55CPyYTUJI
+113,낙지볶음,"톡 쏘는 매콤한 양념에 쫄깃한 낙지를 살짝만 볶아보세요~ 술안주로도, 밥반찬으로도, 이보다 좋은 것이 없답니다!",한식,볶음,30,134,2,2,http://file.okdab.com/UserFiles/searching/recipe/022700.jpg,U8Kn6Epsrr0
+114,두부김치,"맛있게 익은 김치에 참기름, 깨소금 양념해서 따뜻한 두부와 함께 먹으면 담백하고 시원한 맛이 일품이죠.",한식,볶음,20,253,4,1,http://file.okdab.com/UserFiles/searching/recipe/023000.jpg,5eQ1rf642QI
+115,오믈렛,이쁜 오믈렛속에 숨겨진 밥을 떠먹는 재미! 한번 느껴보세요,서양,양식,20,311,2,1,http://file.okdab.com/UserFiles/searching/recipe/024300.jpg,_FcTPj5Whl4
+116,롤케비지(양배추말이),고기로 속을 만들어 양배추로 돌돌 말아 찌면 양배추의 색다른 변신에 놀라실거에요.,서양,찜,60,235,2,2,http://file.okdab.com/UserFiles/searching/recipe/025000.jpg,Ld4pQMk8vUc
+117,두부미역냉채,두부의 고소함과 미역의 씹는 맛이 어우러져 상큼 개운한 냉채~~!! 다이어트식으로 그만이지요!!,한식,나물/생채/샐러드,30,95,2,1,http://file.okdab.com/UserFiles/searching/recipe/025700.jpg,nk4is47DfYE
+118,중국식볶음밥,중국요리는 센불이 가장 중요해요. 팬을 뜨겁게 달궈서 재빨리 볶아 주세요.,중국,밥,30,528,4,2,http://file.okdab.com/UserFiles/searching/recipe/026100.jpg,xi36nNtMmHQ
+119,해장라면,라면에 여러가지 야채를 넣어 만든 시원하고 푸짐한 메뉴입니다. 술 마신 다음날 스피드하게 먹으면 너무 좋아요~,한식,만두/면류,30,290,4,1,http://file.okdab.com/UserFiles/searching/recipe/026200.jpg,rTAWqq4I3JA
+120,국수계란말이,국수를 계란에 담아 색다름을 더해보세요~,일본,만두/면류,30,260,2,2,http://file.okdab.com/UserFiles/searching/recipe/026500.jpg,wsncA8s3hoI
+121,꽁치간장구이,꽁치는 구이나 조림으로만 생각하셨죠? 간장양념을 발라가며 정성스럽게 구워보세요. 정말 맛있답니다~,한식,구이,40,110,4,1,http://file.okdab.com/UserFiles/searching/recipe/026900.jpg,OFRYAzVjISM
+122,감자고추채볶음,감자를 채썰어 노랗게 볶은다음 색깔이 이쁜 홍고추등을 넣어 볶아주면 아주 예쁘고 맛있는 볶음요리가 되지요~,한식,볶음,30,189,2,1,http://file.okdab.com/UserFiles/searching/recipe/027000.jpg,wnOoiIkpYi0
+123,가는파잡채,가는파로 잡채 요리한번 해볼까요?,한식,볶음,30,175,2,1,http://file.okdab.com/UserFiles/searching/recipe/027200.jpg,7laQtetplmc
+124,묵과양념장,담백한 도토리묵을 새콤한 양념장과 버무리면 그맛이 환상~ 많이 먹어도 살찌지 않아요!,한식,나물/생채/샐러드,20,112,2,1,http://file.okdab.com/UserFiles/searching/recipe/027300.jpg,7HCxDOnn1kE
+125,고등어살튀김과소스,고등어를 녹말가루에 묻혀 바삭하게 튀겨 맛있는 소스와 곁들이면 정말 놀라운 맛이납니다.,한식,튀김/커틀릿,30,390,2,2,http://file.okdab.com/UserFiles/searching/recipe/027400.jpg,URob7-OQ2lw
+126,가지와마른새우무침,"가지와 새우를 같이 볶은다음, 맛있는 양념을 하여 만들었지요. 도시락 반찬에 안성맞춤이랍니다.",한식,볶음,30,102,2,1,http://file.okdab.com/UserFiles/searching/recipe/027500.jpg,L0qkTrf4hnM
+127,채소말이샤브샤브,담백하고 깊은 맛이나는 육수에 고기와 야채를 돌돌말아 살짝 익혀먹으면 입맛이 저절로 살아나요~,일본,찌개/전골/스튜,60,280,2,2,http://file.okdab.com/UserFiles/searching/recipe/027600.jpg,h8luflgvTsI
+128,떡갈비구이,갈비 속에 떡이 들어있듯이 쫄깃쫄깃해서~ 떡갈비!,한식,구이,50,380,2,2,http://file.okdab.com/UserFiles/searching/recipe/027800.jpg,FZPVw957Rj0
+129,골뱅이무침,간단하게 술상을 차릴때 새콤달콤한 골뱅이무침 하나면 OK!,한식,나물/생채/샐러드,30,226,2,1,http://file.okdab.com/UserFiles/searching/recipe/028600.jpg,Lz0tPtrMQmQ
+130,두부양념조림,영양가 풍부한 두부에 간장소스를 곁들이세요. 두부요리는 남녀노소 좋아하는 메뉴입니다.,한식,조림,20,98,2,1,http://file.okdab.com/UserFiles/searching/recipe/028700.jpg,P_4fUXQ5nyo
+131,육회,싱싱한 육회는 회 못지않게 맛이 좋습니다.,한식,나물/생채/샐러드,30,120,2,1,http://file.okdab.com/UserFiles/searching/recipe/028800.jpg,aVngvX_H59E
+132,까르보나라스파게티,깊고 진한 크림소스의 까르보나라 스파게티! 느끼하지 않고 부드럽습니다.,이탈리아,만두/면류,40,550,2,2,http://file.okdab.com/UserFiles/searching/recipe/028900.jpg,0bnFoRQebq0
+133,삼계탕,여름철 보양식의 대표음식 삼계탕! 시원한 국물과 쫄깃한 닭고기로 몸보신하세요~,한식,국,60,565,2,2,http://file.okdab.com/UserFiles/searching/recipe/029400.jpg,VXXtwekX-B4
+134,주먹밥,피크닉에 빠져서는 안될 단골메뉴! 주먹밥으로 가족들과 가벼운 피크닉을 즐겨보세요.,한식,도시락/간식,30,350,2,1,http://file.okdab.com/UserFiles/searching/recipe/029900.jpg,7kNMDzd4iVE
+135,유부계란찜,유부에 넣어 달걀찜을 하면 도시락 반찬으로 모양도 예쁘고 맛도 있는 센스만점 반찬이 된답니다~,한식,찜,20,105,2,2,http://file.okdab.com/UserFiles/searching/recipe/030000.jpg,rAmvchODeTM
+136,속채운감자,찐 감자에 여러가지 재료를 넣어 속을 꽉 채운요리랍니다.,서양,구이,20,200,2,1,http://file.okdab.com/UserFiles/searching/recipe/030200.jpg,Y-EpZ3Fn92g
+137,떡갈비샌드위치,인스턴트 샌드위치는 비만의 원인이랍니다. 직접 만들어 맛과 영양이 우수한 샌드위치로 건강을 챙기세요.,퓨전,샌드위치/햄버거,30,380,2,2,http://file.okdab.com/UserFiles/searching/recipe/030300.jpg,qCFdmwxyBvw
+138,버섯덮밥,향긋한 버섯으로 만드는 간단하고 폼나는 요리! 간장소스가 맛을 더해준답니다~,한식,밥,40,480,4,1,http://file.okdab.com/UserFiles/searching/recipe/030500.jpg,xRAMJmkWxCQ
+139,닭고기수삼샐러드,영양가 풍부한 닭고기와 수삼으로 고급스러운 샐러드를 만들어보세요. 즐거운 식사가 된답니다.,한식,나물/생채/샐러드,60,300,2,2,http://file.okdab.com/UserFiles/searching/recipe/030700.jpg,26hn_IoNtU8
+140,컬리플라워해물샐러드,"컬리플라워를 준비하고, 여러가지 해물도 준비해놓습니다. 머스터드 드레싱과 멋진 조화를 이룹니다.",서양,나물/생채/샐러드,30,135,2,2,http://file.okdab.com/UserFiles/searching/recipe/030800.jpg,33w-RubROcI
+141,과일샐러드,향긋한 과일향이 너무 좋아요. 만들기도 참 쉽습니다.,서양,나물/생채/샐러드,20,171,2,1,http://file.okdab.com/UserFiles/searching/recipe/031000.jpg,_EpgzfRVrTs
+142,연어샐러드,훈제연어에 양파와 케이퍼 얹어 드셔보세요. 짭짤하고 훈연한 향이 입맛을 자꾸 자극한답니다~,서양,나물/생채/샐러드,10,135,2,1,http://file.okdab.com/UserFiles/searching/recipe/031300.jpg,564Up6BYLp8
+143,시금치샐러드,"상큼한 시금치에 담백한 베이컨과 양송이와 가루치즈, 그리고 레몬드레싱.. 상큼함이 전해져요.",서양,나물/생채/샐러드,20,290,2,1,http://file.okdab.com/UserFiles/searching/recipe/031500.jpg,rv4exPvJYYk
+144,채소수프,다양한 야채로 만든 영양만점 수프랍니다~,서양,밥,40,170,2,1,http://file.okdab.com/UserFiles/searching/recipe/032100.jpg,HiRkoEo8qvs
+145,부대찌개,햄과 갖은 재료로 푸짐한 부대찌개로 오늘 저녁상을 근사하게 차려보세요~,한식,찌개/전골/스튜,40,125,2,1,http://file.okdab.com/UserFiles/searching/recipe/032200.jpg,8uwmFQH614M
+146,곱창전골,곱창으로 만든 얼큰한 전골요리로 가족들과 별식을 즐겨보세요~,한식,찌개/전골/스튜,60,200,2,3,http://file.okdab.com/UserFiles/searching/recipe/032300.jpg,otuNkY130Bk
+147,아귀찜,부드러운 아구살과 양념장이 어우러져 매콤 개운한 요리입니다.,한식,찜,60,500,2,2,http://file.okdab.com/UserFiles/searching/recipe/032400.jpg,mShVf7t0yHw
+148,오렌지건포도빵,오렌지와 건포도로 만든 색다른 빵이랍니다.,서양,빵/과자,140,260,2,2,http://file.okdab.com/UserFiles/searching/recipe/032800.jpg,4E15HBbb-5o
+149,삼겹살채소말이,누구나 좋아하는 삼겹살에 여러가지 야채를 돌돌 말아 드셔보세요.,한식,구이,30,450,2,2,http://file.okdab.com/UserFiles/searching/recipe/033000.jpg,1rKc-BP5AgE
+150,배추속댓국,배추를 넣어 구수하고 시원한 배추속댓국으로 속풀이하세요~,한식,국,30,98,4,1,http://file.okdab.com/UserFiles/searching/recipe/033100.jpg,vNqTnXQaTvY
+151,송편,추석에 빠지지 않는 명절 제일음식~!! 바로 송편이죠..,한식,떡/한과,60,190,2,2,http://file.okdab.com/UserFiles/searching/recipe/033400.jpg,gYeuxdNotAA
+152,빈대떡,"맛있고 즐거운 요리, 막걸리와의 궁합은 최고이지요.",한식,부침,30,186,2,2,http://file.okdab.com/UserFiles/searching/recipe/033700.jpg,ds8UqZqQUqU
+153,화양적,여러가지 야채들을 색색별로 꼿은 화양적. 미각과 시각을 동시에 만족시키는 요리이죠.,한식,부침,30,159,2,2,http://file.okdab.com/UserFiles/searching/recipe/033800.jpg,bkio2SC6Maw
+154,토란곰탕,추석에 꼭 빠지지 않는 명절요리랍니다.,한식,국,30,120,2,2,http://file.okdab.com/UserFiles/searching/recipe/033900.jpg,YnUbi7_rPvc
+155,쇠고기전골,쇠고기를 푸짐하게 넣어 만든 전골 요리랍니다~,한식,찌개/전골/스튜,60,190,2,2,http://file.okdab.com/UserFiles/searching/recipe/034300.jpg,KltlBVXXNy8
+156,고등어무조림,자칫하면 비릴 수 있는 고등어를 무와 함께 조려보세요~ 매콤해서 밥과 잘어울려요!,한식,조림,30,240,2,1,http://file.okdab.com/UserFiles/searching/recipe/034400.jpg,UcMrbi57uy8
+157,잡채,잔칫상에 빠질 수 없는 잡채! 여러 가지 재료의 조화가 일품이예요~,한식,만두/면류,25,625,4,2,http://file.okdab.com/UserFiles/searching/recipe/034600.jpg,DNj3YiaP42s
+159,김치채소볶음,김치가 들어가서 한식스러운 음식이라고 생각하시죠?  사실은 중국식 고추잡채보다 더 개운한 중국요리랍니다.,중국,밑반찬/김치,30,190,2,2,http://file.okdab.com/UserFiles/searching/recipe/035700.jpg,V4g-PrVJU2Q
+160,닭날개튀김,닭부위중에서 가장 맛있는 날개로 맛있는 튀김요리를 해보세요.,서양,튀김/커틀릿,60,427,2,2,http://file.okdab.com/UserFiles/searching/recipe/035800.jpg,_M-6zs0qAQk
+161,오징어순대,오징어로 순대를 만든다? 아주 색다른 음식이죠.,한식,찜,60,198,2,2,http://file.okdab.com/UserFiles/searching/recipe/036000.jpg,14qAltzl3LU
+162,누룽지탕,누룽지에 뜨거운 소스를 끼얹을 때 나는 찌지지직 소리가 포인트입니다.,중국,밥,50,246,2,2,http://file.okdab.com/UserFiles/searching/recipe/036700.jpg,ZpcVh_8S-yg
+163,가래떡꼬치,편식하는 아이에게도 몸에 좋은 파프리카와 브로콜리를 먹일 수 있는 신기한 떡꼬치!,한식,도시락/간식,60,179,4,1,http://file.okdab.com/UserFiles/searching/recipe/036900.jpg,twVXDFxV-KU
+164,찬밥지짐이,남아있는 찬밥으로 맛있는 간식 만들어볼까요?,한식,부침,30,450,2,1,http://file.okdab.com/UserFiles/searching/recipe/037200.jpg,VxhINVQmoA4
+165,동지팥죽,동지날이 되면 귀신이 싫어하는 붉은 것을 먹어 액땜을 한다고 하죠? 액땜도 하며 오랜만에 별식도 즐겨보세요~,한식,밥,60,200,2,3,http://file.okdab.com/UserFiles/searching/recipe/037500.jpg,oyCxicLybpM
+166,팥타르트,타르타에 팥을 넣어 만든 아주 색다른 음식이죠~,퓨전,빵/과자,60,360,2,3,http://file.okdab.com/UserFiles/searching/recipe/037700.jpg,RwWb9PO0amE
+167,고구마줄기볶음,고구마줄기로 맛있는 볶음요리해볼까요~,한식,볶음,20,65,4,1,http://file.okdab.com/UserFiles/searching/recipe/038200.jpg,gINtoExVsy0
+168,어묵닭고기조림,어묵안에 부드러운 닭고기 안심을 넣어서 만들었답니다,한식,조림,35,265,2,2,http://file.okdab.com/UserFiles/searching/recipe/038800.jpg,#NAME?
+169,떡국,설날 아침 떡국먹고 한살 더먹기!,한식,국,30,430,2,1,http://file.okdab.com/UserFiles/searching/recipe/039000.jpg,At-u3lwsFtk
+170,절편,절편에 모양을 다 낸 다음 손으로 꼭 참기름 바르셔야해요,한식,떡/한과,60,100,2,3,http://file.okdab.com/UserFiles/searching/recipe/039200.jpg,VZtw0PJEJkc
+171,수정과,달콤한 곶감과 향긋한 계피향이 어우러져서 한국의 정서를 느끼게 해준답니다~,한식,음료,60,165,4,3,http://file.okdab.com/UserFiles/searching/recipe/039800.jpg,OT5yaii3HLc
+172,깐풍기,바삭하게 튀겨서 맛있게 만들어보세요~,중국,튀김/커틀릿,40,330,2,2,http://file.okdab.com/UserFiles/searching/recipe/040000.jpg,bCY_468cdHc
+173,팥시루떡,"우리의 전통떡을 집에서 직접 만들어 보세요. 하트모양, 동그라미, 별모양으로 아이들의 호기심도 자극하구요.",한식,떡/한과,50,120,2,3,http://file.okdab.com/UserFiles/searching/recipe/040200.jpg,r7vsspZAFCc
+174,두부탕,부드럽고 영양이 뛰어난 두부로 탕요리 해볼까요?,중국,국,30,85,2,2,http://file.okdab.com/UserFiles/searching/recipe/040600.jpg,szqwPmNWBUs
+175,쇠고기완자찜,동글동글 고기를 완자 모양으로 빚어 찜 요리를 했답니다.,한식,찜,60,235,3,2,http://file.okdab.com/UserFiles/searching/recipe/040900.jpg,g1MradyJUDw
+176,해물잡채,싱싱한 해물로 만든 잡채요리랍니다.,한식,만두/면류,40,180,2,2,http://file.okdab.com/UserFiles/searching/recipe/041200.jpg,NRAQZOsxMlM
+177,맑은떡국,다시마와 표고버섯으로 육수를 낸 맛있는 떡국 만들어보세요.,한식,국,30,345,2,2,http://file.okdab.com/UserFiles/searching/recipe/041700.jpg,KkxjEPL8rWA
+178,찰밥,찹쌀과 팥을 섞어 만든 찰밥입니다.,한식,밥,40,336,2,2,http://file.okdab.com/UserFiles/searching/recipe/042500.jpg,ELfDYlGSejQ
+179,콩나물무밥,무의 달짝지근한 맛이 어우러져서 맛있는 건강식 밥이죠. 다른 반찬 없이 압력밥솥에서 10분만 하면 끝!,한식,밥,30,400,2,1,http://file.okdab.com/UserFiles/searching/recipe/042600.jpg,ssaHFkpyXpw
+180,모듬쌈밥,몸에 좋은 채소를 한입에~ 예쁘고 맛있게 먹자!,한식,밥,30,360,2,2,http://file.okdab.com/UserFiles/searching/recipe/043000.jpg,rXCx4sdd_FI
+181,달래된장찌개,구수한 된장찌개에 상큼한 달래가 들어가 향긋한 달래된장찌개!,한식,찌개/전골/스튜,40,125,2,2,http://file.okdab.com/UserFiles/searching/recipe/043100.jpg,KqucE3Ry-O8
+182,쑥버섯볶음,쑥의 향과 버섯의 쫄깃한 맛이 한층 어우러진 요리!,한식,볶음,20,112,4,2,http://file.okdab.com/UserFiles/searching/recipe/043600.jpg,aBU3-qZ6f54
+183,닭고기명란튀김,닭고기와 명란을 튀긴 요리랍니다,퓨전,튀김/커틀릿,40,420,2,2,http://file.okdab.com/UserFiles/searching/recipe/044500.jpg,ExeETtSecc4
+184,봄동바지락볶음,봄동과 바지락의 조화! 조금 생소하시죠? 일단 한 번 먹어보세요~,한식,볶음,30,108,2,2,http://file.okdab.com/UserFiles/searching/recipe/044600.jpg,4TnaTTg1R_Q
+185,김치동그랑땡,몸에 좋은 두부와 김치와 감자를 이용해 동그랑땡을 만들어 보아요~,한식,부침,30,235,2,1,http://file.okdab.com/UserFiles/searching/recipe/044700.jpg,ng6KqTukU7M
+186,찬밥맛탕,밥으로 맛탕을 한다!! 생소하시다구요? 한번 도전해 보세요 찬밥도 해결하고 맛있는 간식도 먹고 1석2조!!^^,한식,밥,40,280,4,2,http://file.okdab.com/UserFiles/searching/recipe/045800.jpg,aXJgN_JjYDg
+187,양배춧국,담백한 된장국에 양배추와 모시조개가 풍덩~,한식,국,30,90,2,1,http://file.okdab.com/UserFiles/searching/recipe/046100.jpg,gjJ0_H7hC2Q
+188,오징어찌개,오징어로 간단하게 찌개요리 해보세요.,한식,찌개/전골/스튜,40,235,2,1,http://file.okdab.com/UserFiles/searching/recipe/046800.jpg,RKd8TXtFZxo
+189,오이피클,"새콤달콤,아삭아삭 씹는 맛이 좋은 피클",서양,밑반찬/김치,40,56,4,1,http://file.okdab.com/UserFiles/searching/recipe/046900.jpg,JNEOyHP-s9c
+190,영양돌솥밥,보기만해도 영양가 풍부한 돌솥밥이랍니다.,한식,밥,40,384,2,2,http://file.okdab.com/UserFiles/searching/recipe/047000.jpg,nX68krMmUpM
+191,시금치된장국,시금치와 새우로 맛을 내고 된장으로 간을 해보세요.,한식,국,30,130,2,1,http://file.okdab.com/UserFiles/searching/recipe/047100.jpg,h77nNcf90-g
+192,김치채소쌈,김치와 야채에 쇠고기볶음밥을 올려 돌돌 말아 만드는 간편하고 맛있는 김치채소쌈!! 오늘 저녁메뉴로 어떠세요?,한식,밥,30,330,2,2,http://file.okdab.com/UserFiles/searching/recipe/047200.jpg,9SM9Tgl04Y4
+193,찰밥주먹밥,찰밥으로 한입에 쏙 먹을 수있는 주먹밥 만들어볼까요?,한식,밥,30,320,2,2,http://file.okdab.com/UserFiles/searching/recipe/047300.jpg,ImFvauUMKAw
+194,계란말이주먹밥,계란안에 밥을 넣어 돌돌 말아 말아~,한식,밥,30,382,2,2,http://file.okdab.com/UserFiles/searching/recipe/047400.jpg,_KQLVY4HOxs
+195,어묵국,아이들이 좋아하는 어묵으로 만드는 간단하고 시원한 어묵국!,한식,국,30,108,4,1,http://file.okdab.com/UserFiles/searching/recipe/047800.jpg,A9Ara6dlzCs
+196,조개맑은국,해감을 잘 시킨 조개로 시원한 맑은 국 한번 끓여보세요.,한식,국,30,87,4,1,http://file.okdab.com/UserFiles/searching/recipe/047900.jpg,6kzdHe6FjIE
+197,왜된장국,일본식 구수한 된장국 한번 끓여볼까요? 도시락에 잘 어울려요!,일본,국,20,70,2,1,http://file.okdab.com/UserFiles/searching/recipe/048000.jpg,ffuakdFmuh4
+198,새우만두,새우로 색다른 만두를  만들어보세요!,퓨전,찜,40,332,2,3,http://file.okdab.com/UserFiles/searching/recipe/048300.jpg,_Pc13oBr0sA
+199,잣죽,"부드럽고 든든한 죽 한 그릇, 어떠세요~",한식,밥,40,289,2,2,http://file.okdab.com/UserFiles/searching/recipe/048400.jpg,8RbqJA9Dz7o
+200,고추장아찌,맵지 않은 청고추로 맛나는 장아찌 한 번 담가볼까요,한식,밑반찬/김치,30,70,2,2,http://file.okdab.com/UserFiles/searching/recipe/048800.jpg,RC2PrxZpGiA
+201,김치어묵,집에서 만드는 어묵요리. 김치를 넣어서 느끼하지 않고 담백하게 만들 수 있어요.,퓨전,튀김/커틀릿,40,519,2,2,http://file.okdab.com/UserFiles/searching/recipe/048900.jpg,4XIbYQUR-OI
+202,쇠고기무국,쇠고기무국에 제일 중요한것은 바로 무의 선택이죠,한식,국,40,98,2,2,http://file.okdab.com/UserFiles/searching/recipe/049400.jpg,vG07DHeNH9c
+203,명란젓찌개,명란은 익으면 표피가 줄어들고 단단해지므로 반드시 칼집을 넣어 사용하세요.,한식,찌개/전골/스튜,30,313,2,2,http://file.okdab.com/UserFiles/searching/recipe/049900.jpg,lNT_9L7Rirk
+204,육개장,육개장에는 얼큰한 국물맛을 내는것이 제일 중요해요.,한식,국,60,180,2,3,http://file.okdab.com/UserFiles/searching/recipe/050000.jpg,jN_inaLf9Zo
+205,고추장스파게티,크림이 아닌 고추장 스파게티! 생소하시죠? 일단 한 번 드셔보세요~,퓨전,만두/면류,30,380,2,2,http://file.okdab.com/UserFiles/searching/recipe/050100.jpg,34zs7Pc523c
+206,해물전골,풍성한 해물로 식탁을 차려보세요.,한식,찌개/전골/스튜,30,285,2,2,http://file.okdab.com/UserFiles/searching/recipe/050900.jpg,Ir8709D0O-s
+207,양상추튀김,비타민 풍부한 양상추 속에 갖가지 야채를 넣어서 튀겨보세요. 영양가 풍부한 맛있는 요리가 탄생합니다.,퓨전,튀김/커틀릿,40,421,2,2,http://file.okdab.com/UserFiles/searching/recipe/051400.jpg,fcf6MWZ5fv8
+208,초교탕,부드럽게 깊은 맛을 내는 초교탕. 영양가 많은 초교탕으로 더운여름 이열치열식으로 몸챙기세요!,한식,국,60,398,2,2,http://file.okdab.com/UserFiles/searching/recipe/051600.jpg,7-lnEFZkLtI
+209,삼겹살깻잎전,돼지고기의 누린 내가 싫으시다구요? 걱정마세요! 향긋한 깻잎에 싸서 전을 부치면 매우 향긋하답니다~,한식,부침,30,200,2,2,http://file.okdab.com/UserFiles/searching/recipe/052200.jpg,yk9wSQTjGrw
+210,우유두부,우유로 두부를 만들 수 있다구요?,퓨전,도시락/간식,40,120,2,2,http://file.okdab.com/UserFiles/searching/recipe/052400.jpg,1c-7QeGYeVY
+211,닭꼬치구이,닭꼬치구이!! 술안주에 그만이죠^^,한식,구이,40,370,2,2,http://file.okdab.com/UserFiles/searching/recipe/052700.jpg,KVccylBkSrM
+212,녹차수제비,녹차를 넣으면 향이 더욱 좋답니다.,한식,만두/면류,60,360,2,2,http://file.okdab.com/UserFiles/searching/recipe/052800.jpg,40OfH-Bcsbc
+213,삼겹살치즈구이,어른들이 좋아하는 메뉴 삼겹살! 치즈를 얹어 아이들도 함께 즐겨보아요~,퓨전,구이,40,450,2,2,http://file.okdab.com/UserFiles/searching/recipe/052900.jpg,EdK_Z249KhA
+214,갈비떡볶이,갈비와 떡으로 만든 떡볶이!! 정말 맛있어요^^,한식,도시락/간식,40,380,2,3,http://file.okdab.com/UserFiles/searching/recipe/053100.jpg,gdJtsokkSqI
+215,오징어산적,오징어로 산적 요리 해볼까요?,한식,구이,30,190,2,2,http://file.okdab.com/UserFiles/searching/recipe/053200.jpg,TsEkGegz2jQ
+216,두부오믈렛,계란과 부드러운 두부로 맛있는 오믈렛 만들어보세요~ 간편하면서도 근사한 요리가 된답니다!,서양,볶음,30,160,2,2,http://file.okdab.com/UserFiles/searching/recipe/053300.jpg,5NNTRQh5gTE
+217,"잼(사과, 딸기, 포도)",여러가지 잼이 있으면 빵을 더 맛있게 먹을 수 있어요!,서양,양념장,30,36,2,3,http://file.okdab.com/UserFiles/searching/recipe/053600.jpg,4MVl7D4ctoo
+218,사골탕,영양가 풍부한 사골로 국물을 내세요.,한식,국,60,400,2,2,http://file.okdab.com/UserFiles/searching/recipe/054000.jpg,hepw9gS8ZfU
+219,감자국수,감자로 국수를 만들수 있어요. 약간 번거롭기는 하지만 감자로 만든 국수가 어찌나 쫄깃쫄깃한지 별미로 한 번 만들어 드셔보세요!,한식,만두/면류,40,320,2,2,http://file.okdab.com/UserFiles/searching/recipe/054300.jpg,rbl4ryQ12Ak
+220,김치수제비,따끈따근한 국물에 쫄깃한 수제비~ 한번 만들어보세요,한식,만두/면류,40,410,2,1,http://file.okdab.com/UserFiles/searching/recipe/054600.jpg,G2kylWhMw5s
+221,오곡밥쌈밥정식,구수한 쌈장에 영양가 풍부한 오곡밥을 곁들여 고향을 맛을 느껴보세요.,한식,밥,40,350,2,1,http://file.okdab.com/UserFiles/searching/recipe/054700.jpg,30CfpKaq6zI
+222,오징어숙회,오징어을 익혀서 초고추장에 찍어드세요.,한식,나물/생채/샐러드,40,150,2,1,http://file.okdab.com/UserFiles/searching/recipe/054900.jpg,AdHOym7nqo0
+223,짬뽕해물탕밥,얼큰하게 고춧가루를 넣어 영양가 풍부한 해물을 넣어 맛있게 만들어보세요.,중국,밥,40,540,2,2,http://file.okdab.com/UserFiles/searching/recipe/055100.jpg,F5gdgqc5bgU
+224,제육배추찜,배추에 갈은 돼지고기를 넣어 모양있게 돌돌 말았답니다~ 고기 육수로 맛나게 국물을 내어 찜요리를 해보세요!,서양,찜,30,308,2,1,http://file.okdab.com/UserFiles/searching/recipe/055200.jpg,Uuo8iv0pTEk
+225,코다리찜,"코다리찜, 밑반찬으로 그만이죠!",한식,찜,40,156,4,2,http://file.okdab.com/UserFiles/searching/recipe/055800.jpg,mfehNfkWWBE
+226,생선초밥,싱싱한 생선을 새콤달콤 양념한 밥위에 올려 먹으면 훌륭한 일식 초밥이 되는거지요~ 정말 신선합니다!,일본,밥,60,1250,4,3,http://file.okdab.com/UserFiles/searching/recipe/055900.jpg,BoJB3pc7Qlw
+227,버섯만두전골,푸짐한 버섯만두 전골로 오늘 저녁 어떠세요?,한식,만두/면류,60,540,4,2,http://file.okdab.com/UserFiles/searching/recipe/056100.jpg,J1_ui0hkdfo
+228,해물밥전,해물을 전으로 부쳐 먹어보아요~,한식,밥,30,320,4,2,http://file.okdab.com/UserFiles/searching/recipe/056700.jpg,m3ajwTbEAkk
+229,두부스테이크,몸에 좋은 두부로 스테이크를 만들어보세요~,퓨전,부침,40,188,2,1,http://file.okdab.com/UserFiles/searching/recipe/056900.jpg,dnB2kxNEi3o
+230,두부카나페,한입에 쏘옥 먹을 수있는 까나페를 두부로 만들어보세요. 두부의 부드러운 맛이 입안에서 살살녹는답니다.,퓨전,도시락/간식,30,265,4,1,http://file.okdab.com/UserFiles/searching/recipe/057100.jpg,TLsTMcpRPcg
+231,홍차계란장조림,계란 장조림에 홍차를 넣으면 향과 맛이 아주 깊어져요!,한식,밑반찬/김치,40,130,4,1,http://file.okdab.com/UserFiles/searching/recipe/057300.jpg,3p4xH_IZhH4
+232,가지된장찜,구수한 된장 양념에 가지를 조려보세요~,한식,찜,30,230,2,1,http://file.okdab.com/UserFiles/searching/recipe/057500.jpg,U1MgdGC4N84
+233,닭고기카레튀김,닭고기와 카레의 환상조합!,퓨전,튀김/커틀릿,40,310,2,2,http://file.okdab.com/UserFiles/searching/recipe/057900.jpg,OGDpUiwANsk
+234,고춧기름,고추기름을 만들때는 불조절을 잘 해야 해요!,중국,양념장,30,134,4,1,http://file.okdab.com/UserFiles/searching/recipe/058300.jpg,WFa47RUcZYM
+235,생태매운탕,얼큰하고 시원한 생태매운탕! 시원한 국물맛에 보들보들한 생태살이 입에서 살살 녹아요.,한식,국,40,224,2,1,http://file.okdab.com/UserFiles/searching/recipe/058400.jpg,26wrpdF_Tvc
+236,두부굴찌개,두부와 시원한 맛을 내는 굴을 같이 넣어보세요~ 시원함이 배가됩니다!,한식,찌개/전골/스튜,30,135,4,2,http://file.okdab.com/UserFiles/searching/recipe/058600.jpg,gknoc49DvaM
+237,버섯두부찌개,몸에 좋은 버섯과 두부가 들어간 얼큰한 찌개로 오늘 저녁밥상 차려보세요~ 남편이 좋아해요!,한식,찌개/전골/스튜,40,170,2,1,http://file.okdab.com/UserFiles/searching/recipe/059300.jpg,LvfKBgEb-7E
+238,김치주먹밥,김치로 느끼함을 제거한 주먹밥을 즐겨보세요~,한식,밥,40,380,4,2,http://file.okdab.com/UserFiles/searching/recipe/060300.jpg,qgenFoNo8f0
+239,홍합탕,싱싱한 홍합으로 끓인 홍합탕! 정말 시원해요~,한식,국,40,75,4,2,http://file.okdab.com/UserFiles/searching/recipe/060400.jpg,t63aSsdvZKs
+240,돼지갈비찜,잔칫상에 빠질 수 없는 갈비찜! 이번에는 돼지갈비를 매콤하게 즐겨보세요~,한식,찜,60,220,4,2,http://file.okdab.com/UserFiles/searching/recipe/061100.jpg,_IksR2KQsFw
+241,떡볶이,한국의 대표분식 떡볶이! 남녀노소 좋아해요~,한식,도시락/간식,30,225,4,2,http://file.okdab.com/UserFiles/searching/recipe/061400.jpg,t4Es8mwdYlE
+242,제육불고기,"밥반찬에, 술안주에 너무 좋은 메뉴랍니다~",한식,구이,50,210,4,2,http://file.okdab.com/UserFiles/searching/recipe/061500.jpg,chnArCaEpqA
+243,배추밤김치,잘 절인 배추속에 양념장 솔솔 버무린 밤을 넣어서 만든 고급 김치입니다.,한식,밑반찬/김치,60,75,4,2,http://file.okdab.com/UserFiles/searching/recipe/061900.jpg,UuXCumG2QrQ
+245,사골우거지탕,고향의 어머니 손맛을 느낄 수 있어요. 잘 우려낸 사골국물에 고소한 우거지까지! 바로 이맛이야~,한식,국,60,156,4,2,http://file.okdab.com/UserFiles/searching/recipe/062200.jpg,#NAME?
+246,찬밥전,찬밥이 남았다구요? 참치와 갖은 채소를 다져서 전으로 만들어 보세요! 아이들이 좋아해요~,한식,부침,20,146,4,1,http://file.okdab.com/UserFiles/searching/recipe/062400.jpg,m3ajwTbEAkk
+247,단팥죽,팥을 부드럽게 삶아 으깨서 만든 달달한 단팥죽! 간식으로 좋아요~,한식,밥,50,166,2,1,http://file.okdab.com/UserFiles/searching/recipe/062500.jpg,m9tzROElqko
+248,불고기낙지전골,얼큰한 국물속에 쫄깃한 낙지와 담백한 불고기가 어우러져 있는 전골요리 어떠세요?,한식,찌개/전골/스튜,40,247,2,2,http://file.okdab.com/UserFiles/searching/recipe/063100.jpg,yzFeEZapZ_I
+249,잔멸치된장볶음,오늘도 반찬이 고민되시나요? 멸치를 볶아 놓으면 며칠 동안은 밑반찬 걱정 없이 지낼 수 있어요..,한식,밑반찬/김치,30,75,4,1,http://file.okdab.com/UserFiles/searching/recipe/063400.jpg,Kwig1QzyHUA
+250,별미밥,이름도 별난 별미밥으로 별식을 즐겨보세요~,한식,밥,40,325,4,2,http://file.okdab.com/UserFiles/searching/recipe/063500.jpg,tP4wrRnqg-k
+251,김치피자,김치는 싫어하지만 피자는 좋아하는 우리 아이들을 위해 색다른 퓨전 요리를 준비해 봤어요.,퓨전,피자,30,230,4,2,http://file.okdab.com/UserFiles/searching/recipe/063600.jpg,_PqfXhZGuBI
+252,채소비빔소면,채소랑 소면이랑 만났어요.  새콤달콤한 고추장에 비벼서 맛있게 드세요~,한식,만두/면류,30,414,2,2,http://file.okdab.com/UserFiles/searching/recipe/063700.jpg,iWWQBoS3SL4
+253,오징어탕수,탕수육의 변화된 맛을 원한다면 영양가 만점인 오징어를 반죽해서 탕수육 소스에 버무리면 되지요~,중국,튀김/커틀릿,40,420,4,2,http://file.okdab.com/UserFiles/searching/recipe/064200.jpg,Vf7MkZv_yU0
+254,콩나물버섯덮밥,향긋한 버섯향과 아삭한 콩나물이 들어간 덮밥을 양념장으로 슥슥 비벼 드셔보세요~ 입맛이 확! 살아 난답니다.,한식,밥,40,232,2,2,http://file.okdab.com/UserFiles/searching/recipe/064400.jpg,5g4iTfkIJQ4
+255,어묵꼬치,겨울철과 가장 잘 어우리는 음식이랍니다. 따뜻한 국물에 시원한 맛이 정말 끝내줍니다~,한식,국,40,197,2,2,http://file.okdab.com/UserFiles/searching/recipe/065100.jpg,IDnqwogMMic
+256,닭다리굴소스볶음,부드러운 닭다리의 살을 바라 굴소스에 볶아보세요~ 굴소스의 진한 맛이 정말 색다르답니다.,중국,볶음,30,203,4,2,http://file.okdab.com/UserFiles/searching/recipe/065300.jpg,ATGtQpwpaN8
+257,영양채소밥,영양이 듬뿍! 한끼 식사로 아주 아주 든든하지요.,한식,밥,40,375,2,2,http://file.okdab.com/UserFiles/searching/recipe/065400.jpg,Pol-k-jnm2U
+258,사색나물,나물종류를 쉽게 만들어보세요. 반찬이 없을때 준비해둔 나물로 비빔밥을 해서 드셔보세요.,한식,나물/생채/샐러드,30,55,2,1,http://file.okdab.com/UserFiles/searching/recipe/065700.jpg,tD8ApzPsDx8
+259,떡잡채,떡으로 만든 잡채의 맛. 아이들 간식으로 좋겠죠?,한식,볶음,20,265,4,2,http://file.okdab.com/UserFiles/searching/recipe/065800.jpg,-06djIusFLk
+260,두부채소냉채,영양가 풍부한 두부로 만든 냉채를 집에서 손쉽게 준비해보세요. 고소한 땅콩소스를 곁들여 준비하세요.,한식,나물/생채/샐러드,30,256,2,1,http://file.okdab.com/UserFiles/searching/recipe/066000.jpg,mabqkgdjV8I
+261,약과,달달하게 입맛 당기는 약과..오늘 한번 도전해보세요~,한식,떡/한과,40,135,2,2,http://file.okdab.com/UserFiles/searching/recipe/066400.jpg,6qstjWCURa8
+262,참치주먹밥,참치 주먹밥 싸서 소풍을 떠나보아요~^^,한식,도시락/간식,30,404,4,2,http://file.okdab.com/UserFiles/searching/recipe/066600.jpg,Y4mlbrMVtS0
+263,유부미역된장국,일본식된장국에 유부와 미역을 넣어서 색다른 맛을 느껴보세요~,한식,국,30,130,4,1,http://file.okdab.com/UserFiles/searching/recipe/066800.jpg,ruJTdLppMjM
+264,삼색수제비,"야채즙으로 반죽해서 잼있게 만들어 보세요.. 먹는 즐거움, 보는 즐거움.. 아이들이 잘 안먹는 야채를 이용한 수제비입니다.",한식,만두/면류,30,392,4,2,http://file.okdab.com/UserFiles/searching/recipe/067000.jpg,xlZMnFeDCaQ
+265,고들빼기김치,고들빼기의 향이 아주 일품인 고들빼기 김치!,한식,밑반찬/김치,70,56,2,3,http://file.okdab.com/UserFiles/searching/recipe/067700.jpg,tBvoXz6wM5A
+266,달래굴파전,향긋한 달래와 싱싱한 굴을 넣은 아주 맛있는 파전을 만들어보세요.,한식,부침,30,189,2,1,http://file.okdab.com/UserFiles/searching/recipe/067800.jpg,DQpjW3Mav14
+267,달래장김치,입맛 없을 때 달래로 만든 김치하나면 반찬 걱정이 없어요.,한식,밑반찬/김치,30,65,4,2,http://file.okdab.com/UserFiles/searching/recipe/067900.jpg,pfv0fJBj-cI
+268,두릅된장무침,구수한 된장에 두릅을 오물조물 무쳐보세요. 정말 구수하답니다!,한식,나물/생채/샐러드,30,75,2,1,http://file.okdab.com/UserFiles/searching/recipe/068200.jpg,MLVJ_WMsn0Y
+269,숙주미나리무침,향긋한 미나리와 숙주를 함께 무쳐보세요. 정말 입맛이 새록새록 살아납니다.,한식,나물/생채/샐러드,20,75,2,1,http://file.okdab.com/UserFiles/searching/recipe/068300.jpg,j36o8H-5cK0
+270,참나물고추장무침,우리 입맛에 맞는 고추장 소스에 아삭한 참나물을 무쳐보세요. 밥 반찬으로 너무 좋아요.,한식,나물/생채/샐러드,20,55,2,1,http://file.okdab.com/UserFiles/searching/recipe/068500.jpg,heD6ePh3u_o
+271,오징어통구이,오징어에 칼집을 촘촘히 넣어 만들었답니다. 매콤한 고추장 소스를 만들어 쓰윽 발라가며 맛있게 구워보세요.,한식,구이,30,180,2,1,http://file.okdab.com/UserFiles/searching/recipe/068600.jpg,aZsEVch9TzM
+272,닭고기콩나물덮밥,콩나물만 넣으면 심심하니까! 고소한 닭가슴살을 곁들여 고추장에 비벼비벼~,한식,밥,40,400,4,2,http://file.okdab.com/UserFiles/searching/recipe/069600.jpg,du9q1BldDHU
+273,김치두부쌈,납작한 돼지고기위에 두부를 얹고 그위에 신김치를 얹어서 먹어보세요. 배가 든든해 져요.,한식,찜,40,250,4,2,http://file.okdab.com/UserFiles/searching/recipe/069800.jpg,TkXw1B-is6w
+274,호박두부찌개,추운 날씨에 호박두부 찌개를 보글보글 맛있게 끓여보세요!,한식,찌개/전골/스튜,30,115,4,1,http://file.okdab.com/UserFiles/searching/recipe/069900.jpg,wsXi3SLQH-M
+275,해파리해물냉채,싱싱한 해파리와 새우 등의 해물을 겨자 소스에 맛있게 무쳐보세요.,한식,나물/생채/샐러드,40,112,2,1,http://file.okdab.com/UserFiles/searching/recipe/070100.jpg,AY1Gwxu3Zck
+276,치킨롤,담백한 닭살에 아삭한 채소를 넣어 김밥모양처럼 돌돌 말아 보세요~한입에 쏙!,서양,구이,40,280,4,2,http://file.okdab.com/UserFiles/searching/recipe/070700.jpg,Cuhx5d0Vjtc
+277,아스파라거스새우볶음,갖가지 야채를 넣어서 기름에 살짝 볶은 향이 진하고 맛이 부드러운 요리랍니다.,서양,볶음,30,150,4,2,http://file.okdab.com/UserFiles/searching/recipe/071200.jpg,a_xeZxlIEc0
+278,꽃만두국(완당국),예쁘게 만두를 빗어 보세요.. 만두소는 부드로게 만드시구요..,중국,만두/면류,40,477,4,2,http://file.okdab.com/UserFiles/searching/recipe/071400.jpg,At-u3lwsFtk
+279,돼지고기표고볶음,표고버섯의 향이 은은하게 퍼지는 맛있는 볶음요리를 해보세요!,중국,볶음,30,221,2,1,http://file.okdab.com/UserFiles/searching/recipe/071500.jpg,1YrdjYyN4Q8
+280,오징어풋마늘산적,오징어의 색다른 변신! 한번 맛 보면 그 맛을 잊을수 없답니다.,한식,부침,30,160,4,2,http://file.okdab.com/UserFiles/searching/recipe/071600.jpg,TsEkGegz2jQ
+281,상추겉절이비빔밥,상추 겉절이를 손쉽게 만들어 밥에 넣어 비벼드세요. 입맛이 새록새록!,한식,밥,30,395,4,2,http://file.okdab.com/UserFiles/searching/recipe/071700.jpg,t196wcWgmt8
+282,두부알찜,부드러운 두부에 여러가지 재료를 다양하게 넣어 맛있게 찜요리를 해보세요.,한식,찜,30,134,4,2,http://file.okdab.com/UserFiles/searching/recipe/071800.jpg,Eino3yP-Wk0
+283,연어양상추쌈,붉은 연어를 양상추에 싸서 멋드러지게 요리해보세요. 정말 훌륭한 술안주이지요.,서양,나물/생채/샐러드,20,135,4,2,http://file.okdab.com/UserFiles/searching/recipe/072100.jpg,y5PtiCfCKOI
+284,브로콜리크림수프,몸에 좋은 브로콜리를 부드러운 수프로 즐겨보세요~,서양,밥,30,164,4,3,http://file.okdab.com/UserFiles/searching/recipe/072200.jpg,8mFhqtitAQM
+285,해물떡꼬치,싱싱한 해물을 떡이랑 같이 꼬치에 끼워 요리했답니다. 보기만 해도 침이 꿀꺽!,퓨전,구이,30,168,4,2,http://file.okdab.com/UserFiles/searching/recipe/072500.jpg,xLG6OGr6TRw
+286,옥수수볶음밥,간단하게 먹을수 있는 볶음밥이예요. 여러가지 채소를 첨가해 보세요.,퓨전,밥,20,375,4,2,http://file.okdab.com/UserFiles/searching/recipe/072900.jpg,R6IT_f0XPT8
+287,김치꽁치조림,통조림과 신김치만 있으면 금방 만들수 있어서 아주 편리하죠.,한식,찌개/전골/스튜,20,165,4,2,http://file.okdab.com/UserFiles/searching/recipe/073500.jpg,KzJe5ezWNQI
+288,치즈돈까스,바삭하게 튀긴 돈까스에 쫀득한 치즈 맛이 더했답니다.,서양,튀김/커틀릿,40,590,1,2,http://file.okdab.com/UserFiles/searching/recipe/073600.jpg,X1237jqPWyE
+289,간장떡볶이,고추장이 아닌 간장으로 맛을 낸 궁중식 떡볶이! 맵지 않아 아이들도 잘 먹어요~,한식,볶음,60,179,4,2,http://file.okdab.com/UserFiles/searching/recipe/073800.jpg,TEfW6u_Vfy8
+290,한국식타코샐러드,춘권피에 맛있는 샐러드를 듬뿍 담았습니다. 한입 크기에 딱 어울리는 안주랍니다.,퓨전,나물/생채/샐러드,30,290,4,2,http://file.okdab.com/UserFiles/searching/recipe/073900.jpg,pn5_WVQiXjs
+291,김치쌈밥,신김치만 남았을 때! 김치쌈밥으로 해결하세요~,한식,밥,20,340,2,2,http://file.okdab.com/UserFiles/searching/recipe/074000.jpg,2ZpRGci-qKI
+292,잔치국수,출출할때 간식거리로 야참으로도 부담스럽지 않아요.,한식,만두/면류,30,315,4,1,http://file.okdab.com/UserFiles/searching/recipe/074300.jpg,Gq9S0dJ3wHg
+293,감자그라탕,치즈의 고소함과 감자의 부드러움이 어우러진 아주 맛있는 요리랍니다.,이탈리아,그라탕/리조또,40,237,4,2,http://file.okdab.com/UserFiles/searching/recipe/074400.jpg,qEwtMhGiQU0
+294,코다리조림,코다리를 맛있게 조려보세요. 밑반찬 뿐만 아니라 아주 좋은 술안주도 될수 있지요~,한식,조림,30,175,2,1,http://file.okdab.com/UserFiles/searching/recipe/074900.jpg,mfehNfkWWBE
+295,치킨데리야끼,맛있게 볶아만든 밥에 데리야끼 소스를 맛있게 한접시 먹음직스럽게 담아보세요.,일본,볶음,30,580,2,2,http://file.okdab.com/UserFiles/searching/recipe/075500.jpg,7hlbTSh2yXo
+296,순대볶음,군것질로 가장 많이 선호하는 순대를 집에서 볶아 드셔 보세요.,한식,볶음,20,210,4,1,http://file.okdab.com/UserFiles/searching/recipe/075700.jpg,oUvPWwmvoPM
+297,닭갈비,춘천닭갈비를 그대로 옮겨 놓은듯한 양념의 비법이 여기에 있지요. 춘천닭갈비를 그대로 옮겨 놓은듯한 맛!,한식,볶음,25,189,2,2,http://file.okdab.com/UserFiles/searching/recipe/076300.jpg,HI8DlDs1gko
+298,베이컨꼬치구이,베이컨에 여러가지 재료를 넣어 꼬치구이를 했답니다.,퓨전,구이,20,350,3,2,http://file.okdab.com/UserFiles/searching/recipe/076600.jpg,UVwYQpGRJYI
+299,열무비빔밥,잘 익은 열무김치에 고추장 양념으로 더이상 말이 필요없죠?,한식,밥,20,375,2,2,http://file.okdab.com/UserFiles/searching/recipe/076800.jpg,nf7OvUOo2Lc
+300,다시마볶음,다시마를 볶아 다이어트식으로 즐겨보세요.,한식,볶음,20,125,4,1,http://file.okdab.com/UserFiles/searching/recipe/077400.jpg,BmYAgmgFD8E
+301,버섯잡채밥,잡채에 가지런히 채썬 버섯을 넣어 맛있게 오물조물 무쳐서 밥위에 끼얹으면?,중국,밥,40,520,2,1,http://file.okdab.com/UserFiles/searching/recipe/077500.jpg,7boBUaDIJIY
+302,쑥브리오슈,막대모양이 조금 찌그러 져도 멋진 쑥브리오슈.,서양,빵/과자,60,345,4,1,http://file.okdab.com/UserFiles/searching/recipe/077800.jpg,1-5Ed-Py_kY
+303,된장깻잎장아찌,깻잎 장아찌 하나면 밥 한그릇 순식 간에 뚝딱!!,한식,밑반찬/김치,20,80,4,1,http://file.okdab.com/UserFiles/searching/recipe/078000.jpg,kjt-zuCZtyw
+304,비빔쌀국수,쌀국수를 맛있게 월남식으로 비벼보세요. 흔히 먹는 비빔국수의 맛에 특별함을 더한 요리이지요.,한식,만두/면류,30,275,4,1,http://file.okdab.com/UserFiles/searching/recipe/078200.jpg,bv-Um75toZw
+305,아욱국,시원한 아욱으로 국을 끓여 오늘 저녁식사로 어떠세요?,한식,국,30,110,2,1,http://file.okdab.com/UserFiles/searching/recipe/078300.jpg,t1bb_TXK1Sw
+306,라볶이,라면의 색다른 변신을 원하신다면 지금 한번 도전해 보세요.,한식,볶음,30,390,2,1,http://file.okdab.com/UserFiles/searching/recipe/078500.jpg,6e-IbuuD6ZU
+307,고등어김치조림,얼큰한 김치에 양념을 풍부하게 하여 고등어와 같이 조려보세요. 밥 한 그릇이 생각나는  요리입니다.,한식,조림,20,205,2,1,http://file.okdab.com/UserFiles/searching/recipe/078800.jpg,j9NXZh0gX3w
+308,류산슬,녹말물을 풀어서 걸죽하게 만들어 먹는 요리랍니다..,중국,볶음,40,357,4,3,http://file.okdab.com/UserFiles/searching/recipe/079400.jpg,HFHigPe0YdU
+309,바지락볶음,바지락을 볶아보세요. 완전히 해감시킨 후에 볶아야 모래가 씹히지 않아요.,한식,볶음,20,175,4,1,http://file.okdab.com/UserFiles/searching/recipe/079500.jpg,4TnaTTg1R_Q
+310,가지쇠고기볶음,가지랑 쇠고기가 만나서 최고의 밥반찬이 탄생했어요!,한식,볶음,20,135,3,1,http://file.okdab.com/UserFiles/searching/recipe/079800.jpg,V1GnoZAqhb0
+311,버섯청국장찌개,구수한 청국장에 영양가 많은 버섯을 넣어 고향맛이 느껴지는 요리를 해보세요.,한식,찌개/전골/스튜,30,117,2,1,http://file.okdab.com/UserFiles/searching/recipe/080000.jpg,wezbeu4-C2s
+312,부추부침개,비오는 날 생각나는 부침개!,한식,부침,30,586,4,1,http://file.okdab.com/UserFiles/searching/recipe/080200.jpg,wfm951HEpGU
+313,냉고기쌈,손님 접대용으로 좋아요~,퓨전,나물/생채/샐러드,20,170,4,1,http://file.okdab.com/UserFiles/searching/recipe/080500.jpg,ny9XkQbN6sI
+314,치킨버섯찜,이젠 닭을 튀기지 말고 쪄보세요~,서양,찜,40,250,3,2,http://file.okdab.com/UserFiles/searching/recipe/080700.jpg,SWM-pWb6Lvc
+315,새송이산적,고급스러운  새송이를 적 요리에 응용해보세요~ 특히 어른들이 아주 좋아하는 음식이랍니다!,한식,구이,20,234,2,1,http://file.okdab.com/UserFiles/searching/recipe/081000.jpg,DgbZTCnfWfU
+316,물만두,남녀노소 좋아하는 만두! 튀기지 않고 물만두로 즐겨보세요~,중국,만두/면류,50,370,4,2,http://file.okdab.com/UserFiles/searching/recipe/081400.jpg,k5aLvmvGMQA
+317,볶음쌀국수,쌀국수를 돼지고기와 여러가지 채소를 넣어 굴소스에 볶아보세요. 굴소스를 넣을때 짜지않을 정도로만 넣으세요.,퓨전,만두/면류,25,315,2,2,http://file.okdab.com/UserFiles/searching/recipe/081500.jpg,gJDxWPoMHgo
+318,버섯파스타,"레스토랑에서 맛보던 파스타를 이젠, 집에서도 즐겨보세요~ 버섯도 팍팍 넣어서요!",이탈리아,만두/면류,25,335,2,1,http://file.okdab.com/UserFiles/searching/recipe/081700.jpg,PCYiyYBmXkA
+319,닭개장,"얼큰한 국물에 여러가지 나물과 담백한 닭살을 넣어 맛있게 끓인 닭개장 한그릇, 생각나시죠?",한식,국,60,171,2,3,http://file.okdab.com/UserFiles/searching/recipe/081900.jpg,FdL13qXf4MA
+320,김치볶음밥,한국인의 입맛에 딱맞는 김치볶음밥! 편식하는 아이들 간식으로도 좋아요~,한식,밥,20,560,2,1,http://file.okdab.com/UserFiles/searching/recipe/082100.jpg,eIo2BaE6LxI
+321,오징어채볶음,반찬이 없다구요? 냉장고에 남아있는 오징어채를 고추장에 조물조물 무쳐보세요~,한식,볶음,20,130,3,1,http://file.okdab.com/UserFiles/searching/recipe/082300.jpg,gaIlS0sLcbI
+322,바지락칼국수,"바지락으로 시원한 국물맛을 내고, 쫄깃한 면발에 칼국수를 색다르게 먹을 수 있는 요리랍니다.",한식,만두/면류,25,420,3,1,http://file.okdab.com/UserFiles/searching/recipe/082400.jpg,Q3lVpGnvVyE
+323,오징어도라지생채,도라지의 아삭함과 오징어의 고소함을 같이 느껴 보세요.,한식,나물/생채/샐러드,30,140,2,1,http://file.okdab.com/UserFiles/searching/recipe/082600.jpg,w6XMswNeZ6c
+324,애호박무침,새우젓을 첨가해 애호박을 무쳐보세요~ 밥반찬으로 좋습니다.,한식,볶음,15,85,3,1,http://file.okdab.com/UserFiles/searching/recipe/083000.jpg,YHfc4PhwlQY
+325,양송이버섯죽,아침식사로도 환자식으로도 좋습니다!,한식,밥,30,224,2,1,http://file.okdab.com/UserFiles/searching/recipe/083300.jpg,nzc8HXcMpFI
+326,홍합미역국,홍합의 시원한 맛이 미역국의 맛을 한층 더해준답니다.,한식,국,20,80,4,2,http://file.okdab.com/UserFiles/searching/recipe/083500.jpg,QDCEUV3Wcbw
+327,오징어덮밥,쫄깃한 오징어와 매콤한 양념의 환상조합으로 밥 한 공기 뚝딱!,한식,밥,30,445,2,2,http://file.okdab.com/UserFiles/searching/recipe/083700.jpg,0CL9U_Se8Gs
+328,모듬채소볶음,모듬 채소들이 다 모였습니다! 수분이 생기지 않게 얼른 볶아 삼삼하게 간해주세요~,서양,볶음,20,165,2,1,http://file.okdab.com/UserFiles/searching/recipe/084100.jpg,V4g-PrVJU2Q
+329,대구탕,얼큰한 국물에 담백한 생선을 넣어 보글보글 맛있게 끓였어요. 추운 날씨에 한 그릇 뚝딱!,한식,국,30,170,2,2,http://file.okdab.com/UserFiles/searching/recipe/084400.jpg,oFRB0Vd4Ydo
+330,불고기찹쌀구이,부드러운 육질에 찹쌀로 쫄깃함을 입힌 불고기 찹쌀구이! 오늘의 별식으로 어떠신가요?,한식,구이,30,268,2,2,http://file.okdab.com/UserFiles/searching/recipe/084700.jpg,nVUvb-Yp2yU
+331,고추부각,고추의 매운맛이 사라지고 바삭한 맛이 탄생했어요~,한식,튀김/커틀릿,30,110,2,3,http://file.okdab.com/UserFiles/searching/recipe/084900.jpg,WMe-7QZXSiI
+332,충무김밥,김밥에 오징어 초무침을 곁들여보세요~,한식,밥,50,450,2,2,http://file.okdab.com/UserFiles/searching/recipe/085500.jpg,g4ZOMLzxgtA
+333,기스면,"특이한 면 요리를 원하신다면, 결코 어렵지 않은 조리법으로 특이한 음식을 맛볼 수 있답니다!",중국,만두/면류,30,189,2,2,http://file.okdab.com/UserFiles/searching/recipe/086000.jpg,91QcEi0ZWno
+334,감자수프,감자를 맛있게 갈아 따끈하고 부드러운 수프를 즐겨보세요~,서양,밥,40,265,2,2,http://file.okdab.com/UserFiles/searching/recipe/086200.jpg,j0-_vTbLALM
+335,마늘빵,마늘빵을 집에서 정성스럽게 만들어 보세요.,서양,빵/과자,20,276,2,1,http://file.okdab.com/UserFiles/searching/recipe/086300.jpg,#NAME?
+336,치킨수프,속이 더부룩할때는 간단한 수프로 속을 편하게 지켜주세요! 수프 한 그릇이 든든한 한끼가 된답니다.,중국,밥,40,275,2,2,http://file.okdab.com/UserFiles/searching/recipe/086600.jpg,3-GJoeBigZs
+337,계란찜,여러가지 야채들과 완전단백식품 계란으로 간단한 찜요리를 해보세요~ 부드러운 아침식사로 너무 좋아요!,한식,찜,20,98,2,1,http://file.okdab.com/UserFiles/searching/recipe/086700.jpg,_H64Kz7Mgz4
+338,콩나물비빔밥,콩나물을 넣은 맛있는 비빔밥을 만들어 보세요. 아삭하게 씹히는 콩나물 맛이 정말 색다르답니다.,한식,밥,40,385,1,2,http://file.okdab.com/UserFiles/searching/recipe/086800.jpg,39s5DVDx_GM
+339,인절미,옛날처럼 큰 절구는 없어도 조그마한 절구로 인절미를 만들어 보세요.,한식,떡/한과,60,175,1,1,http://file.okdab.com/UserFiles/searching/recipe/086900.jpg,DhW8kNWrPYg
+340,상추채소무침,상추채소무침에 된장을 넣고 밥비벼 먹어보세요~,한식,나물/생채/샐러드,20,85,2,1,http://file.okdab.com/UserFiles/searching/recipe/087100.jpg,52SA3ak2xM8
+341,호박양파국,매일 먹는 국이 지겨우시다면 호박과 양파를 넣어서 색다른 국을 끓여 보세요.,한식,국,20,73,2,1,http://file.okdab.com/UserFiles/searching/recipe/087400.jpg,VKyjT0u4ElI
+342,꽁치구이,꽁치를 가장 신선하게 맛있게 먹을 수 있답니다. 소금을 적당하게 뿌려서 그릴에 구워 바로 드세요~!,한식,구이,20,183,2,1,http://file.okdab.com/UserFiles/searching/recipe/087500.jpg,9tOPaeudoqc
+343,오징어젓갈,밥도둑의 대표명사!,한식,밑반찬/김치,40,54,2,1,http://file.okdab.com/UserFiles/searching/recipe/087600.jpg,BhBzo0Sn_yQ
+344,무생채,새콤달콤하게 무쳐서 밥상위에 올려 놓으면 인기 짱!,한식,나물/생채/샐러드,20,55,2,1,http://file.okdab.com/UserFiles/searching/recipe/088000.jpg,dXN1dlsYdJI
+345,해물국시,해물이 듬뿍 들어가서 너무 너무 시원해요.,한식,만두/면류,60,295,2,2,http://file.okdab.com/UserFiles/searching/recipe/088200.jpg,iCd5vrnM-jI
+346,안심스테이크,기념일날 분위기 있게 스테이크를 집에서 만들어 보세요.,서양,양식,40,250,2,2,http://file.okdab.com/UserFiles/searching/recipe/088300.jpg,xQdB2k2Y3uU
+347,파래무침,해조류가 다이어트에 좋은거 알고계시죠? 새콤 달콤하게 무쳐보세요.,한식,밑반찬/김치,20,38,2,1,http://file.okdab.com/UserFiles/searching/recipe/088400.jpg,54XtUaPO_z4
+348,단호박튀김,아이들이 호박은 싫어하죠? 튀겨내면 아이들이 정말~ 좋아합니다!,한식,튀김/커틀릿,30,157,2,1,http://file.okdab.com/UserFiles/searching/recipe/088500.jpg,tEu-bO66KXg
+349,해물스파게티,레스토랑에서 즐기던 스파게티! 이젠 집에서도 즐겨보세요~ 홍합 골라 먹는 재미가 솔솔~,서양,만두/면류,30,523,2,1,http://file.okdab.com/UserFiles/searching/recipe/088800.jpg,XlgIypf8kGE
+350,월남쌈,베트남 음식이 생소하시다구요?? 이 방법대로만 하면 OK!,동남아시아,나물/생채/샐러드,30,295,2,2,http://file.okdab.com/UserFiles/searching/recipe/089100.jpg,J1A44GtudLw
+351,무나물,무를 담백하게 볶아봤어요. 어때요 맛있죠?,한식,나물/생채/샐러드,20,43,2,1,http://file.okdab.com/UserFiles/searching/recipe/089400.jpg,2_gUtv5uw7s
+352,고등어된장조림,조림 고등어도 맛있지만 곁들여진 무에 간이 배면 더욱더 맛있죠.,한식,조림,40,192,2,2,http://file.okdab.com/UserFiles/searching/recipe/089500.jpg,IE93iyfrqVY
+353,두부두루치기,두부로 두루치기를 만들때는 두부의 모양에 신경써 주세요^^,한식,볶음,20,198,2,1,http://file.okdab.com/UserFiles/searching/recipe/089800.jpg,Fy-zGkVzp1s
+354,고구마그라탱,"고구마로 만든 별미디저트를 소개할게요. 찐고구마와 생크림, 치즈를 섞어 피자치즈를 뿌려 다시 고소하게 구워낸 고구마그라탱 별미중에 별미랍니다!!",서양,그라탕/리조또,30,196,2,1,http://file.okdab.com/UserFiles/searching/recipe/090100.jpg,HvuJ1wy2KII
+355,시금치된장죽,다시마와 가쓰오부시를 우려낸 국물에 왜된장을 살살 풀어 데쳐낸 시금치를 넣어 만든 된장국에 쌀을 넣어 만든 죽이에요.,한식,밥,30,185,2,1,http://file.okdab.com/UserFiles/searching/recipe/090300.jpg,t2yJk_BfjKE
+356,제육겨자쌈,영양가 많게 쌈을 먹고 싶을때~,한식,나물/생채/샐러드,60,155,2,2,http://file.okdab.com/UserFiles/searching/recipe/090400.jpg,_bBN7DI4SBY
+357,그린파스타,색다를 음식을 식사로 하고 싶을 때 도전해 보세요.. 색다른 맛에 반하실 꺼예요.,이탈리아,만두/면류,30,423,2,1,http://file.okdab.com/UserFiles/searching/recipe/091300.jpg,sagznhMFwTg
+358,삼색태극말이초밥,피크닉을 위해 준비할 수 있는 깜찍한 요리.,일본,밥,30,345,2,2,http://file.okdab.com/UserFiles/searching/recipe/092500.jpg,Fal8K1GuVbM
+359,캘리포니아롤,게를 가지고 피크닉에 갈 수는 없을까요? 확인해 보세요^^,일본,밥,60,387,2,2,http://file.okdab.com/UserFiles/searching/recipe/092700.jpg,tRf3oA4J1ok
+360,오곡주먹밥,밥맛없어 하는 아이들의 눈길을 끌어 보세요.,한식,밥,30,349,2,1,http://file.okdab.com/UserFiles/searching/recipe/093600.jpg,7kNMDzd4iVE
+361,무초김치,맵지 않은 김치를 한번 만들어 볼까요?,한식,밑반찬/김치,30,246,3,1,http://file.okdab.com/UserFiles/searching/recipe/094000.jpg,dXN1dlsYdJI
+362,화전,옛부터 내려오는 음식이죠? 꽃을 전 위에 살짝~,한식,떡/한과,30,230,2,1,http://file.okdab.com/UserFiles/searching/recipe/094200.jpg,xTDwmvWqQsY
+363,만두샐러드,만두를 바삭하게튀겨 신선한 야채와 샐러드를 만들어보세요..달콤한 허니머스터드 드레싱을 곁들여 먹으면 더욱 맛있답니다.,퓨전,나물/생채/샐러드,30,370,2,1,http://file.okdab.com/UserFiles/searching/recipe/095200.jpg,cRHeMaVUur4
+364,콩나물미나리무침,오물조물 콩나물에 향긋한 미나리를 넣어 무쳐보세요. 미나리의 초록색에 아삭한 콩나물이 너무 잘 어울린답니다.,한식,밑반찬/김치,20,75,2,1,http://file.okdab.com/UserFiles/searching/recipe/095300.jpg,n0giV4uE2R8
+365,돈부리,달짝지근하면서 짭조름하면서 구수하면서  일본의 돈부리한그릇 한번 드셔보세요~,일본,밥,30,456,2,2,http://file.okdab.com/UserFiles/searching/recipe/095700.jpg,UlSB8gEIlcs
+366,연어알초밥,입안에서 톡톡 터지는 연어알을 초밥위에 예쁘게 장식하세요!,일본,밥,30,261,1,1,http://file.okdab.com/UserFiles/searching/recipe/095900.jpg,0I2DUvu7TI4
+367,깐풍새우,매콤하고 새콤한 새우요리!! 손님접대용으로 그만이랍니다^^,중국,튀김/커틀릿,40,286,2,2,http://file.okdab.com/UserFiles/searching/recipe/096200.jpg,MXrWKpJHfNc
+368,해산물두부수프,신선한 새우와 오징어등의 해산물의 단백한 국물맛을 느껴보세요.,중국,밥,30,295,2,1,http://file.okdab.com/UserFiles/searching/recipe/096600.jpg,W4rRcrSus60
+369,채소스프,토마토 소스의 깔끔하고 부드러운 스프~,서양,밥,30,265,2,1,http://file.okdab.com/UserFiles/searching/recipe/097800.jpg,HiRkoEo8qvs
+371,소바정식,쫄깃한 모밀에 시원한 소스를 곁들여 먹으면 정말 맛있어요. 특히 여성분들이 너무 좋아한답니다!,일본,만두/면류,20,392,2,1,http://file.okdab.com/UserFiles/searching/recipe/098800.jpg,w45HFkWRfd4
+372,쇠고기버섯덮밥,간단하게 고급스러운 소바정식을 맛볼 수있다면 여러가지 버섯이 들어가 더욱 맛있답니다.,일본,밥,30,385,2,1,http://file.okdab.com/UserFiles/searching/recipe/098900.jpg,smFguJH1fDg
+373,꽃게해물탕,매콤하고 시원한 국물의 꽃게탕. 젓가락으로 꽃게살을 쏙쏙 빼먹는 맛은 별미랍니다.,한식,찌개/전골/스튜,30,145,2,2,http://file.okdab.com/UserFiles/searching/recipe/099900.jpg,hGHMRgRHF3o
+374,해초무침,상큼한 사과 소스에 신선한 해초를 담아 맛있는 산뜻한 샐러드를 만들어 보세요.,일본,나물/생채/샐러드,20,95,2,1,http://file.okdab.com/UserFiles/searching/recipe/100100.jpg,pXpqF21d4NY
+375,모듬전,담백하고 맛있는 감자전과 향이 너무 좋은 깻잎전. 달콤한 양파로 맛있는 전을 부쳐보세요.,한식,부침,30,210,2,1,http://file.okdab.com/UserFiles/searching/recipe/100200.jpg,ZnHgBFbGZA8
+376,장어덮밥,더운 여름이 다가오고 있어요. 몸보신을 위해서 맛난 장어덮밥을 만들어 보세요.,일본,밥,30,412,2,1,http://file.okdab.com/UserFiles/searching/recipe/100300.jpg,RZzMVFZ-4SY
+377,장어계란말이,부드러운 계란에 장어를 넣어 말았답니다. 조금은 특별한 맛이 느껴지고요.,일본,밑반찬/김치,30,311,2,1,http://file.okdab.com/UserFiles/searching/recipe/100500.jpg,egrAeL7KVVg
+378,토마토해산물스파게티,시원하고 영양이 풍부한 해산물로 스파게티를 만들었답니다. 새콤달콤 토마토 소스를 만들어 쫄깃한 스파게티에 솔솔~,이탈리아,만두/면류,30,356,2,1,http://file.okdab.com/UserFiles/searching/recipe/101000.jpg,osN9rIuaO9Y
+379,돈까스덮밥,바삭하게 튀긴 돈까스를 밥위에 얹어서 드셔보세요. 아주 별미랍니다.,일본,밥,30,498,2,1,http://file.okdab.com/UserFiles/searching/recipe/101500.jpg,zbbmyMVBOKA
+380,볶음우동,매콤한 소스를 쫄깃한 우동면에 뿌려드세요. 아삭하게 씹히는 야채가 들어가 더욱 맛있답니다.,일본,만두/면류,30,312,2,1,http://file.okdab.com/UserFiles/searching/recipe/101600.jpg,zRg4nxIv3j8
+381,오징어삼겹살볶음,육류와 해산물의 환상적인 조합! 매콤하니 좋아요~,한식,볶음,30,325,2,1,http://file.okdab.com/UserFiles/searching/recipe/102500.jpg,I2Vxuft7YVM
+382,채소영양밥,견과류를 이용한 구수하고 맛있는 영양밥을 만들어 보아요.,한식,밥,50,362,2,1,http://file.okdab.com/UserFiles/searching/recipe/102600.jpg,Pol-k-jnm2U
+383,마파두부덮밥,매콤한 두반장 소스에 부드러운 두부의 감칠맛~ 따끈한 밥위에 얹어 내세요.,중국,밥,30,485,3,2,http://file.okdab.com/UserFiles/searching/recipe/103400.jpg,Dccv5TWaVlo
+384,순두부,따뜻한 김이 모락모락 나는 순두부에 감칠맛나는 간장양념을 살짝 비벼 먹는 그 맛~,한식,찌개/전골/스튜,50,630,4,2,http://file.okdab.com/UserFiles/searching/recipe/103900.jpg,nj-DjQFEZb0
+385,우묵냉채,더운 여름에는 시원한 우묵냉채를 만들어 보세요. 입맛이 확 당긴답니다~,한식,나물/생채/샐러드,20,78,2,1,http://file.okdab.com/UserFiles/searching/recipe/104600.jpg,xBI7kOtB11E
+386,버섯매운탕,얼큰한 국물에 영양가 많은 버섯을 넣어 요리해보세요. 마지막에는 밥을 넣어 볶음밥까지 먹을 수있답니다.,한식,만두/면류,60,312,2,2,http://file.okdab.com/UserFiles/searching/recipe/105500.jpg,mms8OI2KetA
+387,동래파전,식구들이 둘러 앉아 맛있는 동래파전을 만들어 드셔보세요. 오붓한 정감과 함께 맛을 느껴보세요.,한식,부침,30,421,2,1,http://file.okdab.com/UserFiles/searching/recipe/106200.jpg,RnTHKUcBGnE
+388,조기찜,영양가 풍부한 조기로 맛있는 찜을 만들어 보세요. 반찬으로 너무 좋답니다~,한식,찜,30,297,2,1,http://file.okdab.com/UserFiles/searching/recipe/106400.jpg,K62bWKEbL0Q
+389,양상추참치샐러드,아삭하게 씹히는 양상추 위에 맛있게 묻힌 참치 샐러드를~,서양,나물/생채/샐러드,20,271,2,1,http://file.okdab.com/UserFiles/searching/recipe/106700.jpg,VsJPFb3uiTo
+390,라조육,"라조육의 라조는 고추를, 육은 돼지고기를 양념해 튀겨서 매운맛을 낸 음식이랍니다.",중국,튀김/커틀릿,30,412,2,1,http://file.okdab.com/UserFiles/searching/recipe/107100.jpg,tFsgY-brQ6c
+391,김치홍합국,김치의 시원한 맛에 홍합을 넣어 한소끔 끓여 준비해보세요. 속풀이 음식으로 안성맞춤!,한식,국,30,129,2,1,http://file.okdab.com/UserFiles/searching/recipe/107300.jpg,t63aSsdvZKs
+392,가지튀김,가지에 갈은 돼지고기를 넣어 바삭하게 튀겨보세요. 머스터드 드레싱을 곁들이면 더 맛있는 요리가 되지요.,한식,튀김/커틀릿,30,364,2,1,http://file.okdab.com/UserFiles/searching/recipe/107600.jpg,m6A_OLknDyY
+393,골뱅이볶음,색다른 골뱅이볶음을 만들어 보세요. 술안주로 아주 그만이지요.,한식,볶음,30,255,2,1,http://file.okdab.com/UserFiles/searching/recipe/108200.jpg,BRQQpFbypgw
+394,닭가슴살해파리샐러드,영양많은 닭살에 새콤달콤 해파리를 넣어 맛있게 무쳐보세요. 손님 상차림으로 안성맞춤!,한식,나물/생채/샐러드,30,198,2,1,http://file.okdab.com/UserFiles/searching/recipe/108600.jpg,QBqtMtwJV-A
+395,어묵볶음,얼큰한 김치와 어묵을 같이 볶아보세요. 어묵은 일단 기름을 한번 빼고 김치와 같이 볶아줍니다.,한식,볶음,30,138,2,1,http://file.okdab.com/UserFiles/searching/recipe/108700.jpg,mo8ogr40m4o
+396,오징어섞어찌개,얼큰한 오징어에 여러가지 채소를 넣어 맛나게 끓여보세요. 모시조개가 시원한 맛을 더해준답니다.,한식,찌개/전골/스튜,30,369,2,1,http://file.okdab.com/UserFiles/searching/recipe/108800.jpg,_c82mxBoXhc
+397,떡꼬치,맛있는 떡꼬치를 집에서 만들어 보세요. 아이들이 너무 좋아하는 간식이랍니다.,한식,구이,30,299,4,1,http://file.okdab.com/UserFiles/searching/recipe/109300.jpg,xLG6OGr6TRw
+398,연어오픈샌드위치,고급스러운 연어로 맛있는 샌드위치를 만들어 보세요. 도시락으로 너무 좋아요^^,서양,샌드위치/햄버거,30,399,2,1,http://file.okdab.com/UserFiles/searching/recipe/109500.jpg,1BCb4ouEAtA
+399,참치김치찌개,간단하고 쉬운 참치김치찌개를 만들어 보세요. 얼큰한 맛을 더하려면 고춧가루를 좀 더 넣어주세요~,한식,찌개/전골/스튜,30,186,2,1,http://file.okdab.com/UserFiles/searching/recipe/109900.jpg,2ebjEWk4E4I
+400,오징어볶음과소면,매콤하게 고추장과 고춧가루를 넣어 술안주로 너무 좋은 오징어볶음을 만들어보세요.,한식,볶음,30,236,2,1,http://file.okdab.com/UserFiles/searching/recipe/110100.jpg,L8Y_vqv_ix8
+401,부추잡채,향긋하고 먹음직스런 싱싱한 부추를 깨끗한 맛이 담긴 청정원 굴소스로 요리해보세요~,한식,볶음,30,206,2,1,http://file.okdab.com/UserFiles/searching/recipe/110300.jpg,0PJVVWeZ-uc
+402,쟁반라면,푸짐한 쟁반라면을 만들어 보세요. 꼬들꼬들하게 라면을 삶아서 아삭한 야채와 함께 준비하며 더욱 맛있는 요리가 되지요~,한식,만두/면류,40,415,2,1,http://file.okdab.com/UserFiles/searching/recipe/110400.jpg,tkaWoUMKV7E
+403,불고기꽃만두,치자로 예쁜 색깔을 내어 특별한 만두를 만들어 보세요.,퓨전,만두/면류,30,421,2,1,http://file.okdab.com/UserFiles/searching/recipe/110800.jpg,SZp5fTHZnmc
+404,해물샤브샤브,온가족이 둘러 앉아 해물을 육수에 퐁당퐁당! 간단하게 준비하여 푸짐하게 드실 수 있답니다,일본,찌개/전골/스튜,30,296,2,1,http://file.okdab.com/UserFiles/searching/recipe/111500.jpg,tsazxa36y5k
+405,간장게장,담백하고 짜지 않은 간장게장을 만들어보세요. 밥도둑이 따로 없답니다.,한식,밑반찬/김치,60,136,2,2,http://file.okdab.com/UserFiles/searching/recipe/111900.jpg,47xUec8L1K4
+406,녹두죽,건강에 좋은 죽을 요리해보세요. 입맛이 없을때 한그릇 뚝딱!,한식,밥,60,280,2,1,http://file.okdab.com/UserFiles/searching/recipe/112400.jpg,a6SFkgqKc8Y
+407,돼지불고기,저녁 반찬 뭐 해먹을까? 오늘 저녁 반찬으로 딱 어울리는 요리. 돼지불고기를 준비해보세요.,한식,볶음,30,220,2,1,http://file.okdab.com/UserFiles/searching/recipe/112900.jpg,2T7BfP1sx9g
+408,단호박구이,단호박으로 맛있는 간식을 만들어보세요. 단호박의 부드러운 맛과 달콤한 맛이 너무 잘 어울려요.,한식,구이,30,215,2,1,http://file.okdab.com/UserFiles/searching/recipe/113000.jpg,6hHEWgX0f88
+409,라조기,늘 시켜먹던 라조기를 직접 만들어 보세요. 바삭하게 튀긴 닭에 맛있는 소스를 곁들이면 정말 맛있는 라조기가 되지요.,중국,튀김/커틀릿,40,341,2,1,http://file.okdab.com/UserFiles/searching/recipe/114400.jpg,FztTo2nzmUE
+410,양파쌈파이,우리 몸에 좋은 양파를 만두피에 넣어 바삭하게 튀겨보세요. 정말 색다른 맛이랍니다.,퓨전,튀김/커틀릿,30,321,2,1,http://file.okdab.com/UserFiles/searching/recipe/115000.jpg,bqpyhvV_Fng
+411,미역수제비,미역국에 수제비를 넣고 끓여보세요! 색다른 맛이랍니다.,한식,만두/면류,40,358,2,1,http://file.okdab.com/UserFiles/searching/recipe/115600.jpg,4HD1v9r0YMo
+412,맑은대구탕,추운 겨울에 딱 어울리는 국물요리랍니다. 시원하게 다시마로 국물을 우려내고 맛있는 생대구를 넣어보세요.,한식,국,40,165,2,1,http://file.okdab.com/UserFiles/searching/recipe/115700.jpg,oFRB0Vd4Ydo
+413,브로콜리베이컨말이,술안주나 아이들 간식으로 너무 좋은 브로콜리 베이컨 말이~ 정말 맛있어요.,서양,구이,30,280,2,2,http://file.okdab.com/UserFiles/searching/recipe/116500.jpg,9asQ8v_kXfI
+414,쇠고기덮밥,"밥을 고소한 참기름, 깨소금에 볶아서 맛있게 양념한 불고기와 같이 준비해보세요.",한식,밥,30,396,2,1,http://file.okdab.com/UserFiles/searching/recipe/116700.jpg,2yX69ZmltPc
+415,고등어튀김케첩조림,단백질이 풍부한 고등어를 바삭하게 튀겨서.. 맛있는 소스에 버무려 내세요...,한식,조림,30,410,2,1,http://file.okdab.com/UserFiles/searching/recipe/117200.jpg,T0JtNmv4KaM
+416,생굴채소무침,우리식으로 다양하게 굴요리를 만들어보세요~,한식,나물/생채/샐러드,30,250,1,2,http://file.okdab.com/UserFiles/searching/recipe/117700.jpg,VkIEzihLmok
+417,생선전,담백한 대구살로 맛있는 전을 부쳐보세요. 고급스러운 맛을 더하려면 쑥갓을 한잎~,한식,부침,30,166,2,1,http://file.okdab.com/UserFiles/searching/recipe/117900.jpg,lnUSdK-oOHI
+418,통마늘장아찌,반찬용으로 새콤달콤하게 만들어보세요~,한식,밑반찬/김치,40,56,2,1,http://file.okdab.com/UserFiles/searching/recipe/118200.jpg,ZsYtUw71gdw
+419,북어해장국밥,포송포송한 북어로 담백한 북어해장국밥을 만들어보세요. 아침식사로 아주 그만이죠!,한식,밥,30,493,2,2,http://file.okdab.com/UserFiles/searching/recipe/118500.jpg,fVKaR66n9B4
+420,봄동겉절이,뜨거운 밥위에 겉절이를 맛있게 올려 먹으면 없던 입맛이 새록새록 살아납니다! 봄동의 향긋한 향도 너무 좋아요.,한식,밑반찬/김치,30,78,2,1,http://file.okdab.com/UserFiles/searching/recipe/119100.jpg,BfVXqm_Esg0
+421,양파전,쇠고기를 곱게 다져서 소를 만들어 아삭한 양파안에 채워넣지요. 기름에 노릇하게 구워내면 아주 맛있는 양파전이 됩니다!,한식,부침,30,165,2,1,http://file.okdab.com/UserFiles/searching/recipe/119300.jpg,q3dqCUegh78
+422,꽃상추쌈,싱싱한 상추를 준비하여 그 위에 맛있게 양념한 밥을 올려보세요~ 모양도 굿 맛도 굿!,한식,밥,30,352,2,1,http://file.okdab.com/UserFiles/searching/recipe/119900.jpg,WbFV8tPKFWc
+423,돼지고기우엉말이조림,영양가 풍부한 돼지고기에 우엉을 넣어 돌돌 말았답니다. 맛있는 양념간장에 조려보세요! 밥반찬으로도 너무 좋구요~,한식,조림,30,170,2,1,http://file.okdab.com/UserFiles/searching/recipe/120100.jpg,tRNzaP5utEw
+424,다시마채소말이,다이어트를 하신다면 깔끔한 다시마 야채 말이를 만들어보세요! 여러가지 야채와 다시마가 아주 잘 어울려요.,한식,나물/생채/샐러드,30,123,2,1,http://file.okdab.com/UserFiles/searching/recipe/120400.jpg,Ow7TTCXEY_g
+425,무말랭이무침,양념장을 맛있게 만들어 무말랭이를 맛있게 조물조물 무쳐보세요.,한식,밑반찬/김치,20,69,2,1,http://file.okdab.com/UserFiles/searching/recipe/120900.jpg,hXosVt8mLrs
+426,낙지불고기,낙지와 불고기가 만났다? 낙지와 불고기를 맛있게 양념해서 얼큰하고 담백한 전골 요리를 해보세요.,한식,볶음,40,393,2,1,http://file.okdab.com/UserFiles/searching/recipe/121200.jpg,U8Kn6Epsrr0
+427,돌솥비빔밥,뜨근한 돌솥에 여러가지 재료들을 넣어 맛있는 돌솥비빔밥을 만들어보세요~,한식,밥,30,521,2,1,http://file.okdab.com/UserFiles/searching/recipe/121400.jpg,w_6XrH9eKMo
+428,고등어양념구이,고등어에 양념장 솔솔 발라서 중불이나 약불에서 구워보세요.,한식,구이,30,175,2,1,http://file.okdab.com/UserFiles/searching/recipe/121800.jpg,ZxIJB8zirnQ
+429,고등어조림,오늘 저녁에는 고등어조림으로 밥 한끼 해결합시다. 간이 밴 무도 맛이 일품이죠~,한식,조림,30,250,2,1,http://file.okdab.com/UserFiles/searching/recipe/121900.jpg,T0JtNmv4KaM
+430,갈치구이,갈치구이를 접시에 담을 땐 레몬을 한조각 올려서 더욱 이쁘게! 보기 좋은게 먹기도 좋답니다~,한식,구이,15,165,2,1,http://file.okdab.com/UserFiles/searching/recipe/122700.jpg,k2o-VaQGVuQ
+431,갈치조림,밥 한그릇 생각나게 하는 갈치조림이죠!,한식,조림,30,240,2,1,http://file.okdab.com/UserFiles/searching/recipe/122800.jpg,mZ2C8gEw8Vk
+432,새우겨자채,톡쏘는 겨자소스에 버무린 오동통한 새우가 참 맛있답니다.,한식,나물/생채/샐러드,30,135,2,1,http://file.okdab.com/UserFiles/searching/recipe/124100.jpg,u-niDzJo4ck
+433,치즈멸치볼,치즈와 멸치가 들어가서 칼슘과 단백질이 아주 아주 풍부한 요리입니다. 아이들의 오늘 간식은 치즈멸치볼로 해결하세요.,퓨전,밥,20,287,2,1,http://file.okdab.com/UserFiles/searching/recipe/127200.jpg,iRzF1xI0mG8
+434,채소치즈죽,아침을 꼭꼭 챙겨먹어야지만이 하루도 든든하고 머리회전도 빨라진데요. 채소치즈죽으로 아침 절대 거르지 마세요~,퓨전,밥,20,268,1,1,http://file.okdab.com/UserFiles/searching/recipe/128100.jpg,CkDDkTl3hOQ
+435,수삼치즈샐러드,힘이 불끈 솟아나는 수삼과 비타민이 풍부한 야채들을 넣어 상큼하게 버무린 수삼치즈샐러드로 잃어버린 입맛을 살리세요~,퓨전,나물/생채/샐러드,20,264,2,1,http://file.okdab.com/UserFiles/searching/recipe/129900.jpg,g6S96R57yYw
+436,마늘볶음국수,마늘을 버터에 볶으면 고소하고도 향긋한 맛이 일품이예요. 생숙주를 넣어서 더욱 맛을 낸 퓨전요리를 소개합니다.,퓨전,밥,30,450,2,1,http://file.okdab.com/UserFiles/searching/recipe/130300.jpg,zRg4nxIv3j8
+437,쌀국수,베트남 고유의 시원한 쌀국수 요리를 우리집 가정에서 느껴보세요~ 담백한 육수와 상큼한 숙주가 일품이예요!,동남아시아,만두/면류,30,385,2,1,http://file.okdab.com/UserFiles/searching/recipe/131400.jpg,R1I27n1XZQY
+438,깻잎조림,깻잎을 이용한 쉽고 간단한 밑반찬입니다. 밥도둑이 따로 없어요~,한식,밑반찬/김치,15,53,2,1,http://file.okdab.com/UserFiles/searching/recipe/132000.jpg,UTiuQqLiuMA
+439,얼갈이열무물김치,여름철엔 시원한 열무김치를 넣고 국수에 말아 먹으면 정말 어떤 음식도 부럽지 않죠.,한식,밑반찬/김치,60,65,4,2,http://file.okdab.com/UserFiles/searching/recipe/132500.jpg,nqsoMyxHTbc
+443,고구마강정,달콤한 고구마를 기름에 튀겨 고소해지게 하고 또 달콤한 건포도와 고소한 호박씨를 넣어 시럽을 만들어 굳혀 보세요.,한식,도시락/간식,60,580,4,2,http://file.okdab.com/UserFiles/searching/recipe/136300.jpg,aXJgN_JjYDg
+444,근대된장국,담백하고 시원한 근대된장국으로 밥 한그릇 뚝딱 해결해 보세요.,한식,국,30,42,2,1,http://file.okdab.com/UserFiles/searching/recipe/136600.jpg,Q7bSaxK3FSE
+445,된장찌개,"구수한 냄새, 고소한 맛! 한국의 대표음식 된장찌개! 우리 입맛에 딱이예요~",한식,찌개/전골/스튜,30,136,2,1,http://file.okdab.com/UserFiles/searching/recipe/137600.jpg,ffuakdFmuh4
+446,깻잎말이김치,갖가지 재료를 넣고 돌돌 말아서 멸치액젓에 절였어요. 고급스러운 김치로 아주 맛있답니다.,한식,밑반찬/김치,30,82,4,1,http://file.okdab.com/UserFiles/searching/recipe/139300.jpg,z9MeuZOiYXk
+447,붉은갓동치미,붉은 갓에서 배어나온 자주빛의 국물이 미각과 시각을 모두 만족시켜주는 시원한 김치예요.,한식,밑반찬/김치,30,76,4,1,http://file.okdab.com/UserFiles/searching/recipe/139400.jpg,51-IFqXVO98
+448,파프리카볶음밥,형형색깔의 파프리카 속에 볶음밥으로 아이들도 참 좋아해요.,퓨전,밥,50,326,2,1,http://file.okdab.com/UserFiles/searching/recipe/140700.jpg,zesnceGFKsE
+449,돼지갈비레몬찜,새콤한 레몬을 곁들인 돼지갈비찜으로 식탁을 풍성하게 만들어 보세요.,퓨전,찜,60,420,2,1,http://file.okdab.com/UserFiles/searching/recipe/140900.jpg,_IksR2KQsFw
+450,시금치계란말이,뽀빠이처럼 튼튼하게 자랄 수 있는 아이들 건강식 반찬 요리입니다.,한식,부침,30,109,2,1,http://file.okdab.com/UserFiles/searching/recipe/141200.jpg,mVTqsY9bWXY
+451,낙지연포탕,낙지와 모시조개 덕분에 바다향 가득한 시원한 국물~,한식,찌개/전골/스튜,30,152,4,1,http://file.okdab.com/UserFiles/searching/recipe/141300.jpg,XUECJRVQ6PU
+452,새우죽,부드러운 죽 한그릇으로 아침을 거르지 마세요. 소화가 잘 되어서 환자식으로도 참 좋아요.,한식,밥,30,278,2,1,http://file.okdab.com/UserFiles/searching/recipe/141500.jpg,xbGdwoSN-yk
+453,전복죽,쫄깃한 전복살과 깊은 감칠맛이 입 안에 맴도는 보양식 죽 대령이오~,한식,밥,30,275,2,1,http://file.okdab.com/UserFiles/searching/recipe/141600.jpg,IO6AeSPfJ0Y
+454,죽순회와미나리강회,죽순의 아삭거림과 초고추장의 새콤달콤~ 미나리의 상큼한 맛이 입맛을 살려줘요!,한식,나물/생채/샐러드,20,165,2,1,http://file.okdab.com/UserFiles/searching/recipe/142400.jpg,MG7ytJkHoKI
+455,시금치나물,개운하게 나물을 무쳐보세요! 액젓으로 간해 맛이 깔끔하답니다!,한식,밑반찬/김치,20,37,2,1,http://file.okdab.com/UserFiles/searching/recipe/143700.jpg,tD8ApzPsDx8
+456,녹차콩국수,다시마와 가쓰오부시의 육수가 섞인 콩국에 쌉싸름한 맛의 녹차국수가 섞여 색다른 퓨전요리의 맛을 느껴보세요~,한식,만두/면류,30,430,2,2,http://file.okdab.com/UserFiles/searching/recipe/144500.jpg,zh3YKFETbpE
+457,우무콩냉국,우무는 저칼로리 식품일뿐만 아니라 섬유질이 풍부해 배변활동을 도와 주는 다이어트 식품입니다.,한식,국,20,82,4,1,http://file.okdab.com/UserFiles/searching/recipe/144600.jpg,xBI7kOtB11E
+458,모듬콩수프,단백질 덩어리 몸에 좋은 콩콩콩! 부드러운 수프로 즐겨보세요~,서양,밥,20,260,2,1,http://file.okdab.com/UserFiles/searching/recipe/144900.jpg,8CuQUJYJbJ0
+459,서리태콩국수,"여름 더위를 물리치는 단골손님, 시원한 콩국수! 쫄깃한 면발과 고소한 국물맛이 환상이죠.",한식,만두/면류,30,489,2,1,http://file.okdab.com/UserFiles/searching/recipe/145200.jpg,_XnQcobZFb4
+460,대대로닭칼국수,닭육수로 만든 시원한 국물맛과 콩가루로 빚은 고소한 면발이 잘 어울리는 따끈따끈한 칼국수 대령이요!,한식,만두/면류,30,235,2,1,http://file.okdab.com/UserFiles/searching/recipe/145300.jpg,R0xWJ4c8wR4
+461,전어회무침,입맛 없을 때는 새콤달콤한 전어회무침이 최고에요. 입안에 군침이 좌르르 돌아요.,한식,나물/생채/샐러드,30,187,2,1,http://file.okdab.com/UserFiles/searching/recipe/147200.jpg,mVBpO24g8KU
+462,왕새우구이와구운채소,각종 허브오일에 마리네이드한 왕새우를 오븐에 먹기좋게 구워 톡쏘는 와사비감자와 즐겨보세요.,서양,구이,40,285,2,2,http://file.okdab.com/UserFiles/searching/recipe/147300.jpg,TSFKOgJxKnI
+463,소꼬리찜,몸이 허하다고 생각이 들때는 소꼬리찜으로 원기회복해 보세요. 국물이 있어서 해장에도 아주 좋아요.,한식,찜,60,457,2,1,http://file.okdab.com/UserFiles/searching/recipe/148100.jpg,HamqwWlYGtc
+464,삼색나물월남쌈,삼색나물과 고기산적을 각종 채소들과 함께 부드러운 라이스 페이퍼에 싸드세요. 세가지 소스중에 무엇을 찍어먹을지 행복한 고민을 해볼까요.,퓨전,나물/생채/샐러드,30,251,2,2,http://file.okdab.com/UserFiles/searching/recipe/148200.jpg,tD8ApzPsDx8
+465,토란닭고기찜,닭고기 살에 적당히 배인 간장소스가 너무나도 맛있는거 있죠. 담백한 토란과 함께 즐겨줘요.,한식,찜,30,310,2,2,http://file.okdab.com/UserFiles/searching/recipe/148400.jpg,8qM7H7RfANc
+466,녹두고물호박떡케이크,은은한 연두색 녹두고물이 덮인 호박떡케이크랍니다. 설탕은 조금만 첨가시키고 단호박의 자연적인 단맛을 즐겨보세요.,한식,떡/한과,70,264,2,3,http://file.okdab.com/UserFiles/searching/recipe/148800.jpg,qvVGBIe9_N8
+467,크림소스파스타,남녀노소 좋아하는 크림파스타! 이젠 집에서도 즐겨보세요~,이탈리아,만두/면류,60,350,2,2,http://file.okdab.com/UserFiles/searching/recipe/149700.jpg,0bnFoRQebq0
+468,상추미소국,냉장고에 먹다 남은 상추 있으신가요? 그럼 시원한 미소국에 한 번 넣어보세요~ 상추의 향과 미소된장의 향이 아주 잘 어울려요!,일본,국,20,53,2,1,http://file.okdab.com/UserFiles/searching/recipe/150000.jpg,ruJTdLppMjM
+469,가지김치,오늘은 아삭한 가지로 만든 김치! 과연 어떤 맛일까요?,한식,밑반찬/김치,30,45,2,1,http://file.okdab.com/UserFiles/searching/recipe/150700.jpg,Ioh6EcFtTHM
+470,버섯잡채,당면 대신 버섯을 이용해 고소한 잡채를 만들어 보세요.,한식,볶음,30,201,2,1,http://file.okdab.com/UserFiles/searching/recipe/151300.jpg,DNj3YiaP42s
+471,부추올리브오일무침,기름기가 없어 질겨지거나 퍽퍽할 수 있는 부추무침에 올리브오일을 첨가해 보세요. 윤기가 흐르는 부추무침을 보면 입맛이 돌아와요.,퓨전,나물/생채/샐러드,20,43,2,1,http://file.okdab.com/UserFiles/searching/recipe/151500.jpg,nX7NijHjf-E
+472,바베큐립,패밀리레스토랑의 맛을 재현하다~ 그 맛이 바로 바비큐립!,서양,구이,60,241,2,2,http://file.okdab.com/UserFiles/searching/recipe/152300.jpg,ksrTgUUkLGY
+473,무쌈말이,비트로 물을 들여 색깔이 아주 화려하답니다. 온갖 채소들을 돌돌 말아 특히 여성분들에게 좋아요,한식,나물/생채/샐러드,30,110,2,1,http://file.okdab.com/UserFiles/searching/recipe/153400.jpg,d7mWhqdsIVU
+474,치킨샐러드,느끼하지 않은 닭가슴살로 만든 샐러드랍니다. 달콤한 허니머스터드를 뿌려드세요!,서양,나물/생채/샐러드,30,295,2,1,http://file.okdab.com/UserFiles/searching/recipe/154500.jpg,uuJ2qXj7-WY
+475,된장채소수제비,된장은 음식의 간과 맛을 보태주는 역할과 함께 식물성 단백질로 구성되어 버릴 것 하나 없는 기특한 식품입니다.,한식,만두/면류,30,350,2,1,http://file.okdab.com/UserFiles/searching/recipe/154800.jpg,6qSuUWq0FR8
+476,고추장닭강정,고추장으로 매콤 달콤하게 맛을 낸 닭강정을 만들어보세요..모두가 즐길 수 있는 요리랍니다.,퓨전,튀김/커틀릿,40,385,2,2,http://file.okdab.com/UserFiles/searching/recipe/155400.jpg,utSLzEsL1x4
+477,참치죽,고소한 참치가 들어가 심심하지 않아요~,한식,밥,30,296,2,1,http://file.okdab.com/UserFiles/searching/recipe/156100.jpg,DzGa0anw7so
+478,두부파프리카전,고소한 두부의 맛을 살려주는 포도씨유로 두부 파프리카전을 지져보세요. 느끼하지 않은 기름이 음식맛을 살려준답니다~,한식,부침,30,96,2,1,http://file.okdab.com/UserFiles/searching/recipe/157100.jpg,hzFp-DyOAK8
+479,고추잡채와꽃빵,매콤한 고추잡채에 쫄깃한 꽃빵을 곁들여 드셔보세요~,중국,만두/면류,30,110,2,1,http://file.okdab.com/UserFiles/searching/recipe/157300.jpg,sFLGovdEBr4
+480,해물찌개,개운한 국물 한술 뜨면 피로가 싹 날아가는 시원한 해물찌개~ 쌀쌀한 날씨엔 시원한 국물이 최고랍니다!,한식,찌개/전골/스튜,30,165,4,2,http://file.okdab.com/UserFiles/searching/recipe/158000.jpg,YOzjybumNas
+481,돼지고기김치찌개,개운한 김치찌개~! 신김치와 청정원 국선생 육수만  있으면 감칠맛 나는 요리는 문제 없답니다.,한식,찌개/전골/스튜,30,120,4,2,http://file.okdab.com/UserFiles/searching/recipe/158100.jpg,qWbHSOplcvY
+482,두부조림,바삭한 두부를 감칠맛나는 굴소스에 부드럽게 조렸어요~ 술안주로 밥반찬으로 인기 만점이에요!,한식,조림,30,108,4,1,http://file.okdab.com/UserFiles/searching/recipe/158600.jpg,Eino3yP-Wk0
+483,오코노미야키,부슬부슬 비오는 날~ 가다랑이포 솔솔뿌린 따끈한 오코노미야키를 만들어보세요! 집에서도 훌륭한 맛내기! 한번 시작해 볼까요~?,일본,부침,30,350,2,2,http://file.okdab.com/UserFiles/searching/recipe/158800.jpg,yak4fWalsac
+484,해물볶음밥,빠른 요리가 필요할 땐 맛도 함께 챙겨주는 굴소스로 요리해보세요~,한식,밥,30,362,2,2,http://file.okdab.com/UserFiles/searching/recipe/159000.jpg,vHLG66mgol8
+485,새송이쌈장구이,쫄깃한 새송이를 개운한 쌈장에 재워 구워보세요~,한식,구이,30,85,2,2,http://file.okdab.com/UserFiles/searching/recipe/159500.jpg,BxEs76gaULE
+486,해물매운탕,매콤하면서 시원한 해물탕으로 개운하게 속풀이 하세요!,한식,찌개/전골/스튜,60,265,4,2,http://file.okdab.com/UserFiles/searching/recipe/160200.jpg,t_4-LHs6K8o
+487,해물순두부찌개,부드럽게 넘어가는 맛이 최고!! 시원하고 개운한 국물맛이 단백하게 입맛을 살려주는 순두부찌개!!,한식,찌개/전골/스튜,30,165,4,2,http://file.okdab.com/UserFiles/searching/recipe/160800.jpg,nj-DjQFEZb0
+488,김치우동,칼칼한 국물이 땡기는 날~ 김치우동으로 시원함을 달래보세요!,일본,만두/면류,30,293,2,1,http://file.okdab.com/UserFiles/searching/recipe/161700.jpg,_VNVlFPsBng
+489,쫄면,쫄깃하고 새콤달콤한 쫄면~ 차고 매콤한 맛이 자꾸자꾸 땡겨요!,한식,만두/면류,40,267,4,2,http://file.okdab.com/UserFiles/searching/recipe/162500.jpg,FbApByZGCXg
+490,발효초요구르트,발효초를 넣어 더욱 개운한 요구르트 한 잔이면 하루가 상쾌해요~,서양,음료,10,142,4,1,http://file.okdab.com/UserFiles/searching/recipe/162600.jpg,9GGbRB6TCYA
+491,채소피클,새콤 달콤 아삭한 피클을 집에서 즐겨보세요~ 발효초가 들어가 건강까지 살아있어요~,서양,밑반찬/김치,20,37,2,1,http://file.okdab.com/UserFiles/searching/recipe/162800.jpg,g0gh4NJwClU
+492,떡만두국,따끈한 국물이 생각날 때! 쫄깃한 떡과 속살 탱탱한 만두가 들어간 떡만두국 어떠세요~,한식,만두/면류,30,425,2,2,http://file.okdab.com/UserFiles/searching/recipe/163500.jpg,At-u3lwsFtk
+493,꽁치김치찌개,김치찌개가 지겨우시다구요? 꽁치를 넣어 칼칼하고 시원한 꽁치김치찌개! 추운 날 밥반찬으로 그만이지요~,한식,찌개/전골/스튜,60,423,4,2,http://file.okdab.com/UserFiles/searching/recipe/163700.jpg,dzfpaJkr_Q4
+494,미소된장국,단백한 국물맛이 좋은 미소된장국으로 속을 가볍게 달래보세요~,일본,국,30,56,2,1,http://file.okdab.com/UserFiles/searching/recipe/163900.jpg,ruJTdLppMjM
+495,비빔냉면,"더운 여름, 시원하고 새콤달콤한 비빔냉면을 비벼비벼~",한식,만두/면류,50,630,4,2,http://file.okdab.com/UserFiles/searching/recipe/166300.jpg,p9U0uzrEjes
+496,메기매운탕,메기와 각종 채소를 넣어 얼큰하게 끓인 탕 요리,한식,찌개/전골/스튜,60,169,4,2,http://file.okdab.com/UserFiles/searching/recipe/167000.jpg,REJwInqGrAw
+497,잉어찜,잉어에 고명을 얹어 찐요리입니다. 특별한날 드셔보세요.,한식,찜,30,138,4,2,http://file.okdab.com/UserFiles/searching/recipe/168000.jpg,_MeoldQtIr4
+498,송어샐러드,신선한 채소와 송어에 상큼한 파인애플 드레싱을 얹은 요리,한식,나물/생채/샐러드,30,113,4,1,http://file.okdab.com/UserFiles/searching/recipe/168300.jpg,iQdFnmIHiIc
+499,까르보나라 (한국식),전통식과는 다르게 생크림을 넣어 소스가 많은 한국식 까르보나라,이탈리아,만두/면류,30,652,1,1,http://file.okdab.com/UserFiles/searching/recipe/172900.jpg,0bnFoRQebq0
+500,쌀샐러드,낙지와 야채를 곁들인 쌀 샐러드로 이탈리아에서 즐겨먹는 쌀요리.,이탈리아,나물/생채/샐러드,40,426,2,1,http://file.okdab.com/UserFiles/searching/recipe/173600.jpg,l2gPbTHhQgs
+501,시금치배미음죽,기관지에 좋은 배와 비타민이 풍부한 죽을 통해 아기의 변기가 싹 나았습니다,한식,밥,40,0,2,1,http://file.okdab.com/UserFiles/searching/recipe/173600516.jpg,zRkOeIaCVE0
+502,시금치표고된장무른밥,"칼슘이 부족하고, 철도 부족한 빈혈이 있는 아이에게 추천하는 건강 요리입니다.",한식,밥,50,0,2,1,http://file.okdab.com/UserFiles/searching/recipe/173600531.jpg,XU5Jv4e7DKw
+503,한우토마토스튜,이국적인 향미의 영양식 한우토마토스튜,한식,찌개/전골/스튜,30,400,2,1,http://file.okdab.com/recipe/142361932749200037.jpg,1Lc70M38LTk
+504,흑임자삼계죽,겨울 보양식,한식,밥,20,300,2,1,http://file.okdab.com/recipe/142362150342300057.jpg,ShS0_hxgtiE
+505,시래기돼지갈비찜,겨울철 보양식,한식,찜,30,350,2,1,http://file.okdab.com/recipe/142362140251300052.jpg,4mGlRi1koH4
+506,보쌈김치,모양부터 맛까지 고급스러운 보쌈김치,한식,밑반찬/김치,30,250,2,1,http://file.okdab.com/recipe/142362203931100058.jpg,3cOHRzqHnQY
+507,감동젓무김치,"겨울무와 젓갈로 만드는 감칠맛, 감동젓무김치(자하젓섞박지)",한식,밑반찬/김치,30,350,2,1,http://file.okdab.com/recipe/142362278536100063.jpg,e6ccrqP_05k
+508,단호박옥수수치즈구이,"달콤한 단호박과 톡톡터지는 옥수수, 고소한 치즈의 만남",서양,부침,30,0,2,1,http://file.okdab.com/recipe/147133786062900726.jpg,npCj92C3apA
+509,시금치들깨수제비,영양가득한 시금치와 들깨로 만든 고소한 들깨수제비,한식,만두/면류,30,323,4,2,http://file.okdab.com/recipe/147139850208600755.jpg,It2TnXLUfvM
+510,바질페스토 스파게티,바질의향이 솔솔 바질페이스토 스파게티,이탈리아,양식,30,0,2,1,http://file.okdab.com/recipe/147433913098400906.jpg,i0PCScEII3w
+511,가지말이구이,보기도 좋고 맛도 좋은 영양만점 가지말이구이,퓨전,나물/생채/샐러드,30,0,2,1,http://file.okdab.com/recipe/147521219349301578.jpg,c0gpPjfKOog
+512,돛나물 부추 오이무침,시원하고 아삭한 오이 부추와 돛나물을 만나 영양을 더하다!,한식,밑반찬/김치,10,0,2,1,http://file.okdab.com/recipe/147521990367001612.jpg,bomkxCbnYIU
+513,오이동치미,알록달록 파프리카로 속을 채운 시원하고 아삭한 오이동치미,한식,밑반찬/김치,60,0,4,2,http://file.okdab.com/recipe/147522432389801632.jpg,FJhSH3SayYk
+514,토마토미니새송이볶음,토마토와 미니새송이로 만든 간단 반찬,한식,볶음,30,0,2,1,http://file.okdab.com/recipe/147676766735700024.jpg,ohIg6GVR1jM
+515,닭가슴살 호박말이,단백하고 고소한 닭가슴살을 비타민이 풍부한 호박으로 말아요.,퓨전,나물/생채/샐러드,30,0,2,1,http://file.okdab.com/recipe/147686495891600030.jpg,dW1nwOqtTR8
+516,고구마잎무침,항산화물질이 풍부한 고구마잎무침,한식,나물/생채/샐러드,10,0,1,1,http://file.okdab.com/recipe/147686756652700036.jpg,EpXx4jXHXEM
+517,매운가지볶음,입맛을 살려주는 매콤한 가지볶음,한식,볶음,20,0,2,1,http://file.okdab.com/recipe/147729991660000012.jpg,_rxQn_cefcc
+518,가지그라탕,폴리페놀 성분이 풍부한 가지로 만든 건강 간식 가지그라탕,이탈리아,그라탕/리조또,30,0,2,2,http://file.okdab.com/recipe/147738563569500206.jpg,ex-nrxXw71o
+519,상추 치커리 오징어 초침무,졸깃한 오징어와 아삭하고 향긋한 상추와 치커리의 만남,한식,나물/생채/샐러드,30,0,4,1,http://file.okdab.com/recipe/147790356219600002.jpg,PL7DCnPYYaM
+520,가지무침과 호박잎쌈밥,가지무침과 호박잎쌈밥으로 건강한 한 끼 식사 완성,한식,밥,30,0,2,1,http://file.okdab.com/recipe/147799091155300006.jpg,988n9o6PWLI
+521,호박무침,새콤하게 무친 호박 비빔밥 용으로도 좋아요.,한식,나물/생채/샐러드,30,0,2,1,http://file.okdab.com/recipe/147936561431200472.jpg,YHfc4PhwlQY
+522,어린잎샌드위치,부드러운 어린잎으로 만든 영양 간식 샌드위치.,서양,도시락/간식,20,0,3,2,http://file.okdab.com/recipe/147969190762100715.jpg,RvDu833RSek
+523,민트라임모히또,민트와 라임의 만남! 상큼한 민트라임모히또,서양,음료,20,0,2,1,http://file.okdab.com/recipe/147978355895400818.jpg,8getArw9Ryk
+526,가지두부스테이크,두부와 만난 가지의 고급진 변신!  가지두부스테이크,퓨전,구이,30,0,1,1,http://file.okdab.com/recipe/148056032967500000.jpg,WJbwqGNoD9U
+527,오이보트카나페,"상큼하고 아삭한 오이에 고소한 참치샐러드의 조화. 영양 간식, 손님접대로 딱!",퓨전,도시락/간식,30,0,3,2,http://file.okdab.com/recipe/148066186717500109.jpg,yWmrm6tHdrA
+528,애호박 구이,어린채소와 함께 샐러드처럼 먹을 수 있는 애호박 구이,한식,나물/생채/샐러드,20,0,2,1,http://file.okdab.com/recipe/148066561730500124.jpg,XRNQ_2HzETk
+529,나물 월남쌈,명절을 보내고 남은 나물로 알뜰하고 맛이게 만들어 먹는 나물 월남쌈!,퓨전,나물/생채/샐러드,30,0,2,2,http://file.okdab.com/recipe/148066903468800139.jpg,J1A44GtudLw
+530,단호박 고등어조림,달콤한 단호박으로 만든 달콤 짭짜름한 고등어조림,한식,조림,30,0,4,2,http://file.okdab.com/recipe/148222411418400027.jpg,N-LUacGGbhc
+531,당근잎 감자전,당근 향이 나는 향긋한 당근잎 감자전,한식,부침,20,0,2,2,http://file.okdab.com/recipe/148229812483500337.jpg,8RM-BuNMuBU
+532,배추만두,배추로 만든 깜찍한 배추주머니 만두! 아삭한 배추와 영양으로 가~득 채운 보기도 좋고 맛도 좋은 배추만두랍니다.,한식,찜,30,0,2,2,http://file.okdab.com/recipe/148230648948900343.jpg,gdqMqXr6y7I
+533,식빵고구마파이,식빵을 이용한 간단 고구마파이! 아이들 영양 간식으로 딱!,서양,빵/과자,30,0,2,1,http://file.okdab.com/recipe/148291043686100008.jpg,JzBfF5uod1s
+534,카레토마토달걀볶음밥,토마토와 달걀을 넣은 볶음밥에 카레소스를 두른 영양만점 볶음밥,퓨전,밥,30,0,1,1,http://file.okdab.com/recipe/148291443772500013.jpg,pTvMsM2v1tg
+535,쪽파 새우강회,새우에 쪽파를 감아 간단하게 만들지만 새우와 쪽파의 달콤한 맛과 새콤한 초고추장의 환상의 콤비! 거기에 건강까지 좋은 영양만점 쪽파 새우강회!!,퓨전,나물/생채/샐러드,20,0,2,1,http://file.okdab.com/recipe/148299002655300119.jpg,RxL1WquqFlU
+536,누드김밥,건강한 재료로 가득담아 말은 누드김밥! 고기가 없어도 맛있어요!!,퓨전,밥,20,0,3,2,http://file.okdab.com/recipe/148299332505800120.jpg,rf5oug8q7vo
+537,콩비지동그랑땡,두부대신 콩비지를 넣어 만든 동그랑땡 맛도 좋아요!,한식,부침,30,0,3,2,http://file.okdab.com/recipe/148299577268400131.jpg,BsSJi3OiOaU

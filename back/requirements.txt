@@ -1,7 +1,4 @@
 alembic==1.7.6
-cffi==1.15.0
-click==8.0.3
-colorama==0.4.4
 cryptography==36.0.1
 Flask==2.0.2
 Flask-Cors==3.0.10
@@ -10,10 +7,38 @@ Flask-SQLAlchemy==2.5.1
 greenlet==1.1.2
 itsdangerous==2.0.1
 Jinja2==3.0.3
-Mako==1.1.6
-MarkupSafe==2.0.1
 pycparser==2.21
 PyMySQL==1.0.2
 six==1.16.0
 SQLAlchemy==1.4.31
 Werkzeug==2.0.3
+flask-restx==0.5.1
+# pandas==1.4.1
+# numpy==1.22.1
+# requests==2.27.1
+
+
+# Base ----------------------------------------
+matplotlib>=3.2.2
+numpy>=1.18.5
+opencv-python>=4.1.2
+Pillow>=7.1.2
+PyYAML>=5.3.1
+requests>=2.23.0
+scipy>=1.4.1
+torch>=1.7.0
+torchvision>=0.8.1
+tqdm>=4.41.0
+
+# Logging -------------------------------------
+tensorboard>=2.4.1
+# wandb
+
+# Plotting ------------------------------------
+pandas>=1.1.4
+seaborn>=0.11.0
+
+
+thop  # FLOPs computation
+
+gunicorn==20.1.0
