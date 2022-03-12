@@ -37,9 +37,14 @@ const ShoppingList = () => {
     }
   };
 
-  const handleTap = () => {
-    setHandleTap1((handleTap1) => !handleTap1);
-    setHandleTap2((handleTap2) => !handleTap2);
+  const handleTap = (tap) => {
+    if (tap === handleTap1) {
+      setHandleTap1(true);
+      setHandleTap2(false);
+    } else {
+      setHandleTap1(false);
+      setHandleTap2(true);
+    }
   };
 
   useEffect(() => {
