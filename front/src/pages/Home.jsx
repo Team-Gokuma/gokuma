@@ -13,8 +13,11 @@ import sticker from "../asset/img/home/sticker.png";
 import store from "../asset/img/home/store.png";
 import webBack from "../asset/img/home/webBack.png";
 import webFront from "../asset/img/home/webFront.png";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Home = () => {
+  AOS.init();
   return (
     <>
       <HomeContainer>
@@ -47,7 +50,7 @@ const Home = () => {
         <CaptureSection>
           <CaptureImage>
             <img src={flash} alt="flash" className="flash" />
-            <img src={ipad} alt="ipad" className="ipad" />
+            <img src={ipad} alt="ipad" className="ipad" data-aos="zoom-in" data-aos-duration="1000" />
           </CaptureImage>
           <CaptureContent>
             <h2 className="captureTitle main">
@@ -76,7 +79,13 @@ const Home = () => {
           <RefrigeInner>
             <RefrigeImage>
               <img src={webBack} alt="website background" className="webBack" />
-              <img src={webFront} alt="website Refrigerator" className="webFront" />
+              <img
+                src={webFront}
+                alt="website Refrigerator"
+                className="webFront"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+              />
             </RefrigeImage>
             <RefrigeContent>
               <h2 className="refrigeTitle main">나의 냉장고에 재료를 넣어보세요!</h2>
@@ -115,7 +124,13 @@ const Home = () => {
             </div>
           </ShoppingListContent>
           <ShoppingListImage>
-            <img src={shoppinglist} alt="shoppinglist" className="shoppinglist" />
+            <img
+              src={shoppinglist}
+              alt="shoppinglist"
+              className="shoppinglist"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+            />
             <img src={store} alt="store" className="store" />
             <img src={shoppingcart} alt="shoppingcart" className="shoppingcart" />
           </ShoppingListImage>
@@ -318,6 +333,19 @@ const CaptureImage = styled.div`
     position: absolute;
     top: 140px;
     left: 70px;
+    /* animation: flashEffect 700ms cubic-bezier(0.5, -1, 0.5, 1) infinite alternate forwards;
+    @keyframes flashEffect {
+      from {
+        width: 40px;
+        height: 40px;
+        opacity: 0.6;
+      }
+      to {
+        width: 62px;
+        height: 58px;
+        opacity: 1;
+      } */
+    }
   }
   .ipad {
     width: 417px;
@@ -600,11 +628,19 @@ const BookmarkImage = styled.div`
   position: relative;
 
   .like {
-    width: 104px;
-    height: 105px;
+    width: 84px;
+    height: 85px;
     position: absolute;
-    top: -40px;
-    left: 80px;
+    top: -50px;
+    left: 100px;
+    animation: beatEffect 0.25s ease infinite alternate;
+    @keyframes beatEffect {
+      from {
+      }
+      to {
+        transform: scale(1.1);
+      }
+    }
   }
   .bookmark {
     width: 378px;
@@ -667,6 +703,17 @@ const TeamIntroContent = styled.div`
     ${({ theme }) => theme.font.bold};
     text-decoration: none;
     color: ${({ theme }) => theme.color.black};
+  }
+  ${media.mobile} {
+    p {
+      font-size: 15px;
+      word-break: keep-all;
+      margin-left: 20px;
+    }
+    .teamLink {
+      margin-left: 20px;
+      ${({ theme }) => theme.font.large};
+    }
   }
 `;
 const TeanIntroImage = styled.div`
