@@ -15,7 +15,8 @@ export default function TeamIntro() {
     <MypageContainer>
       <Intro>
         <p className="main">
-          이미지 처리 인공지능 웹 서비스 <span className="logo">'어쩔 냉장고'</span>를 만든 <span>Team Gokuma</span>
+          이미지 처리 인공지능 웹 서비스 <span className="logo">'어쩔 냉장고'</span>를 만든
+          <br /> <span>Team Gokuma</span>
           입니다!
         </p>
         <p className="mobile">
@@ -100,6 +101,9 @@ const Intro = styled.div`
   margin-top: 80px;
   padding: 0 40px;
   color: ${({ theme }) => theme.color.black};
+  .mobile {
+    display: none;
+  }
   p {
     flex: 2;
   }
@@ -109,9 +113,6 @@ const Intro = styled.div`
   }
   span {
     ${({ theme }) => theme.font.bold};
-  }
-  .mobile {
-    display: none;
   }
   ${media.tablet} {
     font-size: 20px;
