@@ -136,6 +136,7 @@ const BookmarkContainer = styled.div`
     .noBookmark {
       margin: 0;
       margin-top: 20px;
+      word-break: keep-all;
     }
   }
 `;

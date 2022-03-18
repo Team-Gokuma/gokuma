@@ -398,11 +398,11 @@ const NoIngredient = styled(Link)`
   margin: 56px;
   line-height: 1.5;
   border-bottom-left-radius: 999rem;
+  word-break: keep-all;
 
   ${media.mobile} {
     margin: 0;
     margin: 12px;
-    word-break: keep-all;
   }
 `;
 
