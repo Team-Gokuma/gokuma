@@ -122,10 +122,10 @@ export default Mypage;
 
 const MypageContainer = styled.section`
   width: 100vw;
-  height: 90vh;
+  height: 91vh;
   background-color: #f0f1f3;
   ${media.mobile} {
-    min-width: 320px;
+    width: 100vw;
   }
 `;
 const MypageContent = styled.div`
@@ -175,7 +175,7 @@ const UserInfoBox = styled.div`
     margin-right: 1.2rem;
   }
   ${media.mobile} {
-    width: 100vw;
+    width: 100%;
     padding: 40px 20px;
     padding-top: 60px;
   }
