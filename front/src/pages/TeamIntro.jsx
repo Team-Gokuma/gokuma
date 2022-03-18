@@ -65,7 +65,7 @@ export default function TeamIntro() {
           image={haa}
           name="백정하"
           part="AI"
-          describe="일단도전(一旦挑戰)"
+          describe="애이아이(愛邇兒二)"
           intro="모델 학습의 비결은 육아에 있다. 데이터 전처리부터 신중하게! 우리 (에이)아이 이쁘죠?"
           git="https://github.com/junghabaek"
         />
