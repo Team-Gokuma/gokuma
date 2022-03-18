@@ -223,6 +223,6 @@ window > `$ docker exec -it {db container 이름} //bin//bash`
 
 ### 배포 하기
 
-`$ docker-compose -f docker-compose.prod.yml up -d`
+`$ docker-compose -f docker-compose.prod.yml up -d --build`
 
 - 개발 서버 도커 이미지가 있다면 상단 서버 삭제하기 명령어를 통해 삭제 후 실행
