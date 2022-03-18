@@ -79,15 +79,15 @@ const Mypage = () => {
       {UpdateName && <UpdateNameModal handleCloseName={handleCloseName} />}
       {UpdatePass && <UpdatePassModal handleClosePass={handleClosePass} />}
       <MypageContent>
-        <LogoutBtn onClick={handleLogout}>
-          <Link to="/" className="logout">
-            Logout
-          </Link>
-        </LogoutBtn>
         <h2>
           <span>{username}</span> 님
+          <LogoutBtn onClick={handleLogout}>
+            <Link to="/" className="logout">
+              Logout
+            </Link>
+          </LogoutBtn>
         </h2>
-        <div className="mypageContent">
+        <UserInfoBox>
           <div>
             <h3>회원정보</h3>
             <p>이메일 : {useremail}</p>
@@ -112,7 +112,7 @@ const Mypage = () => {
               <Button text="회원 탈퇴" bgcolor="orange" txtcolor="white" round={true} padding="0 2rem" />
             </span>
           </div>
-        </div>
+        </UserInfoBox>
       </MypageContent>
     </MypageContainer>
   );
@@ -124,6 +124,9 @@ const MypageContainer = styled.section`
   width: 100vw;
   height: 90vh;
   background-color: #f0f1f3;
+  ${media.mobile} {
+    min-width: 320px;
+  }
 `;
 const MypageContent = styled.div`
   width: 600px;
@@ -139,36 +142,42 @@ const MypageContent = styled.div`
       ${({ theme }) => theme.font.bold}
     }
   }
-  .mypageContent {
-    width: 600px;
-    height: 400px;
-    background-color: ${({ theme }) => theme.color.white};
-    border-radius: 10px;
-    padding: 60px;
-    ${({ theme }) => theme.font.medium};
-    box-shadow: 3px 7px 14px 0 rgba(0, 0, 0, 0.05);
+`;
 
-    h3 {
-      ${({ theme }) => theme.font.bold};
-      ${({ theme }) => theme.font.xlarge};
-      padding-bottom: 40px;
-    }
-    p {
-      margin-bottom: 28px;
-      width: 70%;
-      position: relative;
-    }
-    .editNameBtn {
-      margin-left: 60px;
-      position: absolute;
-      top: -12px;
-      right: -40px;
-    }
-    .userInfoBtn {
-      display: inline-block;
-      margin-top: 40px;
-      margin-right: 1.2rem;
-    }
+const UserInfoBox = styled.div`
+  width: 600px;
+  height: 400px;
+  background-color: ${({ theme }) => theme.color.white};
+  border-radius: 10px;
+  padding: 60px;
+  ${({ theme }) => theme.font.medium};
+  box-shadow: 3px 7px 14px 0 rgba(0, 0, 0, 0.05);
+
+  h3 {
+    ${({ theme }) => theme.font.bold};
+    ${({ theme }) => theme.font.xlarge};
+    padding-bottom: 40px;
+  }
+  p {
+    margin-bottom: 28px;
+    width: 70%;
+    position: relative;
+  }
+  .editNameBtn {
+    margin-left: 60px;
+    position: absolute;
+    top: -12px;
+    right: -40px;
+  }
+  .userInfoBtn {
+    display: inline-block;
+    margin-top: 40px;
+    margin-right: 1.2rem;
+  }
+  ${media.mobile} {
+    width: 100vw;
+    padding: 40px 20px;
+    padding-top: 60px;
   }
 `;
 
@@ -176,8 +185,14 @@ const LogoutBtn = styled.div`
   display: none;
   ${media.mobile} {
     display: inline-block;
-    border: 1px solid red;
+    border: 1px solid ${({ theme }) => theme.color.black};
+    border-radius: 999px;
+    margin-left: 28px;
+    padding: 6px 10px;
+    ${({ theme }) => theme.font.medium};
+
     .logout {
+      color: ${({ theme }) => theme.color.black};
       text-decoration: none;
     }
   }
