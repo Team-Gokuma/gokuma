@@ -12,8 +12,7 @@ import { recognition } from "../../api/receipe";
 import { addIngredient } from "../../api/refrige";
 import { StyledLink } from "../../styles/commonStyle";
 import { MobileTitle } from "../mobile/MobileTitle";
-
-const regTag = /^[가-힣]+$/;
+import isKorean from "../../util/isKorean";
 
 export const Recommend = ({ page, handleAddImage, getIngredient }) => {
   const [AddToggle, setAddToggle] = useState(true);
@@ -82,7 +81,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
 
   const saveTags = (e) => {
     e.preventDefault();
-    if (regTag.test(inputValue)) {
+    if (isKorean(inputValue)) {
       setIngredient((cur) => {
         const newData = { ...cur };
         newData.data = [...newData.data, { content: inputValue, category: 7 }];
@@ -92,7 +91,7 @@ export const Recommend = ({ page, handleAddImage, getIngredient }) => {
       setMsg("");
       setOnIcon(false);
     }
-    if (inputValue !== "" && !regTag.test(inputValue)) {
+    if (inputValue !== "" && !isKorean(inputValue)) {
       setOnIcon(true);
       setMsg("오타 혹은 한글 외에 다른 글자가 포함되어 있습니다!");
     }
